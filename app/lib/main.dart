@@ -1,3 +1,4 @@
+import 'package:app/pages/login_page.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
@@ -95,6 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            TextButton(
+              onPressed: () {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage()));},
+              child: Text('LOGIN'),
+            )
           ],
         ),
       ),
