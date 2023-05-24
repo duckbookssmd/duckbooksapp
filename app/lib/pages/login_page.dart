@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,12 +14,12 @@ class _LoginPageState extends State<LoginPage> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
-  TextEditingController? textController1;
+  TextEditingController? texMatriculaController;
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
-  TextEditingController? textController2;
+  TextEditingController? texSenhaController;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController2Validator;
+  String? Function(BuildContext, String?)? texSenhaControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
   final _formKey = GlobalKey<FormState>();
@@ -32,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     super.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
+    texMatriculaController?.dispose();
+    texSenhaController?.dispose();
   }
 
   @override
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                     child: TextFormField(
-                      controller: textController1,
+                      controller:  texMatriculaController,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -149,9 +150,15 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
+                      inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(7),
+                      ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Por favor, preencha!';
+                        } else if (value.length < 6) {
+                          return 'Matrícula inválida';
                         }
                         return null;
                       },
@@ -164,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                     child: TextFormField(
-                      controller: textController2,
+                      controller: texSenhaController,
                       autofocus: false,
                       obscureText: !passwordVisibility,
                       decoration: InputDecoration(
@@ -239,11 +246,12 @@ class _LoginPageState extends State<LoginPage> {
                       textAlign: TextAlign.start,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Senha vazia!';
+                        } else if (value.length <= 6) {
+                          return 'Tamanho mímino de 6 dígitos';
                         }
                         return null;
                       },
-                      // validator: _model.textController2Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -253,7 +261,8 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                         child: Theme(
                           data: ThemeData(
                             checkboxTheme: CheckboxThemeData(
@@ -290,15 +299,16 @@ class _LoginPageState extends State<LoginPage> {
                         alignment: const AlignmentDirectional(0, 0),
                         child: TextButton(
                           onPressed: () {
-                            print('Apertou esqueceu a senha!!');
+                            //print('Apertou esqueceu a senha!!');
                           },
                           style: TextButton.styleFrom(
                             foregroundColor: const Color(0xFFF4EC70),
                             elevation: 0,
-                            padding:
-                                const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24, 0, 24, 0),
                             shape: const BeveledRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
                             textStyle: const TextStyle(
                               fontFamily: 'Poppins',
                               color: Color(0xFFF4EC70),
@@ -315,13 +325,14 @@ class _LoginPageState extends State<LoginPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
                     child: TextButton(
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
                           // _formKey.currentState?.save();
-            
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Salvando...'),
@@ -333,9 +344,11 @@ class _LoginPageState extends State<LoginPage> {
                         fixedSize: const Size(130, 40),
                         foregroundColor: const Color(0xFFF4EC70),
                         elevation: 0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         shape: const StadiumBorder(
-                            side: BorderSide(color: Color(0xFFC2CC93), width: 3.5)),
+                            side: BorderSide(
+                                color: Color(0xFFC2CC93), width: 3.5)),
                         textStyle: const TextStyle(
                           fontFamily: 'Poppins',
                           color: Color(0xFFF4EC70),
