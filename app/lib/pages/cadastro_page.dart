@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CadastroPageState createState() => _CadastroPageState();
 }
 
 class _CadastroPageState extends State<CadastroPage> {
-  TextEditingController? textController1;
+  TextEditingController? texMatriculaController;
 
   // State field(s) for TextField widget.
-  TextEditingController? textController2;
+  TextEditingController? texEmailController;
 
   // State field(s) for TextField widget.
-  TextEditingController? textController3;
+  TextEditingController? texSenhaController;
   late bool passwordVisibility1;
 
   // State field(s) for TextField widget.
-  TextEditingController? textController4;
+  TextEditingController? texConfSenhaController;
   late bool passwordVisibility2;
   final _formKey = GlobalKey<FormState>();
 
@@ -31,6 +33,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
   @override
   Widget build(BuildContext context) {
+    late String senha;
     return SafeArea(
       top: true,
       child: Scaffold(
@@ -80,9 +83,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
                     child: TextFormField(
-                      controller: textController1,
+                      controller: texMatriculaController,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -142,9 +146,15 @@ class _CadastroPageState extends State<CadastroPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(6),
+                      ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Campo vazio';
+                        } else if (value.length < 6) {
+                          return 'Matrícula inválida';
                         }
                         return null;
                       },
@@ -154,9 +164,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, -1),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
                     child: TextFormField(
-                      controller: textController2,
+                      controller: texEmailController,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -218,9 +229,14 @@ class _CadastroPageState extends State<CadastroPage> {
                       textAlign: TextAlign.start,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Campo vazio';
+                        } else {
+                          RegExp regexEmail = RegExp(
+                              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
+                          return (!regexEmail.hasMatch(value))
+                              ? 'Email invalido'
+                              : null;
                         }
-                        return null;
                       },
                     ),
                   ),
@@ -228,9 +244,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, -1),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
                     child: TextFormField(
-                      controller: textController3,
+                      controller: texSenhaController,
                       autofocus: false,
                       obscureText: !passwordVisibility1,
                       decoration: InputDecoration(
@@ -305,8 +322,11 @@ class _CadastroPageState extends State<CadastroPage> {
                       textAlign: TextAlign.start,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Senha vazia';
+                        } else if (value.length <= 6) {
+                          return 'Tamanho mímino de 6 dígitos';
                         }
+                        senha = value;
                         return null;
                       },
                     ),
@@ -315,9 +335,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, -1),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
                     child: TextFormField(
-                      controller: textController4,
+                      controller: texConfSenhaController,
                       autofocus: false,
                       obscureText: !passwordVisibility2,
                       decoration: InputDecoration(
@@ -392,7 +413,11 @@ class _CadastroPageState extends State<CadastroPage> {
                       textAlign: TextAlign.start,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Senha vazia';
+                        } else if (value.length <= 6) {
+                          return 'Tamanho mímino de 6 dígitos';
+                        } else if (senha != value) {
+                          return 'Senhas diferentes!';
                         }
                         return null;
                       },
@@ -402,13 +427,14 @@ class _CadastroPageState extends State<CadastroPage> {
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 5),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 5),
                     child: TextButton(
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
                           // _formKey.currentState?.save();
-              
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Cadastrando...'),
@@ -420,9 +446,11 @@ class _CadastroPageState extends State<CadastroPage> {
                         fixedSize: const Size(130, 40),
                         foregroundColor: const Color(0xFFF4EC70),
                         elevation: 0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         shape: const StadiumBorder(
-                            side: BorderSide(color: Color(0xFFC2CC93), width: 3.5)),
+                            side: BorderSide(
+                                color: Color(0xFFC2CC93), width: 3.5)),
                         textStyle: const TextStyle(
                           fontFamily: 'Poppins',
                           color: Color(0xFFF4EC70),
