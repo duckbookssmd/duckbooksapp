@@ -61,15 +61,18 @@ class _HelpPageState extends State<HelpPage> {
                             children: [
                               Stack(
                                 children: [
-                                  Align(
-                                    alignment: const AlignmentDirectional(-1, -0.75),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.asset(
-                                        'lib/assets/images/logo_white_text_no_bg.png',
-                                        width: 200,
-                                        height: 150,
-                                        fit: BoxFit.scaleDown,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Align(
+                                      alignment: const AlignmentDirectional(-1, -0.75),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.asset(
+                                          'lib/assets/images/logo_white_text_no_bg.png',
+                                          width: 200,
+                                          height: 150,
+                                          fit: BoxFit.scaleDown,
+                                        ),
                                       ),
                                     ),
                                   ),

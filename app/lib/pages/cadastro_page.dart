@@ -324,7 +324,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Senha vazia';
-                        } else if (value.length <= 6) {
+                        } else if (value.length < 6) {
                           return 'Tamanho mímino de 6 dígitos';
                         }
                         senha = value;
@@ -415,7 +415,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Senha vazia';
-                        } else if (value.length <= 6) {
+                        } else if (value.length < 6) {
                           return 'Tamanho mímino de 6 dígitos';
                         } else if (senha != value) {
                           return 'Senhas diferentes!';
