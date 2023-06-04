@@ -1,3 +1,4 @@
+import 'package:app/pages/help_page.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +46,8 @@ class MyApp extends StatelessWidget {
             colorScheme: darkScheme,
             extensions: [darkCustomColors],
           ),
-          home: const MyHomePage(
-            title: "Example Page Duck Books",
+          home: const HelpPage(
+            // title: "Example Page Duck Books",
           ),
         );
       },
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginPage()));},
+                              builder: (context) => const HelpPage()));},
               child: const Text('LOGIN'),
             )
           ],
