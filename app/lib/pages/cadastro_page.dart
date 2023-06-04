@@ -1,3 +1,4 @@
+import 'package:app/pages/register_validation_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -440,6 +441,10 @@ class _CadastroPageState extends State<CadastroPage> {
                                 content: Text('Cadastrando...'),
                                 backgroundColor: Colors.green),
                           );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterValidationHelpPageWidget()));
                         }
                       },
                       style: OutlinedButton.styleFrom(

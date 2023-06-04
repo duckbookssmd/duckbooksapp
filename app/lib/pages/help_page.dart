@@ -1,5 +1,4 @@
 import 'package:app/pages/login_page.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 
@@ -7,6 +6,7 @@ class HelpPage extends StatefulWidget {
   const HelpPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HelpPageState createState() => _HelpPageState();
 }
 
@@ -48,7 +48,7 @@ class _HelpPageState extends State<HelpPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
                     height: double.infinity,
                     child: Stack(
@@ -293,14 +293,14 @@ class _HelpPageState extends State<HelpPage> {
                                     Align(
                                       alignment: const AlignmentDirectional(0, 0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
                                         child: TextButton(
                                           onPressed: () {
                                             Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                                           },
                                           style: OutlinedButton.styleFrom(
                                             fixedSize: const Size(130, 40),
-                                            backgroundColor: Color(0xFFECECE9),
+                                            backgroundColor: const Color(0xFFECECE9),
                                             foregroundColor: const Color(0xFF10A375),
                                             elevation: 0,
                                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
