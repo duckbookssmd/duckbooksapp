@@ -1,3 +1,4 @@
+import 'package:app/pages/home_page_ca.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'cadastro_page.dart';
@@ -333,11 +334,17 @@ class _LoginPageState extends State<LoginPage> {
                         if (_formKey.currentState!.validate()) {
                           // _formKey.currentState?.save();
 
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePageCa()));
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                                content: Text('Salvando...'),
+                                content: Text('Entrando...'),
                                 backgroundColor: Colors.green),
                           );
+
                         }
                       },
                       style: OutlinedButton.styleFrom(

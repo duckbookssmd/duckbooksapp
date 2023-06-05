@@ -1,14 +1,25 @@
 import 'package:app/pages/help_page.dart';
+import 'package:app/services/auth_service.dart';
+import 'package:app/widgets/auth_check.dart';
 // import 'package:app/pages/login_page.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'color_schemes.g.dart';
 import 'constants.dart';
 import 'custom_color.g.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => AuthService(),)],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,9 +57,7 @@ class MyApp extends StatelessWidget {
             colorScheme: darkScheme,
             extensions: [darkCustomColors],
           ),
-          home: const HelpPage(
-            // title: "Example Page Duck Books",
-          ),
+          home: AuthCheck(),
         );
       },
     );
@@ -98,10 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             TextButton(
-              onPressed: () {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HelpPage()));},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
+              },
               child: const Text('LOGIN'),
             )
           ],
