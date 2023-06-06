@@ -1,6 +1,12 @@
 import 'package:app/pages/register_validation_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:date_time_picker/date_time_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
+import 'package:app/models/user_model.dart';
+import 'package:app/services/auth_service.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
@@ -11,6 +17,24 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  User? user = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("usuario")
+        .doc(user?.uid)
+        .get()
+        .then((value) {
+      loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
+  }
+
+  // * Firebase Auth
+  final _auth = FirebaseAuth.instance;
+  
   TextEditingController? texMatriculaController;
 
   // State field(s) for TextField widget.
@@ -434,6 +458,18 @@ class _CadastroPageState extends State<CadastroPage> {
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
+                          
+                          signUp(
+                                context,
+                                texMatriculaController,
+                                texSenhaController,
+                                _formKey,
+                                _auth,
+                                texMatriculaController,
+                                texEmailController,
+                                texSenhaController,
+                                texConfSenhaController
+                          );
                           // _formKey.currentState?.save();
 
                           ScaffoldMessenger.of(context).showSnackBar(
