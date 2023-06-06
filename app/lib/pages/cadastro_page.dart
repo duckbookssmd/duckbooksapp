@@ -27,9 +27,11 @@ class _CadastroPageState extends State<CadastroPage> {
         .doc(user?.uid)
         .get()
         .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
+      final loggedInUser = UserModel.fromMap(value.data());
       setState(() {});
     });
+    passwordVisibility1 = false;
+    passwordVisibility2 = false;
   }
 
   // * Firebase Auth
@@ -49,12 +51,6 @@ class _CadastroPageState extends State<CadastroPage> {
   late bool passwordVisibility2;
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
-    passwordVisibility1 = false;
-    passwordVisibility2 = false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -461,8 +457,8 @@ class _CadastroPageState extends State<CadastroPage> {
                           
                           signUp(
                                 context,
-                                texMatriculaController,
-                                texSenhaController,
+                                texMatriculaController!.text,
+                                texSenhaController!.text,
                                 _formKey,
                                 _auth,
                                 texMatriculaController,

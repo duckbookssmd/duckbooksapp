@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:newpalipain/models/user_model.dart';
+import 'package:app/models/user_model.dart';
+
+import '../pages/cadastro_page.dart';
+import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
   String message;
@@ -72,7 +75,7 @@ void signIn(BuildContext context, String matricula, String senha,
     GlobalKey<FormState> _formKey, FirebaseAuth _auth) async {
   if (_formKey.currentState!.validate()) {
     await _auth
-        .signInWithEmailAndPassword(matriculaSIAPE: matricula, pass: senha)
+        .signInWithEmailAndPassword(email: matricula, password: senha)
         .then((uid) => {
               Fluttertoast.showToast(msg: "Logado com sucesso"),
               Navigator.of(context).pushReplacement(
@@ -117,14 +120,14 @@ void signUp(
     String senha,
     GlobalKey<FormState> _formKey,
     FirebaseAuth _auth,
-    TextEditingController texMatriculaController,
-    TextEditingController texEmailController,
-    TextEditingController texSenhaController,
-    TextEditingController texConfSenhaController,
+    TextEditingController? texMatriculaController,
+    TextEditingController? texEmailController,
+    TextEditingController? texSenhaController,
+    TextEditingController? texConfSenhaController,
     ) async {
       if (_formKey.currentState!.validate()) {
         await _auth
-            .createUserWithEmailAndPassword(matriculaSIAPE: texMatriculaController, pass: texSenhaController)
+            .createUserWithEmailAndPassword(email: texMatriculaController!.text, password: texSenhaController!.text)
             .then((value) => {
                   postDetailsToFirestore(
                       context,
@@ -144,10 +147,10 @@ void signUp(
     postDetailsToFirestore(
       BuildContext context,
       FirebaseAuth _auth,
-      TextEditingController texMatriculaController,
-      TextEditingController texEmailController,
-      TextEditingController texSenhaController,
-      TextEditingController texConfSenhaController,
+      TextEditingController? texMatriculaController,
+      TextEditingController? texEmailController,
+      TextEditingController? texSenhaController,
+      TextEditingController? texConfSenhaController,
       ) async {
         // * Calling Firestore
         // * Calling User Model
@@ -159,9 +162,9 @@ void signUp(
 
         // * Writing all the values
         userModel.uId = user!.uid;
-        userModel.matricula = texMatriculaController.text;
-        userModel.senha = texSenhaController.text;
-        userModel.confSenha = texConfSenhaController.text;
+        userModel.userMatricula = texMatriculaController!.text;
+        userModel.userEmail = texSenhaController!.text;
+        userModel.userConfSenha = texConfSenhaController!.text;
 
         await firebaseFirestore
             .collection("usuario")
@@ -170,5 +173,5 @@ void signUp(
         Fluttertoast.showToast(msg: "Conta criada com sucesso");
 
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+            MaterialPageRoute(builder: (context) => HomePageCa()), (route) => false);
       }

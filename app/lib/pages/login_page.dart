@@ -32,9 +32,10 @@ class _LoginPageState extends State<LoginPage> {
     .doc(user?.uid)
     .get()
     .then((value) {
-    loggedInUser = UserModel.fromMap(value.data());
+    final loggedInUser = UserModel.fromMap(value.data());
     setState(() {});
     });
+    passwordVisibility = false;
   }
   ///  State fields for stateful widgets in this page.
 
@@ -49,11 +50,6 @@ class _LoginPageState extends State<LoginPage> {
   bool? checkboxValue;
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
-    passwordVisibility = false;
-  }
 
   @override
   void dispose() {
@@ -230,12 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                         errorBorder: UnderlineInputBorder(
                           borderSide: const BorderSide(
                             color: Color(0x00000000),
-                            width: import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:newpalipain/app_widget.dart';
-import 'package:newpalipain/models/user_model.dart';1,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -361,7 +352,7 @@ import 'package:newpalipain/models/user_model.dart';1,
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
-                          signIn(context, texMatriculaController.text, texSenhaController.text, _formKey, _auth);
+                          signIn(context, texMatriculaController!.text, texSenhaController!.text, _formKey, _auth);
                           // _formKey.currentState?.save();
                           Navigator.push(
                             context,
