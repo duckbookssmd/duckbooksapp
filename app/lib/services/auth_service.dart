@@ -1,5 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newpalipain/models/user_model.dart';
 
 class AuthException implements Exception {
   String message;
@@ -63,3 +67,108 @@ class AuthService extends ChangeNotifier {
     _getUser();
   }
 }
+
+void signIn(BuildContext context, String matricula, String senha,
+    GlobalKey<FormState> _formKey, FirebaseAuth _auth) async {
+  if (_formKey.currentState!.validate()) {
+    await _auth
+        .signInWithEmailAndPassword(matriculaSIAPE: matricula, pass: senha)
+        .then((uid) => {
+              Fluttertoast.showToast(msg: "Logado com sucesso"),
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => HomePageCa(),
+                ),
+              ),
+            })
+        .catchError((e) {
+      Fluttertoast.showToast(msg: e!.message);
+    });
+  } else {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: Text('Usuário não cadastrado !'),
+            content: Text('Cadastre-se para continuar'),
+            actions: <Widget>[
+              // define os botões na base do dialogo
+              TextButton(
+                child: Text("Fechar"),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CadastroPage()));
+                },
+              ),
+            ],
+          );
+        });
+  }
+}
+
+void signUp(
+    BuildContext context,
+    String matricula,
+    String senha,
+    GlobalKey<FormState> _formKey,
+    FirebaseAuth _auth,
+    TextEditingController texMatriculaController,
+    TextEditingController texEmailController,
+    TextEditingController texSenhaController,
+    TextEditingController texConfSenhaController,
+    ) async {
+      if (_formKey.currentState!.validate()) {
+        await _auth
+            .createUserWithEmailAndPassword(matriculaSIAPE: texMatriculaController, pass: texSenhaController)
+            .then((value) => {
+                  postDetailsToFirestore(
+                      context,
+                      _auth,
+                      texMatriculaController,
+                      texEmailController,
+                      texSenhaController,
+                      texConfSenhaController,
+                  ),
+                })
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
+      }
+    }
+
+    postDetailsToFirestore(
+      BuildContext context,
+      FirebaseAuth _auth,
+      TextEditingController texMatriculaController,
+      TextEditingController texEmailController,
+      TextEditingController texSenhaController,
+      TextEditingController texConfSenhaController,
+      ) async {
+        // * Calling Firestore
+        // * Calling User Model
+        // * Sending these values
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+        User? user = _auth.currentUser;
+
+        UserModel userModel = UserModel();
+
+        // * Writing all the values
+        userModel.uId = user!.uid;
+        userModel.matricula = texMatriculaController.text;
+        userModel.senha = texSenhaController.text;
+        userModel.confSenha = texConfSenhaController.text;
+
+        await firebaseFirestore
+            .collection("usuario")
+            .doc(user.uid)
+            .set(userModel.toMap());
+        Fluttertoast.showToast(msg: "Conta criada com sucesso");
+
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+      }
