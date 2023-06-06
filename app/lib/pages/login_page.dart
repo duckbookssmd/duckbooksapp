@@ -1,17 +1,41 @@
 import 'package:app/pages/home_page_ca.dart';
+import 'package:app/models/user_model.dart';
+import 'package:app/models/configs/login_firebase.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
+  // ? ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // * Firebase User Autentication
+  User? user = FirebaseAuth.instance.currentUser;
+  
+  final _auth = FirebaseAuth.instance;
+  
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+      // ! Relativo a coleção do Firebase
+    .collection("usuario")
+      // ! Relativo a instância da classe User, declarada acima na linha 20
+    .doc(user?.uid)
+    .get()
+    .then((value) {
+    loggedInUser = UserModel.fromMap(value.data());
+    setState(() {});
+    });
+  }
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
@@ -206,7 +230,12 @@ class _LoginPageState extends State<LoginPage> {
                         errorBorder: UnderlineInputBorder(
                           borderSide: const BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newpalipain/app_widget.dart';
+import 'package:newpalipain/models/user_model.dart';1,
                           ),
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -332,8 +361,8 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
+                          signIn(context, texMatriculaController.text, texSenhaController.text, _formKey, _auth);
                           // _formKey.currentState?.save();
-
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -373,6 +402,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: TextButton(
                       onPressed: () {
+                        
                         Navigator.push(
                             context,
                             MaterialPageRoute(
