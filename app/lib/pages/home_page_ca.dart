@@ -1,5 +1,6 @@
+import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 class HomePageCa extends StatefulWidget {
   const HomePageCa({Key? key}) : super(key: key);
@@ -31,7 +32,6 @@ class _HomePageCaState extends State<HomePageCa> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             // Navigator.push(
@@ -55,9 +55,9 @@ class _HomePageCaState extends State<HomePageCa> {
                 child: Text(
                   'Cadastrar_Obra',
                   style: TextStyle(
-                        fontFamily: 'Jost',
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontFamily: 'Jost',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -65,13 +65,22 @@ class _HomePageCaState extends State<HomePageCa> {
         ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    context.read<AuthService>().logout(context);
+                  });
+                },
+                icon: const Icon(Icons.logout))
+          ],
           title: const Text(
             'Home',
             style: TextStyle(
-                  fontFamily: 'Jost',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                ),
+              fontFamily: 'Jost',
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           centerTitle: false,
           elevation: 2,
@@ -98,16 +107,15 @@ class _HomePageCaState extends State<HomePageCa> {
                           Align(
                             alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
                               child: Text(
                                 'Categorias em alta',
                                 style: TextStyle(
-                                      fontFamily: 'Jost',
-                                      color: Theme.of(context).colorScheme.error,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                  fontFamily: 'Jost',
+                                  color: Theme.of(context).colorScheme.error,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
@@ -137,8 +145,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                                   child: Container(
                                     width: 50,
                                     height: 50,
@@ -156,10 +163,10 @@ class _HomePageCaState extends State<HomePageCa> {
                                   'Categoria 1',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                 ),
                               ],
                             ),
@@ -167,8 +174,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                                   child: Container(
                                     width: 50,
                                     height: 50,
@@ -186,9 +192,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                   'Categoria 2',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 12,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -196,8 +202,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                                   child: Container(
                                     width: 50,
                                     height: 50,
@@ -215,9 +220,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                   'Categoria 3',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 12,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -225,8 +230,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                                   child: Container(
                                     width: 50,
                                     height: 50,
@@ -244,9 +248,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                   'Categoria 4',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 12,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -254,8 +258,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                                   child: Container(
                                     width: 50,
                                     height: 50,
@@ -273,9 +276,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                   'Categoria 5',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 12,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -301,15 +304,14 @@ class _HomePageCaState extends State<HomePageCa> {
                         Align(
                           alignment: AlignmentDirectional(-1, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
                             child: Text(
                               'Empréstimos',
                               style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                fontFamily: 'Jost',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -345,15 +347,14 @@ class _HomePageCaState extends State<HomePageCa> {
                         Align(
                           alignment: AlignmentDirectional(-1, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
                             child: Text(
                               'Reservas',
                               style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                fontFamily: 'Jost',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),

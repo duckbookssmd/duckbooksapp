@@ -299,7 +299,7 @@ class _HelpPageState extends State<HelpPage> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
                                         child: TextButton(
                                           onPressed: () {
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                                           },
                                           style: OutlinedButton.styleFrom(
                                             fixedSize: const Size(130, 40),

@@ -240,7 +240,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   children: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                                       },
                                       style: OutlinedButton.styleFrom(
                                         fixedSize: const Size(130, 40),

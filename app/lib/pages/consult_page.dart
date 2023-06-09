@@ -5,6 +5,7 @@ class ConsultPage extends StatefulWidget {
   const ConsultPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ConsultPageState createState() => _ConsultPageState();
 }
 
@@ -19,19 +20,19 @@ class _ConsultPageState extends State<ConsultPage> {
         height: 900,
         child: Column(
           children: [
-            TextField(),
+            const TextField(),
             ListView.builder(
               itemCount: livros.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.green.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         left: 15,
                         right: 15,
                       ),
@@ -62,7 +63,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                 Text(livros[index].autor),
                                 Text(livros[index].editora),
                                 // Text(livros[index].ano),
-                                Text('Edição'),
+                                const Text('Edição'),
                                 TextButton(
                                   onPressed: () {},
                                   style: OutlinedButton.styleFrom(
