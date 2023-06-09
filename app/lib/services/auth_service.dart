@@ -1,11 +1,10 @@
+import 'package:app/pages/register_validation_help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:app/models/user_model.dart';
 
-import '../pages/cadastro_page.dart';
 import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
@@ -14,7 +13,7 @@ class AuthException implements Exception {
 }
 
 class AuthService extends ChangeNotifier {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -72,15 +71,15 @@ class AuthService extends ChangeNotifier {
 }
 
 void signIn(BuildContext context, String matricula, String senha,
-    GlobalKey<FormState> _formKey, FirebaseAuth _auth) async {
-  if (_formKey.currentState!.validate()) {
-    await _auth
+    GlobalKey<FormState> formKey, FirebaseAuth auth) async {
+  if (formKey.currentState!.validate()) {
+    await auth
         .signInWithEmailAndPassword(email: matricula, password: senha)
         .then((uid) => {
               Fluttertoast.showToast(msg: "Logado com sucesso"),
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => HomePageCa(),
+                  builder: (context) => const HomePageCa(),
                 ),
               ),
             })
@@ -95,17 +94,17 @@ void signIn(BuildContext context, String matricula, String senha,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            title: Text('Usuário não cadastrado !'),
-            content: Text('Cadastre-se para continuar'),
+            title: const Text('Usuário não cadastrado !'),
+            content: const Text('Cadastre-se para continuar'),
             actions: <Widget>[
               // define os botões na base do dialogo
               TextButton(
-                child: Text("Fechar"),
+                child: const Text("Fechar"),
                 onPressed: () {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CadastroPage()));
+                          builder: (context) => const RegisterValidationHelpPageWidget()));
                 },
               ),
             ],
@@ -116,22 +115,22 @@ void signIn(BuildContext context, String matricula, String senha,
 
 void signUp(
     BuildContext context,
-    String matricula,
+    String email,
     String senha,
-    GlobalKey<FormState> _formKey,
-    FirebaseAuth _auth,
+    GlobalKey<FormState> formKey,
+    FirebaseAuth auth,
     TextEditingController? texMatriculaController,
     TextEditingController? texEmailController,
     TextEditingController? texSenhaController,
     TextEditingController? texConfSenhaController,
     ) async {
-      if (_formKey.currentState!.validate()) {
-        await _auth
-            .createUserWithEmailAndPassword(email: texMatriculaController!.text, password: texSenhaController!.text)
+      if (formKey.currentState!.validate()) {
+        await auth
+            .createUserWithEmailAndPassword(email: email, password: senha)
             .then((value) => {
                   postDetailsToFirestore(
                       context,
-                      _auth,
+                      auth,
                       texMatriculaController,
                       texEmailController,
                       texSenhaController,
@@ -146,7 +145,7 @@ void signUp(
 
     postDetailsToFirestore(
       BuildContext context,
-      FirebaseAuth _auth,
+      FirebaseAuth auth,
       TextEditingController? texMatriculaController,
       TextEditingController? texEmailController,
       TextEditingController? texSenhaController,
@@ -156,14 +155,15 @@ void signUp(
         // * Calling User Model
         // * Sending these values
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-        User? user = _auth.currentUser;
+        User? user = auth.currentUser;
 
         UserModel userModel = UserModel();
 
         // * Writing all the values
         userModel.uId = user!.uid;
         userModel.userMatricula = texMatriculaController!.text;
-        userModel.userEmail = texSenhaController!.text;
+        userModel.userEmail = texEmailController!.text;
+        userModel.userSenha = texSenhaController!.text;
         userModel.userConfSenha = texConfSenhaController!.text;
 
         await firebaseFirestore
@@ -173,5 +173,5 @@ void signUp(
         Fluttertoast.showToast(msg: "Conta criada com sucesso");
 
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => HomePageCa()), (route) => false);
+            MaterialPageRoute(builder: (context) => const HomePageCa()), (route) => false);
       }

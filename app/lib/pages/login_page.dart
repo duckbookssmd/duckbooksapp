@@ -40,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
-  TextEditingController? texMatriculaController;
+  TextEditingController? texMatriculaController = TextEditingController();
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
-  TextEditingController? texSenhaController;
+  TextEditingController? texSenhaController = TextEditingController();
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? texSenhaControllerValidator;
   // State field(s) for Checkbox widget.
@@ -171,15 +171,15 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
-                      inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(7),
-                      ],
+                      // inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
+                      //   FilteringTextInputFormatter.digitsOnly,
+                      //   LengthLimitingTextInputFormatter(7),
+                      // ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, preencha!';
                         } else if (value.length < 6) {
-                          return 'Matrícula inválida';
+                          return 'Email inválido';
                         }
                         return null;
                       },
@@ -354,10 +354,10 @@ class _LoginPageState extends State<LoginPage> {
                         if (_formKey.currentState!.validate()) {
                           signIn(context, texMatriculaController!.text, texSenhaController!.text, _formKey, _auth);
                           // _formKey.currentState?.save();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePageCa()));
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const HomePageCa()));
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

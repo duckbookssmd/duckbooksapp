@@ -2,9 +2,7 @@ import 'package:app/pages/register_validation_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:app/models/user_model.dart';
 import 'package:app/services/auth_service.dart';
 
@@ -37,17 +35,11 @@ class _CadastroPageState extends State<CadastroPage> {
   // * Firebase Auth
   final _auth = FirebaseAuth.instance;
   
-  TextEditingController? texMatriculaController;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texEmailController;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texSenhaController;
+  TextEditingController? texMatriculaController = TextEditingController();
+  TextEditingController? texEmailController = TextEditingController();
+  TextEditingController? texSenhaController = TextEditingController();
+  TextEditingController? texConfSenhaController = TextEditingController();
   late bool passwordVisibility1;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texConfSenhaController;
   late bool passwordVisibility2;
   final _formKey = GlobalKey<FormState>();
 
@@ -457,7 +449,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           
                           signUp(
                                 context,
-                                texMatriculaController!.text,
+                                texEmailController!.text,
                                 texSenhaController!.text,
                                 _formKey,
                                 _auth,
