@@ -1,3 +1,4 @@
+import 'package:app/pages/register_book.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,7 @@ class _HomePageCaState extends State<HomePageCa> {
         key: scaffoldKey,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            // Navigator.push(
-            //                 context,
-            //                 MaterialPageRoute(
-            //                     builder: (context) => ConsultPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
           },
           elevation: 8,
           label: const Row(
@@ -85,15 +83,213 @@ class _HomePageCaState extends State<HomePageCa> {
           centerTitle: false,
           elevation: 2,
         ),
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: SafeArea(
+            top: true,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1, 0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                                child: Text(
+                                  'Categorias em alta',
+                                  style: TextStyle(
+                                    fontFamily: 'Jost',
+                                    color: Theme.of(context).colorScheme.error,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                              child: Icon(
+                                Icons.local_fire_department_outlined,
+                                color: Theme.of(context).colorScheme.error,
+                                size: 24,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Divider(
+                          thickness: 1,
+                          indent: 16,
+                          endIndent: 30,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/795/600',
+                                        fit: BoxFit.scaleDown,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Categoria 1',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Jost',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/486/600',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Categoria 2',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Jost',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/684/600',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Categoria 3',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Jost',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/209/600',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Categoria 4',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Jost',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/493/600',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Categoria 5',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Jost',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,14 +301,13 @@ class _HomePageCaState extends State<HomePageCa> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1, 0),
+                            alignment: AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
                               child: Text(
-                                'Categorias em alta',
+                                'Empréstimos',
                                 style: TextStyle(
                                   fontFamily: 'Jost',
-                                  color: Theme.of(context).colorScheme.error,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -120,10 +315,9 @@ class _HomePageCaState extends State<HomePageCa> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
                             child: Icon(
-                              Icons.local_fire_department_outlined,
-                              color: Theme.of(context).colorScheme.error,
+                              Icons.menu_book_rounded,
                               size: 24,
                             ),
                           ),
@@ -133,250 +327,56 @@ class _HomePageCaState extends State<HomePageCa> {
                         thickness: 1,
                         indent: 16,
                         endIndent: 30,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/795/600',
-                                      fit: BoxFit.scaleDown,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Categoria 1',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/486/600',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Categoria 2',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/684/600',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Categoria 3',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/209/600',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Categoria 4',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/493/600',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const Text(
-                                  'Categoria 5',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Jost',
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-                            child: Text(
-                              'Empréstimos',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                const Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
+                              child: Text(
+                                'Reservas',
+                                style: TextStyle(
+                                  fontFamily: 'Jost',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-                          child: Icon(
-                            Icons.menu_book_rounded,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 30,
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-                            child: Text(
-                              'Reservas',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                            child: Icon(
+                              Icons.bookmarks,
+                              size: 24,
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-                          child: Icon(
-                            Icons.bookmarks,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 30,
-                      // color: FlutterFlowTheme.of(context).info,
-                    ),
-                  ],
+                        ],
+                      ),
+                      Divider(
+                        thickness: 1,
+                        indent: 16,
+                        endIndent: 30,
+                        // color: FlutterFlowTheme.of(context).info,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

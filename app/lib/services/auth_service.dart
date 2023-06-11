@@ -1,3 +1,4 @@
+import 'package:app/models/book_model.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/pages/register_validation_help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:app/models/user_model.dart';
+import 'package:intl/intl.dart';
 
 import '../pages/home_page_ca.dart';
 
@@ -195,5 +197,30 @@ class AuthService extends ChangeNotifier {
       MaterialPageRoute(builder: (BuildContext context) => const RegisterValidationHelpPageWidget()),
       (route) => false,
     );
+  }
+
+  postBookDetailsToFirestore(
+    TextEditingController? nomeController,
+    TextEditingController? autorController,
+    TextEditingController? anoController,
+    TextEditingController? edicaoController,
+    TextEditingController? tipoController,
+    //TextEditingController? fotoController, Por enquanto não vou colocar foto
+  ) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+  
+    BookModel bookModel = BookModel(
+      nome: nomeController!.text,
+      autor: autorController!.text,
+      ano: int.tryParse(anoController!.text),
+      edicao: int.tryParse(edicaoController!.text),
+      tipo: tipoController!.text,
+      foto: 'Colocar',
+      dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+    );
+
+    await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
+    Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
   }
 }
