@@ -1,7 +1,6 @@
 import 'package:app/pages/help_page.dart';
+import 'package:app/pages/login_page.dart';
 import 'package:app/services/auth_service.dart';
-import 'package:app/widgets/auth_check.dart';
-// import 'package:app/pages/login_page.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,7 @@ class MyApp extends StatelessWidget {
             colorScheme: darkScheme,
             extensions: [darkCustomColors],
           ),
-          home: AuthCheck(),
+          home: const LoginPage(),
         );
       },
     );

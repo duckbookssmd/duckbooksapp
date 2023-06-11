@@ -1,59 +1,51 @@
-import 'package:app/pages/home_page_ca.dart';
-import 'package:app/models/user_model.dart';
 import 'package:app/services/auth_service.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/cadastro_page.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ? ignore: library_private_types_in_public_api
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   // * Firebase User Autentication
   User? user = FirebaseAuth.instance.currentUser;
-  
-  final _auth = FirebaseAuth.instance;
-  
+
+
   @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
-      // ! Relativo a coleção do Firebase
-    .collection("usuario")
-      // ! Relativo a instância da classe User, declarada acima na linha 20
-    .doc(user?.uid)
-    .get()
-    .then((value) {
-    loggedInUser = UserModel.fromMap(value.data());
-    setState(() {});
+        // ! Relativo a coleção do Firebase
+        .collection("usuario")
+        // ! Relativo a instância da classe User, declarada acima na linha 20
+        .doc(user?.uid)
+        .get()
+        .then((value) {
+      // final loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
     });
+    passwordVisibility = false;
   }
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
-  TextEditingController? texMatriculaController;
+  TextEditingController? texMatriculaController = TextEditingController();
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
-  TextEditingController? texSenhaController;
+  TextEditingController? texSenhaController = TextEditingController();
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? texSenhaControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
   final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    passwordVisibility = false;
-  }
 
   @override
   void dispose() {
@@ -115,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                     child: TextFormField(
-                      controller:  texMatriculaController,
+                      controller: texMatriculaController,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -175,19 +167,18 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
-                      inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(7),
-                      ],
+                      // inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
+                      //   FilteringTextInputFormatter.digitsOnly,
+                      //   LengthLimitingTextInputFormatter(7),
+                      // ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, preencha!';
                         } else if (value.length < 6) {
-                          return 'Matrícula inválida';
+                          return 'Email inválido';
                         }
                         return null;
                       },
-                      // validator: textController1Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -230,12 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                         errorBorder: UnderlineInputBorder(
                           borderSide: const BorderSide(
                             color: Color(0x00000000),
-                            width: import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:newpalipain/app_widget.dart';
-import 'package:newpalipain/models/user_model.dart';1,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -259,9 +245,7 @@ import 'package:newpalipain/models/user_model.dart';1,
                           ),
                           focusNode: FocusNode(skipTraversal: true),
                           child: Icon(
-                            (passwordVisibility)
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
+                            (passwordVisibility) ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                             color: const Color(0xFFF4EC70),
                             size: 16,
                           ),
@@ -291,8 +275,7 @@ import 'package:newpalipain/models/user_model.dart';1,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                         child: Theme(
                           data: ThemeData(
                             checkboxTheme: CheckboxThemeData(
@@ -334,11 +317,8 @@ import 'package:newpalipain/models/user_model.dart';1,
                           style: TextButton.styleFrom(
                             foregroundColor: const Color(0xFFF4EC70),
                             elevation: 0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24, 0, 24, 0),
-                            shape: const BeveledRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
+                            padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                            shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
                             textStyle: const TextStyle(
                               fontFamily: 'Poppins',
                               color: Color(0xFFF4EC70),
@@ -355,36 +335,29 @@ import 'package:newpalipain/models/user_model.dart';1,
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
+                    padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
                     child: TextButton(
                       onPressed: () {
-                        // Validate returns true if the form is valid, or false otherwise.
+
                         if (_formKey.currentState!.validate()) {
-                          signIn(context, texMatriculaController.text, texSenhaController.text, _formKey, _auth);
-                          // _formKey.currentState?.save();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePageCa()));
+                          context.read<AuthService>().signIn(
+                                context,
+                                texMatriculaController!.text,
+                                texSenhaController!.text,
+                                _formKey,
+                              );
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Entrando...'),
-                                backgroundColor: Colors.green),
+                            const SnackBar(content: Text('Entrando...'), backgroundColor: Colors.green),
                           );
-
                         }
                       },
                       style: OutlinedButton.styleFrom(
                         fixedSize: const Size(130, 40),
                         foregroundColor: const Color(0xFFF4EC70),
                         elevation: 0,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        shape: const StadiumBorder(
-                            side: BorderSide(
-                                color: Color(0xFFC2CC93), width: 3.5)),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        shape: const StadiumBorder(side: BorderSide(color: Color(0xFFC2CC93), width: 3.5)),
                         textStyle: const TextStyle(
                           fontFamily: 'Poppins',
                           color: Color(0xFFF4EC70),
@@ -402,11 +375,7 @@ import 'package:newpalipain/models/user_model.dart';1,
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: TextButton(
                       onPressed: () {
-                        
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CadastroPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroPage()));
                       },
                       style: OutlinedButton.styleFrom(
                         fixedSize: const Size(185, 40),

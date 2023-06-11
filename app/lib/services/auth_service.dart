@@ -1,9 +1,12 @@
+import 'package:app/pages/login_page.dart';
+import 'package:app/pages/register_validation_help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:newpalipain/models/user_model.dart';
+import 'package:app/models/user_model.dart';
+
+import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
   String message;
@@ -11,7 +14,7 @@ class AuthException implements Exception {
 }
 
 class AuthService extends ChangeNotifier {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -62,113 +65,126 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  logout() async {
-    await _auth.signOut();
-    _getUser();
-  }
-}
-
-void signIn(BuildContext context, String matricula, String senha,
-    GlobalKey<FormState> _formKey, FirebaseAuth _auth) async {
-  if (_formKey.currentState!.validate()) {
+  logout(context) async {
     await _auth
-        .signInWithEmailAndPassword(matriculaSIAPE: matricula, pass: senha)
-        .then((uid) => {
-              Fluttertoast.showToast(msg: "Logado com sucesso"),
+        .signOut()
+        .then((value) => {
+              Fluttertoast.showToast(msg: "Deslogado com sucesso"),
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => HomePageCa(),
+                  builder: (context) => const LoginPage(),
                 ),
               ),
             })
-        .catchError((e) {
-      Fluttertoast.showToast(msg: e!.message);
+        .catchError((error) {
+      Fluttertoast.showToast(msg: error!.message);
     });
-  } else {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            title: Text('Usuário não cadastrado !'),
-            content: Text('Cadastre-se para continuar'),
-            actions: <Widget>[
-              // define os botões na base do dialogo
-              TextButton(
-                child: Text("Fechar"),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CadastroPage()));
-                },
-              ),
-            ],
-          );
-        });
+    _getUser();
   }
-}
 
-void signUp(
+  // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  void signIn(
     BuildContext context,
     String matricula,
     String senha,
-    GlobalKey<FormState> _formKey,
-    FirebaseAuth _auth,
-    TextEditingController texMatriculaController,
-    TextEditingController texEmailController,
-    TextEditingController texSenhaController,
-    TextEditingController texConfSenhaController,
-    ) async {
-      if (_formKey.currentState!.validate()) {
-        await _auth
-            .createUserWithEmailAndPassword(matriculaSIAPE: texMatriculaController, pass: texSenhaController)
-            .then((value) => {
-                  postDetailsToFirestore(
-                      context,
-                      _auth,
-                      texMatriculaController,
-                      texEmailController,
-                      texSenhaController,
-                      texConfSenhaController,
+    GlobalKey<FormState> formKey,
+  ) async {
+    if (formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: matricula, password: senha)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Logado com sucesso"),
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const HomePageCa(),
                   ),
-                })
-            .catchError((e) {
+                ),
+              })
+          .catchError(
+        (e) {
           Fluttertoast.showToast(msg: e!.message);
-        });
-      }
+          _getUser();
+        },
+      );
+      _getUser();
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: const Text('Usuário não cadastrado !'),
+              content: const Text('Cadastre-se para continuar'),
+              actions: <Widget>[
+                // define os botões na base do dialogo
+                TextButton(
+                  child: const Text("Fechar"),
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RegisterValidationHelpPageWidget()));
+                  },
+                ),
+              ],
+            );
+          });
     }
+  }
 
-    postDetailsToFirestore(
-      BuildContext context,
-      FirebaseAuth _auth,
-      TextEditingController texMatriculaController,
-      TextEditingController texEmailController,
-      TextEditingController texSenhaController,
-      TextEditingController texConfSenhaController,
-      ) async {
-        // * Calling Firestore
-        // * Calling User Model
-        // * Sending these values
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-        User? user = _auth.currentUser;
+  signUp(
+    BuildContext context,
+    String email,
+    String senha,
+    GlobalKey<FormState> formKey,
+    TextEditingController? texMatriculaController,
+    TextEditingController? texEmailController,
+    TextEditingController? texSenhaController,
+    TextEditingController? texConfSenhaController,
+  ) async {
+    if (formKey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: senha)
+          .then((value) => {
+                postDetailsToFirestore(
+                  context,
+                  texMatriculaController,
+                  texEmailController,
+                  texSenhaController,
+                  texConfSenhaController,
+                ),
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+      _getUser();
+    }
+  }
 
-        UserModel userModel = UserModel();
+  postDetailsToFirestore(
+    BuildContext context,
+    TextEditingController? texMatriculaController,
+    TextEditingController? texEmailController,
+    TextEditingController? texSenhaController,
+    TextEditingController? texConfSenhaController,
+  ) async {
+    // * Calling Firestore
+    // * Calling User Model
+    // * Sending these values
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
 
-        // * Writing all the values
-        userModel.uId = user!.uid;
-        userModel.matricula = texMatriculaController.text;
-        userModel.senha = texSenhaController.text;
-        userModel.confSenha = texConfSenhaController.text;
+    UserModel userModel = UserModel();
 
-        await firebaseFirestore
-            .collection("usuario")
-            .doc(user.uid)
-            .set(userModel.toMap());
-        Fluttertoast.showToast(msg: "Conta criada com sucesso");
+    // * Writing all the values
+    userModel.uId = user!.uid;
+    userModel.userMatricula = texMatriculaController!.text;
+    userModel.userEmail = texEmailController!.text;
+    userModel.userSenha = texSenhaController!.text;
+    userModel.userConfSenha = texConfSenhaController!.text;
 
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-      }
+    await firebaseFirestore.collection("usuario").doc(user.uid).set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Conta criada com sucesso");
+
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const RegisterValidationHelpPageWidget()), (route) => false);
+  }
+}

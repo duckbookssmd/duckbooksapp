@@ -37,10 +37,10 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uId,
-      'userMatricula': matriculaSIAPE,
-      'userEmail': email,
-      'userSenha': pass,
-      'userConfSenha': cfmPass,
+      'matriculaSIAPE': userMatricula,
+      'email': userEmail,
+      'pass': userSenha,
+      'cfmPass': userConfSenha,
       'isLogged': isLogged,
     };
   }

@@ -1,12 +1,9 @@
-import 'package:app/pages/register_validation_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
-import 'package:app/models/user_model.dart';
 import 'package:app/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
@@ -27,34 +24,24 @@ class _CadastroPageState extends State<CadastroPage> {
         .doc(user?.uid)
         .get()
         .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
+      // final loggedInUser = UserModel.fromMap(value.data()); // comentei pq não sei o que é isso e não é usado
       setState(() {});
     });
-  }
-
-  // * Firebase Auth
-  final _auth = FirebaseAuth.instance;
-  
-  TextEditingController? texMatriculaController;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texEmailController;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texSenhaController;
-  late bool passwordVisibility1;
-
-  // State field(s) for TextField widget.
-  TextEditingController? texConfSenhaController;
-  late bool passwordVisibility2;
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
     passwordVisibility1 = false;
     passwordVisibility2 = false;
   }
+
+  // // * Firebase Auth
+  // final _auth = FirebaseAuth.instance;
+  
+  TextEditingController? texMatriculaController = TextEditingController();
+  TextEditingController? texEmailController = TextEditingController();
+  TextEditingController? texSenhaController = TextEditingController();
+  TextEditingController? texConfSenhaController = TextEditingController();
+  late bool passwordVisibility1;
+  late bool passwordVisibility2;
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -459,28 +446,22 @@ class _CadastroPageState extends State<CadastroPage> {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
                           
-                          signUp(
+                           context.read<AuthService>().signUp(
                                 context,
-                                texMatriculaController,
-                                texSenhaController,
+                                texEmailController!.text,
+                                texSenhaController!.text,
                                 _formKey,
-                                _auth,
                                 texMatriculaController,
                                 texEmailController,
                                 texSenhaController,
                                 texConfSenhaController
                           );
-                          // _formKey.currentState?.save();
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Cadastrando...'),
                                 backgroundColor: Colors.green),
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RegisterValidationHelpPageWidget()));
                         }
                       },
                       style: OutlinedButton.styleFrom(
