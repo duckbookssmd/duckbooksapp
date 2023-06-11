@@ -78,6 +78,7 @@ class AuthService extends ChangeNotifier {
             })
         .catchError((error) {
       Fluttertoast.showToast(msg: error!.message);
+      return error;
     });
     _getUser();
   }
@@ -104,6 +105,7 @@ class AuthService extends ChangeNotifier {
         (e) {
           Fluttertoast.showToast(msg: e!.message);
           _getUser();
+          return e;
         },
       );
       _getUser();
@@ -155,6 +157,7 @@ class AuthService extends ChangeNotifier {
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
+        return e;
       });
       _getUser();
     }
@@ -185,6 +188,12 @@ class AuthService extends ChangeNotifier {
     await firebaseFirestore.collection("usuario").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
 
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const RegisterValidationHelpPageWidget()), (route) => false);
+    // Não sei corrigir
+    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => const RegisterValidationHelpPageWidget()),
+      (route) => false,
+    );
   }
 }

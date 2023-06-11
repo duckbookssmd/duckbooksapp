@@ -1,4 +1,3 @@
-import 'package:app/pages/help_page.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'color_schemes.g.dart';
-import 'constants.dart';
 import 'custom_color.g.dart';
 
 void main() async {
@@ -59,66 +57,6 @@ class MyApp extends StatelessWidget {
           home: const LoginPage(),
         );
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Image.asset(
-                "lib/assets/images/logo_black_text_no_bg.png",
-                width: MediaQuery.of(context).size.width * 0.5,
-              ),
-            ),
-            // Image.asset("app/lib/assets/images/logo_black_text_no_bg.png"),
-            const Text(
-              'You have pushed the button this many times:',
-              style: Fonts.josefin,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
-              },
-              child: const Text('LOGIN'),
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
