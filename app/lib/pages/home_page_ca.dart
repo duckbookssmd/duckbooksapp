@@ -1,3 +1,4 @@
+import 'package:app/pages/consult_colletion_page.dart';
 import 'package:app/pages/register_book.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -65,12 +66,20 @@ class _HomePageCaState extends State<HomePageCa> {
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
+              onPressed: () {
+                setState(() {
+                  context.read<AuthService>().logout(context);
+                });
+              },
+              icon: const Icon(Icons.logout),
+            ),
+            IconButton(
                 onPressed: () {
                   setState(() {
-                    context.read<AuthService>().logout(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ConsultPage()));
                   });
                 },
-                icon: const Icon(Icons.logout))
+                icon: const Icon(Icons.search))
           ],
           title: const Text(
             'Home',
