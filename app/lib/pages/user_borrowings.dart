@@ -1,35 +1,27 @@
-import 'package:app/pages/home_page_student.dart';
-import 'package:app/pages/register_book.dart';
+import 'package:app/pages/home_page_ca.dart';
 import 'package:flutter/material.dart';
-import 'package:app/services/auth_service.dart';
-import 'package:provider/provider.dart';
 
-class HomePageCa extends StatefulWidget {
-  const HomePageCa({
+import 'home_page_student.dart';
+
+
+class UserBorrowings extends StatefulWidget {
+  const UserBorrowings({
     Key? key,
-    this.viewType,
-  }) : super(key: key);
+    String? viewType,
+  })  : viewType = viewType ?? 'Utilizador',
+        super(key: key);
 
-  final List<String>? viewType;
+  final String viewType;
 
   @override
   // ignore: library_private_types_in_public_api
-  _HomePageCaState createState() => _HomePageCaState();
+  _UserBorrowingsState createState() => _UserBorrowingsState();
 }
 
-class _HomePageCaState extends State<HomePageCa> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+class _UserBorrowingsState extends State<UserBorrowings> {
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  TextEditingController? textController2;
-  late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -52,60 +44,35 @@ class _HomePageCaState extends State<HomePageCa> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xffDFDFDF),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
-          },
-          backgroundColor: const Color(0xFFCEE397),
-          elevation: 0,
-          label: const Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                child: Icon(
-                  Icons.add,
-                  color: Color(0xFFB36E40),
-                  size: 24,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                child: Text(
-                  'Cadastrar',
-                  style: TextStyle(
-                    fontFamily: 'Jost',
-                    color: Color(0xFFB36E40),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         appBar: AppBar(
           backgroundColor: const Color(0xffDFDFDF),
           automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    context.read<AuthService>().logout(context);
-                  });
-                },
-                icon: const Icon(Icons.logout))
-          ],
-          title: Align(
-            alignment: const AlignmentDirectional(-1, 0),
-            child: Image.asset(
-              'lib/assets/images/logo_black_text_no_bg.png',
-              width: 120,
-              height: 46,
-              fit: BoxFit.contain,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Color(0xFF4C605D),
+              size: 30,
             ),
+            onPressed: () async {
+              
+            },
           ),
+          actions: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  'lib/assets/images/logo_black_text_no_bg.png',
+                  width: 120,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ],
           centerTitle: false,
-          elevation: 2,
+          elevation: 0,
         ),
         body: SafeArea(
           top: true,
@@ -130,7 +97,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               fontFamily: 'Jost',
                               color: Colors.red,
                               fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -161,7 +128,8 @@ class _HomePageCaState extends State<HomePageCa> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -178,7 +146,12 @@ class _HomePageCaState extends State<HomePageCa> {
                             const Text(
                               'Categoria 1',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFFB36E40)
+                              ),
                             ),
                           ],
                         ),
@@ -186,7 +159,8 @@ class _HomePageCaState extends State<HomePageCa> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -203,7 +177,12 @@ class _HomePageCaState extends State<HomePageCa> {
                             const Text(
                               'Categoria 2',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFFB36E40)
+                              ),
                             ),
                           ],
                         ),
@@ -211,7 +190,8 @@ class _HomePageCaState extends State<HomePageCa> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -228,7 +208,12 @@ class _HomePageCaState extends State<HomePageCa> {
                             const Text(
                               'Categoria 3',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFFB36E40)
+                              ),
                             ),
                           ],
                         ),
@@ -236,7 +221,8 @@ class _HomePageCaState extends State<HomePageCa> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -253,7 +239,12 @@ class _HomePageCaState extends State<HomePageCa> {
                             const Text(
                               'Categoria 4',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFFB36E40)
+                              ),
                             ),
                           ],
                         ),
@@ -261,7 +252,8 @@ class _HomePageCaState extends State<HomePageCa> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -278,7 +270,12 @@ class _HomePageCaState extends State<HomePageCa> {
                             const Text(
                               'Categoria 5',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFFB36E40)
+                              ),
                             ),
                           ],
                         ),
@@ -299,26 +296,20 @@ class _HomePageCaState extends State<HomePageCa> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: () {
+                          onTap: () async {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePageCa()));
                           },
-                          child: ElevatedButton.icon(
+                          child: TextButton.icon(
                             onPressed: null,
                             icon: const Icon(
                               Icons.admin_panel_settings,
                               color: Colors.black,
                               size: 32,
                             ),
-                            label: const Text(
-                              '',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                color: Color(0xffDFDFDF),
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFB36E40),
-                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                            label: const Text(''),
+                            style: TextButton.styleFrom(
+                              backgroundColor: const Color(0x00b36e40),
+                              padding: const EdgeInsets.symmetric(horizontal: 24),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -341,15 +332,9 @@ class _HomePageCaState extends State<HomePageCa> {
                               color: Colors.black,
                               size: 32,
                             ),
-                            label: const Text(
-                              '',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                color: Color(0xffDFDFDF),
-                              ),
-                            ),
+                            label: const Text(''),
                             style: TextButton.styleFrom(
-                              backgroundColor: Colors.transparent,
+                              backgroundColor: const Color(0x00b36e40),
                               padding: const EdgeInsets.symmetric(horizontal: 24),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -361,106 +346,31 @@ class _HomePageCaState extends State<HomePageCa> {
                               ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-                            child: Text(
-                              'Validação Pendentes',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                color: Color(0xFFB36E40),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                         ),
+
                       ],
-                    ),
-                    Divider(
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 30,
-                      color: Color(0xffB36E40),
                     ),
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Align(
+                        const Align(
                           alignment: AlignmentDirectional(-1, 0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
                             child: Text(
-                              'Atendimentos',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                color: Color(0xFFB36E40),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 30,
-                      color: Color(0xffB36E40),
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-                            child: Text(
-                              'Atrasos',
+                              'Meus Empréstimos',
                               style: TextStyle(
                                 fontFamily: 'Jost',
                                 color: Color(0xFFB36E40),
@@ -470,13 +380,45 @@ class _HomePageCaState extends State<HomePageCa> {
                             ),
                           ),
                         ),
+                        Align(
+                          alignment: const AlignmentDirectional(1, 0),
+                          child: TextButton.icon(
+                            onPressed: () {
+                              //print('Button pressed ...');
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward,
+                              size: 15,
+                            ),
+                            label: const Text(
+                              'Ver mais',
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsetsDirectional.fromSTEB(100, 10, 0, 0),
+                              backgroundColor: const Color(0x00FFFFFF),
+                              elevation: 0,
+                              side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 16,
                       endIndent: 30,
-                      color: Color(0xffB36E40),
+                      color: Color(0xFFB36E40),
                     ),
                   ],
                 ),

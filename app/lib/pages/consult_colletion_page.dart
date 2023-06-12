@@ -13,36 +13,32 @@ TextEditingController? textController = TextEditingController();
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-
-late List livros = [];
-
-
+List livros = [];
 
 class _ConsultPageState extends State<ConsultPage> {
-  
   atualizarLista() async {
-  livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
-    List lista = [];
-    for (var docSnapshot in value.docs) {
-      print('${docSnapshot.data()}');
-      lista.add(docSnapshot.data());
-    }
-    return lista;
-  });
-}
+    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
+      List lista = [];
+      for (var docSnapshot in value.docs) {
+        print('${docSnapshot.data()}');
+        lista.add(docSnapshot.data());
+      }
+      return lista;
+    });
+  }
   // pegar uma query geral
 
   @override
   Widget build(BuildContext context) {
     atualizarLista();
     return Scaffold(
-      // backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffDFDFDF),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           setState(() {
             atualizarLista();
           });
-          
+
           print(livros.length);
         },
         elevation: 8,
@@ -53,6 +49,7 @@ class _ConsultPageState extends State<ConsultPage> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
               child: Icon(
                 Icons.refresh,
+                color: Colors.white,
                 size: 24,
               ),
             ),
@@ -60,7 +57,7 @@ class _ConsultPageState extends State<ConsultPage> {
         ),
       ),
       appBar: AppBar(
-        // backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffDFDFDF),
         // automaticallyImplyLeading: false,
         centerTitle: false,
         elevation: 0,
@@ -83,7 +80,7 @@ class _ConsultPageState extends State<ConsultPage> {
                       'Consultar acervo',
                       style: TextStyle(
                         fontFamily: 'Jost',
-                        // color: FlutterFlowTheme.of(context).error,
+                        color: Color(0xFFB36E40),
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -106,11 +103,13 @@ class _ConsultPageState extends State<ConsultPage> {
                         controller: textController,
                         obscureText: false,
                         decoration: InputDecoration(
+                          fillColor: const Color(0xff638D93),
                           isDense: true,
                           labelText: 'Pesquisar obra',
                           labelStyle: const TextStyle(
                             fontFamily: 'Jost',
-                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -159,7 +158,7 @@ class _ConsultPageState extends State<ConsultPage> {
                               });
                               print(livros);
                             },
-                            icon: Icon(Icons.search),
+                            icon: const Icon(Icons.search),
                             color: Colors.white,
                           ),
                         ),
@@ -174,7 +173,7 @@ class _ConsultPageState extends State<ConsultPage> {
                 ],
               ),
             ),
-            Divider(),
+            const Divider(),
             Expanded(
               child: ListView.builder(
                 itemCount: livros.length,
@@ -215,21 +214,37 @@ class _ConsultPageState extends State<ConsultPage> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Text(livros[index]['nome']),
-                                  Text(livros[index]['autor']),
-                                  Text(livros[index]['tipo']),
+                                  Text(
+                                    livros[index]['nome'],
+                                    style: const TextStyle(
+                                      color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                                    ),
+                                  ),
+                                  Text(
+                                    livros[index]['autor'],
+                                    style: const TextStyle(
+                                      color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                                    ),
+                                  ),
+                                  Text(
+                                    livros[index]['tipo'],
+                                    style: const TextStyle(
+                                      color: Color(0xFFB36E40),
+                                    ),
+                                  ),
                                   // Text(livros[index].ano),
                                   TextButton(
                                     onPressed: () {},
                                     style: OutlinedButton.styleFrom(
                                       fixedSize: const Size(110, 40),
-                                      foregroundColor: const Color(0xFFF4EC70),
+                                      foregroundColor: const Color(0xffffffff),
+                                      backgroundColor: const Color(0xff638D93),
                                       elevation: 0,
                                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                      shape: const StadiumBorder(side: BorderSide(color: Color(0xFFC2CC93), width: 3.5)),
+                                      shape: const StadiumBorder(side: BorderSide(color: Color(0xff638D93), width: 3.5)),
                                       textStyle: const TextStyle(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFFF4EC70),
+                                        color: Color(0xFFB36E40),
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
