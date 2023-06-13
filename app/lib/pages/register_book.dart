@@ -37,9 +37,10 @@ class _RegisterBookState extends State<RegisterBook> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(unfocusNode),
       child: Scaffold(
+        backgroundColor: const Color(0xffDFDFDF),
         appBar: AppBar(
-          backgroundColor: const Color(0xFFDEE3D1),
-          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xffDFDFDF),
+          automaticallyImplyLeading: true,
           title: Align(
             alignment: const AlignmentDirectional(-1, 0),
             child: Image.asset(
@@ -64,7 +65,18 @@ class _RegisterBookState extends State<RegisterBook> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('Cadastrar')],
+                  children: [
+                    Text(
+                      'Cadastrar',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Jost',
+                        color: Color(0xFFB36E40),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const Row(
@@ -75,10 +87,16 @@ class _RegisterBookState extends State<RegisterBook> {
                   Align(
                     alignment: AlignmentDirectional(-1, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 50),
                       child: Text(
                         'Informação da Obra',
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Jost',
+                          color: Color(0xFFB36E40),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
                   ),
@@ -99,6 +117,12 @@ class _RegisterBookState extends State<RegisterBook> {
                           padding: EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
                           child: Text(
                             'Nome*',
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                         Align(
@@ -107,6 +131,12 @@ class _RegisterBookState extends State<RegisterBook> {
                             padding: EdgeInsetsDirectional.fromSTEB(150, 0, 0, 0),
                             child: Text(
                               'Autor*',
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -133,7 +163,7 @@ class _RegisterBookState extends State<RegisterBook> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-
+                              
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: const BorderSide(
                                   width: 2,
@@ -219,6 +249,12 @@ class _RegisterBookState extends State<RegisterBook> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
                         child: Text(
                           'Ano*',
+                            style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                            ),
                         ),
                       ),
                       Align(
@@ -227,6 +263,12 @@ class _RegisterBookState extends State<RegisterBook> {
                           padding: EdgeInsetsDirectional.fromSTEB(150, 0, 0, 0),
                           child: Text(
                             'Edição*',
+                              style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                           ),
                         ),
                       ),
@@ -334,7 +376,7 @@ class _RegisterBookState extends State<RegisterBook> {
                 ),
               ),
               const Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(-1, 0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                   child: Row(
@@ -346,6 +388,12 @@ class _RegisterBookState extends State<RegisterBook> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
                         child: Text(
                           'Tipo*',
+                          style: TextStyle(
+                                fontFamily: 'Jost',
+                                color: Color(0xFFB36E40),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ],
@@ -422,13 +470,14 @@ class _RegisterBookState extends State<RegisterBook> {
                         },
                         style: OutlinedButton.styleFrom(
                           fixedSize: const Size(130, 40),
-                          foregroundColor: const Color(0xFFF4EC70),
+                          backgroundColor: const Color.fromARGB(255, 64, 179, 131),
+                          //foregroundColor: const Color(0xFFB36E40),
                           elevation: 0,
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          shape: const StadiumBorder(side: BorderSide(color: Color(0xFFC2CC93), width: 3.5)),
+                          shape: const StadiumBorder(side: BorderSide(color: Color.fromARGB(255, 147, 204, 155), width: 3.5)),
                           textStyle: const TextStyle(
                             fontFamily: 'Poppins',
-                            color: Color(0xFFF4EC70),
+                            color: Color(0xFFB36E40),
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
