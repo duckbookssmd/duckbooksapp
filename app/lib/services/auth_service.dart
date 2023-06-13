@@ -17,6 +17,7 @@ class AuthException implements Exception {
 
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -86,15 +87,42 @@ class AuthService extends ChangeNotifier {
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+  void signInWithRegistration(
+    BuildContext context,
+    String registration,
+    String password,
+    GlobalKey<FormState> formKey,
+  ) async {
+      await firebaseFirestore.collection('usuario').where('matriculaSIAPE', isEqualTo: registration).get().then((value) {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Matrícula não encontrada');
+          return false;
+        }
+        for (var docSnapshot in value.docs) {
+          String email = docSnapshot.data()['email'];
+          signIn(context, email, password, formKey);
+        }
+        _getUser();
+      }).catchError(
+        (e) {
+          Fluttertoast.showToast(msg: e!.message);
+          _getUser();
+          return e;
+        },
+      );
+      _getUser();
+  }
+
   void signIn(
     BuildContext context,
-    String matricula,
+    String email,
     String senha,
     GlobalKey<FormState> formKey,
   ) async {
     if (formKey.currentState!.validate()) {
       await _auth
-          .signInWithEmailAndPassword(email: matricula, password: senha)
+          .signInWithEmailAndPassword(email: email, password: senha)
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Logado com sucesso"),
                 Navigator.of(context).pushReplacement(
@@ -105,7 +133,9 @@ class AuthService extends ChangeNotifier {
               })
           .catchError(
         (e) {
-          Fluttertoast.showToast(msg: e!.message);
+          if (e!.message == 'The password is invalid or the user does not have a password.'){
+            Fluttertoast.showToast(msg: 'Senha inválida');
+          }
           _getUser();
           return e;
         },
@@ -209,7 +239,7 @@ class AuthService extends ChangeNotifier {
   ) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
-  
+
     BookModel bookModel = BookModel(
       nome: nomeController!.text,
       autor: autorController!.text,

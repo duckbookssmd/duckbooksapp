@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/cadastro_page.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -167,10 +168,11 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
-                      // inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
-                      //   FilteringTextInputFormatter.digitsOnly,
-                      //   LengthLimitingTextInputFormatter(7),
-                      // ],
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(8),
+                      ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, preencha!';
@@ -261,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Senha vazia!';
-                        } else if (value.length <= 6) {
+                        } else if (value.length < 6) {
                           return 'Tamanho mímino de 6 dígitos';
                         }
                         return null;
@@ -340,7 +342,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
 
                         if (_formKey.currentState!.validate()) {
-                          context.read<AuthService>().signIn(
+                          context.read<AuthService>().signInWithRegistration(
                                 context,
                                 texMatriculaController!.text,
                                 texSenhaController!.text,
