@@ -20,8 +20,8 @@ class _RegisterBookState extends State<RegisterBook> {
   TextEditingController? textAnoController;
   TextEditingController? textEditionController;
   TextEditingController? textTipoController;
-  TextEditingController? textpublisherController;
-
+  String? textType;
+  List<String> _types = ['Livro', 'Mangá', 'Revista', 'Apostila', 'N.D.A'];
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -163,7 +163,6 @@ class _RegisterBookState extends State<RegisterBook> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
                                     controller: textNomeController,
-                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -207,7 +206,6 @@ class _RegisterBookState extends State<RegisterBook> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
                                     controller: textAutorController,
-                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -304,7 +302,6 @@ class _RegisterBookState extends State<RegisterBook> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
                                     controller: textAnoController,
-                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -348,7 +345,6 @@ class _RegisterBookState extends State<RegisterBook> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
                                     controller: textEditionController,
-                                    autofocus: true,
                                     textCapitalization: TextCapitalization.words,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -413,7 +409,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               Align(
                                 alignment: AlignmentDirectional(1, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(150, 0, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(125, 0, 0, 0),
                                   child: Text(
                                     'Tipo*',
                                     style: TextStyle(
@@ -442,8 +438,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                   child: TextFormField(
-                                    controller: textpublisherController,
-                                    autofocus: true,
+                                    // controller: textpublisherController,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -475,40 +470,48 @@ class _RegisterBookState extends State<RegisterBook> {
                                 ),
                               ),
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                                  child: TextFormField(
-                                    controller: textTipoController,
-                                    autofocus: true,
-                                    textCapitalization: TextCapitalization.words,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(),
-                                        borderRadius: BorderRadius.circular(8),
+                                child: DropdownButtonFormField(
+                                  items: _types.map((String category) {
+                                    return DropdownMenuItem(
+                                      value: category,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(category),
+                                        ],
                                       ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      errorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      filled: true,
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValue) {
+                                    // do other stuff with _category
+                                    setState(() => textType = newValue);
+                                  },
+                                  value: textType,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
-                                    validator: (value) { // Adicionar Dropdown
-                                      if (value == null || value.isEmpty) {
-                                        return 'Por favor, preencha!';
-                                      }
-                                      return null;
-                                    },
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Selecione um Tipo!';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                             ],
@@ -525,13 +528,14 @@ class _RegisterBookState extends State<RegisterBook> {
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                               child: TextButton(
                                 onPressed: () {
+                                  print(textType);
                                   if (_formKey.currentState!.validate()) {
                                     context.read<AuthService>().postBookDetailsToFirestore(
                                           textNomeController,
                                           textAutorController,
                                           textAnoController,
                                           textEditionController,
-                                          textTipoController,
+                                          textType,
                                           // textEditoraController
                                         );
                                   }

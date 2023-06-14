@@ -234,7 +234,7 @@ class AuthService extends ChangeNotifier {
     TextEditingController? autorController,
     TextEditingController? anoController,
     TextEditingController? edicaoController,
-    TextEditingController? tipoController,
+    String? tipo,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -245,7 +245,7 @@ class AuthService extends ChangeNotifier {
       autor: autorController!.text,
       ano: int.tryParse(anoController!.text),
       edicao: int.tryParse(edicaoController!.text),
-      tipo: tipoController!.text,
+      tipo: tipo,
       foto: 'Colocar',
       dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
     );
