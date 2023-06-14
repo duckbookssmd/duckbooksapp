@@ -158,9 +158,10 @@ class _CadastroPageState extends State<CadastroPage> {
                         fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.start,
+                      keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(6),
+                        LengthLimitingTextInputFormatter(8),
                       ],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
