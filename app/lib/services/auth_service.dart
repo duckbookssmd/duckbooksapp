@@ -7,7 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:app/models/user_model.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../configs/app_settings.dart';
 import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
@@ -17,6 +19,7 @@ class AuthException implements Exception {
 
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -83,56 +86,78 @@ class AuthService extends ChangeNotifier {
       return error;
     });
     _getUser();
+    removeSaveLogin(context);
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-  void signIn(
+
+  saveLogin(BuildContext context, String registration, String password) async {
+    // Salvar
+    await context.read<AppSettings>().setData(registration, password);
+  }
+
+  removeSaveLogin(BuildContext context) async {
+    await context.read<AppSettings>().setData('', '');
+  }
+
+  void signInWithRegistration(
     BuildContext context,
-    String matricula,
+    String registration,
+    String password,
+    GlobalKey<FormState> formKey,
+    bool rememberPass,
+  ) async {
+    bool succesSignIn = false;
+    await firebaseFirestore.collection('usuario').where('matriculaSIAPE', isEqualTo: registration).get().then(
+      (value) async {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Matrícula não encontrada');
+          return false;
+        }
+        for (var docSnapshot in value.docs) {
+          String email = docSnapshot.data()['email'];
+          succesSignIn = await signIn(context, email, password, formKey);
+        }
+        _getUser();
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        _getUser();
+        return false;
+      },
+    );
+    _getUser();
+    if (rememberPass && succesSignIn) {
+      saveLogin(context, registration, password);
+    }
+  }
+
+  Future<bool> signIn(
+    BuildContext context,
+    String email,
     String senha,
     GlobalKey<FormState> formKey,
   ) async {
-    if (formKey.currentState!.validate()) {
-      await _auth
-          .signInWithEmailAndPassword(email: matricula, password: senha)
-          .then((uid) => {
-                Fluttertoast.showToast(msg: "Logado com sucesso"),
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const HomePageCa(),
-                  ),
-                ),
-              })
-          .catchError(
-        (e) {
-          Fluttertoast.showToast(msg: e!.message);
-          _getUser();
-          return e;
-        },
+    bool resp = false;
+    await _auth.signInWithEmailAndPassword(email: email, password: senha).then((uid) {
+      Fluttertoast.showToast(msg: "Logado com sucesso");
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomePageCa(),
+        ),
       );
-      _getUser();
-    } else {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              title: const Text('Usuário não cadastrado !'),
-              content: const Text('Cadastre-se para continuar'),
-              actions: <Widget>[
-                // define os botões na base do dialogo
-                TextButton(
-                  child: const Text("Fechar"),
-                  onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RegisterValidationHelpPageWidget()));
-                  },
-                ),
-              ],
-            );
-          });
-    }
+      resp = true; // sucesso ao logar
+    }).catchError(
+      (e) {
+        if (e!.message == 'The password is invalid or the user does not have a password.') {
+          Fluttertoast.showToast(msg: 'Senha inválida');
+        }
+        _getUser();
+      },
+    );
+    _getUser();
+    return resp; // sucesso ao logar
   }
 
   signUp(
@@ -204,18 +229,18 @@ class AuthService extends ChangeNotifier {
     TextEditingController? autorController,
     TextEditingController? anoController,
     TextEditingController? edicaoController,
-    TextEditingController? tipoController,
+    String? tipo,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
-  
+
     BookModel bookModel = BookModel(
       nome: nomeController!.text,
       autor: autorController!.text,
       ano: int.tryParse(anoController!.text),
       edicao: int.tryParse(edicaoController!.text),
-      tipo: tipoController!.text,
+      tipo: tipo,
       foto: 'Colocar',
       dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
     );

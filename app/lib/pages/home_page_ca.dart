@@ -38,12 +38,6 @@ class _HomePageCaState extends State<HomePageCa> {
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
-  @override
-  void dispose() {
-    dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

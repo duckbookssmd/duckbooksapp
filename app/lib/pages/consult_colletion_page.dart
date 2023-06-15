@@ -20,8 +20,7 @@ class _ConsultPageState extends State<ConsultPage> {
     livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
-        print('${docSnapshot.data()}');
-        lista.add(docSnapshot.data());
+           lista.add(docSnapshot.data());
       }
       return lista;
     });
@@ -38,8 +37,6 @@ class _ConsultPageState extends State<ConsultPage> {
           setState(() {
             atualizarLista();
           });
-
-          print(livros.length);
         },
         elevation: 8,
         label: const Row(
@@ -149,7 +146,6 @@ class _ConsultPageState extends State<ConsultPage> {
                                 livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
                                   List lista = [];
                                   for (var docSnapshot in value.docs) {
-                                    print('${docSnapshot.data()}');
                                     lista.add(docSnapshot.data());
                                   }
                                   return lista;
