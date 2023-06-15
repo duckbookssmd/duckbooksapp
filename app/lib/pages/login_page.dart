@@ -1,8 +1,10 @@
+import 'package:app/configs/app_settings.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/cadastro_page.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -18,10 +20,21 @@ class _LoginPageState extends State<LoginPage> {
   // * Firebase User Autentication
   User? user = FirebaseAuth.instance.currentUser;
 
+  setLoginData() async {
+    Map<String, String> datalogin = Provider.of<AppSettings>(context, listen: false).logindata;
+    texMatriculaController!.text = datalogin['registration'] ?? '';
+    texSenhaController!.text = (datalogin['password']!.length > 3) ? datalogin['password'] ?? '' : '';
+    checkboxValue = (datalogin['registration'] == '') ? false : true;
+  }
 
   @override
   void initState() {
     super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((s) {
+      setLoginData();
+    });
+
     FirebaseFirestore.instance
         // ! Relativo a coleção do Firebase
         .collection("usuario")
@@ -45,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? texSenhaControllerValidator;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  bool checkboxValue = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -169,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[ // Só numeros / nó maximo 7 dígitos
+                      inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(8),
                       ],
@@ -288,7 +301,7 @@ class _LoginPageState extends State<LoginPage> {
                             unselectedWidgetColor: const Color(0xFFB3AA3D),
                           ),
                           child: Checkbox(
-                            value: checkboxValue ??= false,
+                            value: checkboxValue,
                             onChanged: (newValue) async {
                               setState(() => checkboxValue = newValue!);
                             },
@@ -340,13 +353,13 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
                     child: TextButton(
                       onPressed: () {
-
                         if (_formKey.currentState!.validate()) {
                           context.read<AuthService>().signInWithRegistration(
                                 context,
                                 texMatriculaController!.text,
                                 texSenhaController!.text,
                                 _formKey,
+                                checkboxValue,
                               );
 
                           ScaffoldMessenger.of(context).showSnackBar(

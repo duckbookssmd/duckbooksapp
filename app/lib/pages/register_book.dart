@@ -21,7 +21,7 @@ class _RegisterBookState extends State<RegisterBook> {
   TextEditingController? textEditionController;
   TextEditingController? textTipoController;
   String? textType;
-  List<String> _types = ['Livro', 'Mangá', 'Revista', 'Apostila', 'N.D.A'];
+  final List<String> _types = ['Livro', 'Mangá', 'Revista', 'Apostila', 'N.D.A'];
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -528,7 +528,6 @@ class _RegisterBookState extends State<RegisterBook> {
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                               child: TextButton(
                                 onPressed: () {
-                                  print(textType);
                                   if (_formKey.currentState!.validate()) {
                                     context.read<AuthService>().postBookDetailsToFirestore(
                                           textNomeController,

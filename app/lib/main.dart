@@ -1,3 +1,4 @@
+import 'package:app/configs/app_settings.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -6,14 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'color_schemes.g.dart';
+import 'configs/hive_config.dart';
 import 'custom_color.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await HiveConfig.start();
   await Firebase.initializeApp();
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => AuthService(),)],
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AppSettings(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthService(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
