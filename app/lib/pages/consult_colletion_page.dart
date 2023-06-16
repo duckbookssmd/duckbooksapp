@@ -18,11 +18,15 @@ List livros = [];
 bool isLoading = false;
 
 class _ConsultPageState extends State<ConsultPage> {
+  String truncateWithEllipsis(int cutoff, String myString) {
+    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
+  }
+
   atualizarLista() async {
     setState(() {
       isLoading = true;
     });
-    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
+    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).orderBy('nome', descending: false).get().then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
         lista.add(docSnapshot.data());
@@ -209,13 +213,15 @@ class _ConsultPageState extends State<ConsultPage> {
                                   ),
                                   SizedBox(
                                     height: 200,
+                                    width: 200,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          livros[index]['nome'],
+                                          truncateWithEllipsis(57, livros[index]['nome']),
+                                          // softWrap: false,
                                           style: const TextStyle(
                                             color: Color(0xFFB36E40), // Defina a cor desejada aqui
                                           ),
