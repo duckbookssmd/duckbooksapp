@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "791612579586",
+    "project_id": "duckbooksapp-smd",
+    "storage_bucket": "duckbooksapp-smd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791612579586:android:f0a279db3b991ac112ac1b",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791612579586-17a9arm0dhnfebc1vulq1q3qla97j5tp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1dmmFdUq90690YfPpXif9bKKGAYoDHHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791612579586-17a9arm0dhnfebc1vulq1q3qla97j5tp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "791612579586-2rma10tbir6fhqursdhjhl0ilpe328t1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
