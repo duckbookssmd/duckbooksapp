@@ -227,12 +227,12 @@ class AuthService extends ChangeNotifier {
   Future<bool> checkIfExist(String nome) async {
     // depois trocar pra chave de identificação
     bool resp = false;
-    await firebaseFirestore.collection('obra').where('nome', isEqualTo: true).get().then(
+    await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
       (value) {
         if (value.docs.isEmpty) {
-          resp = true;
-        } else {
           resp = false;
+        } else {
+          resp = true;
         }
       },
     );
@@ -245,6 +245,7 @@ class AuthService extends ChangeNotifier {
     TextEditingController? anoController,
     TextEditingController? edicaoController,
     String? tipo,
+    String? genero,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
     if (!await checkIfExist(nomeController!.text)) {
@@ -257,6 +258,7 @@ class AuthService extends ChangeNotifier {
         ano: int.tryParse(anoController!.text),
         edicao: int.tryParse(edicaoController!.text),
         tipo: tipo,
+        genero: genero,
         foto: 'Colocar',
         dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
       );

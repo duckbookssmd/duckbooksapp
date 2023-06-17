@@ -19,9 +19,10 @@ class _RegisterBookState extends State<RegisterBook> {
   TextEditingController? textAutorController;
   TextEditingController? textAnoController;
   TextEditingController? textEditionController;
-  TextEditingController? textTipoController;
   String? textType;
+  String? textGenre;
   final List<String> _types = ['Livro', 'Mangá', 'Revista', 'Apostila', 'N.D.A'];
+  final List<String> _genres = ['Programação', 'Design Gráfico', 'Redes', 'Tipografia', 'N.D.A'];
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,7 +32,6 @@ class _RegisterBookState extends State<RegisterBook> {
     textAutorController ??= TextEditingController();
     textAnoController ??= TextEditingController();
     textEditionController ??= TextEditingController();
-    textTipoController ??= TextEditingController();
   }
 
   @override
@@ -518,6 +518,89 @@ class _RegisterBookState extends State<RegisterBook> {
                           ),
                         ),
                       ),
+                      const Align(
+                        alignment: AlignmentDirectional(0, 0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
+                                child: Text(
+                                  'Genero*',
+                                  style: TextStyle(
+                                    fontFamily: 'Jost',
+                                    color: Color(0xFFB36E40),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: DropdownButtonFormField(
+                                  items: _genres.map((String category) {
+                                    return DropdownMenuItem(
+                                      value: category,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(category),
+                                        ],
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValue) {
+                                    // do other stuff with _category
+                                    setState(() => textGenre = newValue);
+                                  },
+                                  value: textGenre,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Selecione um Tipo!';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -535,6 +618,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                           textAnoController,
                                           textEditionController,
                                           textType,
+                                          textGenre,
                                           // textEditoraController
                                         );
                                   }

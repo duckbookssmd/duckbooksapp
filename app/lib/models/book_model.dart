@@ -5,6 +5,7 @@ class BookModel {
   late int? edicao;
   late String? tipo;
   late String? foto = "";
+  late String? genero = "";
   late String dataCadastro;
 
   BookModel({
@@ -14,6 +15,7 @@ class BookModel {
     required this.edicao,
     required this.tipo,
     required this.foto,
+    required this.genero,
     required this.dataCadastro,
   });
 
@@ -25,6 +27,7 @@ class BookModel {
       'edicao': edicao,
       'tipo': tipo,
       'foto': foto,
+      'genero': genero,
       'dataCadastro': dataCadastro,
     };
   }
