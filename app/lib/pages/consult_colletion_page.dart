@@ -9,7 +9,7 @@ class ConsultPage extends StatefulWidget {
   _ConsultPageState createState() => _ConsultPageState();
 }
 
-TextEditingController? textController = TextEditingController();
+TextEditingController? searchController = TextEditingController();
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
@@ -22,10 +22,39 @@ class _ConsultPageState extends State<ConsultPage> {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
-  atualizarLista() async {
+  String removeAccents(String str) {
+    var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
+    var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
+
+    for (int i = 0; i < withAccent.length; i++) {
+      str = str.replaceAll(withAccent[i], withoutAccent[i]);
+    }
+    return str;
+  }
+
+  searchByName([String name = '']) async {
+    List filttedList = [];
+    name = removeAccents(name.toLowerCase());
+
     setState(() {
       isLoading = true;
     });
+    await atualizarLista();
+
+    for (Map<String, dynamic> livro in livros) {
+      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
+        filttedList.add(livro);
+      }
+    }
+
+    livros = filttedList;
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  atualizarLista() async {
     livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).orderBy('nome', descending: false).get().then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
@@ -33,16 +62,12 @@ class _ConsultPageState extends State<ConsultPage> {
       }
       return lista;
     });
-    setState(() {
-      isLoading = false;
-    });
   }
-  // pegar uma query geral
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => atualizarLista());
+    WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
   }
 
   @override
@@ -52,7 +77,7 @@ class _ConsultPageState extends State<ConsultPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           setState(() {
-            atualizarLista();
+            searchByName();
           });
         },
         elevation: 8,
@@ -114,7 +139,7 @@ class _ConsultPageState extends State<ConsultPage> {
                     child: Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: TextFormField(
-                        controller: textController,
+                        controller: searchController,
                         obscureText: false,
                         decoration: InputDecoration(
                           fillColor: const Color(0xff638D93),
@@ -156,9 +181,8 @@ class _ConsultPageState extends State<ConsultPage> {
                           filled: true,
                           // fillColor: FlutterFlowTheme.of(context).cambridgeBlue,
                           suffixIcon: IconButton(
-                            onPressed: () async {
-                              // Atualizar lista de livros
-                              atualizarLista();
+                            onPressed: () {
+                              searchByName(searchController?.text ?? '');
                             },
                             icon: const Icon(Icons.search),
                             color: Colors.white,
@@ -177,9 +201,9 @@ class _ConsultPageState extends State<ConsultPage> {
             ),
             const Divider(),
             (isLoading)
-                ? const Center(child: CircularProgressIndicator())
-                : Expanded(
-                    child: ListView.builder(
+                  ? const Center(child: CircularProgressIndicator())
+                  : Expanded(
+                      child: ListView.builder(
                       itemCount: livros.length,
                       itemBuilder: (context, index) {
                         return Padding(
