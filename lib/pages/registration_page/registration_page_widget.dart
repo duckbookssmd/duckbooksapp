@@ -449,7 +449,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                       logFirebaseEvent('Button_navigate_to');
 
                       context.pushNamed(
-                        'LoanPage',
+                        'HelpPage',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,

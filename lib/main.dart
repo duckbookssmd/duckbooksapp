@@ -167,7 +167,7 @@ class _NavBarPageState extends State<NavBarPage> {
               FontAwesomeIcons.clipboardList,
               size: 20.0,
             ),
-            label: 'Home',
+            label: 'Empréstimos',
             tooltip: '',
           ),
           BottomNavigationBarItem(

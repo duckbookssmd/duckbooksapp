@@ -342,7 +342,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed(
-                          'LoanPage',
+                          'HomePage',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,

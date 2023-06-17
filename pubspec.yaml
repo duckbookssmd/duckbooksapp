@@ -42,6 +42,10 @@ dependencies:
   firebase_core_web: 2.0.2
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.0
+  flutter_slidable: 
+    git:
+      url: https://github.com/letsar/flutter_slidable.git
+      ref: d10a912aae1fb0da330d9c83169f15ed2b0b42a2
   flutter_spinkit: 5.1.0
   font_awesome_flutter: 10.1.0
   from_css_color: 2.0.0

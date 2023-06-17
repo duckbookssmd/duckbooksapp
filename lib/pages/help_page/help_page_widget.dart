@@ -100,7 +100,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 150.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 50.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.75,
                       child: Stack(
@@ -254,7 +254,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                             alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 30.0),
+                                  0.0, 0.0, 0.0, 20.0),
                               child: smooth_page_indicator.SmoothPageIndicator(
                                 controller: _model.pageViewController ??=
                                     PageController(initialPage: 0),
@@ -284,6 +284,37 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional(1.0, 0.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 50.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        logFirebaseEvent('HELP_PAGE_PAGE_Text_be0jvhz4_ON_TAP');
+                        logFirebaseEvent('Text_navigate_to');
+
+                        context.pushNamed('LoginPage');
+                      },
+                      child: Text(
+                        'Voltar ao login',
+                        style: FlutterFlowTheme.of(context).labelLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).labelLargeFamily,
+                              fontSize: 16.0,
+                              decoration: TextDecoration.underline,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .labelLargeFamily),
+                            ),
                       ),
                     ),
                   ),
