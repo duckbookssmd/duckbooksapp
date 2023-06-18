@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -115,83 +116,117 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        child: TextFormField(
-                          controller: _model.textController1,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.textController1',
-                            Duration(milliseconds: 2000),
-                            () => setState(() {}),
-                          ),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: 'Matrícula ou SIAPE',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleMediumFamily,
-                                  fontSize: 16.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleMediumFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).infoBlue,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            filled: true,
-                            fillColor: Color(0x80FF9E5D),
-                            prefixIcon: Icon(
-                              Icons.location_history_rounded,
-                              color: FlutterFlowTheme.of(context).primaryIcons,
-                            ),
-                            suffixIcon: _model.textController1!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      _model.textController1?.clear();
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryIcons,
-                                      size: 18.0,
-                                    ),
-                                  )
-                                : null,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          cursorColor:
-                              FlutterFlowTheme.of(context).primaryIcons,
-                          validator: _model.textController1Validator
-                              .asValidator(context),
+                      child: StreamBuilder<List<UsersRecord>>(
+                        stream: queryUsersRecord(
+                          singleRecord: true,
                         ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: SpinKitFadingCircle(
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  size: 50.0,
+                                ),
+                              ),
+                            );
+                          }
+                          List<UsersRecord> textFieldUsersRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the item does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final textFieldUsersRecord =
+                              textFieldUsersRecordList.isNotEmpty
+                                  ? textFieldUsersRecordList.first
+                                  : null;
+                          return Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: TextFormField(
+                              controller: _model.textController1,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.textController1',
+                                Duration(milliseconds: 2000),
+                                () => setState(() {}),
+                              ),
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: 'Matrícula ou SIAPE',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleMediumFamily,
+                                      fontSize: 16.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMediumFamily),
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).infoBlue,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                filled: true,
+                                fillColor: Color(0x80FF9E5D),
+                                prefixIcon: Icon(
+                                  Icons.location_history_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryIcons,
+                                ),
+                                suffixIcon: _model
+                                        .textController1!.text.isNotEmpty
+                                    ? InkWell(
+                                        onTap: () async {
+                                          _model.textController1?.clear();
+                                          setState(() {});
+                                        },
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryIcons,
+                                          size: 18.0,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              cursorColor:
+                                  FlutterFlowTheme.of(context).primaryIcons,
+                              validator: _model.textController1Validator
+                                  .asValidator(context),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

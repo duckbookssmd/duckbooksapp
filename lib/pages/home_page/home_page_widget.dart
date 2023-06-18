@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -74,119 +74,289 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 8.0),
-                                    child: Text(
-                                      'Categorias em Alta',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 0.0, 16.0),
+                                      child: Text(
+                                        'Categorias em Alta',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 24.0, 8.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 160.0,
-                                    child: Stack(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 40.0),
-                                          child: PageView(
-                                            controller: _model
-                                                    .pageViewController1 ??=
-                                                PageController(initialPage: 0),
-                                            scrollDirection: Axis.horizontal,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/32/600',
-                                                  width: 300.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/390/600',
-                                                  width: 300.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/833/600',
-                                                  width: 300.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 24.0),
+                                      child: Container(
+                                        height: 100.0,
+                                        decoration: BoxDecoration(),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 1.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 16.0),
-                                            child: smooth_page_indicator
-                                                .SmoothPageIndicator(
-                                              controller:
-                                                  _model.pageViewController1 ??=
-                                                      PageController(
-                                                          initialPage: 0),
-                                              count: 3,
-                                              axisDirection: Axis.horizontal,
-                                              onDotClicked: (i) async {
-                                                await _model
-                                                    .pageViewController1!
-                                                    .animateToPage(
-                                                  i,
-                                                  duration: Duration(
-                                                      milliseconds: 500),
-                                                  curve: Curves.ease,
-                                                );
-                                              },
-                                              effect: smooth_page_indicator
-                                                  .ExpandingDotsEffect(
-                                                expansionFactor: 3.0,
-                                                spacing: 8.0,
-                                                radius: 16.0,
-                                                dotWidth: 16.0,
-                                                dotHeight: 8.0,
-                                                dotColor: Color(0x4C324A4D),
-                                                activeDotColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                paintStyle: PaintingStyle.fill,
-                                              ),
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            child: ListView(
+                                              padding: EdgeInsets.zero,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.horizontal,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Icon(
+                                                          Icons.developer_mode,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .onContainerTertiary,
+                                                          size: 24.0,
+                                                        ),
+                                                      ),
+                                                      AutoSizeText(
+                                                        'Programação',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Icon(
+                                                          Icons.palette,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .onContainerTertiary,
+                                                          size: 24.0,
+                                                        ),
+                                                      ),
+                                                      AutoSizeText(
+                                                        'Design \nde Interface',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.25),
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .database,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .onContainerTertiary,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      AutoSizeText(
+                                                        'Banco\nde Dados',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Icon(
+                                                          Icons.auto_stories,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .onContainerTertiary,
+                                                          size: 24.0,
+                                                        ),
+                                                      ),
+                                                      AutoSizeText(
+                                                        'Mangás',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Icon(
+                                                          Icons
+                                                              .ondemand_video_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .onContainerTertiary,
+                                                          size: 24.0,
+                                                        ),
+                                                      ),
+                                                      AutoSizeText(
+                                                        'Filmes',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(
+                                                width: 16.0,
+                                              )),
                                             ),
                                           ),
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -214,7 +384,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             0.0, 0.0, 0.0, 40.0),
                                         child: PageView(
                                           controller: _model
-                                                  .pageViewController2 ??=
+                                                  .pageViewController ??=
                                               PageController(initialPage: 0),
                                           scrollDirection: Axis.horizontal,
                                           children: [
@@ -255,7 +425,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               logFirebaseEvent(
                                                                   'Container_page_view');
                                                               await _model
-                                                                  .pageViewController2
+                                                                  .pageViewController
                                                                   ?.previousPage(
                                                                 duration: Duration(
                                                                     milliseconds:
@@ -307,7 +477,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               logFirebaseEvent(
                                                                   'Container_page_view');
                                                               await _model
-                                                                  .pageViewController2
+                                                                  .pageViewController
                                                                   ?.nextPage(
                                                                 duration: Duration(
                                                                     milliseconds:
@@ -463,7 +633,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryBackground,
                                                                           size:
@@ -1255,7 +1425,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               logFirebaseEvent(
                                                                   'Container_page_view');
                                                               await _model
-                                                                  .pageViewController2
+                                                                  .pageViewController
                                                                   ?.previousPage(
                                                                 duration: Duration(
                                                                     milliseconds:
@@ -1306,7 +1476,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               logFirebaseEvent(
                                                                   'Container_page_view');
                                                               await _model
-                                                                  .pageViewController2
+                                                                  .pageViewController
                                                                   ?.nextPage(
                                                                 duration: Duration(
                                                                     milliseconds:
@@ -1479,7 +1649,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .success,
                                                                       dense:
-                                                                          false,
+                                                                          true,
                                                                       shape:
                                                                           RoundedRectangleBorder(
                                                                         borderRadius:
@@ -1550,7 +1720,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .warning,
                                                                       dense:
-                                                                          false,
+                                                                          true,
                                                                       shape:
                                                                           RoundedRectangleBorder(
                                                                         borderRadius:
@@ -1621,7 +1791,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .error,
                                                                       dense:
-                                                                          false,
+                                                                          true,
                                                                       shape:
                                                                           RoundedRectangleBorder(
                                                                         borderRadius:
@@ -1777,8 +1947,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     tileColor: FlutterFlowTheme.of(
                                                                             context)
                                                                         .success,
-                                                                    dense:
-                                                                        false,
+                                                                    dense: true,
                                                                     shape:
                                                                         RoundedRectangleBorder(
                                                                       borderRadius:
@@ -1860,8 +2029,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     tileColor: FlutterFlowTheme.of(
                                                                             context)
                                                                         .warning,
-                                                                    dense:
-                                                                        false,
+                                                                    dense: true,
                                                                     shape:
                                                                         RoundedRectangleBorder(
                                                                       borderRadius:
@@ -1943,8 +2111,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     tileColor:
                                                                         FlutterFlowTheme.of(context)
                                                                             .error,
-                                                                    dense:
-                                                                        false,
+                                                                    dense: true,
                                                                     shape:
                                                                         RoundedRectangleBorder(
                                                                       borderRadius:
