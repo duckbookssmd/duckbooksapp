@@ -30,12 +30,6 @@ class _UserBorrowingsState extends State<UserBorrowings> {
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
-  @override
-  void dispose() {
-    dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

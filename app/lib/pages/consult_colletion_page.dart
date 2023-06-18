@@ -9,33 +9,75 @@ class ConsultPage extends StatefulWidget {
   _ConsultPageState createState() => _ConsultPageState();
 }
 
-TextEditingController? textController = TextEditingController();
+TextEditingController? searchController = TextEditingController();
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
 List livros = [];
 
+bool isLoading = false;
+
 class _ConsultPageState extends State<ConsultPage> {
+  String truncateWithEllipsis(int cutoff, String myString) {
+    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
+  }
+
+  String removeAccents(String str) {
+    var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
+    var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
+
+    for (int i = 0; i < withAccent.length; i++) {
+      str = str.replaceAll(withAccent[i], withoutAccent[i]);
+    }
+    return str;
+  }
+
+  searchByName([String name = '']) async {
+    List filttedList = [];
+    name = removeAccents(name.toLowerCase());
+
+    setState(() {
+      isLoading = true;
+    });
+    await atualizarLista();
+
+    for (Map<String, dynamic> livro in livros) {
+      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
+        filttedList.add(livro);
+      }
+    }
+
+    livros = filttedList;
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   atualizarLista() async {
-    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
+    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).orderBy('nome', descending: false).get().then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
-           lista.add(docSnapshot.data());
+        lista.add(docSnapshot.data());
       }
       return lista;
     });
   }
-  // pegar uma query geral
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
+  }
 
   @override
   Widget build(BuildContext context) {
-    atualizarLista();
     return Scaffold(
       backgroundColor: const Color(0xffDFDFDF),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           setState(() {
-            atualizarLista();
+            searchByName();
           });
         },
         elevation: 8,
@@ -97,7 +139,7 @@ class _ConsultPageState extends State<ConsultPage> {
                     child: Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: TextFormField(
-                        controller: textController,
+                        controller: searchController,
                         obscureText: false,
                         decoration: InputDecoration(
                           fillColor: const Color(0xff638D93),
@@ -139,20 +181,8 @@ class _ConsultPageState extends State<ConsultPage> {
                           filled: true,
                           // fillColor: FlutterFlowTheme.of(context).cambridgeBlue,
                           suffixIcon: IconButton(
-                            onPressed: () async {
-                              // Atualizar lista de livros
-
-                              setState(() async {
-                                livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).get().then((value) {
-                                  List lista = [];
-                                  for (var docSnapshot in value.docs) {
-                                    lista.add(docSnapshot.data());
-                                  }
-                                  return lista;
-                                });
-                                print(livros.length);
-                              });
-                              print(livros);
+                            onPressed: () {
+                              searchByName(searchController?.text ?? '');
                             },
                             icon: const Icon(Icons.search),
                             color: Colors.white,
@@ -170,94 +200,98 @@ class _ConsultPageState extends State<ConsultPage> {
               ),
             ),
             const Divider(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: livros.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    // substituir pelo modelo do card
-                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          left: 15,
-                          right: 15,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  border: Border.all(
-                                    color: Colors.black54,
-                                    width: 2.5,
-                                  )),
-                              // child: Image.network(
-                              //   livros[index].link,
-                              //   width: 160,
-                              //   height: 200,
-                              // ),
+            (isLoading)
+                  ? const Center(child: CircularProgressIndicator())
+                  : Expanded(
+                      child: ListView.builder(
+                      itemCount: livros.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          // substituir pelo modelo do card
+                          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            SizedBox(
-                              height: 200,
-                              child: Column(
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                left: 15,
+                                right: 15,
+                              ),
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Text(
-                                    livros[index]['nome'],
-                                    style: const TextStyle(
-                                      color: Color(0xFFB36E40), // Defina a cor desejada aqui
-                                    ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        border: Border.all(
+                                          color: Colors.black54,
+                                          width: 2.5,
+                                        )),
+                                    // child: Image.network(
+                                    //   livros[index].link,
+                                    //   width: 160,
+                                    //   height: 200,
+                                    // ),
                                   ),
-                                  Text(
-                                    livros[index]['autor'],
-                                    style: const TextStyle(
-                                      color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                                  SizedBox(
+                                    height: 200,
+                                    width: 200,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          truncateWithEllipsis(57, livros[index]['nome']),
+                                          // softWrap: false,
+                                          style: const TextStyle(
+                                            color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                                          ),
+                                        ),
+                                        Text(
+                                          livros[index]['autor'],
+                                          style: const TextStyle(
+                                            color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                                          ),
+                                        ),
+                                        Text(
+                                          livros[index]['tipo'],
+                                          style: const TextStyle(
+                                            color: Color(0xFFB36E40),
+                                          ),
+                                        ),
+                                        // Text(livros[index].ano),
+                                        TextButton(
+                                          onPressed: () {},
+                                          style: OutlinedButton.styleFrom(
+                                            fixedSize: const Size(110, 40),
+                                            foregroundColor: const Color(0xffffffff),
+                                            backgroundColor: const Color(0xff638D93),
+                                            elevation: 0,
+                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                            shape: const StadiumBorder(side: BorderSide(color: Color(0xff638D93), width: 3.5)),
+                                            textStyle: const TextStyle(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFFB36E40),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          child: const Text('Detalhes'),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  Text(
-                                    livros[index]['tipo'],
-                                    style: const TextStyle(
-                                      color: Color(0xFFB36E40),
-                                    ),
-                                  ),
-                                  // Text(livros[index].ano),
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: OutlinedButton.styleFrom(
-                                      fixedSize: const Size(110, 40),
-                                      foregroundColor: const Color(0xffffffff),
-                                      backgroundColor: const Color(0xff638D93),
-                                      elevation: 0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                      shape: const StadiumBorder(side: BorderSide(color: Color(0xff638D93), width: 3.5)),
-                                      textStyle: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFFB36E40),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    child: const Text('Detalhes'),
-                                  ),
+                                  )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
           ],
         ),
       ),

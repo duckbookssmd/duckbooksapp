@@ -27,13 +27,6 @@ class _UserBookingsWidgetState extends State<UserBookingsWidget> {
   }
 
   @override
-  void dispose() {
-    dispose();
-
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(unfocusNode),

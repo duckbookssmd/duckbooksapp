@@ -224,28 +224,49 @@ class AuthService extends ChangeNotifier {
     );
   }
 
+  Future<bool> checkIfExist(String nome) async {
+    // depois trocar pra chave de identificação
+    bool resp = false;
+    await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
+      (value) {
+        if (value.docs.isEmpty) {
+          resp = false;
+        } else {
+          resp = true;
+        }
+      },
+    );
+    return resp;
+  }
+
   postBookDetailsToFirestore(
     TextEditingController? nomeController,
     TextEditingController? autorController,
     TextEditingController? anoController,
     TextEditingController? edicaoController,
     String? tipo,
+    String? genero,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    if (!await checkIfExist(nomeController!.text)) {
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+      DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
-    BookModel bookModel = BookModel(
-      nome: nomeController!.text,
-      autor: autorController!.text,
-      ano: int.tryParse(anoController!.text),
-      edicao: int.tryParse(edicaoController!.text),
-      tipo: tipo,
-      foto: 'Colocar',
-      dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
-    );
+      BookModel bookModel = BookModel(
+        nome: nomeController.text,
+        autor: autorController!.text,
+        ano: int.tryParse(anoController!.text),
+        edicao: int.tryParse(edicaoController!.text),
+        tipo: tipo,
+        genero: genero,
+        foto: 'Colocar',
+        dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+      );
 
-    await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
-    Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
+      await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
+      Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
+    } else {
+      Fluttertoast.showToast(msg: 'Livro já Cadastrado');
+    }
   }
 }
