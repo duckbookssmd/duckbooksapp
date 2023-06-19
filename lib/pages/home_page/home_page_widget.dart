@@ -366,10 +366,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           Align(
                             alignment: AlignmentDirectional(0.0, -1.0),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
+                              width: MediaQuery.of(context).size.width * 1.0,
                               height: MediaQuery.of(context).size.height * 1.0,
                               decoration: BoxDecoration(),
-                              alignment: AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: Align(
                                 alignment: AlignmentDirectional(-1.0, -1.0),
                                 child: Padding(
