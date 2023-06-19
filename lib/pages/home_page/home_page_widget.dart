@@ -83,7 +83,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 0.0, 16.0),
+                                          16.0, 0.0, 0.0, 8.0),
                                       child: Text(
                                         'Categorias em Alta',
                                         textAlign: TextAlign.start,
@@ -96,7 +96,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 24.0),
+                                          16.0, 0.0, 16.0, 8.0),
                                       child: Container(
                                         height: 100.0,
                                         decoration: BoxDecoration(),
@@ -122,8 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -167,8 +166,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -212,8 +210,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -263,8 +260,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -308,8 +304,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -362,37 +357,45 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ],
                       ),
                     ),
-                    SingleChildScrollView(
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 676.0,
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 40.0),
-                                        child: PageView(
-                                          controller: _model
-                                                  .pageViewController ??=
-                                              PageController(initialPage: 0),
-                                          scrollDirection: Axis.horizontal,
-                                          children: [
-                                            SingleChildScrollView(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Row(
+                          Align(
+                            alignment: AlignmentDirectional(0.0, -1.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: MediaQuery.of(context).size.height * 1.0,
+                              decoration: BoxDecoration(),
+                              alignment: AlignmentDirectional(0.0, -1.0),
+                              child: Align(
+                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 16.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 676.0,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 40.0),
+                                      child: PageView(
+                                        controller:
+                                            _model.pageViewController ??=
+                                                PageController(initialPage: 0),
+                                        scrollDirection: Axis.horizontal,
+                                        children: [
+                                          SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
@@ -506,7 +509,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       width: 32.0,
                                                     )),
                                                   ),
-                                                  Column(
+                                                ),
+                                                SingleChildScrollView(
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
@@ -536,7 +541,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
-                                                                          16.0),
+                                                                          8.0),
                                                                   child: Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -613,7 +618,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .titleLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                                               ),
                                                                         ),
@@ -626,7 +631,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .labelLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                                               ),
                                                                         ),
@@ -635,12 +640,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           Icons
                                                                               .swipe,
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                              FlutterFlowTheme.of(context).secondaryText,
                                                                           size:
                                                                               24.0,
                                                                         ),
                                                                         tileColor:
-                                                                            FlutterFlowTheme.of(context).success,
+                                                                            FlutterFlowTheme.of(context).warning,
                                                                         dense:
                                                                             true,
                                                                         shape:
@@ -703,7 +708,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryText,
                                                                           size:
@@ -753,7 +758,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .titleLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                                               ),
                                                                         ),
@@ -766,21 +771,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .labelLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                                               ),
                                                                         ),
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                              FlutterFlowTheme.of(context).secondaryText,
                                                                           size:
                                                                               24.0,
                                                                         ),
                                                                         tileColor:
-                                                                            FlutterFlowTheme.of(context).error,
+                                                                            FlutterFlowTheme.of(context).warning,
                                                                         dense:
                                                                             true,
                                                                         shape:
@@ -826,7 +831,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
-                                                                          16.0),
+                                                                          8.0),
                                                                   child: Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -903,7 +908,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .titleLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryContainerVariant,
+                                                                                color: FlutterFlowTheme.of(context).primary,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                                               ),
                                                                         ),
@@ -923,7 +928,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryIcons,
                                                                           size:
@@ -973,7 +978,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .titleLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryContainerVariant,
+                                                                                color: FlutterFlowTheme.of(context).primary,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                                               ),
                                                                         ),
@@ -993,7 +998,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryIcons,
                                                                           size:
@@ -1043,7 +1048,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .titleLarge
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                color: FlutterFlowTheme.of(context).primaryContainerVariant,
+                                                                                color: FlutterFlowTheme.of(context).primary,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                                               ),
                                                                         ),
@@ -1063,7 +1068,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         trailing:
                                                                             Icon(
                                                                           Icons
-                                                                              .fast_rewind_rounded,
+                                                                              .swipe,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryIcons,
                                                                           size:
@@ -1106,7 +1111,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         16.0,
                                                                         0.0,
                                                                         16.0,
-                                                                        16.0),
+                                                                        8.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1209,7 +1214,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       trailing:
                                                                           Icon(
                                                                         Icons
-                                                                            .fast_rewind_rounded,
+                                                                            .swipe,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .onContainerTertiary,
                                                                         size:
@@ -1280,7 +1285,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       trailing:
                                                                           Icon(
                                                                         Icons
-                                                                            .fast_rewind_rounded,
+                                                                            .swipe,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .onContainerTertiary,
                                                                         size:
@@ -1351,7 +1356,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       trailing:
                                                                           Icon(
                                                                         Icons
-                                                                            .fast_rewind_rounded,
+                                                                            .swipe,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .onContainerTertiary,
                                                                         size:
@@ -1380,436 +1385,141 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                     ],
                                                   ),
-                                                ].divide(SizedBox(
-                                                  height: 16.0,
-                                                )),
-                                              ),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 16.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'C.A.',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              logFirebaseEvent(
-                                                                  'HOME_PAGE_PAGE_Container_b0w3uvno_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Container_page_view');
-                                                              await _model
-                                                                  .pageViewController
-                                                                  ?.previousPage(
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        300),
-                                                                curve:
-                                                                    Curves.ease,
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              width: 32.0,
-                                                              height: 16.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Color(
-                                                                    0x4C324A4D),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'Leitor',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              logFirebaseEvent(
-                                                                  'HOME_PAGE_PAGE_Container_1xt1cugp_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Container_page_view');
-                                                              await _model
-                                                                  .pageViewController
-                                                                  ?.nextPage(
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        300),
-                                                                curve:
-                                                                    Curves.ease,
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              width: 32.0,
-                                                              height: 16.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ].divide(SizedBox(
-                                                      width: 32.0,
-                                                    )),
-                                                  ),
                                                 ),
-                                                Column(
+                                              ].divide(SizedBox(
+                                                height: 16.0,
+                                              )),
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 16.0),
+                                                child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
-                                                      child:
-                                                          SingleChildScrollView(
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        16.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Meus Empréstimos',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineMedium,
-                                                                    ),
-                                                                    Text(
-                                                                      'Ver mais',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelLarge
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                            decoration:
-                                                                                TextDecoration.underline,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                              child: ListView(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                children: [
-                                                                  Slidable(
-                                                                    endActionPane:
-                                                                        ActionPane(
-                                                                      motion:
-                                                                          const ScrollMotion(),
-                                                                      extentRatio:
-                                                                          0.25,
-                                                                      children: [
-                                                                        SlidableAction(
-                                                                          label:
-                                                                              'Renovar',
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).primaryOnSurface,
-                                                                          icon:
-                                                                              Icons.repeat_rounded,
-                                                                          onPressed:
-                                                                              (_) {
-                                                                            print('SlidableActionWidget pressed ...');
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    child:
-                                                                        ListTile(
-                                                                      title:
-                                                                          Text(
-                                                                        'Livro 1',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      subtitle:
-                                                                          Text(
-                                                                        'Devolução: 31/06/2023',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      trailing:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .fast_rewind_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                      tileColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .success,
-                                                                      dense:
-                                                                          true,
-                                                                      shape:
-                                                                          RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Slidable(
-                                                                    endActionPane:
-                                                                        ActionPane(
-                                                                      motion:
-                                                                          const ScrollMotion(),
-                                                                      extentRatio:
-                                                                          0.25,
-                                                                      children: [
-                                                                        SlidableAction(
-                                                                          label:
-                                                                              'Renovar',
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).primaryOnSurface,
-                                                                          icon:
-                                                                              Icons.repeat_rounded,
-                                                                          onPressed:
-                                                                              (_) {
-                                                                            print('SlidableActionWidget pressed ...');
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    child:
-                                                                        ListTile(
-                                                                      title:
-                                                                          Text(
-                                                                        'Livro 2',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      subtitle:
-                                                                          Text(
-                                                                        'Devolução: 17/06/2023',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      trailing:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .fast_rewind_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                      tileColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .warning,
-                                                                      dense:
-                                                                          true,
-                                                                      shape:
-                                                                          RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Slidable(
-                                                                    endActionPane:
-                                                                        ActionPane(
-                                                                      motion:
-                                                                          const ScrollMotion(),
-                                                                      extentRatio:
-                                                                          0.25,
-                                                                      children: [
-                                                                        SlidableAction(
-                                                                          label:
-                                                                              'Devolver',
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).warning,
-                                                                          icon:
-                                                                              Icons.camera_alt,
-                                                                          onPressed:
-                                                                              (_) {
-                                                                            print('SlidableActionWidget pressed ...');
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    child:
-                                                                        ListTile(
-                                                                      title:
-                                                                          Text(
-                                                                        'Livro 3',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      subtitle:
-                                                                          Text(
-                                                                        'Devolução: 07/03/2023',
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                                            ),
-                                                                      ),
-                                                                      trailing:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .fast_rewind_rounded,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                      tileColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .error,
-                                                                      dense:
-                                                                          true,
-                                                                      shape:
-                                                                          RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ].divide(
-                                                                    SizedBox(
-                                                                  height: 8.0,
-                                                                )),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          'C.A.',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
                                                         ),
-                                                      ),
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'HOME_PAGE_PAGE_Container_b0w3uvno_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Container_page_view');
+                                                            await _model
+                                                                .pageViewController
+                                                                ?.previousPage(
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                              curve:
+                                                                  Curves.ease,
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 32.0,
+                                                            height: 16.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Color(
+                                                                  0x4C324A4D),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    SingleChildScrollView(
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          'Leitor',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'HOME_PAGE_PAGE_Container_1xt1cugp_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Container_page_view');
+                                                            await _model
+                                                                .pageViewController
+                                                                ?.nextPage(
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                              curve:
+                                                                  Curves.ease,
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 32.0,
+                                                            height: 16.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondary,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ].divide(SizedBox(
+                                                    width: 32.0,
+                                                  )),
+                                                ),
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 16.0),
+                                                    child:
+                                                        SingleChildScrollView(
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1835,7 +1545,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         .spaceBetween,
                                                                 children: [
                                                                   Text(
-                                                                    'Reservas',
+                                                                    'Meus Empréstimos',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineMedium,
@@ -1884,11 +1594,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     children: [
                                                                       SlidableAction(
                                                                         label:
-                                                                            'Cancelar',
+                                                                            'Renovar',
                                                                         backgroundColor:
-                                                                            FlutterFlowTheme.of(context).error,
+                                                                            FlutterFlowTheme.of(context).primaryOnSurface,
                                                                         icon: Icons
-                                                                            .clear_rounded,
+                                                                            .repeat_rounded,
                                                                         onPressed:
                                                                             (_) {
                                                                           print(
@@ -1918,7 +1628,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     ),
                                                                     subtitle:
                                                                         Text(
-                                                                      'Devolução: 17/06/2023',
+                                                                      'Devolução: 31/06/2023',
                                                                       textAlign:
                                                                           TextAlign
                                                                               .start,
@@ -1942,7 +1652,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .primaryBackground,
                                                                       size:
-                                                                          20.0,
+                                                                          24.0,
                                                                     ),
                                                                     tileColor: FlutterFlowTheme.of(
                                                                             context)
@@ -1966,11 +1676,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     children: [
                                                                       SlidableAction(
                                                                         label:
-                                                                            'Cancelar',
+                                                                            'Renovar',
                                                                         backgroundColor:
-                                                                            FlutterFlowTheme.of(context).error,
+                                                                            FlutterFlowTheme.of(context).primaryOnSurface,
                                                                         icon: Icons
-                                                                            .clear_rounded,
+                                                                            .repeat_rounded,
                                                                         onPressed:
                                                                             (_) {
                                                                           print(
@@ -2024,7 +1734,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .secondaryText,
                                                                       size:
-                                                                          20.0,
+                                                                          24.0,
                                                                     ),
                                                                     tileColor: FlutterFlowTheme.of(
                                                                             context)
@@ -2048,11 +1758,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     children: [
                                                                       SlidableAction(
                                                                         label:
-                                                                            'Cancelar',
+                                                                            'Devolver',
                                                                         backgroundColor:
-                                                                            FlutterFlowTheme.of(context).error,
+                                                                            FlutterFlowTheme.of(context).warning,
                                                                         icon: Icons
-                                                                            .clear_rounded,
+                                                                            .camera_alt,
                                                                         onPressed:
                                                                             (_) {
                                                                           print(
@@ -2082,7 +1792,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     ),
                                                                     subtitle:
                                                                         Text(
-                                                                      'Devolução: 17/06/2023',
+                                                                      'Devolução: 07/03/2023',
                                                                       textAlign:
                                                                           TextAlign
                                                                               .start,
@@ -2106,7 +1816,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .primaryBackground,
                                                                       size:
-                                                                          20.0,
+                                                                          24.0,
                                                                     ),
                                                                     tileColor:
                                                                         FlutterFlowTheme.of(context)
@@ -2128,17 +1838,333 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ],
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                                  ),
+                                                  SingleChildScrollView(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        0.0,
+                                                                        16.0,
+                                                                        16.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  'Reservas',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMedium,
+                                                                ),
+                                                                Text(
+                                                                  'Ver mais',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                        decoration:
+                                                                            TextDecoration.underline,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      0.0,
+                                                                      16.0,
+                                                                      0.0),
+                                                          child: ListView(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            children: [
+                                                              Slidable(
+                                                                endActionPane:
+                                                                    ActionPane(
+                                                                  motion:
+                                                                      const ScrollMotion(),
+                                                                  extentRatio:
+                                                                      0.25,
+                                                                  children: [
+                                                                    SlidableAction(
+                                                                      label:
+                                                                          'Cancelar',
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .error,
+                                                                      icon: Icons
+                                                                          .clear_rounded,
+                                                                      onPressed:
+                                                                          (_) {
+                                                                        print(
+                                                                            'SlidableActionWidget pressed ...');
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                child: ListTile(
+                                                                  title: Text(
+                                                                    'Livro 1',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  subtitle:
+                                                                      Text(
+                                                                    'Devolução: 17/06/2023',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  trailing:
+                                                                      Icon(
+                                                                    Icons
+                                                                        .fast_rewind_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  tileColor: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                                  dense: true,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15.0),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Slidable(
+                                                                endActionPane:
+                                                                    ActionPane(
+                                                                  motion:
+                                                                      const ScrollMotion(),
+                                                                  extentRatio:
+                                                                      0.25,
+                                                                  children: [
+                                                                    SlidableAction(
+                                                                      label:
+                                                                          'Cancelar',
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .error,
+                                                                      icon: Icons
+                                                                          .clear_rounded,
+                                                                      onPressed:
+                                                                          (_) {
+                                                                        print(
+                                                                            'SlidableActionWidget pressed ...');
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                child: ListTile(
+                                                                  title: Text(
+                                                                    'Livro 2',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  subtitle:
+                                                                      Text(
+                                                                    'Devolução: 17/06/2023',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  trailing:
+                                                                      Icon(
+                                                                    Icons
+                                                                        .fast_rewind_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  tileColor: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .warning,
+                                                                  dense: true,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15.0),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Slidable(
+                                                                endActionPane:
+                                                                    ActionPane(
+                                                                  motion:
+                                                                      const ScrollMotion(),
+                                                                  extentRatio:
+                                                                      0.25,
+                                                                  children: [
+                                                                    SlidableAction(
+                                                                      label:
+                                                                          'Cancelar',
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .error,
+                                                                      icon: Icons
+                                                                          .clear_rounded,
+                                                                      onPressed:
+                                                                          (_) {
+                                                                        print(
+                                                                            'SlidableActionWidget pressed ...');
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                child: ListTile(
+                                                                  title: Text(
+                                                                    'Livro 3',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  subtitle:
+                                                                      Text(
+                                                                    'Devolução: 17/06/2023',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                        ),
+                                                                  ),
+                                                                  trailing:
+                                                                      Icon(
+                                                                    Icons
+                                                                        .fast_rewind_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  tileColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                  dense: true,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15.0),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                              height: 8.0,
+                                                            )),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ],

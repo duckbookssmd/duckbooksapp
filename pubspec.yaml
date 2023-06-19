@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: 4.2.0
   cloud_firestore_platform_interface: 5.9.1
   cloud_firestore_web: 3.1.1
+  dropdown_button2: 2.0.0
   easy_debounce: 2.0.1
   firebase_analytics: 10.0.7
   firebase_analytics_platform_interface: 3.3.15

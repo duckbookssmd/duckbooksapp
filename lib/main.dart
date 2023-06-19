@@ -177,7 +177,7 @@ class _NavBarPageState extends State<NavBarPage> {
               FontAwesomeIcons.searchengin,
               size: 20.0,
             ),
-            label: 'Home',
+            label: 'Consulta',
             tooltip: '',
           )
         ],
