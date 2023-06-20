@@ -212,7 +212,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 8.0),
+                                  0.0, 16.0, 0.0, 8.0),
                               child: Text(
                                 'Funções Administrativas',
                                 textAlign: TextAlign.start,
@@ -613,7 +613,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 8.0),
+                                  0.0, 16.0, 0.0, 8.0),
                               child: Text(
                                 'Histórico de Atividades',
                                 textAlign: TextAlign.start,

@@ -521,7 +521,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 8.0),
                     child: Text(
                       'Acervo Completo',
                       style: FlutterFlowTheme.of(context).displayLarge.override(
