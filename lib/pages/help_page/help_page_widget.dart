@@ -47,7 +47,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
+          backgroundColor: FlutterFlowTheme.of(context).accent2,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -56,7 +56,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
             buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).onContainerSecondary,
+              color: FlutterFlowTheme.of(context).primary,
               size: 30.0,
             ),
             onPressed: () async {
@@ -67,7 +67,12 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
           ),
           title: Text(
             'Dúvidas - Validação',
-            style: FlutterFlowTheme.of(context).headlineLarge,
+            style: FlutterFlowTheme.of(context).headlineLarge.override(
+                  fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
+                  color: FlutterFlowTheme.of(context).tertiary,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).headlineLargeFamily),
+                ),
           ),
           actions: [],
           centerTitle: false,
@@ -126,7 +131,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .headlineMediumFamily,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                                .primaryText,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -166,18 +171,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                       '2ª Etapa - Validação de Cadastro',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily),
-                                          ),
+                                          .headlineMedium,
                                     ),
                                     AutoSizeText(
                                       'Para validar seu cadastro\nvocê deve apresentar\nAtestado de Matrícula\n e documento com foto.',
@@ -188,8 +182,6 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .titleMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -212,18 +204,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                       '2ª Etapa - Validação de Cadastro',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily),
-                                          ),
+                                          .headlineMedium,
                                     ),
                                     AutoSizeText(
                                       'Após este passo você terá\nacesso as funções do aplicativo.',
@@ -234,8 +215,6 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .titleMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -275,9 +254,9 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                   radius: 16.0,
                                   dotWidth: 16.0,
                                   dotHeight: 8.0,
-                                  dotColor: Color(0x4D324A4D),
+                                  dotColor: Color(0x4D3F5A8D),
                                   activeDotColor:
-                                      FlutterFlowTheme.of(context).secondary,
+                                      FlutterFlowTheme.of(context).accent2,
                                   paintStyle: PaintingStyle.fill,
                                 ),
                               ),
@@ -309,6 +288,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).labelLargeFamily,
+                              color: FlutterFlowTheme.of(context).info,
                               fontSize: 16.0,
                               decoration: TextDecoration.underline,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

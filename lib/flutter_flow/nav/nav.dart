@@ -113,6 +113,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'HelpPage',
               path: 'helpPage',
               builder: (context, params) => HelpPageWidget(),
+            ),
+            FFRoute(
+              name: 'ReturnLoanPage',
+              path: 'returnLoanPage',
+              builder: (context, params) => ReturnLoanPageWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

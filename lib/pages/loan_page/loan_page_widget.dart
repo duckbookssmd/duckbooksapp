@@ -1,8 +1,8 @@
-import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,6 +29,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
     _model = createModel(context, () => LoanPageModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'LoanPage'});
+    _model.textController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -46,17 +47,6 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Empréstimos',
-            style: FlutterFlowTheme.of(context).headlineLarge,
-          ),
-          actions: [],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -64,6 +54,145 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 16.0, 0.0),
+                          child: TextFormField(
+                            controller: _model.textController,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.textController',
+                              Duration(milliseconds: 2000),
+                              () => setState(() {}),
+                            ),
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Pesquise uma obra aqui...',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleLargeFamily),
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleLargeFamily),
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              suffixIcon: Icon(
+                                Icons.search,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleLargeFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleLargeFamily),
+                                ),
+                            cursorColor: FlutterFlowTheme.of(context).secondary,
+                            validator: _model.textControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          icon: Icon(
+                            Icons.notifications,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          icon: Icon(
+                            Icons.menu,
+                            color: FlutterFlowTheme.of(context).alternate,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
@@ -71,174 +200,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 8.0),
                     child: Text(
                       'Meus Empréstimos',
-                      style: FlutterFlowTheme.of(context).headlineMedium,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(null),
-                      options: ['Livro 1', 'Livro 2', 'Livro 3', 'Livro 4'],
-                      onChanged: (val) =>
-                          setState(() => _model.dropDownValue = val),
-                      width: 350.0,
-                      height: 50.0,
-                      searchHintTextStyle: FlutterFlowTheme.of(context)
-                          .labelMedium
-                          .override(
+                      style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).labelMediumFamily,
-                            color: FlutterFlowTheme.of(context)
-                                .onContainerSecondary,
-                            fontSize: 12.0,
+                                FlutterFlowTheme.of(context).displayLargeFamily,
+                            color: FlutterFlowTheme.of(context).alternate,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).labelMediumFamily),
+                                FlutterFlowTheme.of(context)
+                                    .displayLargeFamily),
                           ),
-                      textStyle: FlutterFlowTheme.of(context)
-                          .bodyMedium
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context)
-                                .onContainerTertiary,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                      hintText: 'Localize um empréstimo',
-                      searchHintText: 'Pesquise uma obra',
-                      searchCursorColor:
-                          FlutterFlowTheme.of(context).onContainerTertiary,
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).onContainerTertiary,
-                        size: 24.0,
-                      ),
-                      fillColor: FlutterFlowTheme.of(context).tertiary,
-                      elevation: 2.0,
-                      borderColor: Colors.transparent,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      margin:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 16.0, 4.0),
-                      hidesUnderline: true,
-                      isSearchable: true,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 24.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 8.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Filtros',
-                            icon: Icon(
-                              Icons.filter_alt_outlined,
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .onContainerTertiary,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 0.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                              hoverColor: Color(0x4D3A4834),
-                            ),
-                            showLoadingIndicator: false,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 8.0, 0.0),
-                          child: Container(
-                            width: 72.0,
-                            height: 32.0,
-                            decoration: BoxDecoration(
-                              color: Color(0x4D3A4834),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '2020',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 72.0,
-                          height: 32.0,
-                          decoration: BoxDecoration(
-                            color: Color(0x4D3A4834),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Text(
-                              'Pearson',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -281,19 +250,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -301,19 +259,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -321,25 +268,13 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Align(
@@ -358,27 +293,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -432,25 +366,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .bodyLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -466,7 +385,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(
@@ -520,19 +439,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -540,19 +448,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -560,19 +457,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
@@ -597,27 +483,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -671,25 +556,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .bodyLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -705,7 +575,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(
@@ -759,19 +629,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -779,19 +638,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -799,19 +647,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
@@ -836,27 +673,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -910,25 +746,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .bodyLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -944,7 +765,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(
@@ -998,19 +819,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -1018,19 +828,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -1038,19 +837,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
@@ -1075,27 +863,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -1149,25 +936,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .bodyLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -1183,7 +955,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(
@@ -1237,19 +1009,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -1257,19 +1018,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -1277,19 +1027,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
@@ -1314,27 +1053,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -1388,25 +1126,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .bodyLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -1422,7 +1145,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(
@@ -1476,19 +1199,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Programação Shell Linux',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
                                 Align(
@@ -1496,19 +1208,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Autor: Julio Cezar Neves',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Align(
@@ -1516,19 +1217,8 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                   child: Text(
                                     'Ano: 2003 ',
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                   ),
                                 ),
                                 Row(
@@ -1553,27 +1243,26 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .alternate,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .titleSmall
+                                              .bodyLarge
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
+                                                        .bodyLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .tertiary,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .titleSmallFamily),
+                                                            .bodyLargeFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -1627,25 +1316,10 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .secondary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                      .labelLarge,
                                               elevation: 3.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
@@ -1661,7 +1335,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                       ),
                                     ),
                                   ].divide(SizedBox(
-                                    width: 64.0,
+                                    width: 16.0,
                                   )),
                                 ),
                               ].divide(SizedBox(

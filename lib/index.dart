@@ -9,3 +9,5 @@ export '/pages/consultation_page/consultation_page_widget.dart'
 export '/pages/registration_page/registration_page_widget.dart'
     show RegistrationPageWidget;
 export '/pages/help_page/help_page_widget.dart' show HelpPageWidget;
+export '/pages/return_loan_page/return_loan_page_widget.dart'
+    show ReturnLoanPageWidget;

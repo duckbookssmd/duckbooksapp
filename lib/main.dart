@@ -125,9 +125,9 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).secondary,
-        selectedItemColor: FlutterFlowTheme.of(context).alternate,
-        unselectedItemColor: FlutterFlowTheme.of(context).onContainerSecondary,
+        backgroundColor: FlutterFlowTheme.of(context).accent2,
+        selectedItemColor: FlutterFlowTheme.of(context).primary,
+        unselectedItemColor: FlutterFlowTheme.of(context).primaryBackground,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
@@ -135,11 +135,11 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              size: 24.0,
+              size: 20.0,
             ),
             activeIcon: Icon(
               Icons.home,
-              size: 20.0,
+              size: 24.0,
             ),
             label: 'Home',
             tooltip: '',
@@ -147,11 +147,11 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.clipboardList,
-              size: 24.0,
+              size: 22.0,
             ),
             activeIcon: FaIcon(
               FontAwesomeIcons.clipboardList,
-              size: 20.0,
+              size: 28.0,
             ),
             label: 'Empréstimos',
             tooltip: '',
@@ -163,7 +163,7 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             activeIcon: Icon(
               Icons.bookmarks,
-              size: 20.0,
+              size: 30.0,
             ),
             label: 'Reservas',
             tooltip: '',
@@ -175,7 +175,7 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             activeIcon: FaIcon(
               FontAwesomeIcons.searchengin,
-              size: 20.0,
+              size: 28.0,
             ),
             label: 'Consulta',
             tooltip: '',
