@@ -404,7 +404,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ),
                                     ].divide(SizedBox(
-                                      width: 16.0,
+                                      width: 32.0,
                                     )),
                                   ),
                                 ),
@@ -593,7 +593,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ),
                                     ].divide(SizedBox(
-                                      width: 16.0,
+                                      width: 32.0,
                                     )),
                                   ),
                                 ),
