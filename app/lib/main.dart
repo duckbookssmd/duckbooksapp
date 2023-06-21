@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 import 'color_schemes.g.dart';
 import 'configs/hive_config.dart';
 import 'custom_color.g.dart';
+import 'flutter_flow_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveConfig.start();
   await Firebase.initializeApp();
+  await FlutterFlowTheme.initialize();
   runApp(
     MultiProvider(
       providers: [
@@ -35,38 +37,52 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return DynamicColorBuilder(
-      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
-        ColorScheme lightScheme;
-        ColorScheme darkScheme;
+    ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-        if (lightDynamic != null && darkDynamic != null) {
-          lightScheme = lightDynamic.harmonized();
-          lightCustomColors = lightCustomColors.harmonized(lightScheme);
+    void setThemeMode(ThemeMode mode) {
+      _themeMode = mode;
+      FlutterFlowTheme.saveThemeMode(mode);
+    }
 
-          // Repeat for the dark color scheme.
-          darkScheme = darkDynamic.harmonized();
-          darkCustomColors = darkCustomColors.harmonized(darkScheme);
-        } else {
-          // Otherwise, use fallback schemes.
-          lightScheme = lightColorScheme;
-          darkScheme = darkColorScheme;
-        }
-
-        return MaterialApp(
-          theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: lightScheme,
-            extensions: [lightCustomColors],
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: darkScheme,
-            extensions: [darkCustomColors],
-          ),
-          home: const LoginPage(),
-        );
-      },
+    return MaterialApp(
+      title: 'DuckBooks App',
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      themeMode: _themeMode,
+      home: const LoginPage(),
     );
+    // return DynamicColorBuilder(
+    //   builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+    //     ColorScheme lightScheme;
+    //     ColorScheme darkScheme;
+
+    //     if (lightDynamic != null && darkDynamic != null) {
+    //       lightScheme = lightDynamic.harmonized();
+    //       lightCustomColors = lightCustomColors.harmonized(lightScheme);
+
+    //       // Repeat for the dark color scheme.
+    //       darkScheme = darkDynamic.harmonized();
+    //       darkCustomColors = darkCustomColors.harmonized(darkScheme);
+    //     } else {
+    //       // Otherwise, use fallback schemes.
+    //       lightScheme = lightColorScheme;
+    //       darkScheme = darkColorScheme;
+    //     }
+
+    //     return MaterialApp(
+    //       theme: ThemeData(
+    //         useMaterial3: true,
+    //         colorScheme: lightScheme,
+    //         extensions: [lightCustomColors],
+    //       ),
+    //       darkTheme: ThemeData(
+    //         useMaterial3: true,
+    //         colorScheme: darkScheme,
+    //         extensions: [darkCustomColors],
+    //       ),
+    //
+    //     );
+    //   },
+    // );
   }
 }
