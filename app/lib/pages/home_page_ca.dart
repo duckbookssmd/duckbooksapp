@@ -1,3 +1,4 @@
+import 'package:app/pages/register_book.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -198,7 +199,52 @@ class _HomePageCaState extends State<HomePageCa> {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children: [
-                                      SizedBox(
+                                      InkWell(
+                                        onTap: () async {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
+                                        },
+                                        child: SizedBox(
+                                          child: Container(
+                                            width: 96.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).alternate,
+                                              borderRadius: BorderRadius.circular(5.0),
+                                              shape: BoxShape.rectangle,
+                                            ),
+                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                FaIcon(
+                                                  FontAwesomeIcons.clipboardCheck,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 30.0,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Registrar\nempréstimo',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                          fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                          color: FlutterFlowTheme.of(context).tertiary,
+                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 32,
+                                      ),
+                                      InkWell(
+                                        onTap: () async {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
+                                        },
                                         child: Container(
                                           width: 96.0,
                                           decoration: BoxDecoration(
@@ -211,15 +257,15 @@ class _HomePageCaState extends State<HomePageCa> {
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              FaIcon(
-                                                FontAwesomeIcons.clipboardCheck,
+                                              Icon(
+                                                Icons.add_circle,
                                                 color: FlutterFlowTheme.of(context).tertiary,
-                                                size: 30.0,
+                                                size: 32.0,
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                 child: Text(
-                                                  'Registrar\nempréstimo',
+                                                  'Adicionar\nobra',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
                                                         fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
@@ -230,41 +276,6 @@ class _HomePageCaState extends State<HomePageCa> {
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 32,
-                                      ),
-                                      Container(
-                                        width: 96.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context).alternate,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.add_circle,
-                                              color: FlutterFlowTheme.of(context).tertiary,
-                                              size: 32.0,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Adicionar\nobra',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ),
                                       const SizedBox(

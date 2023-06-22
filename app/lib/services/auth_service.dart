@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../configs/app_settings.dart';
+import '../pages/home_ca.dart';
 import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
@@ -144,7 +145,7 @@ class AuthService extends ChangeNotifier {
       Fluttertoast.showToast(msg: "Logado com sucesso");
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const HomePageCa(),
+          builder: (context) => const HomeCa(),
         ),
       );
       resp = true; // sucesso ao logar
