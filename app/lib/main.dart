@@ -1,14 +1,12 @@
 import 'package:app/configs/app_settings.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/services/auth_service.dart';
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'color_schemes.g.dart';
 import 'configs/hive_config.dart';
-import 'custom_color.g.dart';
+
 import 'flutter_flow_theme.dart';
 
 void main() async {
@@ -37,18 +35,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+    ThemeMode themeMode = FlutterFlowTheme.themeMode;
 
-    void setThemeMode(ThemeMode mode) {
-      _themeMode = mode;
-      FlutterFlowTheme.saveThemeMode(mode);
-    }
 
     return MaterialApp(
       title: 'DuckBooks App',
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      themeMode: _themeMode,
+      themeMode: themeMode,
       home: const LoginPage(),
     );
     // return DynamicColorBuilder(

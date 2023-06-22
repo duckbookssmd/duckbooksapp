@@ -1,12 +1,10 @@
-import 'package:app/pages/home_page_student.dart';
-import 'package:app/pages/register_book.dart';
 import 'package:flutter/material.dart';
-import 'package:app/services/auth_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../flutter_flow_theme.dart';
+import '../services/auth_service.dart';
 
 class HomePageCa extends StatefulWidget {
   const HomePageCa({
@@ -45,7 +43,6 @@ class _HomePageCaState extends State<HomePageCa> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -54,20 +51,20 @@ class _HomePageCaState extends State<HomePageCa> {
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                               child: TextFormField(
                                 // controller: _model.textController,
                                 // onChanged: (_) => EasyDebounce.debounce(
@@ -90,7 +87,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
@@ -131,13 +128,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                     ),
                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                // validator: _model.textControllerValidator
-                                //     .asValidator(context),
                               ),
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: IconButton(
                               onPressed: () {},
                               icon: Icon(
@@ -146,62 +141,37 @@ class _HomePageCaState extends State<HomePageCa> {
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
                             ),
-                            // child: FlutterFlowIconButton(
-                            //   borderRadius: 20.0,
-                            //   borderWidth: 1.0,
-                            //   buttonSize: 40.0,
-                            //   fillColor: FlutterFlowTheme.of(context)
-                            //       .primaryBackground,
-                            //   icon: Icon(
-                            //     Icons.notifications,
-                            //     //colort FlutterFlowTheme.of(context).alternate,
-                            //     size: 24.0,
-                            //   ),
-                            //   onPressed: () {
-                            //     print('IconButton pressed ...');
-                            //   },
-                            // ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    context.read<AuthService>().logout(context);
+                                  },
+                                );
+                              },
                               icon: Icon(
                                 Icons.menu,
                                 size: 24.0,
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
                             ),
-                            // child: FlutterFlowIconButton(
-                            //   borderColor: Colors.transparent,
-                            //   borderRadius: 20.0,
-                            //   borderWidth: 1.0,
-                            //   buttonSize: 40.0,
-                            //   fillColor: FlutterFlowTheme.of(context)
-                            //       .primaryBackground,
-                            //   icon: Icon(
-                            //     Icons.menu,
-                            //     //colort FlutterFlowTheme.of(context).alternate,
-                            //     size: 24.0,
-                            //   ),
-                            //   onPressed: () {
-                            //     print('IconButton pressed ...');
-                            //   },
-                            // ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                               child: Text(
                                 'Funções Administrativas',
                                 textAlign: TextAlign.start,
@@ -214,17 +184,17 @@ class _HomePageCaState extends State<HomePageCa> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                               child: Container(
                                 height: 100.0,
-                                decoration: BoxDecoration(),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                decoration: const BoxDecoration(),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: ListView(
-                                    padding: EdgeInsets.only(),
+                                    padding: const EdgeInsets.only(),
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children: [
@@ -236,7 +206,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -247,7 +217,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 size: 30.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                 child: Text(
                                                   'Registrar\nempréstimo',
                                                   textAlign: TextAlign.center,
@@ -257,34 +227,12 @@ class _HomePageCaState extends State<HomePageCa> {
                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                       ),
                                                 ),
-                                                // child: AutoSizeText(
-                                                //   'Registrar\nempréstimo',
-                                                //   textAlign: TextAlign.center,
-                                                //   style:
-                                                //       FlutterFlowTheme.of(context)
-                                                //           .labelLarge
-                                                //           .override(
-                                                //             fontFamily:
-                                                //                 FlutterFlowTheme.of(
-                                                //                         context)
-                                                //                     .labelLargeFamily,
-                                                //             //colort FlutterFlowTheme
-                                                //                     .of(context)
-                                                //                 .tertiary,
-                                                //             useGoogleFonts: GoogleFonts
-                                                //                     .asMap()
-                                                //                 .containsKey(
-                                                //                     FlutterFlowTheme.of(
-                                                //                             context)
-                                                //                         .labelLargeFamily),
-                                                //           ),
-                                                // ),
                                               ),
                                             ],
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 32,
                                       ),
                                       Container(
@@ -294,7 +242,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                           borderRadius: BorderRadius.circular(5.0),
                                           shape: BoxShape.rectangle,
                                         ),
-                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -305,7 +253,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               size: 32.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Adicionar\nobra',
                                                 textAlign: TextAlign.center,
@@ -315,33 +263,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
-                                              // child: AutoSizeText(
-                                              //   'Adicionar\nobra',
-                                              //   textAlign: TextAlign.center,
-                                              //   style:
-                                              //       FlutterFlowTheme.of(context)
-                                              //           .labelLarge
-                                              //           .override(
-                                              //             fontFamily:
-                                              //                 FlutterFlowTheme.of(
-                                              //                         context)
-                                              //                     .labelLargeFamily,
-                                              //             //colort FlutterFlowTheme
-                                              //                     .of(context)
-                                              //                 .tertiary,
-                                              //             useGoogleFonts: GoogleFonts
-                                              //                     .asMap()
-                                              //                 .containsKey(
-                                              //                     FlutterFlowTheme.of(
-                                              //                             context)
-                                              //                         .labelLargeFamily),
-                                              //           ),
-                                              // ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 32,
                                       ),
                                       Container(
@@ -351,7 +277,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                           borderRadius: BorderRadius.circular(5.0),
                                           shape: BoxShape.rectangle,
                                         ),
-                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -362,7 +288,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               size: 32.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Editar\nobra',
                                                 textAlign: TextAlign.center,
@@ -372,28 +298,6 @@ class _HomePageCaState extends State<HomePageCa> {
                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
-                                              // child: AutoSizeText(
-                                              //   'Editar\nobra',
-                                              //   textAlign: TextAlign.center,
-                                              //   style:
-                                              //       FlutterFlowTheme.of(context)
-                                              //           .labelLarge
-                                              //           .override(
-                                              //             fontFamily:
-                                              //                 FlutterFlowTheme.of(
-                                              //                         context)
-                                              //                     .labelLargeFamily,
-                                              //             color: FlutterFlowTheme
-                                              //                     .of(context)
-                                              //                 .tertiary,
-                                              //             useGoogleFonts: GoogleFonts
-                                              //                     .asMap()
-                                              //                 .containsKey(
-                                              //                     FlutterFlowTheme.of(
-                                              //                             context)
-                                              //                         .labelLargeFamily),
-                                              //           ),
-                                              // ),
                                             ),
                                           ],
                                         ),
@@ -405,15 +309,15 @@ class _HomePageCaState extends State<HomePageCa> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 height: 100.0,
-                                decoration: BoxDecoration(),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                decoration: const BoxDecoration(),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: ListView(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
@@ -426,13 +330,13 @@ class _HomePageCaState extends State<HomePageCa> {
                                           borderRadius: BorderRadius.circular(5.0),
                                           shape: BoxShape.rectangle,
                                         ),
-                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                               child: FaIcon(
                                                 FontAwesomeIcons.userCheck,
                                                 color: FlutterFlowTheme.of(context).tertiary,
@@ -440,7 +344,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Validar\nusuário',
                                                 textAlign: TextAlign.center,
@@ -450,33 +354,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
-                                              // child: AutoSizeText(
-                                              //   'Validar\nusuário',
-                                              //   textAlign: TextAlign.center,
-                                              //   style:
-                                              //       FlutterFlowTheme.of(context)
-                                              //           .labelLarge
-                                              //           .override(
-                                              //             fontFamily:
-                                              //                 FlutterFlowTheme.of(
-                                              //                         context)
-                                              //                     .labelLargeFamily,
-                                              //             color: FlutterFlowTheme
-                                              //                     .of(context)
-                                              //                 .tertiary,
-                                              //             useGoogleFonts: GoogleFonts
-                                              //                     .asMap()
-                                              //                 .containsKey(
-                                              //                     FlutterFlowTheme.of(
-                                              //                             context)
-                                              //                         .labelLargeFamily),
-                                              //           ),
-                                              // ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 32,
                                       ),
                                       Container(
@@ -486,13 +368,13 @@ class _HomePageCaState extends State<HomePageCa> {
                                           borderRadius: BorderRadius.circular(5.0),
                                           shape: BoxShape.rectangle,
                                         ),
-                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
                                               child: FaIcon(
                                                 FontAwesomeIcons.userLock,
                                                 color: FlutterFlowTheme.of(context).tertiary,
@@ -500,7 +382,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Inativar\nusuário',
                                                 textAlign: TextAlign.center,
@@ -510,33 +392,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
-                                              // child: AutoSizeText(
-                                              //   'Inativar\nusuário',
-                                              //   textAlign: TextAlign.center,
-                                              //   style:
-                                              //       FlutterFlowTheme.of(context)
-                                              //           .labelLarge
-                                              //           .override(
-                                              //             fontFamily:
-                                              //                 FlutterFlowTheme.of(
-                                              //                         context)
-                                              //                     .labelLargeFamily,
-                                              //             color: FlutterFlowTheme
-                                              //                     .of(context)
-                                              //                 .tertiary,
-                                              //             useGoogleFonts: GoogleFonts
-                                              //                     .asMap()
-                                              //                 .containsKey(
-                                              //                     FlutterFlowTheme.of(
-                                              //                             context)
-                                              //                         .labelLargeFamily),
-                                              //           ),
-                                              // ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 32,
                                       ),
                                       Container(
@@ -546,7 +406,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                           borderRadius: BorderRadius.circular(5.0),
                                           shape: BoxShape.rectangle,
                                         ),
-                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -557,7 +417,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               size: 32.0,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Text(
                                                 'Contactar\nusuário',
                                                 textAlign: TextAlign.center,
@@ -567,28 +427,6 @@ class _HomePageCaState extends State<HomePageCa> {
                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
-                                              // child: AutoSizeText(
-                                              //   'Contactar\nusuário',
-                                              //   textAlign: TextAlign.center,
-                                              //   style:
-                                              //       FlutterFlowTheme.of(context)
-                                              //           .labelLarge
-                                              //           .override(
-                                              //             fontFamily:
-                                              //                 FlutterFlowTheme.of(
-                                              //                         context)
-                                              //                     .labelLargeFamily,
-                                              //             color: FlutterFlowTheme
-                                              //                     .of(context)
-                                              //                 .tertiary,
-                                              //             useGoogleFonts: GoogleFonts
-                                              //                     .asMap()
-                                              //                 .containsKey(
-                                              //                     FlutterFlowTheme.of(
-                                              //                             context)
-                                              //                         .labelLargeFamily),
-                                              //           ),
-                                              // ),
                                             ),
                                           ],
                                         ),
@@ -603,14 +441,14 @@ class _HomePageCaState extends State<HomePageCa> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                               child: Text(
                                 'Histórico de Atividades',
                                 textAlign: TextAlign.start,
