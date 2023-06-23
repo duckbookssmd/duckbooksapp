@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 
 import '../configs/app_settings.dart';
 import '../pages/home_ca.dart';
-import '../pages/home_page_ca.dart';
 
 class AuthException implements Exception {
   String message;
@@ -247,6 +246,7 @@ class AuthService extends ChangeNotifier {
     TextEditingController? edicaoController,
     String? tipo,
     String? genero,
+    TextEditingController? editoraController,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
     if (!await checkIfExist(nomeController!.text)) {
@@ -262,6 +262,7 @@ class AuthService extends ChangeNotifier {
         genero: genero,
         foto: 'Colocar',
         dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        editora: editoraController!.text,
       );
 
       await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());

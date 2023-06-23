@@ -1,6 +1,7 @@
 class BookModel {
   late String? nome;
   late String? autor;
+  late String? editora;
   late int? ano;
   late int? edicao;
   late String? tipo;
@@ -11,6 +12,7 @@ class BookModel {
   BookModel({
     required this.nome,
     required this.autor,
+    required this.editora,
     required this.ano,
     required this.edicao,
     required this.tipo,
@@ -29,6 +31,7 @@ class BookModel {
       'foto': foto,
       'genero': genero,
       'dataCadastro': dataCadastro,
+      'editora': editora
     };
   }
 }
