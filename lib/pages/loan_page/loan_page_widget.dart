@@ -366,9 +366,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
@@ -403,24 +401,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -562,9 +552,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () {
@@ -593,24 +581,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -752,9 +732,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () {
@@ -783,24 +761,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -942,9 +912,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () {
@@ -973,24 +941,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -1132,9 +1092,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () {
@@ -1163,24 +1121,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -1322,9 +1272,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
                                               ),
-                                            ].divide(SizedBox(
-                                              width: 4.0,
-                                            )),
+                                            ].divide(SizedBox(width: 4.0)),
                                           ),
                                           FFButtonWidget(
                                             onPressed: () {
@@ -1353,24 +1301,16 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                                   BorderRadius.circular(20.0),
                                             ),
                                           ),
-                                        ].divide(SizedBox(
-                                          height: 8.0,
-                                        )),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(SizedBox(
-                                    width: 16.0,
-                                  )),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(SizedBox(
-                                height: 4.0,
-                              )),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ],
                 ),

@@ -156,9 +156,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             lineHeight: 1.5,
                                           ),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 30.0,
-                                  )),
+                                  ].divide(SizedBox(height: 30.0)),
                                 ),
                               ),
                               Align(
@@ -189,9 +187,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             lineHeight: 1.5,
                                           ),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 30.0,
-                                  )),
+                                  ].divide(SizedBox(height: 30.0)),
                                 ),
                               ),
                               Align(
@@ -222,9 +218,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             lineHeight: 1.5,
                                           ),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 30.0,
-                                  )),
+                                  ].divide(SizedBox(height: 30.0)),
                                 ),
                               ),
                             ],

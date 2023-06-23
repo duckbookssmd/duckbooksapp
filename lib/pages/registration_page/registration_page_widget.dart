@@ -566,14 +566,10 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                               ),
                         ),
                       ),
-                    ].divide(SizedBox(
-                      width: 10.0,
-                    )),
+                    ].divide(SizedBox(width: 10.0)),
                   ),
                 ),
-              ].divide(SizedBox(
-                height: 5.0,
-              )),
+              ].divide(SizedBox(height: 5.0)),
             ),
           ),
         ),

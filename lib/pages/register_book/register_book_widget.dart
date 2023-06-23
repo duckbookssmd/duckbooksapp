@@ -485,9 +485,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                             hidesUnderline: true,
                             isSearchable: false,
                           ),
-                        ].divide(SizedBox(
-                          width: 4.0,
-                        )),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                     ),
                     Align(
@@ -552,14 +550,10 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(
-                    height: 8.0,
-                  )),
+                  ].divide(SizedBox(height: 8.0)),
                 ),
               ),
-            ].divide(SizedBox(
-              height: 8.0,
-            )),
+            ].divide(SizedBox(height: 8.0)),
           ),
         ),
       ),

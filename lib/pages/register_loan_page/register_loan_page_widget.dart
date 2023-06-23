@@ -230,9 +230,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     .asValidator(context),
                               ),
                             ),
-                          ].divide(SizedBox(
-                            height: 12.0,
-                          )),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -287,13 +285,9 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                             ),
-                          ].divide(SizedBox(
-                            height: 8.0,
-                          )),
+                          ].divide(SizedBox(height: 8.0)),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -535,18 +529,12 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     hidesUnderline: true,
                                     isSearchable: false,
                                   ),
-                                ].divide(SizedBox(
-                                  width: 8.0,
-                                )),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                             ),
-                          ].divide(SizedBox(
-                            height: 12.0,
-                          )),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -667,13 +655,9 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(
-                            height: 12.0,
-                          )),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
-                      ].divide(SizedBox(
-                        width: 16.0,
-                      )),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
@@ -732,9 +716,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(
-                    height: 32.0,
-                  )),
+                  ].divide(SizedBox(height: 32.0)),
                 ),
               ),
             ],

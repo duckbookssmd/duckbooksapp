@@ -184,13 +184,9 @@ class _BorrowUnreservedPageWidgetState
                               color: FlutterFlowTheme.of(context).info,
                               size: 16.0,
                             ),
-                          ].divide(SizedBox(
-                            width: 4.0,
-                          )),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
-                      ].divide(SizedBox(
-                        height: 6.0,
-                      )),
+                      ].divide(SizedBox(height: 6.0)),
                     ),
                   ],
                 ),

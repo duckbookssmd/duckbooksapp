@@ -498,14 +498,10 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             hidesUnderline: true,
                             isSearchable: false,
                           ),
-                        ].divide(SizedBox(
-                          width: 4.0,
-                        )),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                     ),
-                  ].divide(SizedBox(
-                    height: 8.0,
-                  )),
+                  ].divide(SizedBox(height: 8.0)),
                 ),
               ),
               Align(
@@ -614,13 +610,13 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).warning,
+                      color: FlutterFlowTheme.of(context).error,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
                           .override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
@@ -634,9 +630,7 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                   ),
                 ),
               ),
-            ].divide(SizedBox(
-              height: 8.0,
-            )),
+            ].divide(SizedBox(height: 8.0)),
           ),
         ),
       ),

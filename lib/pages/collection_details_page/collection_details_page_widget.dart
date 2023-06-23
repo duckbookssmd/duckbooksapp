@@ -184,13 +184,9 @@ class _CollectionDetailsPageWidgetState
                               color: FlutterFlowTheme.of(context).info,
                               size: 16.0,
                             ),
-                          ].divide(SizedBox(
-                            width: 4.0,
-                          )),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
-                      ].divide(SizedBox(
-                        height: 6.0,
-                      )),
+                      ].divide(SizedBox(height: 6.0)),
                     ),
                   ],
                 ),
@@ -462,9 +458,7 @@ class _CollectionDetailsPageWidgetState
                                                             context)
                                                         .bodyMedium,
                                                   ),
-                                                ].divide(SizedBox(
-                                                  width: 4.0,
-                                                )),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
@@ -530,23 +524,15 @@ class _CollectionDetailsPageWidgetState
                                                           20.0),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(
-                                              height: 8.0,
-                                            )),
+                                            ].divide(SizedBox(height: 8.0)),
                                           ),
                                         ),
-                                      ].divide(SizedBox(
-                                        width: 16.0,
-                                      )),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 4.0,
-                                  )),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
-                            ].divide(SizedBox(
-                              width: 8.0,
-                            )),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                         Padding(
@@ -708,9 +694,7 @@ class _CollectionDetailsPageWidgetState
                                                             context)
                                                         .bodyMedium,
                                                   ),
-                                                ].divide(SizedBox(
-                                                  width: 4.0,
-                                                )),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () {
@@ -758,23 +742,15 @@ class _CollectionDetailsPageWidgetState
                                                           20.0),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(
-                                              height: 8.0,
-                                            )),
+                                            ].divide(SizedBox(height: 8.0)),
                                           ),
                                         ),
-                                      ].divide(SizedBox(
-                                        width: 16.0,
-                                      )),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 4.0,
-                                  )),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
-                            ].divide(SizedBox(
-                              width: 8.0,
-                            )),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                         Padding(
@@ -940,9 +916,7 @@ class _CollectionDetailsPageWidgetState
                                                             context)
                                                         .bodyMedium,
                                                   ),
-                                                ].divide(SizedBox(
-                                                  width: 4.0,
-                                                )),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () {
@@ -990,23 +964,15 @@ class _CollectionDetailsPageWidgetState
                                                           20.0),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(
-                                              height: 8.0,
-                                            )),
+                                            ].divide(SizedBox(height: 8.0)),
                                           ),
                                         ),
-                                      ].divide(SizedBox(
-                                        width: 16.0,
-                                      )),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(SizedBox(
-                                    height: 4.0,
-                                  )),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
                               ),
-                            ].divide(SizedBox(
-                              width: 8.0,
-                            )),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                       ],

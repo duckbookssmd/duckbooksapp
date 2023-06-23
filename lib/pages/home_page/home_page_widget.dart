@@ -1,10 +1,8 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -114,9 +112,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 'Sair do app',
                                 style: FlutterFlowTheme.of(context).bodyLarge,
                               ),
-                            ].divide(SizedBox(
-                              width: 16.0,
-                            )),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
@@ -157,20 +153,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   'Fazer logout',
                                   style: FlutterFlowTheme.of(context).bodyLarge,
                                 ),
-                              ].divide(SizedBox(
-                                width: 16.0,
-                              )),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(
-                        height: 8.0,
-                      )),
+                      ].divide(SizedBox(height: 8.0)),
                     ),
                   ),
-                ].divide(SizedBox(
-                  height: 16.0,
-                )),
+                ].divide(SizedBox(height: 16.0)),
               ),
             ),
           ),
@@ -349,9 +339,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               },
                             ),
                           ),
-                        ].divide(SizedBox(
-                          width: 16.0,
-                        )),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
@@ -643,9 +631,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(
-                                      width: 32.0,
-                                    )),
+                                    ].divide(SizedBox(width: 32.0)),
                                   ),
                                 ),
                               ),
@@ -920,9 +906,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(
-                                      width: 32.0,
-                                    )),
+                                    ].divide(SizedBox(width: 32.0)),
                                   ),
                                 ),
                               ),
@@ -967,86 +951,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(0.0),
-                            ),
-                            child: StreamBuilder<List<EmprestimoRecord>>(
-                              stream: queryEmprestimoRecord(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent4,
-                                        size: 50.0,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<EmprestimoRecord>
-                                    dataTableEmprestimoRecordList =
-                                    snapshot.data!;
-                                return DataTable2(
-                                  columns: [
-                                    DataColumn2(
-                                      label: DefaultTextStyle.merge(
-                                        softWrap: true,
-                                        child: Text(
-                                          'Edit Header 1',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
-                                        ),
-                                      ),
-                                    ),
-                                    DataColumn2(
-                                      label: DefaultTextStyle.merge(
-                                        softWrap: true,
-                                        child: Text(
-                                          'Edit Header 2',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                  rows: dataTableEmprestimoRecordList
-                                      .mapIndexed((dataTableIndex,
-                                              dataTableEmprestimoRecord) =>
-                                          [
-                                            Text(
-                                              'Edit Column 1',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                            Text(
-                                              'Edit Column 2',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                          ].map((c) => DataCell(c)).toList())
-                                      .map((e) => DataRow(cells: e))
-                                      .toList(),
-                                  headingRowColor: MaterialStateProperty.all(
-                                    FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                  headingRowHeight: 56.0,
-                                  dataRowColor: MaterialStateProperty.all(
-                                    FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  dataRowHeight: 56.0,
-                                  border: TableBorder(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  dividerThickness: 1.0,
-                                  showBottomBorder: true,
-                                  minWidth: 49.0,
-                                );
-                              },
                             ),
                           ),
                         ],

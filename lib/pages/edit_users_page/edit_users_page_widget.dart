@@ -1,10 +1,8 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'edit_users_page_model.dart';
@@ -109,136 +107,10 @@ class _EditUsersPageWidgetState extends State<EditUsersPageWidget> {
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    child: Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
-                      child: DataTable2(
-                        columns: [
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                'Matrícula/SIAPE',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                'Detalhes',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                'Edição',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                'Inativar',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
-                              ),
-                            ),
-                          ),
-                        ],
-                        rows: dataTableRecordList
-                            .mapIndexed((dataTableIndex, dataTableRecord) => [
-                                  Text(
-                                    'Edit Column 1',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  FlutterFlowIconButton(
-                                    borderRadius: 50.0,
-                                    borderWidth: 0.0,
-                                    buttonSize: 40.0,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    hoverColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    icon: Icon(
-                                      Icons.person_search,
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 50.0,
-                                    borderWidth: 0.0,
-                                    buttonSize: 40.0,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    hoverColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    icon: Icon(
-                                      Icons.edit_outlined,
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 50.0,
-                                    borderWidth: 0.0,
-                                    buttonSize: 40.0,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    hoverColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.userSlash,
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      size: 18.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ].map((c) => DataCell(c)).toList())
-                            .map((e) => DataRow(cells: e))
-                            .toList(),
-                        headingRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).accent3,
-                        ),
-                        headingRowHeight: 56.0,
-                        dataRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        dataRowHeight: 56.0,
-                        border: TableBorder(
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                        dividerThickness: 1.0,
-                        columnSpacing: 8.0,
-                        showBottomBorder: true,
-                        minWidth: 49.0,
-                      ),
-                    ),
                   ),
                 ),
               ),
-            ].divide(SizedBox(
-              height: 8.0,
-            )),
+            ].divide(SizedBox(height: 8.0)),
           ),
         ),
       ),
