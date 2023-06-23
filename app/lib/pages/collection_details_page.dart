@@ -26,6 +26,10 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
     super.dispose();
   }
 
+  String truncateWithEllipsis(int cutoff, String myString) {
+    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -122,7 +126,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Obra: ${this.book['nome']}',
+                          'Obra: ${truncateWithEllipsis(25, this.book['nome'])}',
                           style: FlutterFlowTheme.of(context).titleLarge,
                         ),
                         Text(
