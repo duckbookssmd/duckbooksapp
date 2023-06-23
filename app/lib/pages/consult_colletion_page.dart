@@ -1,5 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../flutter_flow_theme.dart';
+import '../services/auth_service.dart';
 
 class ConsultPage extends StatefulWidget {
   const ConsultPage({Key? key}) : super(key: key);
@@ -72,227 +78,504 @@ class _ConsultPageState extends State<ConsultPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffDFDFDF),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          setState(() {
-            searchByName();
-          });
-        },
-        elevation: 8,
-        label: const Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-              child: Icon(
-                Icons.refresh,
-                color: Colors.white,
-                size: 24,
-              ),
-            ),
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        backgroundColor: const Color(0xffDFDFDF),
-        // automaticallyImplyLeading: false,
-        centerTitle: false,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(-1, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 20),
-                    child: Text(
-                      'Consultar acervo',
-                      style: TextStyle(
-                        fontFamily: 'Jost',
-                        color: Color(0xFFB36E40),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+    return GestureDetector(
+      child: Scaffold(
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                        child: TextFormField(
+                          controller: searchController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            labelText: 'Pesquise uma obra aqui...',
+                            labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
+                                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
+                                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).info,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                            suffixIcon: IconButton(
+                              onPressed: () => searchByName(searchController?.text ?? ''),
+                              icon: Icon(Icons.search),
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context).titleLarge.override(
+                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                color: FlutterFlowTheme.of(context).secondaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                              ),
+                          cursorColor: FlutterFlowTheme.of(context).secondary,
+                          // validator: _model.textControllerValidator
+                          //     .asValidator(context),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0, 0),
-                      child: TextFormField(
-                        controller: searchController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          fillColor: const Color(0xff638D93),
-                          isDense: true,
-                          labelText: 'Pesquisar obra',
-                          labelStyle: const TextStyle(
-                            fontFamily: 'Jost',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00898989),
-                              width: 0,
-                            ),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00898989),
-                              width: 0,
-                            ),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00898989),
-                              width: 0,
-                            ),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00898989),
-                              width: 0,
-                            ),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          filled: true,
-                          // fillColor: FlutterFlowTheme.of(context).cambridgeBlue,
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              searchByName(searchController?.text ?? '');
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.notifications,
+                          size: 24.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              context.read<AuthService>().logout(context);
                             },
-                            icon: const Icon(Icons.search),
-                            color: Colors.white,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          size: 24.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                              child: Text(
+                                'Em Alta',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context).displayLarge.override(
+                                      fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
+                                      color: FlutterFlowTheme.of(context).alternate,
+                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                    ),
+                              ),
+                            ),
                           ),
-                        ),
-                        style: const TextStyle(
-                          fontFamily: 'Jost',
-                          color: Colors.black,
-                        ),
-                        textAlign: TextAlign.start,
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                              child: Container(
+                                height: 100,
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.developer_mode,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Programação',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(context).labelLarge,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.palette,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Design \nde Interface',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Align(
+                                                  alignment: AlignmentDirectional(0, 0.25),
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.database,
+                                                    color: FlutterFlowTheme.of(context).tertiary,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                'Banco\nde Dados',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.auto_stories,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Mangás',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.ondemand_video_rounded,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Filmes',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const Divider(),
-            (isLoading)
+              Align(
+                alignment: AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
+                  child: Text(
+                    'Acervo Completo',
+                    style: FlutterFlowTheme.of(context).displayLarge.override(
+                          fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
+                          color: FlutterFlowTheme.of(context).alternate,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                        ),
+                  ),
+                ),
+              ),
+              (isLoading)
                   ? const Center(child: CircularProgressIndicator())
                   : Expanded(
-                      child: ListView.builder(
-                      itemCount: livros.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          // substituir pelo modelo do card
-                          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.green.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Container(
-                              margin: const EdgeInsets.only(
-                                left: 15,
-                                right: 15,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        border: Border.all(
-                                          color: Colors.black54,
-                                          width: 2.5,
-                                        )),
-                                    // child: Image.network(
-                                    //   livros[index].link,
-                                    //   width: 160,
-                                    //   height: 200,
-                                    // ),
-                                  ),
-                                  SizedBox(
-                                    height: 200,
-                                    width: 200,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          truncateWithEllipsis(57, livros[index]['nome']),
-                                          // softWrap: false,
-                                          style: const TextStyle(
-                                            color: Color(0xFFB36E40), // Defina a cor desejada aqui
+                      child: RefreshIndicator(
+                        displacement: 10,
+                        color: FlutterFlowTheme.of(context).secondary,
+                        onRefresh: () => searchByName(searchController?.text ?? ''),
+                        child: ListView.builder(
+                          itemCount: livros.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              // substituir pelo modelo do card
+                              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                  left: 15,
+                                  right: 15,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Align(
+                                      alignment: AlignmentDirectional(-1, -1),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(8),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/701/600',
+                                            width: 100,
+                                            height: 135,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                        Text(
-                                          livros[index]['autor'],
-                                          style: const TextStyle(
-                                            color: Color(0xFFB36E40), // Defina a cor desejada aqui
-                                          ),
-                                        ),
-                                        Text(
-                                          livros[index]['tipo'],
-                                          style: const TextStyle(
-                                            color: Color(0xFFB36E40),
-                                          ),
-                                        ),
-                                        // Text(livros[index].ano),
-                                        TextButton(
-                                          onPressed: () {},
-                                          style: OutlinedButton.styleFrom(
-                                            fixedSize: const Size(110, 40),
-                                            foregroundColor: const Color(0xffffffff),
-                                            backgroundColor: const Color(0xff638D93),
-                                            elevation: 0,
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                            shape: const StadiumBorder(side: BorderSide(color: Color(0xff638D93), width: 3.5)),
-                                            textStyle: const TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFB36E40),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          child: const Text('Detalhes'),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  )
-                                ],
+                                    Align(
+                                      alignment: AlignmentDirectional(-1, 0),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(-1, 0),
+                                              child: Text(
+                                                truncateWithEllipsis(30, livros[index]['nome']),
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(context).titleLarge,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(-1, 0),
+                                              child: Text(
+                                                'Autor: ${livros[index]['autor']}',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(-1, 0),
+                                              child: Text(
+                                                'Ano: ${livros[index]['ano']}',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Align(
+                                                  alignment: AlignmentDirectional(0, 1),
+                                                  child: TextButton(
+                                                    onPressed: () async {},
+                                                    style: OutlinedButton.styleFrom(
+                                                      fixedSize: const Size(145, 40),
+                                                      backgroundColor: FlutterFlowTheme.of(context).alternate,
+                                                      elevation: 3,
+                                                      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                      shape: const StadiumBorder(side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                    ),
+                                                    child: Text(
+                                                      'Pedir empréstimo',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                            color: FlutterFlowTheme.of(context).tertiary,
+                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: AlignmentDirectional(0, 1),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 16.0),
+                                                    child: Column(
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize: MainAxisSize.max,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children: [
+                                                            Container(
+                                                              width: 16,
+                                                              height: 16,
+                                                              decoration: BoxDecoration(
+                                                                color: FlutterFlowTheme.of(context).success,
+                                                                shape: BoxShape.circle,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              'Disponível',
+                                                              style: FlutterFlowTheme.of(context).bodyMedium,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () async {},
+                                                          style: OutlinedButton.styleFrom(
+                                                            fixedSize: const Size(85, 40),
+                                                            backgroundColor: FlutterFlowTheme.of(context).secondaryText,
+                                                            elevation: 3,
+                                                            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                            shape: const StadiumBorder(side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                            // shape: ,
+                                                          ),
+                                                          child: Text(
+                                                            'Detalhes',
+                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                  fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-          ],
+            ],
+          ),
         ),
       ),
     );
