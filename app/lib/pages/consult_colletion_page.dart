@@ -1,3 +1,4 @@
+import 'package:app/pages/collection_details_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -61,7 +62,12 @@ class _ConsultPageState extends State<ConsultPage> {
   }
 
   atualizarLista() async {
-    livros = await firebaseFirestore.collection('obra').where('nome', isNull: false).orderBy('nome', descending: false).get().then((value) {
+    livros = await firebaseFirestore
+        .collection('obra')
+        .where('nome', isNull: false)
+        .orderBy('nome', descending: false)
+        .get()
+        .then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
         lista.add(docSnapshot.data());
@@ -208,7 +214,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                 style: FlutterFlowTheme.of(context).displayLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
@@ -282,7 +289,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ],
@@ -317,7 +325,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ],
@@ -349,7 +358,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ],
@@ -381,7 +391,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ],
@@ -499,14 +510,16 @@ class _ConsultPageState extends State<ConsultPage> {
                                                       backgroundColor: FlutterFlowTheme.of(context).alternate,
                                                       elevation: 3,
                                                       padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                      shape: const StadiumBorder(side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                      shape: const StadiumBorder(
+                                                          side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                     ),
                                                     child: Text(
                                                       'Pedir empréstimo',
                                                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                             fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                                             color: FlutterFlowTheme.of(context).tertiary,
-                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                            useGoogleFonts: GoogleFonts.asMap()
+                                                                .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                                           ),
                                                     ),
                                                   ),
@@ -538,13 +551,21 @@ class _ConsultPageState extends State<ConsultPage> {
                                                           ],
                                                         ),
                                                         TextButton(
-                                                          onPressed: () async {},
+                                                          onPressed: () async {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder: (context) => CollectionDetailsPage(book:livros[index]),
+                                                              ),
+                                                            );
+                                                          },
                                                           style: OutlinedButton.styleFrom(
                                                             fixedSize: const Size(85, 40),
                                                             backgroundColor: FlutterFlowTheme.of(context).secondaryText,
                                                             elevation: 3,
                                                             padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                            shape: const StadiumBorder(side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                            shape: const StadiumBorder(
+                                                                side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                             // shape: ,
                                                           ),
                                                           child: Text(
@@ -552,7 +573,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                             style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                   fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                                                   color: FlutterFlowTheme.of(context).tertiary,
-                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                  useGoogleFonts: GoogleFonts.asMap()
+                                                                      .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                                                 ),
                                                           ),
                                                         ),

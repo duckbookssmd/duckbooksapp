@@ -615,7 +615,9 @@ class _RegisterBookState extends State<RegisterBook> {
                               backgroundColor: FlutterFlowTheme.of(context).alternate,
                               elevation: 3,
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              // shape: ,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               textStyle: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 16,
@@ -627,7 +629,8 @@ class _RegisterBookState extends State<RegisterBook> {
                               style: FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                                     color: Colors.white,
-                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                    useGoogleFonts:
+                                        GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                   ),
                             ),
                           ),

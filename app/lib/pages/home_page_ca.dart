@@ -80,12 +80,14 @@ class _HomePageCaState extends State<HomePageCa> {
                                   labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                         color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                         color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -126,7 +128,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).titleLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                       color: FlutterFlowTheme.of(context).secondaryText,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                     ),
                                 cursorColor: FlutterFlowTheme.of(context).secondary,
                               ),
@@ -179,7 +182,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).displayLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
@@ -229,7 +233,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                     style: FlutterFlowTheme.of(context).labelLarge.override(
                                                           fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                           color: FlutterFlowTheme.of(context).tertiary,
-                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                          useGoogleFonts: GoogleFonts.asMap()
+                                                              .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -270,7 +275,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
                                                         fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                         color: FlutterFlowTheme.of(context).tertiary,
-                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                       ),
                                                 ),
                                               ),
@@ -306,7 +312,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -362,7 +369,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -400,7 +408,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -435,7 +444,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -466,7 +476,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).displayLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
