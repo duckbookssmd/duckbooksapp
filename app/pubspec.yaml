@@ -49,6 +49,7 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   google_fonts: ^5.1.0
   shared_preferences: ^2.1.2
+  data_table_2: ^2.5.3
 
 dev_dependencies:
   flutter_test:

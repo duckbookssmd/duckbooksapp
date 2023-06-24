@@ -44,13 +44,16 @@ class _HomeCaState extends State<HomeCa> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginaAtual,
-        onTap: (page) => setState(() {
-          pc.animateToPage(
-            page,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.ease,
-          );
-        }),
+        onTap: (page) => setState(
+          () {
+            pc.jumpToPage(page);
+            // pc.animateToPage(
+            //   page,
+            //   duration: const Duration(milliseconds: 50),
+            //   curve: Curves.ease,
+            // );
+          },
+        ),
         backgroundColor: FlutterFlowTheme.of(context).accent2,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
         unselectedItemColor: FlutterFlowTheme.of(context).primaryBackground, // tertiary
