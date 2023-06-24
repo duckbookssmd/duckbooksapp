@@ -171,7 +171,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textNomeController,
-                            autofocus: false,
+                            autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -654,138 +654,143 @@ class _EditBookPageState extends State<EditBookPage> {
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
-                          child: TextButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                var confirmDialogResponse = await showDialog<bool>(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Confirmar edição'),
-                                          content: Text('Deseja alterar os dados dessa obra ?'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                              child: Text('Cancelar'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                              child: Text('Confirmar'),
-                                            ),
-                                          ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                              child: TextButton(
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    var confirmDialogResponse = await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Confirmar edição'),
+                                              content: Text('Deseja alterar os dados dessa obra ?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                  child: Text('Cancelar'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                  child: Text('Confirmar'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                    if (confirmDialogResponse) {
+                                      context.read<AuthService>().postBookDetailsToFirestore(
+                                            textNomeController,
+                                            textAutorController,
+                                            textAnoController,
+                                            textEditionController,
+                                            textType,
+                                            textGenre,
+                                            textPublisherController,
+                                            true,
+                                          );
+                                    }
+                                  }
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  fixedSize: const Size(130, 40),
+                                  backgroundColor: FlutterFlowTheme.of(context).alternate,
+                                  elevation: 3,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  textStyle: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Text(
+                                  'Salvar alterações',
+                                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                        color: Colors.white,
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 0),
+                              child: TextButton(
+                                onPressed: () async {
+                                  var confirmDialogResponse = await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Confirmar edição'),
+                                            content: Text('Deseja alterar os dados dessa obra ?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                child: Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                child: Text('Confirmar'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                                  if (confirmDialogResponse) {
+                                    await context.read<AuthService>().deleteBook(
+                                          textNomeController,
+                                          textAutorController,
+                                          textAnoController,
+                                          textEditionController,
+                                          textType,
+                                          textGenre,
+                                          textPublisherController,
                                         );
-                                      },
-                                    ) ??
-                                    false;
-                                if (confirmDialogResponse) {
-                                  context.read<AuthService>().postBookDetailsToFirestore(
-                                        textNomeController,
-                                        textAutorController,
-                                        textAnoController,
-                                        textEditionController,
-                                        textType,
-                                        textGenre,
-                                        textPublisherController,
-                                        true,
-                                      );
-                                }
-                              }
-                            },
-                            style: OutlinedButton.styleFrom(
-                              fixedSize: const Size(130, 40),
-                              backgroundColor: FlutterFlowTheme.of(context).alternate,
-                              elevation: 3,
-                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              textStyle: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            child: Text(
-                              'Salvar alterações',
-                              style: FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                    color: Colors.white,
-                                    useGoogleFonts:
-                                        GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                  }
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  fixedSize: const Size(130, 40),
+                                  backgroundColor: FlutterFlowTheme.of(context).error,
+                                  elevation: 3,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
+                                  textStyle: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                child: Text(
+                                  'Deletar Obra',
+                                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                        color: Colors.white,
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                      ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
-                          child: TextButton(
-                            onPressed: () async {
-                              var confirmDialogResponse = await showDialog<bool>(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Confirmar edição'),
-                                        content: Text('Deseja alterar os dados dessa obra ?'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(alertDialogContext, false),
-                                            child: Text('Cancelar'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(alertDialogContext, true),
-                                            child: Text('Confirmar'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ) ??
-                                  false;
-                              if (confirmDialogResponse) {
-                                await context.read<AuthService>().deleteBook(
-                                      textNomeController,
-                                      textAutorController,
-                                      textAnoController,
-                                      textEditionController,
-                                      textType,
-                                      textGenre,
-                                      textPublisherController,
-                                    );
-                              }
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                            },
-                            style: OutlinedButton.styleFrom(
-                              fixedSize: const Size(130, 40),
-                              backgroundColor: FlutterFlowTheme.of(context).error,
-                              elevation: 3,
-                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              textStyle: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            child: Text(
-                              'Deletar Obra',
-                              style: FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                    color: Colors.white,
-                                    useGoogleFonts:
-                                        GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                  ),
-                            ),
-                          ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
