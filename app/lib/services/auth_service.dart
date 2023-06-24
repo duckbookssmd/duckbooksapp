@@ -224,6 +224,7 @@ class AuthService extends ChangeNotifier {
     userModel.userEmail = texEmailController!.text;
     userModel.userSenha = texSenhaController!.text;
     userModel.userConfSenha = texConfSenhaController!.text;
+    userModel.isadm = false;
 
     await firebaseFirestore.collection("usuario").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
