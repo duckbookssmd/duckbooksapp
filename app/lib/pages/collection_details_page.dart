@@ -1,3 +1,4 @@
+import 'package:app/pages/edit_book_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -154,6 +155,30 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                           style: FlutterFlowTheme.of(context).bodyLarge,
                         ),
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50), // Mudar pra não quiebrar
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: this.book)));
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.of(context).primary,
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.all(4),
+                            child: Icon(
+                              Icons.edit_document,
+                              size: 28,
+                              color: FlutterFlowTheme.of(context).primaryBackground,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

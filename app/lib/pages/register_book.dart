@@ -606,6 +606,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                         textType,
                                         textGenre,
                                         textPublisherController,
+                                        false
                                       );
                                 }
                               }

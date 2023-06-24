@@ -247,9 +247,10 @@ class AuthService extends ChangeNotifier {
     String? tipo,
     String? genero,
     TextEditingController? editoraController,
+    bool isUpdating,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    if (!await checkIfExist(nomeController!.text)) {
+    if (!await checkIfExist(nomeController!.text) || isUpdating) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
@@ -261,12 +262,15 @@ class AuthService extends ChangeNotifier {
         tipo: tipo,
         genero: genero,
         foto: 'Colocar',
-        dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        dataCadastro: date.format(
+            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
         editora: editoraController!.text,
       );
 
       await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
-      Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
+      (isUpdating)
+          ? Fluttertoast.showToast(msg: "Obra salva no sistema!")
+          : Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
     } else {
       Fluttertoast.showToast(msg: 'Livro já Cadastrado');
     }
