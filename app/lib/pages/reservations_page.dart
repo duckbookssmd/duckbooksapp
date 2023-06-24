@@ -6,12 +6,12 @@ import 'package:provider/provider.dart';
 import '../flutter_flow_theme.dart';
 import '../services/auth_service.dart';
 
-class LoanPage extends StatefulWidget {
-  const LoanPage({Key? key}) : super(key: key);
+class ReservationsPage extends StatefulWidget {
+  const ReservationsPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _LoanPageState createState() => _LoanPageState();
+  _ReservationsPageState createState() => _ReservationsPageState();
 }
 
 TextEditingController? searchController = TextEditingController();
@@ -22,7 +22,7 @@ List livros = [];
 
 bool isLoading = false;
 
-class _LoanPageState extends State<LoanPage> {
+class _ReservationsPageState extends State<ReservationsPage> {
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
@@ -201,7 +201,7 @@ class _LoanPageState extends State<LoanPage> {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
                   child: Text(
-                    'Meus Empréstimos',
+                    'Minhas Reservas',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
                           fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                           color: FlutterFlowTheme.of(context).alternate,
@@ -221,7 +221,7 @@ class _LoanPageState extends State<LoanPage> {
                             child: ListView(
                               children: const [
                                 Center(
-                                  child: Text('Você não tem obras emprestadas!!'),
+                                  child: Text('Você não reservou nenhuma obra!!'),
                                 ),
                               ],
                             ),
@@ -306,18 +306,18 @@ class _LoanPageState extends State<LoanPage> {
                                                       child: TextButton(
                                                         onPressed: () async {},
                                                         style: OutlinedButton.styleFrom(
-                                                          fixedSize: const Size(90, 40),
-                                                          backgroundColor: FlutterFlowTheme.of(context).alternate,
+                                                          fixedSize: const Size(145, 40),
+                                                          backgroundColor: FlutterFlowTheme.of(context).primary,
                                                           elevation: 3,
                                                           padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                                                           shape: const StadiumBorder(
                                                               side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                         ),
                                                         child: Text(
-                                                          'Devolver',
+                                                          'Cancelar reserva',
                                                           style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                 fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                                color: FlutterFlowTheme.of(context).primaryBackground,
                                                                 useGoogleFonts: GoogleFonts.asMap()
                                                                     .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                                               ),
@@ -345,7 +345,7 @@ class _LoanPageState extends State<LoanPage> {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Em dia',
+                                                                  'Disponível',
                                                                   style: FlutterFlowTheme.of(context).bodyMedium,
                                                                 ),
                                                               ],
@@ -362,7 +362,7 @@ class _LoanPageState extends State<LoanPage> {
                                                               },
                                                               style: OutlinedButton.styleFrom(
                                                                 fixedSize: const Size(90, 40),
-                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                backgroundColor: FlutterFlowTheme.of(context).alternate,
                                                                 elevation: 3,
                                                                 padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                                                                 shape: const StadiumBorder(
