@@ -560,7 +560,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                               MaterialPageRoute(
                                                                 builder: (context) => CollectionDetailsPage(book: livros[index]),
                                                               ),
-                                                            );
+                                                            ).whenComplete(() => searchByName(searchController?.text ?? ''));
                                                           },
                                                           style: OutlinedButton.styleFrom(
                                                             fixedSize: const Size(85, 40),

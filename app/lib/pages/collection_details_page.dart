@@ -63,229 +63,231 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              'https://picsum.photos/seed/725/600',
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1, 0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
-                                child: Text(
-                                  'Ver capa',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                        fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
-                                        color: FlutterFlowTheme.of(context).info,
-                                        decoration: TextDecoration.underline,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Icon(
-                                Icons.arrow_right_alt,
-                                color: FlutterFlowTheme.of(context).info,
-                                size: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Obra: ${truncateWithEllipsis(25, this.book['nome'])}',
-                          style: FlutterFlowTheme.of(context).titleLarge,
-                        ),
-                        Text(
-                          'Autor: ${this.book['autor']}',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                        Text(
-                          'Ano: ${this.book['ano']}',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                        Text(
-                          'Editora: ${this.book['editora']}',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                        Text(
-                          'Edição: ${this.book['edicao']}ª',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                        Text(
-                          'Tipo: ${this.book['tipo']}',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                        Text(
-                          'Gênero: ${this.book['genero']}',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50), // Mudar pra não quiebrar
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: this.book)));
-                        },
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.of(context).primary,
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.all(4),
-                            child: Icon(
-                              Icons.edit_document,
-                              size: 28,
-                              color: FlutterFlowTheme.of(context).primaryBackground,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
-                child: Card(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: FlutterFlowTheme.of(context).secondary,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
-                    child: Text(
-                      'Previsão de Disponibilidade\n12/06/2023',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyLarge,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.all(8),
-                child: TextButton(
-                  onPressed: () async {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    fixedSize: const Size(210, 50),
-                    backgroundColor: FlutterFlowTheme.of(context).alternate,
-                    elevation: 3,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    textStyle: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.connect_without_contact_rounded,
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        size: 32,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Solicitar Empréstimo',
-                          style: FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-                child: TextButton(
-                  onPressed: () async {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    fixedSize: const Size(135, 40),
-                    backgroundColor: FlutterFlowTheme.of(context).accent2,
-                    elevation: 3,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    textStyle: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.bookmark_outlined,
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        size: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          'Reservar',
-                          style: FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                'https://picsum.photos/seed/725/600',
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                height: MediaQuery.of(context).size.height * 0.15,
+                                fit: BoxFit.cover,
                               ),
-                        ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
+                                  child: Text(
+                                    'Ver capa',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                                          fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                          color: FlutterFlowTheme.of(context).info,
+                                          decoration: TextDecoration.underline,
+                                          useGoogleFonts:
+                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: Icon(
+                                  Icons.arrow_right_alt,
+                                  color: FlutterFlowTheme.of(context).info,
+                                  size: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Obra: ${truncateWithEllipsis(25, this.book['nome'])}',
+                            style: FlutterFlowTheme.of(context).titleLarge,
+                          ),
+                          Text(
+                            'Autor: ${this.book['autor']}',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                          Text(
+                            'Ano: ${this.book['ano']}',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                          Text(
+                            'Editora: ${this.book['editora']}',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                          Text(
+                            'Edição: ${this.book['edicao']}ª',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                          Text(
+                            'Tipo: ${this.book['tipo']}',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                          Text(
+                            'Gênero: ${this.book['genero']}',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.of(context).secondary,
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+                      child: Text(
+                        'Previsão de Disponibilidade\n12/06/2023',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyLarge,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.all(8),
+                  child: TextButton(
+                    onPressed: () async {},
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      fixedSize: const Size(210, 50),
+                      backgroundColor: FlutterFlowTheme.of(context).alternate,
+                      elevation: 3,
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      textStyle: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.connect_without_contact_rounded,
+                          color: FlutterFlowTheme.of(context).tertiary,
+                          size: 32,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Solicitar Empréstimo',
+                            style: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                  child: TextButton(
+                    onPressed: () async {},
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      fixedSize: const Size(135, 40),
+                      backgroundColor: FlutterFlowTheme.of(context).accent2,
+                      elevation: 3,
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      textStyle: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.bookmark_outlined,
+                          color: FlutterFlowTheme.of(context).tertiary,
+                          size: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            'Reservar',
+                            style: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 0), // Mudar pra não quiebrar
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: this.book)));
+                    },
+                    child: Card(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      color: FlutterFlowTheme.of(context).primary,
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.all(4),
+                        child: Icon(
+                          Icons.edit_document,
+                          size: 28,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

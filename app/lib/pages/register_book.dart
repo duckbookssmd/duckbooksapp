@@ -102,7 +102,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: TextFormField(
                             controller: textCodController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -162,7 +162,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textNomeController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -217,7 +217,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAutorController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -272,7 +272,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textPublisherController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -327,7 +327,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textEditionController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -387,7 +387,7 @@ class _RegisterBookState extends State<RegisterBook> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAnoController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,

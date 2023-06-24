@@ -38,8 +38,8 @@ class _EditBookPageState extends State<EditBookPage> {
   TextEditingController? textDateController;
   String? textType;
   String? textGenre;
-  final List<String> _types = ['Livro', 'Mangá/Gibi', 'DVD', 'Periódico(Artigo)', 'Revista', 'design', 'mangá', 'N.D.A'];
-  final List<String> _genres = ['Programação', 'Design Gráfico', 'Redes', 'Tipografia', 'mangá', 'N.D.A'];
+  final List<String> _types = ['Livro', 'Mangá/Gibi', 'DVD', 'Periódico(Artigo)', 'Revista', 'design', 'N.D.A'];
+  final List<String> _genres = ['Programação', 'Design Gráfico', 'Redes', 'Tipografia', 'N.D.A'];
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -171,7 +171,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textNomeController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -231,7 +231,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAutorController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -291,7 +291,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textPublisherController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -351,7 +351,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textEditionController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -416,7 +416,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAnoController,
-                            autofocus: true,
+                            autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -748,7 +748,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                   ) ??
                                   false;
                               if (confirmDialogResponse) {
-                                context.read<AuthService>().deleteBook(
+                                await context.read<AuthService>().deleteBook(
                                       textNomeController,
                                       textAutorController,
                                       textAnoController,
@@ -758,6 +758,8 @@ class _EditBookPageState extends State<EditBookPage> {
                                       textPublisherController,
                                     );
                               }
+                              Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                             style: OutlinedButton.styleFrom(
                               fixedSize: const Size(130, 40),
