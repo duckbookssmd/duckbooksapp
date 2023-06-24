@@ -1,7 +1,9 @@
 import 'package:app/pages/edit_book_page.dart';
+import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../flutter_flow_theme.dart';
 
@@ -263,30 +265,32 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0), // Mudar pra não quiebrar
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: book)));
-                    },
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).primary,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.all(4),
-                        child: Icon(
-                          Icons.edit_document,
-                          size: 28,
-                          color: FlutterFlowTheme.of(context).primaryBackground,
+                (context.read<AuthService>().isAdm)
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 0), // Mudar pra não quiebrar
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: book)));
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context).primary,
+                            elevation: 4,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.all(4),
+                              child: Icon(
+                                Icons.edit_document,
+                                size: 28,
+                                color: FlutterFlowTheme.of(context).primaryBackground,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
+                      )
+                    : const Center(),
               ],
             ),
           ),

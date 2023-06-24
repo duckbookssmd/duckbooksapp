@@ -1,4 +1,5 @@
 import 'package:app/models/book_model.dart';
+import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/pages/register_validation_help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,7 @@ class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? usuario;
+  late bool isAdm;
   bool isLoading = true;
 
   AuthService() {
@@ -116,7 +118,7 @@ class AuthService extends ChangeNotifier {
         }
         for (var docSnapshot in value.docs) {
           String email = docSnapshot.data()['email'];
-          succesSignIn = await signIn(context, email, password, formKey);
+          succesSignIn = await signIn(context, email, password, formKey, docSnapshot.data()['isAdm']);
         }
         _getUser();
       },
@@ -138,15 +140,26 @@ class AuthService extends ChangeNotifier {
     String email,
     String senha,
     GlobalKey<FormState> formKey,
+    bool isAdm,
   ) async {
     bool resp = false;
     await _auth.signInWithEmailAndPassword(email: email, password: senha).then((uid) {
       Fluttertoast.showToast(msg: "Logado com sucesso");
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomeCa(),
-        ),
-      );
+      if (isAdm) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomeCa(),
+          ),
+        );
+        this.isAdm = true;
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomeFinalUse(),
+          ),
+        );
+        this.isAdm = false;
+      }
       resp = true; // sucesso ao logar
     }).catchError(
       (e) {
