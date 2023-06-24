@@ -10,6 +10,7 @@ class HomeCa extends StatefulWidget {
   const HomeCa({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeCaState createState() => _HomeCaState();
 }
 
@@ -60,7 +61,7 @@ class _HomeCaState extends State<HomeCa> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,

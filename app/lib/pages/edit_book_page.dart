@@ -19,14 +19,14 @@ class _EditBookPageState extends State<EditBookPage> {
   late Map<String, dynamic> book;
 
   setBookData() {
-    textNomeController = TextEditingController(text: this.book['nome'] ?? '');
-    textAutorController = TextEditingController(text: this.book['autor'] ?? '');
-    textPublisherController = TextEditingController(text: this.book['editora'] ?? '');
-    textAnoController = TextEditingController(text: this.book['ano'].toString());
-    textEditionController = TextEditingController(text: this.book['edicao'].toString());
-    textDateController = TextEditingController(text: this.book['dataCadastro']);
-    textType = (_types.contains(this.book['tipo'])) ? this.book['tipo'] : null;
-    textGenre = (_types.contains(this.book['genero'])) ? this.book['genero'] : null;
+    textNomeController = TextEditingController(text: book['nome'] ?? '');
+    textAutorController = TextEditingController(text: book['autor'] ?? '');
+    textPublisherController = TextEditingController(text: book['editora'] ?? '');
+    textAnoController = TextEditingController(text: book['ano'].toString());
+    textEditionController = TextEditingController(text: book['edicao'].toString());
+    textDateController = TextEditingController(text: book['dataCadastro']);
+    textType = (_types.contains(book['tipo'])) ? book['tipo'] : null;
+    textGenre = (_types.contains(book['genero'])) ? book['genero'] : null;
   }
 
   TextEditingController? textCodController;
@@ -46,7 +46,6 @@ class _EditBookPageState extends State<EditBookPage> {
   void initState() {
     super.initState();
     book = widget.book;
-    print(book['nome']);
     SchedulerBinding.instance.addPostFrameCallback((s) {
       setBookData();
     });
@@ -77,7 +76,7 @@ class _EditBookPageState extends State<EditBookPage> {
                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 2,
       ),
@@ -90,7 +89,7 @@ class _EditBookPageState extends State<EditBookPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                 child: Text(
                   'Informações da Obra',
                   style: FlutterFlowTheme.of(context).displayLarge.override(
@@ -109,8 +108,8 @@ class _EditBookPageState extends State<EditBookPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: TextFormField(
                             readOnly: true,
@@ -131,7 +130,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -166,8 +165,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textNomeController,
@@ -180,7 +179,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               hintText: 'Nome',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -226,8 +225,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAutorController,
@@ -240,7 +239,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               hintText: 'Autor',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -286,8 +285,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textPublisherController,
@@ -300,7 +299,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               hintText: 'Editora',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -346,8 +345,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textEditionController,
@@ -360,7 +359,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               hintText: 'Edição',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -411,8 +410,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAnoController,
@@ -425,7 +424,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               hintText: 'Ano',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -481,7 +480,7 @@ class _EditBookPageState extends State<EditBookPage> {
                       Row(
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.40,
                               height: MediaQuery.of(context).size.height * 0.069,
@@ -511,7 +510,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                 ),
                                 decoration: InputDecoration(
                                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                  label: Text('Tipo'),
+                                  label: const Text('Tipo'),
                                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
                                   isDense: true,
                                   enabledBorder: UnderlineInputBorder(
@@ -542,7 +541,7 @@ class _EditBookPageState extends State<EditBookPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.40,
                               height: MediaQuery.of(context).size.height * 0.069,
@@ -572,7 +571,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                 ),
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                                  label: Text('Gênero'),
+                                  label: const Text('Gênero'),
                                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                                   isDense: true,
                                   enabledBorder: UnderlineInputBorder(
@@ -605,8 +604,8 @@ class _EditBookPageState extends State<EditBookPage> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textDateController,
@@ -619,7 +618,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               labelStyle: FlutterFlowTheme.of(context).labelMedium,
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -658,9 +657,9 @@ class _EditBookPageState extends State<EditBookPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                               child: TextButton(
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
@@ -668,16 +667,16 @@ class _EditBookPageState extends State<EditBookPage> {
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text('Confirmar edição'),
-                                              content: Text('Deseja alterar os dados dessa obra ?'),
+                                              title: const Text('Confirmar edição'),
+                                              content: const Text('Deseja alterar os dados dessa obra ?'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                  child: Text('Cancelar'),
+                                                  child: const Text('Cancelar'),
                                                 ),
                                                 TextButton(
                                                   onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                  child: Text('Confirmar'),
+                                                  child: const Text('Confirmar'),
                                                 ),
                                               ],
                                             );
@@ -725,25 +724,25 @@ class _EditBookPageState extends State<EditBookPage> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 0),
                               child: TextButton(
                                 onPressed: () async {
                                   var confirmDialogResponse = await showDialog<bool>(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text('Confirmar edição'),
-                                            content: Text('Deseja alterar os dados dessa obra ?'),
+                                            title: const Text('Confirmar edição'),
+                                            content: const Text('Deseja alterar os dados dessa obra ?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                child: Text('Cancelar'),
+                                                child: const Text('Cancelar'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                child: Text('Confirmar'),
+                                                child: const Text('Confirmar'),
                                               ),
                                             ],
                                           );

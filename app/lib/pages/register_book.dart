@@ -65,7 +65,7 @@ class _RegisterBookState extends State<RegisterBook> {
                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 2,
       ),
@@ -78,7 +78,7 @@ class _RegisterBookState extends State<RegisterBook> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                 child: Text(
                   'Informações da Obra',
                   style: FlutterFlowTheme.of(context).displayLarge.override(
@@ -97,8 +97,8 @@ class _RegisterBookState extends State<RegisterBook> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: TextFormField(
                             controller: textCodController,
@@ -111,7 +111,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Cód.',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -157,8 +157,8 @@ class _RegisterBookState extends State<RegisterBook> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textNomeController,
@@ -171,7 +171,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Nome',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -212,8 +212,8 @@ class _RegisterBookState extends State<RegisterBook> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAutorController,
@@ -226,7 +226,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Autor',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -267,8 +267,8 @@ class _RegisterBookState extends State<RegisterBook> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textPublisherController,
@@ -281,7 +281,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Editora',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -322,8 +322,8 @@ class _RegisterBookState extends State<RegisterBook> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textEditionController,
@@ -336,7 +336,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Edição',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -382,8 +382,8 @@ class _RegisterBookState extends State<RegisterBook> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextFormField(
                             controller: textAnoController,
@@ -396,7 +396,7 @@ class _RegisterBookState extends State<RegisterBook> {
                               hintText: 'Ano',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 2,
                                 ),
@@ -447,7 +447,7 @@ class _RegisterBookState extends State<RegisterBook> {
                       Row(
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.40,
                               height: MediaQuery.of(context).size.height * 0.069,
@@ -477,7 +477,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                 ),
                                 decoration: InputDecoration(
                                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                  label: Text('Tipo'),
+                                  label: const Text('Tipo'),
                                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
                                   isDense: true,
                                   enabledBorder: UnderlineInputBorder(
@@ -508,7 +508,7 @@ class _RegisterBookState extends State<RegisterBook> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.40,
                               height: MediaQuery.of(context).size.height * 0.069,
@@ -538,7 +538,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                 ),
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                                  label: Text('Gênero'),
+                                  label: const Text('Gênero'),
                                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                                   isDense: true,
                                   enabledBorder: UnderlineInputBorder(
@@ -571,9 +571,9 @@ class _RegisterBookState extends State<RegisterBook> {
                         ],
                       ),
                       Align(
-                        alignment: AlignmentDirectional(-1, 0),
+                        alignment: const AlignmentDirectional(-1, 0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                           child: TextButton(
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
@@ -581,16 +581,16 @@ class _RegisterBookState extends State<RegisterBook> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: Text('Confirmar cadastro'),
-                                          content: Text('Deseja finalizar o cadastro dessa obra ?'),
+                                          title: const Text('Confirmar cadastro'),
+                                          content: const Text('Deseja finalizar o cadastro dessa obra ?'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(alertDialogContext, false),
-                                              child: Text('Cancelar'),
+                                              child: const Text('Cancelar'),
                                             ),
                                             TextButton(
                                               onPressed: () => Navigator.pop(alertDialogContext, true),
-                                              child: Text('Confirmar'),
+                                              child: const Text('Confirmar'),
                                             ),
                                           ],
                                         );

@@ -70,7 +70,6 @@ class _ConsultPageState extends State<ConsultPage> {
         .then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
-        print(docSnapshot.data()['isDeleted'].toString());
         if (!(docSnapshot.data()['isDeleted'].toString() == 'true')) {
           lista.add(docSnapshot.data());
         }
@@ -97,13 +96,13 @@ class _ConsultPageState extends State<ConsultPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                         child: TextFormField(
                           controller: searchController,
                           obscureText: false,
@@ -121,7 +120,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 2,
                               ),
@@ -152,7 +151,7 @@ class _ConsultPageState extends State<ConsultPage> {
                             fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                             suffixIcon: IconButton(
                               onPressed: () => searchByName(searchController?.text ?? ''),
-                              icon: Icon(Icons.search),
+                              icon: const Icon(Icons.search),
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
@@ -208,9 +207,9 @@ class _ConsultPageState extends State<ConsultPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
                               child: Text(
                                 'Em Alta',
                                 textAlign: TextAlign.start,
@@ -224,22 +223,22 @@ class _ConsultPageState extends State<ConsultPage> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                               child: Container(
                                 height: 100,
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -267,7 +266,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -300,7 +299,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -314,7 +313,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Align(
-                                                  alignment: AlignmentDirectional(0, 0.25),
+                                                  alignment: const AlignmentDirectional(0, 0.25),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.database,
                                                     color: FlutterFlowTheme.of(context).tertiary,
@@ -336,7 +335,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -369,7 +368,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -415,9 +414,9 @@ class _ConsultPageState extends State<ConsultPage> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(-1, 0),
+                alignment: const AlignmentDirectional(-1, 0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 8),
                   child: Text(
                     'Acervo Completo',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
@@ -452,9 +451,9 @@ class _ConsultPageState extends State<ConsultPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(-1, -1),
+                                      alignment: const AlignmentDirectional(-1, -1),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(8),
                                           child: Image.network(
@@ -467,7 +466,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(-1, 0),
+                                      alignment: const AlignmentDirectional(-1, 0),
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 8.0),
                                         child: Column(
@@ -476,7 +475,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(-1, 0),
+                                              alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
                                                 truncateWithEllipsis(30, livros[index]['nome']),
                                                 textAlign: TextAlign.start,
@@ -484,7 +483,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(-1, 0),
+                                              alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
                                                 'Autor: ${livros[index]['autor']}',
                                                 textAlign: TextAlign.start,
@@ -492,7 +491,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(-1, 0),
+                                              alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
                                                 'Ano: ${livros[index]['ano']}',
                                                 textAlign: TextAlign.start,
@@ -505,7 +504,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                               children: [
                                                 Align(
-                                                  alignment: AlignmentDirectional(0, 1),
+                                                  alignment: const AlignmentDirectional(0, 1),
                                                   child: TextButton(
                                                     onPressed: () async {},
                                                     style: OutlinedButton.styleFrom(
@@ -528,7 +527,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   ),
                                                 ),
                                                 Align(
-                                                  alignment: AlignmentDirectional(0, 1),
+                                                  alignment: const AlignmentDirectional(0, 1),
                                                   child: Padding(
                                                     padding: const EdgeInsets.only(left: 16.0),
                                                     child: Column(

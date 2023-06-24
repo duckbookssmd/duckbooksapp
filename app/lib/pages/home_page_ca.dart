@@ -54,7 +54,7 @@ class _HomePageCaState extends State<HomePageCa> {
           endDrawer: SafeArea(
             top: true,
             bottom: true,
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: Drawer(
                 elevation: 16,
@@ -63,9 +63,9 @@ class _HomePageCaState extends State<HomePageCa> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(1, -1),
+                        alignment: const AlignmentDirectional(1, -1),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           child: IconButton(
                             onPressed: () {
                               if (scaffoldKey.currentState!.isDrawerOpen || scaffoldKey.currentState!.isEndDrawerOpen) {
@@ -91,7 +91,7 @@ class _HomePageCaState extends State<HomePageCa> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
                               child: InkWell(
                                 onTap: () async {
                                   await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop', true);
@@ -117,7 +117,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                               child: InkWell(
                                 onTap: () async {
                                   context.read<AuthService>().logout(context);
@@ -598,7 +598,7 @@ class _HomePageCaState extends State<HomePageCa> {
 
                               columns: [
                                 DataColumn2(
-                                  label: Container(
+                                  label: SizedBox(
                                     width: 270,
                                     child: Text(
                                       'Ação',
@@ -610,7 +610,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                 ),
                                 DataColumn2(
                                   // size: ColumnSize.values.first,
-                                  label: Container(
+                                  label: SizedBox(
                                     width: 100,
                                     child: Text(
                                       'Data',
@@ -625,7 +625,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                 (index) => DataRow(
                                   cells: [
                                     DataCell(Text('A' * (10 - index % 10))),
-                                    DataCell(Container(
+                                    DataCell(SizedBox(
                                       width: 100,
                                       child: Text(
                                         'B' * (10 - (index + 5) % 10),

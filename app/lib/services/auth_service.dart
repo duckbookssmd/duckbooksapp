@@ -229,7 +229,7 @@ class AuthService extends ChangeNotifier {
     bool resp = false;
     await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
       (value) {
-        if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == true) {
+        if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == 'true') {
           resp = false;
         } else {
           resp = true;

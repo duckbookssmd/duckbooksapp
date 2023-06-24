@@ -10,6 +10,7 @@ class CollectionDetailsPage extends StatefulWidget {
   final Map<String, dynamic> book;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CollectionDetailsPageState createState() => _CollectionDetailsPageState();
 }
 
@@ -57,7 +58,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2,
         ),
@@ -68,7 +69,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +79,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.network(
@@ -95,9 +96,9 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
                                   child: Text(
                                     'Ver capa',
                                     textAlign: TextAlign.start,
@@ -112,7 +113,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Icon(
                                   Icons.arrow_right_alt,
                                   color: FlutterFlowTheme.of(context).info,
@@ -128,31 +129,31 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Obra: ${truncateWithEllipsis(25, this.book['nome'])}',
+                            'Obra: ${truncateWithEllipsis(25, book['nome'])}',
                             style: FlutterFlowTheme.of(context).titleLarge,
                           ),
                           Text(
-                            'Autor: ${this.book['autor']}',
+                            'Autor: ${book['autor']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Ano: ${this.book['ano']}',
+                            'Ano: ${book['ano']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Editora: ${this.book['editora']}',
+                            'Editora: ${book['editora']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Edição: ${this.book['edicao']}ª',
+                            'Edição: ${book['edicao']}ª',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Tipo: ${this.book['tipo']}',
+                            'Tipo: ${book['tipo']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Gênero: ${this.book['genero']}',
+                            'Gênero: ${book['genero']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                         ],
@@ -161,7 +162,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
                   child: Card(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     color: FlutterFlowTheme.of(context).secondary,
@@ -170,7 +171,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+                      padding: const EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                       child: Text(
                         'Previsão de Disponibilidade\n12/06/2023',
                         textAlign: TextAlign.center,
@@ -180,7 +181,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.all(8),
+                  padding: const EdgeInsetsDirectional.all(8),
                   child: TextButton(
                     onPressed: () async {},
                     style: OutlinedButton.styleFrom(
@@ -221,7 +222,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                   child: TextButton(
                     onPressed: () async {},
                     style: OutlinedButton.styleFrom(
@@ -266,7 +267,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                   padding: const EdgeInsets.only(left: 0), // Mudar pra não quiebrar
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: this.book)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => EditBookPage(book: book)));
                     },
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -276,7 +277,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.all(4),
+                        padding: const EdgeInsetsDirectional.all(4),
                         child: Icon(
                           Icons.edit_document,
                           size: 28,
