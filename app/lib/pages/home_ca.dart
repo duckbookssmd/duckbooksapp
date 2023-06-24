@@ -1,4 +1,4 @@
-import 'package:app/pages/user_bookings.dart';
+import 'package:app/pages/loan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -38,7 +38,7 @@ class _HomeCaState extends State<HomeCa> {
         onPageChanged: setPaginaAtual,
         children: const [
           HomePageCa(),
-          UserBookingsWidget(),
+          LoanPage(),
           ConsultPage(),
           ConsultPage(),
         ],

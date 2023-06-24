@@ -562,7 +562,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                             ).whenComplete(() => searchByName(searchController?.text ?? ''));
                                                           },
                                                           style: OutlinedButton.styleFrom(
-                                                            fixedSize: const Size(85, 40),
+                                                            fixedSize: const Size(90, 40),
                                                             backgroundColor: FlutterFlowTheme.of(context).secondaryText,
                                                             elevation: 3,
                                                             padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
