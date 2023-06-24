@@ -683,14 +683,15 @@ class _EditBookPageState extends State<EditBookPage> {
                                     false;
                                 if (confirmDialogResponse) {
                                   context.read<AuthService>().postBookDetailsToFirestore(
-                                      textNomeController,
-                                      textAutorController,
-                                      textAnoController,
-                                      textEditionController,
-                                      textType,
-                                      textGenre,
-                                      textPublisherController,
-                                      true);
+                                        textNomeController,
+                                        textAutorController,
+                                        textAnoController,
+                                        textEditionController,
+                                        textType,
+                                        textGenre,
+                                        textPublisherController,
+                                        true,
+                                      );
                                 }
                               }
                             },
@@ -725,7 +726,39 @@ class _EditBookPageState extends State<EditBookPage> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                           child: TextButton(
-                            onPressed: () async {},
+                            onPressed: () async {
+                              var confirmDialogResponse = await showDialog<bool>(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Confirmar edição'),
+                                        content: Text('Deseja alterar os dados dessa obra ?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                            child: Text('Cancelar'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                            child: Text('Confirmar'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ) ??
+                                  false;
+                              if (confirmDialogResponse) {
+                                context.read<AuthService>().deleteBook(
+                                      textNomeController,
+                                      textAutorController,
+                                      textAnoController,
+                                      textEditionController,
+                                      textType,
+                                      textGenre,
+                                      textPublisherController,
+                                    );
+                              }
+                            },
                             style: OutlinedButton.styleFrom(
                               fixedSize: const Size(130, 40),
                               backgroundColor: FlutterFlowTheme.of(context).error,

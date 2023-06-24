@@ -229,7 +229,7 @@ class AuthService extends ChangeNotifier {
     bool resp = false;
     await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
       (value) {
-        if (value.docs.isEmpty) {
+        if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == true) {
           resp = false;
         } else {
           resp = true;
@@ -265,6 +265,7 @@ class AuthService extends ChangeNotifier {
         dataCadastro: date.format(
             DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
         editora: editoraController!.text,
+        isDeleted: false,
       );
 
       await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
@@ -273,6 +274,41 @@ class AuthService extends ChangeNotifier {
           : Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
     } else {
       Fluttertoast.showToast(msg: 'Livro já Cadastrado');
+    }
+  }
+
+  deleteBook(
+    TextEditingController? nomeController,
+    TextEditingController? autorController,
+    TextEditingController? anoController,
+    TextEditingController? edicaoController,
+    String? tipo,
+    String? genero,
+    TextEditingController? editoraController,
+    //TextEditingController? fotoController, Por enquanto não vou colocar foto
+  ) async {
+    if (await checkIfExist(nomeController!.text)) {
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+      DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+
+      BookModel bookModel = BookModel(
+        nome: nomeController.text,
+        autor: autorController!.text,
+        ano: int.tryParse(anoController!.text),
+        edicao: int.tryParse(edicaoController!.text),
+        tipo: tipo,
+        genero: genero,
+        foto: 'Colocar',
+        dataCadastro: date.format(
+            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        editora: editoraController!.text,
+        isDeleted: true,
+      );
+
+      await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
+      Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
+    } else {
+      Fluttertoast.showToast(msg: 'Livro Não existe no sistema');
     }
   }
 }

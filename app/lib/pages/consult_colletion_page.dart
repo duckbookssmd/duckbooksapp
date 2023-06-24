@@ -70,7 +70,10 @@ class _ConsultPageState extends State<ConsultPage> {
         .then((value) {
       List lista = [];
       for (var docSnapshot in value.docs) {
-        lista.add(docSnapshot.data());
+        print(docSnapshot.data()['isDeleted'].toString());
+        if (!(docSnapshot.data()['isDeleted'].toString() == 'true')) {
+          lista.add(docSnapshot.data());
+        }
       }
       return lista;
     });
@@ -555,7 +558,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                             Navigator.push(
                                                               context,
                                                               MaterialPageRoute(
-                                                                builder: (context) => CollectionDetailsPage(book:livros[index]),
+                                                                builder: (context) => CollectionDetailsPage(book: livros[index]),
                                                               ),
                                                             );
                                                           },

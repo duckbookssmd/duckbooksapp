@@ -8,6 +8,7 @@ class BookModel {
   late String? foto = "";
   late String? genero = "";
   late String dataCadastro;
+  late bool isDeleted;
 
   BookModel({
     required this.nome,
@@ -19,6 +20,7 @@ class BookModel {
     required this.foto,
     required this.genero,
     required this.dataCadastro,
+    required this.isDeleted,
   });
 
   Map<String, dynamic> toMap() {
@@ -31,7 +33,8 @@ class BookModel {
       'foto': foto,
       'genero': genero,
       'dataCadastro': dataCadastro,
-      'editora': editora
+      'editora': editora,
+      'isDeleted': isDeleted
     };
   }
 }
