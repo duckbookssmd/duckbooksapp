@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/cadastro_page.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -25,11 +26,9 @@ class _LoginPageState extends State<LoginPage> {
   User? user = FirebaseAuth.instance.currentUser;
 
   setLoginData() async {
-    Map<String, String> datalogin =
-        Provider.of<AppSettings>(context, listen: false).logindata;
+    Map<String, String> datalogin = Provider.of<AppSettings>(context, listen: false).logindata;
     texMatriculaController!.text = datalogin['registration'] ?? '';
-    texSenhaController!.text =
-        (datalogin['password']!.length > 3) ? datalogin['password'] ?? '' : '';
+    texSenhaController!.text = (datalogin['password']!.length > 3) ? datalogin['password'] ?? '' : '';
     checkboxValue = (datalogin['registration'] == '') ? false : true;
   }
 
@@ -55,10 +54,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   ///  State fields for stateful widgets in this page.
-  final unfocusNode = FocusNode();
+
   // State field(s) for TextField widget.
   TextEditingController? texMatriculaController = TextEditingController();
-  String? Function(BuildContext, String?)? texMatriculaControllerValidator;
+  String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
   TextEditingController? texSenhaController = TextEditingController();
   late bool passwordVisibility;
@@ -73,415 +72,31 @@ class _LoginPageState extends State<LoginPage> {
     texMatriculaController?.dispose();
     texSenhaController?.dispose();
   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       top: true,
-//       child: Scaffold(
-//         backgroundColor: const Color(0xFF333129),
-//         appBar: AppBar(
-//           backgroundColor: const Color(0xFF364D45),
-//           title: const Text(
-//             'Login',
-//             style: TextStyle(
-//               fontFamily: 'Poppins',
-//               color: Color(0xFFB899FF),
-//               fontSize: 22,
-//               fontWeight: FontWeight.w600,
-//             ),
-//           ),
-//           actions: const [
-//             Padding(
-//               padding: EdgeInsets.only(right: 10.0),
-//               child: Icon(
-//                 Icons.wb_sunny_outlined,
-//                 color: Color(0xFFB899FF),
-//                 size: 24,
-//               ),
-//             ),
-//           ],
-//         ),
-//         body: SingleChildScrollView(
-//           reverse: true,
-//           child: Form(
-//             key: _formKey,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.max,
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsetsDirectional.fromSTEB(0, 90, 0, 50),
-//                   child: ClipRRect(
-//                     borderRadius: BorderRadius.circular(8),
-//                     child: Image.asset(
-//                       'lib/assets/images/logo_white_text_no_bg.png',
-//                       width: 300,
-//                       height: 200,
-//                       fit: BoxFit.scaleDown,
-//                     ),
-//                   ),
-//                 ),
-//                 Align(
-//                   alignment: const AlignmentDirectional(0, 0),
-//                   child: Padding(
-//                     padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-//                     child: TextFormField(
-//                       controller: texMatriculaController,
-//                       autofocus: false,
-//                       obscureText: false,
-//                       decoration: InputDecoration(
-//                         labelText: 'Matrícula/SIAPE',
-//                         labelStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFB3AA3D),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                         hintStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFB3AA3D),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                         enabledBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         focusedBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         errorBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         focusedErrorBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         filled: true,
-//                         fillColor: const Color(0xFF333129),
-//                         prefixIcon: const Icon(
-//                           Icons.person_rounded,
-//                           color: Color(0xFFF4EC70),
-//                           size: 20,
-//                         ),
-//                       ),
-//                       style: const TextStyle(
-//                         fontFamily: 'Poppins',
-//                         color: Color(0xFFB3AA3D),
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w500,
-//                       ),
-//                       textAlign: TextAlign.start,
-//                       keyboardType: TextInputType.number,
-//                       inputFormatters: <TextInputFormatter>[
-//                         FilteringTextInputFormatter.digitsOnly,
-//                         LengthLimitingTextInputFormatter(8),
-//                       ],
-//                       validator: (value) {
-//                         if (value == null || value.isEmpty) {
-//                           return 'Por favor, preencha!';
-//                         } else if (value.length < 6) {
-//                           return 'Email inválido';
-//                         }
-//                         return null;
-//                       },
-//                     ),
-//                   ),
-//                 ),
-//                 Align(
-//                   alignment: const AlignmentDirectional(0, -1),
-//                   child: Padding(
-//                     padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-//                     child: TextFormField(
-//                       controller: texSenhaController,
-//                       autofocus: false,
-//                       obscureText: !passwordVisibility,
-//                       decoration: InputDecoration(
-//                         labelText: 'Senha',
-//                         labelStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFB3AA3D),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                         hintStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFB3AA3D),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                         enabledBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         focusedBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         errorBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         focusedErrorBorder: UnderlineInputBorder(
-//                           borderSide: const BorderSide(
-//                             color: Color(0x00000000),
-//                             width: 1,
-//                           ),
-//                           borderRadius: BorderRadius.circular(15),
-//                         ),
-//                         filled: true,
-//                         fillColor: const Color(0xFF333129),
-//                         prefixIcon: const Icon(
-//                           Icons.lock,
-//                           color: Color(0xFFF4EC70),
-//                           size: 20,
-//                         ),
-//                         suffixIcon: InkWell(
-//                           onTap: () => setState(
-//                             () => passwordVisibility = !passwordVisibility,
-//                           ),
-//                           focusNode: FocusNode(skipTraversal: true),
-//                           child: Icon(
-//                             (passwordVisibility)
-//                                 ? Icons.visibility_outlined
-//                                 : Icons.visibility_off_outlined,
-//                             color: const Color(0xFFF4EC70),
-//                             size: 16,
-//                           ),
-//                         ),
-//                       ),
-//                       style: const TextStyle(
-//                         fontFamily: 'Poppins',
-//                         color: Color(0xFFB3AA3D),
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w500,
-//                       ),
-//                       textAlign: TextAlign.start,
-//                       validator: (value) {
-//                         if (value == null || value.isEmpty) {
-//                           return 'Senha vazia!';
-//                         } else if (value.length < 6) {
-//                           return 'Tamanho mímino de 6 dígitos';
-//                         }
-//                         return null;
-//                       },
-//                     ),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-//                   child: Row(
-//                     mainAxisSize: MainAxisSize.max,
-//                     children: [
-//                       Padding(
-//                         padding:
-//                             const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-//                         child: Theme(
-//                           data: ThemeData(
-//                             checkboxTheme: CheckboxThemeData(
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(4),
-//                               ),
-//                             ),
-//                             unselectedWidgetColor: const Color(0xFFB3AA3D),
-//                           ),
-//                           child: Checkbox(
-//                             value: checkboxValue,
-//                             onChanged: (newValue) async {
-//                               setState(() => checkboxValue = newValue!);
-//                             },
-//                             activeColor: const Color(0xFFB3AA3D),
-//                             checkColor: const Color(0xFF070707),
-//                           ),
-//                         ),
-//                       ),
-//                       const Padding(
-//                         padding: EdgeInsetsDirectional.fromSTEB(2, 0, 10, 0),
-//                         child: Text(
-//                           'Lembrar senha',
-//                           style: TextStyle(
-//                             fontFamily: 'Poppins',
-//                             color: Color(0xFFB3AA3D),
-//                             fontSize: 14,
-//                             fontWeight: FontWeight.w300,
-//                           ),
-//                         ),
-//                       ),
-//                       const Spacer(),
-//                       Align(
-//                         alignment: const AlignmentDirectional(0, 0),
-//                         child: TextButton(
-//                           onPressed: () {
-//                             //print('Apertou esqueceu a senha!!');
-//                           },
-//                           style: TextButton.styleFrom(
-//                             foregroundColor: const Color(0xFFF4EC70),
-//                             elevation: 0,
-//                             padding: const EdgeInsetsDirectional.fromSTEB(
-//                                 24, 0, 24, 0),
-//                             shape: const BeveledRectangleBorder(
-//                                 borderRadius:
-//                                     BorderRadius.all(Radius.circular(8))),
-//                             textStyle: const TextStyle(
-//                               fontFamily: 'Poppins',
-//                               color: Color(0xFFF4EC70),
-//                               fontWeight: FontWeight.w300,
-//                               decoration: TextDecoration.underline,
-//                             ),
-//                           ),
-//                           child: const Text('Esqueceu a senha ?'),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Align(
-//                   alignment: const AlignmentDirectional(0, 0),
-//                   child: Padding(
-//                     padding:
-//                         const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
-//                     child: TextButton(
-//                       onPressed: () {
-//                         if (_formKey.currentState!.validate()) {
-//                           context.read<AuthService>().signInWithRegistration(
-//                                 context,
-//                                 texMatriculaController!.text,
-//                                 texSenhaController!.text,
-//                                 _formKey,
-//                                 checkboxValue,
-//                               );
-
-//                           ScaffoldMessenger.of(context).showSnackBar(
-//                             const SnackBar(
-//                                 content: Text('Entrando...'),
-//                                 backgroundColor: Colors.green),
-//                           );
-//                         }
-//                       },
-//                       style: OutlinedButton.styleFrom(
-//                         fixedSize: const Size(130, 40),
-//                         foregroundColor: const Color(0xFFF4EC70),
-//                         elevation: 0,
-//                         padding:
-//                             const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-//                         shape: const StadiumBorder(
-//                             side: BorderSide(
-//                                 color: Color(0xFFC2CC93), width: 3.5)),
-//                         textStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFF4EC70),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.bold,
-//                         ),
-//                       ),
-//                       child: const Text('Entrar'),
-//                     ),
-//                   ),
-//                 ),
-//                 Align(
-//                   alignment: const AlignmentDirectional(0, 0),
-//                   child: Padding(
-//                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-//                     child: TextButton(
-//                       onPressed: () {
-//                         Navigator.push(
-//                             context,
-//                             MaterialPageRoute(
-//                                 builder: (context) => const CadastroPage()));
-//                       },
-//                       style: OutlinedButton.styleFrom(
-//                         fixedSize: const Size(185, 40),
-//                         foregroundColor: const Color(0xFFF4EC70),
-//                         elevation: 0,
-//                         textStyle: const TextStyle(
-//                           fontFamily: 'Poppins',
-//                           color: Color(0xFFF4EC70),
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                           decoration: TextDecoration.underline,
-//                         ),
-//                       ),
-//                       child: const Text('Não possui cadastro ?'),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-/////////////////////////////////////////////////////////////////////////////////////
-
-  void _onTextChanged(String value) async {
-    await Future.delayed(Duration(milliseconds: 2000));
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(unfocusNode),
+    return SafeArea(
+      top: true,
       child: Scaffold(
-        key: _formKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [
             Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: const AlignmentDirectional(0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    // logFirebaseEvent('LOGIN_PAGE_PAGE_Icon_85zpxqfv_ON_TAP');
-                    // logFirebaseEvent('Icon_navigate_to');
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return HelpPage();
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        );
-                      },
-                      transitionDuration: Duration(milliseconds: 300),
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));           
                   },
                   child: FaIcon(
+                    // ignore: deprecated_member_use
                     FontAwesomeIcons.questionCircle,
                     color: FlutterFlowTheme.of(context).info,
                     size: 32,
@@ -493,38 +108,35 @@ class _LoginPageState extends State<LoginPage> {
           centerTitle: true,
           elevation: 0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Align(
-            alignment: AlignmentDirectional(0, 0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 5),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 48),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'lib/assets/images/vertical_logo_nobg.png',
-                        width: 300,
-                        height: 200,
-                        fit: BoxFit.scaleDown,
-                      ),
+        body: SingleChildScrollView(
+          reverse: true,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 90, 0, 50),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'lib/assets/images/logo_black_text_no_bg.png',
+                      width: 300,
+                      height: 200,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(0, 0),
+                ),
+                Align(
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
                           controller: texMatriculaController,
-                          onChanged: _onTextChanged,
                           obscureText: false,
                           decoration: InputDecoration(
                             isDense: true,
@@ -542,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                                           .bodyLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 2,
                               ),
@@ -601,9 +213,11 @@ class _LoginPageState extends State<LoginPage> {
                                     FlutterFlowTheme.of(context)
                                         .bodyLargeFamily),
                               ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: (texMatriculaControllerValidator) {
-                            if (texMatriculaControllerValidator != null) {
+                          validator: (value) {
+                            if (value!.isEmpty) {
                               return 'Campo obrigatório';
                             }
                             // Outras validações
@@ -613,11 +227,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(0, 0),
+                Align(
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
                           controller: texSenhaController,
@@ -637,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                                           .bodyLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 2,
                               ),
@@ -696,7 +310,7 @@ class _LoginPageState extends State<LoginPage> {
                                     FlutterFlowTheme.of(context)
                                         .bodyLargeFamily),
                               ),
-                          cursorColor: Color(0xFF311A0B),
+                          cursorColor: const Color(0xFF311A0B),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Senha vazia!';
@@ -710,9 +324,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(60, 0, 60, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(60, 0, 60, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -742,7 +356,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Text(
                               'Lembrar senha',
                               textAlign: TextAlign.start,
@@ -766,13 +380,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(30, 20, 30, 5),
-                      child: TextButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    child: TextButton(
+                      
+                      onPressed: () async {
+                        if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                             context.read<AuthService>().signInWithRegistration(
                                   context,
                                   texMatriculaController!.text,
@@ -787,48 +399,32 @@ class _LoginPageState extends State<LoginPage> {
                                   backgroundColor: Colors.green),
                             );
                           }
-                        },
-                        style: OutlinedButton.styleFrom(
-                          fixedSize: const Size(130, 40),
-                          foregroundColor: const Color(0xFFF4EC70),
-                          elevation: 0,
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          shape: const StadiumBorder(
-                              side: BorderSide(
-                                  color: Color(0xFFC2CC93), width: 3.5)),
-                          textStyle: const TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFF4EC70),
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        child: const Text('Entrar'),
-                      ),
+                      },
+                      
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        foregroundColor: FlutterFlowTheme.of(context).tertiary,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .bodyLarge
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              fontSize: 16,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyLargeFamily),
+                            ),
+                        elevation: 5,
+                      ), child: const Text('Entrar'),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 92),
-                    child: Text(
-                      'Esqueci a senha',
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyLargeFamily,
-                            color: FlutterFlowTheme.of(context).accent2,
-                            decoration: TextDecoration.underline,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyLargeFamily),
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 78),
+                Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 78),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 10),
                         Text(
                           'Não possui cadastro ?',
                           style: FlutterFlowTheme.of(context)
@@ -842,31 +438,16 @@ class _LoginPageState extends State<LoginPage> {
                                         .titleLargeFamily),
                               ),
                         ),
+                        const SizedBox(width: 8),
                         InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            // logFirebaseEvent(
-                            //     'LOGIN_PAGE_PAGE_Text_e3q593em_ON_TAP');
-                            // logFirebaseEvent('Text_navigate_to');
-
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) {
-                                return CadastroPage();
-                              },
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                );
-                              },
-                              transitionDuration: Duration(milliseconds: 300),
-                            );
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroPage()));
                           },
+                          
                           child: Text(
                             'Cadastre-se',
                             style: FlutterFlowTheme.of(context)
@@ -886,7 +467,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ],
-              ),
             ),
           ),
         ),
