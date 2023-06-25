@@ -1,4 +1,5 @@
 import 'package:app/models/book_model.dart';
+import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/pages/register_validation_help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../configs/app_settings.dart';
-import '../pages/home_page_ca.dart';
+import '../pages/home_ca.dart';
 
 class AuthException implements Exception {
   String message;
@@ -21,6 +22,7 @@ class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? usuario;
+  late bool isAdm;
   bool isLoading = true;
 
   AuthService() {
@@ -116,7 +118,7 @@ class AuthService extends ChangeNotifier {
         }
         for (var docSnapshot in value.docs) {
           String email = docSnapshot.data()['email'];
-          succesSignIn = await signIn(context, email, password, formKey);
+          succesSignIn = await signIn(context, email, password, formKey, docSnapshot.data()['isAdm']);
         }
         _getUser();
       },
@@ -138,15 +140,26 @@ class AuthService extends ChangeNotifier {
     String email,
     String senha,
     GlobalKey<FormState> formKey,
+    bool isAdm,
   ) async {
     bool resp = false;
     await _auth.signInWithEmailAndPassword(email: email, password: senha).then((uid) {
       Fluttertoast.showToast(msg: "Logado com sucesso");
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomePageCa(),
-        ),
-      );
+      if (isAdm) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomeCa(),
+          ),
+        );
+        this.isAdm = true;
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomeFinalUse(),
+          ),
+        );
+        this.isAdm = false;
+      }
       resp = true; // sucesso ao logar
     }).catchError(
       (e) {
@@ -211,6 +224,7 @@ class AuthService extends ChangeNotifier {
     userModel.userEmail = texEmailController!.text;
     userModel.userSenha = texSenhaController!.text;
     userModel.userConfSenha = texConfSenhaController!.text;
+    userModel.isadm = false;
 
     await firebaseFirestore.collection("usuario").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
@@ -229,7 +243,7 @@ class AuthService extends ChangeNotifier {
     bool resp = false;
     await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
       (value) {
-        if (value.docs.isEmpty) {
+        if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == 'true') {
           resp = false;
         } else {
           resp = true;
@@ -246,9 +260,11 @@ class AuthService extends ChangeNotifier {
     TextEditingController? edicaoController,
     String? tipo,
     String? genero,
+    TextEditingController? editoraController,
+    bool isUpdating,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    if (!await checkIfExist(nomeController!.text)) {
+    if (!await checkIfExist(nomeController!.text) || isUpdating) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
@@ -260,13 +276,53 @@ class AuthService extends ChangeNotifier {
         tipo: tipo,
         genero: genero,
         foto: 'Colocar',
-        dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        dataCadastro: date.format(
+            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        editora: editoraController!.text,
+        isDeleted: false,
       );
 
       await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
-      Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
+      (isUpdating)
+          ? Fluttertoast.showToast(msg: "Obra salva no sistema!")
+          : Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
     } else {
       Fluttertoast.showToast(msg: 'Livro já Cadastrado');
+    }
+  }
+
+  deleteBook(
+    TextEditingController? nomeController,
+    TextEditingController? autorController,
+    TextEditingController? anoController,
+    TextEditingController? edicaoController,
+    String? tipo,
+    String? genero,
+    TextEditingController? editoraController,
+    //TextEditingController? fotoController, Por enquanto não vou colocar foto
+  ) async {
+    if (await checkIfExist(nomeController!.text)) {
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+      DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+
+      BookModel bookModel = BookModel(
+        nome: nomeController.text,
+        autor: autorController!.text,
+        ano: int.tryParse(anoController!.text),
+        edicao: int.tryParse(edicaoController!.text),
+        tipo: tipo,
+        genero: genero,
+        foto: 'Colocar',
+        dataCadastro: date.format(
+            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        editora: editoraController!.text,
+        isDeleted: true,
+      );
+
+      await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
+      Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
+    } else {
+      Fluttertoast.showToast(msg: 'Livro Não existe no sistema');
     }
   }
 }

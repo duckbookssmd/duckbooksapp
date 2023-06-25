@@ -1,4 +1,7 @@
+import 'package:app/pages/register_book.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +51,106 @@ class _HomePageCaState extends State<HomePageCa> {
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          endDrawer: SafeArea(
+            top: true,
+            bottom: true,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Drawer(
+                elevation: 16,
+                child: SizedBox(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(1, -1),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          child: IconButton(
+                            onPressed: () {
+                              if (scaffoldKey.currentState!.isDrawerOpen || scaffoldKey.currentState!.isEndDrawerOpen) {
+                                Navigator.pop(context);
+                              }
+                            },
+                            icon: Icon(
+                              Icons.cancel_outlined,
+                              size: 24.0,
+                              color: FlutterFlowTheme.of(context).alternate,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.30,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop', true);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.power_settings_new_rounded,
+                                      color: FlutterFlowTheme.of(context).secondaryText, //
+                                      size: 24,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        'Sair do app',
+                                        style: FlutterFlowTheme.of(context).bodyLarge,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  context.read<AuthService>().logout(context);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.logout,
+                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                      size: 24,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        'Fazer logout',
+                                        style: FlutterFlowTheme.of(context).bodyLarge,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
           body: SafeArea(
             top: true,
             child: Align(
@@ -79,12 +182,14 @@ class _HomePageCaState extends State<HomePageCa> {
                                   labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                         color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                       ),
                                   hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                         color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -125,7 +230,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).titleLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                       color: FlutterFlowTheme.of(context).secondaryText,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                     ),
                                 cursorColor: FlutterFlowTheme.of(context).secondary,
                               ),
@@ -148,7 +254,7 @@ class _HomePageCaState extends State<HomePageCa> {
                               onPressed: () {
                                 setState(
                                   () {
-                                    context.read<AuthService>().logout(context);
+                                    scaffoldKey.currentState!.openEndDrawer();
                                   },
                                 );
                               },
@@ -178,7 +284,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).displayLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
@@ -198,7 +305,53 @@ class _HomePageCaState extends State<HomePageCa> {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children: [
-                                      SizedBox(
+                                      InkWell(
+                                        onTap: () async {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
+                                        },
+                                        child: SizedBox(
+                                          child: Container(
+                                            width: 96.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).alternate,
+                                              borderRadius: BorderRadius.circular(5.0),
+                                              shape: BoxShape.rectangle,
+                                            ),
+                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                FaIcon(
+                                                  FontAwesomeIcons.clipboardCheck,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 30.0,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Registrar\nempréstimo',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                          fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                          color: FlutterFlowTheme.of(context).tertiary,
+                                                          useGoogleFonts: GoogleFonts.asMap()
+                                                              .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 32,
+                                      ),
+                                      InkWell(
+                                        onTap: () async {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
+                                        },
                                         child: Container(
                                           width: 96.0,
                                           decoration: BoxDecoration(
@@ -211,60 +364,26 @@ class _HomePageCaState extends State<HomePageCa> {
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              FaIcon(
-                                                FontAwesomeIcons.clipboardCheck,
+                                              Icon(
+                                                Icons.add_circle,
                                                 color: FlutterFlowTheme.of(context).tertiary,
-                                                size: 30.0,
+                                                size: 32.0,
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                 child: Text(
-                                                  'Registrar\nempréstimo',
+                                                  'Adicionar\nobra',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
                                                         fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                         color: FlutterFlowTheme.of(context).tertiary,
-                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                       ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 32,
-                                      ),
-                                      Container(
-                                        width: 96.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context).alternate,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.add_circle,
-                                              color: FlutterFlowTheme.of(context).tertiary,
-                                              size: 32.0,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Adicionar\nobra',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ),
                                       const SizedBox(
@@ -295,7 +414,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -351,7 +471,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -389,7 +510,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -424,7 +546,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 style: FlutterFlowTheme.of(context).labelLarge.override(
                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                       color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      useGoogleFonts: GoogleFonts.asMap()
+                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                     ),
                                               ),
                                             ),
@@ -455,7 +578,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                 style: FlutterFlowTheme.of(context).displayLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
@@ -467,86 +591,65 @@ class _HomePageCaState extends State<HomePageCa> {
                               color: FlutterFlowTheme.of(context).secondaryBackground,
                               borderRadius: BorderRadius.circular(0.0),
                             ),
-                            // child: StreamBuilder<List<EmprestimoRecord>>(
-                            //   stream: queryEmprestimoRecord(),
-                            //   builder: (context, snapshot) {
-                            //     // Customize what your widget looks like when it's loading.
-                            //     if (!snapshot.hasData) {
-                            //       return Center(
-                            //         child: SizedBox(
-                            //           width: 50.0,
-                            //           height: 50.0,
-                            //           child: SpinKitFadingCircle(
-                            //             color: FlutterFlowTheme.of(context)
-                            //                 .accent4,
-                            //             size: 50.0,
-                            //           ),
-                            //         ),
-                            //       );
-                            //     }
-                            //     List<EmprestimoRecord>
-                            //         dataTableEmprestimoRecordList =
-                            //         snapshot.data!;
-                            //     return DataTable2(
-                            //       columns: [
-                            //         DataColumn2(
-                            //           label: DefaultTextStyle.merge(
-                            //             softWrap: true,
-                            //             child: Text(
-                            //               'Edit Header 1',
-                            //               style: FlutterFlowTheme.of(context)
-                            //                   .labelLarge,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //         DataColumn2(
-                            //           label: DefaultTextStyle.merge(
-                            //             softWrap: true,
-                            //             child: Text(
-                            //               'Edit Header 2',
-                            //               style: FlutterFlowTheme.of(context)
-                            //                   .labelLarge,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ],
-                            //       rows: dataTableEmprestimoRecordList
-                            //           .mapIndexed((dataTableIndex,
-                            //                   dataTableEmprestimoRecord) =>
-                            //               [
-                            //                 Text(
-                            //                   'Edit Column 1',
-                            //                   style:
-                            //                       FlutterFlowTheme.of(context)
-                            //                           .bodyMedium,
-                            //                 ),
-                            //                 Text(
-                            //                   'Edit Column 2',
-                            //                   style:
-                            //                       FlutterFlowTheme.of(context)
-                            //                           .bodyMedium,
-                            //                 ),
-                            //               ].map((c) => DataCell(c)).toList())
-                            //           .map((e) => DataRow(cells: e))
-                            //           .toList(),
-                            //       headingRowColor: MaterialStateProperty.all(
-                            //         FlutterFlowTheme.of(context).secondary,
-                            //       ),
-                            //       headingRowHeight: 56.0,
-                            //       dataRowColor: MaterialStateProperty.all(
-                            //         FlutterFlowTheme.of(context)
-                            //             .secondaryBackground,
-                            //       ),
-                            //       dataRowHeight: 56.0,
-                            //       border: TableBorder(
-                            //         borderRadius: BorderRadius.circular(0.0),
-                            //       ),
-                            //       dividerThickness: 1.0,
-                            //       showBottomBorder: true,
-                            //       minWidth: 49.0,
-                            //     );
-                            //   },
-                            // ),
+                            child: DataTable2(
+                              columnSpacing: 10,
+                              horizontalMargin: 12,
+                              minWidth: 100,
+
+                              columns: [
+                                DataColumn2(
+                                  label: SizedBox(
+                                    width: 270,
+                                    child: Text(
+                                      'Ação',
+                                      style: FlutterFlowTheme.of(context).labelLarge,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
+                                  fixedWidth: 270,
+                                ),
+                                DataColumn2(
+                                  // size: ColumnSize.values.first,
+                                  label: SizedBox(
+                                    width: 100,
+                                    child: Text(
+                                      'Data',
+                                      style: FlutterFlowTheme.of(context).labelLarge,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              rows: List<DataRow>.generate(
+                                5, // numero de linhas
+                                (index) => DataRow(
+                                  cells: [
+                                    DataCell(Text('A' * (10 - index % 10))),
+                                    DataCell(SizedBox(
+                                      width: 100,
+                                      child: Text(
+                                        'B' * (10 - (index + 5) % 10),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                              headingRowColor: MaterialStateProperty.all(
+                                FlutterFlowTheme.of(context).secondary,
+                              ),
+                              headingRowHeight: 56.0,
+                              dataRowColor: MaterialStateProperty.all(
+                                FlutterFlowTheme.of(context).secondaryBackground,
+                              ),
+                              dataRowHeight: 56.0,
+                              border: TableBorder(
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              dividerThickness: 1.0,
+                              showBottomBorder: true,
+                              // minWidth: 49.0,
+                            ),
                           ),
                         ],
                       ),
@@ -560,444 +663,4 @@ class _HomePageCaState extends State<HomePageCa> {
       ),
     );
   }
-  // Widget build(BuildContext context) {
-  //   return GestureDetector(
-  //     onTap: () => FocusScope.of(context).requestFocus(unfocusNode),
-  //     child: Scaffold(
-  //       key: scaffoldKey,
-  //       backgroundColor: const Color(0xffDFDFDF),
-  //       floatingActionButton: FloatingActionButton.extended(
-  //         onPressed: () async {
-  //           Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
-  //         },
-  //         backgroundColor: const Color(0xFFCEE397),
-  //         elevation: 0,
-  //         label: const Row(
-  //           mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Padding(
-  //               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-  //               child: Icon(
-  //                 Icons.add,
-  //                 color: Color(0xFFB36E40),
-  //                 size: 24,
-  //               ),
-  //             ),
-  //             Padding(
-  //               padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-  //               child: Text(
-  //                 'Cadastrar',
-  //                 style: TextStyle(
-  //                   fontFamily: 'Jost',
-  //                   color: Color(0xFFB36E40),
-  //                   fontWeight: FontWeight.bold,
-  //                 ),
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //       appBar: AppBar(
-  //         backgroundColor: const Color(0xffDFDFDF),
-  //         automaticallyImplyLeading: false,
-  //         actions: [
-  //           IconButton(
-  //               onPressed: () {
-  //                 setState(() {
-  //                   context.read<AuthService>().logout(context);
-  //                 });
-  //               },
-  //               icon: const Icon(Icons.logout))
-  //         ],
-  //         title: Align(
-  //           alignment: const AlignmentDirectional(-1, 0),
-  //           child: Image.asset(
-  //             'lib/assets/images/logo_black_text_no_bg.png',
-  //             width: 120,
-  //             height: 46,
-  //             fit: BoxFit.contain,
-  //           ),
-  //         ),
-  //         centerTitle: false,
-  //         elevation: 2,
-  //       ),
-  //       body: SafeArea(
-  //         top: true,
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Column(
-  //               mainAxisSize: MainAxisSize.max,
-  //               children: [
-  //                 const Row(
-  //                   mainAxisSize: MainAxisSize.max,
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   crossAxisAlignment: CrossAxisAlignment.end,
-  //                   children: [
-  //                     Align(
-  //                       alignment: AlignmentDirectional(-1, 0),
-  //                       child: Padding(
-  //                         padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-  //                         child: Text(
-  //                           'Categorias em alta',
-  //                           style: TextStyle(
-  //                             fontFamily: 'Jost',
-  //                             color: Colors.red,
-  //                             fontSize: 16,
-  //                             fontWeight: FontWeight.w500,
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     Padding(
-  //                       padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-  //                       child: Icon(
-  //                         Icons.local_fire_department_outlined,
-  //                         color: Colors.red,
-  //                         size: 24,
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 const Divider(
-  //                   thickness: 1,
-  //                   indent: 16,
-  //                   endIndent: 30,
-  //                   color: Colors.red,
-  //                 ),
-  //                 Padding(
-  //                   padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
-  //                   child: Row(
-  //                     mainAxisSize: MainAxisSize.max,
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     children: [
-  //                       Column(
-  //                         mainAxisSize: MainAxisSize.max,
-  //                         children: [
-  //                           Padding(
-  //                             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-  //                             child: Container(
-  //                               width: 50,
-  //                               height: 50,
-  //                               clipBehavior: Clip.antiAlias,
-  //                               decoration: const BoxDecoration(
-  //                                 shape: BoxShape.circle,
-  //                               ),
-  //                               child: Image.network(
-  //                                 'https://picsum.photos/seed/795/600',
-  //                                 fit: BoxFit.scaleDown,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                           const Text(
-  //                             'Categoria 1',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                       Column(
-  //                         mainAxisSize: MainAxisSize.max,
-  //                         children: [
-  //                           Padding(
-  //                             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-  //                             child: Container(
-  //                               width: 50,
-  //                               height: 50,
-  //                               clipBehavior: Clip.antiAlias,
-  //                               decoration: const BoxDecoration(
-  //                                 shape: BoxShape.circle,
-  //                               ),
-  //                               child: Image.network(
-  //                                 'https://picsum.photos/seed/486/600',
-  //                                 fit: BoxFit.cover,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                           const Text(
-  //                             'Categoria 2',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                       Column(
-  //                         mainAxisSize: MainAxisSize.max,
-  //                         children: [
-  //                           Padding(
-  //                             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-  //                             child: Container(
-  //                               width: 50,
-  //                               height: 50,
-  //                               clipBehavior: Clip.antiAlias,
-  //                               decoration: const BoxDecoration(
-  //                                 shape: BoxShape.circle,
-  //                               ),
-  //                               child: Image.network(
-  //                                 'https://picsum.photos/seed/684/600',
-  //                                 fit: BoxFit.cover,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                           const Text(
-  //                             'Categoria 3',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                       Column(
-  //                         mainAxisSize: MainAxisSize.max,
-  //                         children: [
-  //                           Padding(
-  //                             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-  //                             child: Container(
-  //                               width: 50,
-  //                               height: 50,
-  //                               clipBehavior: Clip.antiAlias,
-  //                               decoration: const BoxDecoration(
-  //                                 shape: BoxShape.circle,
-  //                               ),
-  //                               child: Image.network(
-  //                                 'https://picsum.photos/seed/209/600',
-  //                                 fit: BoxFit.cover,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                           const Text(
-  //                             'Categoria 4',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                       Column(
-  //                         mainAxisSize: MainAxisSize.max,
-  //                         children: [
-  //                           Padding(
-  //                             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-  //                             child: Container(
-  //                               width: 50,
-  //                               height: 50,
-  //                               clipBehavior: Clip.antiAlias,
-  //                               decoration: const BoxDecoration(
-  //                                 shape: BoxShape.circle,
-  //                               ),
-  //                               child: Image.network(
-  //                                 'https://picsum.photos/seed/493/600',
-  //                                 fit: BoxFit.cover,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                           const Text(
-  //                             'Categoria 5',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(fontFamily: 'Jost', fontSize: 12, fontWeight: FontWeight.normal, color: Color(0xFFB36E40)),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //             Padding(
-  //               padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-  //               child: Column(
-  //                 mainAxisSize: MainAxisSize.max,
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: [
-  //                   Row(
-  //                     mainAxisSize: MainAxisSize.max,
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     children: [
-  //                       InkWell(
-  //                         onTap: () {
-  //                           Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePageCa()));
-  //                         },
-  //                         child: ElevatedButton.icon(
-  //                           onPressed: null,
-  //                           icon: const Icon(
-  //                             Icons.admin_panel_settings,
-  //                             color: Colors.black,
-  //                             size: 32,
-  //                           ),
-  //                           label: const Text(
-  //                             '',
-  //                             style: TextStyle(
-  //                               fontFamily: 'Jost',
-  //                               color: Color(0xffDFDFDF),
-  //                             ),
-  //                           ),
-  //                           style: ElevatedButton.styleFrom(
-  //                             backgroundColor: const Color(0xFFB36E40),
-  //                             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-  //                             shape: RoundedRectangleBorder(
-  //                               borderRadius: BorderRadius.circular(8),
-  //                             ),
-  //                             elevation: 0,
-  //                             side: const BorderSide(
-  //                               color: Colors.transparent,
-  //                               width: 1,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                       InkWell(
-  //                         onTap: () async {
-  //                           Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePageSt()));
-  //                         },
-  //                         child: TextButton.icon(
-  //                           onPressed: null,
-  //                           icon: const Icon(
-  //                             Icons.person,
-  //                             color: Colors.black,
-  //                             size: 32,
-  //                           ),
-  //                           label: const Text(
-  //                             '',
-  //                             style: TextStyle(
-  //                               fontFamily: 'Jost',
-  //                               color: Color(0xffDFDFDF),
-  //                             ),
-  //                           ),
-  //                           style: TextButton.styleFrom(
-  //                             backgroundColor: Colors.transparent,
-  //                             padding: const EdgeInsets.symmetric(horizontal: 24),
-  //                             shape: RoundedRectangleBorder(
-  //                               borderRadius: BorderRadius.circular(8),
-  //                             ),
-  //                             elevation: 0,
-  //                             side: const BorderSide(
-  //                               color: Colors.transparent,
-  //                               width: 1,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             const Padding(
-  //               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-  //               child: Column(
-  //                 mainAxisSize: MainAxisSize.max,
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: [
-  //                   Row(
-  //                     mainAxisSize: MainAxisSize.max,
-  //                     mainAxisAlignment: MainAxisAlignment.start,
-  //                     crossAxisAlignment: CrossAxisAlignment.end,
-  //                     children: [
-  //                       Align(
-  //                         alignment: AlignmentDirectional(-1, 0),
-  //                         child: Padding(
-  //                           padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-  //                           child: Text(
-  //                             'Validação Pendentes',
-  //                             style: TextStyle(
-  //                               fontFamily: 'Jost',
-  //                               color: Color(0xFFB36E40),
-  //                               fontSize: 16,
-  //                               fontWeight: FontWeight.bold,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   Divider(
-  //                     thickness: 1,
-  //                     indent: 16,
-  //                     endIndent: 30,
-  //                     color: Color(0xffB36E40),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             const Padding(
-  //               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-  //               child: Column(
-  //                 mainAxisSize: MainAxisSize.max,
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: [
-  //                   Row(
-  //                     mainAxisSize: MainAxisSize.max,
-  //                     mainAxisAlignment: MainAxisAlignment.start,
-  //                     crossAxisAlignment: CrossAxisAlignment.end,
-  //                     children: [
-  //                       Align(
-  //                         alignment: AlignmentDirectional(-1, 0),
-  //                         child: Padding(
-  //                           padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-  //                           child: Text(
-  //                             'Atendimentos',
-  //                             style: TextStyle(
-  //                               fontFamily: 'Jost',
-  //                               color: Color(0xFFB36E40),
-  //                               fontSize: 16,
-  //                               fontWeight: FontWeight.bold,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   Divider(
-  //                     thickness: 1,
-  //                     indent: 16,
-  //                     endIndent: 30,
-  //                     color: Color(0xffB36E40),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             const Padding(
-  //               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-  //               child: Column(
-  //                 mainAxisSize: MainAxisSize.max,
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: [
-  //                   Row(
-  //                     mainAxisSize: MainAxisSize.max,
-  //                     mainAxisAlignment: MainAxisAlignment.start,
-  //                     crossAxisAlignment: CrossAxisAlignment.end,
-  //                     children: [
-  //                       Align(
-  //                         alignment: AlignmentDirectional(-1, 0),
-  //                         child: Padding(
-  //                           padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 0),
-  //                           child: Text(
-  //                             'Atrasos',
-  //                             style: TextStyle(
-  //                               fontFamily: 'Jost',
-  //                               color: Color(0xFFB36E40),
-  //                               fontSize: 16,
-  //                               fontWeight: FontWeight.w500,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   Divider(
-  //                     thickness: 1,
-  //                     indent: 16,
-  //                     endIndent: 30,
-  //                     color: Color(0xffB36E40),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
 }

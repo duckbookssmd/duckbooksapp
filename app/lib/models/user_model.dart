@@ -5,6 +5,7 @@ class UserModel {
   late String? userSenha = "pass";
   late String? userConfSenha = "pass";
   late bool? isLogged = false;
+  late bool? isadm = false;
 
   UserModel({
     String? uid,
@@ -13,6 +14,7 @@ class UserModel {
     String? senha,
     String? confSenha,
     bool? logged,
+    bool? isAdm,
   }) {
     uId = uid;
     userMatricula = matricula;
@@ -20,6 +22,7 @@ class UserModel {
     userSenha = senha;
     userConfSenha = confSenha;
     isLogged = logged;
+    isadm = isAdm;
   }
 
   factory UserModel.fromMap(map) {
@@ -30,6 +33,7 @@ class UserModel {
       senha: map['userSenha'],
       confSenha: map['userConfSenha'],
       logged: map['isLogged'],
+      isAdm: map['isadm']
     );
   }
 
@@ -42,6 +46,7 @@ class UserModel {
       'pass': userSenha,
       'cfmPass': userConfSenha,
       'isLogged': isLogged,
+      'isAdm': isadm,
     };
   }
 }
