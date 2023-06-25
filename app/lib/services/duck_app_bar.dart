@@ -81,7 +81,7 @@ class DuckAppBar extends StatelessWidget {
                         padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            context.read<AuthService>().logout(context);
+                            await context.read<AuthService>().logout(context);
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
