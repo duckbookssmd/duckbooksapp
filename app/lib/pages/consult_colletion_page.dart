@@ -3,10 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import '../flutter_flow_theme.dart';
-import '../services/auth_service.dart';
+import '../services/duck_app_bar.dart';
 
 class ConsultPage extends StatefulWidget {
   const ConsultPage({Key? key}) : super(key: key);
@@ -25,6 +24,7 @@ List livros = [];
 bool isLoading = false;
 
 class _ConsultPageState extends State<ConsultPage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
@@ -89,6 +89,8 @@ class _ConsultPageState extends State<ConsultPage> {
     return GestureDetector(
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        key: scaffoldKey,
+        drawer: DuckAppBar(scaffoldKey: scaffoldKey,),
         body: SafeArea(
           top: true,
           child: Column(
@@ -96,13 +98,30 @@ class _ConsultPageState extends State<ConsultPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              scaffoldKey.currentState!.openDrawer();
+                            },
+                          );
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          size: 24.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                         child: TextFormField(
                           controller: searchController,
                           obscureText: false,
@@ -151,7 +170,10 @@ class _ConsultPageState extends State<ConsultPage> {
                             fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                             suffixIcon: IconButton(
                               onPressed: () => searchByName(searchController?.text ?? ''),
-                              icon: const Icon(Icons.search),
+                              icon: const Icon(
+                                Icons.search,
+                                size: 26,
+                              ),
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
@@ -177,23 +199,6 @@ class _ConsultPageState extends State<ConsultPage> {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: IconButton(
-                        onPressed: () {
-                          setState(
-                            () {
-                              context.read<AuthService>().logout(context);
-                            },
-                          );
-                        },
-                        icon: Icon(
-                          Icons.menu,
-                          size: 24.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -209,7 +214,7 @@ class _ConsultPageState extends State<ConsultPage> {
                           Align(
                             alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 8),
                               child: Text(
                                 'Em Alta',
                                 textAlign: TextAlign.start,
