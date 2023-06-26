@@ -48,6 +48,112 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        drawer: Drawer(
+          elevation: 16.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Align(
+                alignment: AlignmentDirectional(1.0, -1.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 20.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    hoverColor: FlutterFlowTheme.of(context).primaryBackground,
+                    icon: Icon(
+                      Icons.cancel_outlined,
+                      color: FlutterFlowTheme.of(context).alternate,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      logFirebaseEvent(
+                          'RESERVATIONS_cancel_outlined_ICN_ON_TAP');
+                      logFirebaseEvent('IconButton_drawer');
+                      if (scaffoldKey.currentState!.isDrawerOpen ||
+                          scaffoldKey.currentState!.isEndDrawerOpen) {
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 1.0,
+                height: MediaQuery.of(context).size.height * 0.85,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.power_settings_new_rounded,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Sair do app',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                        ].divide(SizedBox(width: 16.0)),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent('RESERVATIONS_Row_yzs5q83r_ON_TAP');
+                          logFirebaseEvent('Row_navigate_to');
+
+                          context.pushNamed(
+                            'LoginPage',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.topToBottom,
+                                duration: Duration(milliseconds: 300),
+                              ),
+                            },
+                          );
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            Text(
+                              'Fazer logout',
+                              style: FlutterFlowTheme.of(context).bodyLarge,
+                            ),
+                          ].divide(SizedBox(width: 16.0)),
+                        ),
+                      ),
+                    ),
+                  ].divide(SizedBox(height: 8.0)),
+                ),
+              ),
+            ].divide(SizedBox(height: 16.0)),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -297,26 +403,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -392,8 +480,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -502,26 +590,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -597,8 +667,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -707,26 +777,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -802,8 +854,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -912,26 +964,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -1007,8 +1041,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -1117,26 +1151,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -1212,8 +1228,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -1322,26 +1338,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -1417,8 +1415,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -1527,26 +1525,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -1622,8 +1602,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
@@ -1732,26 +1712,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'RESERVATIONS_CANCELAR_RESERVA_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_navigate_to');
-
-                                          context.pushNamed(
-                                            'ReturnLoanPage',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Cancelar reserva',
                                         options: FFButtonOptions(
@@ -1827,8 +1789,8 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               logFirebaseEvent(
                                                   'Button_navigate_to');
 
-                                              context
-                                                  .pushNamed('RenewLoanPage');
+                                              context.pushNamed(
+                                                  'CollectionDetailsPage');
                                             },
                                             text: 'Detalhes',
                                             options: FFButtonOptions(
