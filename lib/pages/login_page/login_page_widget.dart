@@ -351,7 +351,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         logFirebaseEvent('LOGIN_PAGE_PAGE_ENTRAR_BTN_ON_TAP');
                         logFirebaseEvent('Button_navigate_to');
 
-                        context.pushNamed(
+                        context.goNamed(
                           'HomePage',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
