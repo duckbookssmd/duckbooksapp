@@ -53,11 +53,11 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
             borderColor: Colors.transparent,
             borderRadius: 30.0,
             borderWidth: 1.0,
-            buttonSize: 60.0,
+            buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).accent3,
-              size: 30.0,
+              color: FlutterFlowTheme.of(context).primary,
+              size: 32.0,
             ),
             onPressed: () async {
               logFirebaseEvent('HELP_arrow_back_ios_rounded_ICN_ON_TAP');
@@ -67,12 +67,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
           ),
           title: Text(
             'Dúvidas - Validação',
-            style: FlutterFlowTheme.of(context).displayLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                  color: FlutterFlowTheme.of(context).alternate,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).displayLargeFamily),
-                ),
+            style: FlutterFlowTheme.of(context).displayLarge,
           ),
           actions: [],
           centerTitle: false,
@@ -125,18 +120,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                       '2ª Etapa - Validação de Cadastro',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily),
-                                          ),
+                                          .headlineLarge,
                                     ),
                                     AutoSizeText(
                                       'Pré-cadastro realizado.\nAgora você deve procurar\num membro do Centro Acadêmico\npara validar seu cadastro.',
@@ -147,8 +131,6 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .titleMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -169,7 +151,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                       '2ª Etapa - Validação de Cadastro',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                                          .headlineLarge,
                                     ),
                                     AutoSizeText(
                                       'Para validar seu cadastro\nvocê deve apresentar\nAtestado de Matrícula\n e documento com foto.',
@@ -200,7 +182,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                       '2ª Etapa - Validação de Cadastro',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                                          .headlineLarge,
                                     ),
                                     AutoSizeText(
                                       'Após este passo você terá\nacesso as funções do aplicativo.',
@@ -248,9 +230,10 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                                   radius: 16.0,
                                   dotWidth: 16.0,
                                   dotHeight: 8.0,
-                                  dotColor: Color(0x4D3F5A8D),
-                                  activeDotColor:
-                                      FlutterFlowTheme.of(context).accent2,
+                                  dotColor:
+                                      FlutterFlowTheme.of(context).outline,
+                                  activeDotColor: FlutterFlowTheme.of(context)
+                                      .onPrimaryContainer,
                                   paintStyle: PaintingStyle.fill,
                                 ),
                               ),
@@ -282,7 +265,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).labelLargeFamily,
-                              color: FlutterFlowTheme.of(context).info,
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               fontSize: 16.0,
                               decoration: TextDecoration.underline,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

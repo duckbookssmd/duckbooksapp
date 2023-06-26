@@ -77,7 +77,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   },
                   child: FaIcon(
                     FontAwesomeIcons.questionCircle,
-                    color: FlutterFlowTheme.of(context).info,
+                    color:
+                        FlutterFlowTheme.of(context).onSurfaceVariantContainer,
                     size: 32.0,
                   ),
                 ),
@@ -103,7 +104,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        'assets/images/vertical_logo_nobg.png',
+                        Theme.of(context).brightness == Brightness.dark
+                            ? 'assets/images/Ativo_12.png'
+                            : 'assets/images/vertical_logo_nobg.png',
                         width: 300.0,
                         height: 200.0,
                         fit: BoxFit.scaleDown,
@@ -129,16 +132,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             isDense: true,
                             hintText: 'Matrícula ou SIAPE',
                             hintStyle: FlutterFlowTheme.of(context)
-                                .bodyLarge
+                                .titleLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyLargeFamily,
+                                      .titleLargeFamily,
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyLargeFamily),
+                                          .titleLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -149,7 +152,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
+                                color: FlutterFlowTheme.of(context)
+                                    .onTertiaryContainer,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(15.0),
@@ -169,8 +173,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            fillColor:
+                                FlutterFlowTheme.of(context).surfaceContainer,
                             prefixIcon: Icon(
                               Icons.location_history_rounded,
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -191,14 +195,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 : null,
                           ),
                           style: FlutterFlowTheme.of(context)
-                              .bodyLarge
+                              .titleLarge
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
+                                    .titleLargeFamily,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
+                                        .titleLargeFamily),
                               ),
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.textController1Validator
@@ -220,17 +224,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           decoration: InputDecoration(
                             isDense: true,
                             hintText: 'Senha',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyLargeFamily,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyLargeFamily),
-                                ),
+                            hintStyle: FlutterFlowTheme.of(context).titleLarge,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -240,7 +234,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
+                                color: FlutterFlowTheme.of(context)
+                                    .onTertiaryContainer,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(15.0),
@@ -260,8 +255,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            fillColor:
+                                FlutterFlowTheme.of(context).surfaceContainer,
                             prefixIcon: Icon(
                               Icons.vpn_key,
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -282,17 +277,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
-                              ),
-                          cursorColor: Color(0xFF311A0B),
+                          style: FlutterFlowTheme.of(context).titleLarge,
+                          cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.textController2Validator
                               .asValidator(context),
                         ),
@@ -319,7 +305,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                               ),
                               unselectedWidgetColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  FlutterFlowTheme.of(context)
+                                      .onSurfaceVariantContainer,
                             ),
                             child: Checkbox(
                               value: _model.checkboxValue ??= false,
@@ -328,9 +315,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     () => _model.checkboxValue = newValue!);
                               },
                               activeColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              checkColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  .onSurfaceVariantContainer,
+                              checkColor: FlutterFlowTheme.of(context)
+                                  .surfaceVariantContainer,
                             ),
                           ),
                           Align(
@@ -339,17 +326,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               'Lembrar senha',
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
-                                  .titleSmall
+                                  .bodyLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
+                                        .bodyLargeFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    fontWeight: FontWeight.normal,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
+                                                .bodyLargeFamily),
                                   ),
                             ),
                           ),
@@ -383,16 +369,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         textStyle: FlutterFlowTheme.of(context)
-                            .bodyLarge
+                            .titleLarge
                             .override(
                               fontFamily:
-                                  FlutterFlowTheme.of(context).bodyLargeFamily,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              fontSize: 16.0,
+                                  FlutterFlowTheme.of(context).titleLargeFamily,
+                              color:
+                                  FlutterFlowTheme.of(context).primaryContainer,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyLargeFamily),
+                                  FlutterFlowTheme.of(context)
+                                      .titleLargeFamily),
                             ),
                         elevation: 5.0,
                         borderSide: BorderSide(
@@ -412,7 +399,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyLargeFamily,
-                            color: FlutterFlowTheme.of(context).accent2,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             decoration: TextDecoration.underline,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyLargeFamily),
@@ -428,16 +415,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       children: [
                         Text(
                           'Não possui cadastro ?',
-                          style: FlutterFlowTheme.of(context)
-                              .titleLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleLargeFamily),
-                              ),
+                          style: FlutterFlowTheme.of(context).bodyLarge,
                         ),
                         InkWell(
                           splashColor: Colors.transparent,
@@ -468,7 +446,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context).accent2,
                                   decoration: TextDecoration.underline,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
