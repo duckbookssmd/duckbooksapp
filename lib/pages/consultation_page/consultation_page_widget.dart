@@ -158,111 +158,52 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(6.0, 16.0, 22.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor:
-                              FlutterFlowTheme.of(context).primaryBackground,
-                          icon: Icon(
-                            Icons.menu,
-                            color: FlutterFlowTheme.of(context)
-                                .onSurfaceVariantContainer,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'CONSULTATION_PAGE_PAGE_menu_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_drawer');
-                            scaffoldKey.currentState!.openEndDrawer();
-                          },
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(6.0, 16.0, 22.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        fillColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        icon: Icon(
+                          Icons.menu,
+                          color: FlutterFlowTheme.of(context)
+                              .onSurfaceVariantContainer,
+                          size: 24.0,
                         ),
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'CONSULTATION_PAGE_PAGE_menu_ICN_ON_TAP');
+                          logFirebaseEvent('IconButton_drawer');
+                          scaffoldKey.currentState!.openDrawer();
+                        },
                       ),
-                      Expanded(
-                        child: TextFormField(
-                          controller: _model.textController,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.textController',
-                            Duration(milliseconds: 2000),
-                            () => setState(() {}),
-                          ),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Pesquise uma obra aqui...',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          style: FlutterFlowTheme.of(context)
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        controller: _model.textController,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.textController',
+                          Duration(milliseconds: 2000),
+                          () => setState(() {}),
+                        ),
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelText: 'Pesquise uma obra aqui...',
+                          labelStyle: FlutterFlowTheme.of(context)
                               .titleLarge
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
@@ -273,66 +214,124 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),
                               ),
-                          cursorColor: FlutterFlowTheme.of(context).secondary,
-                          validator: _model.textControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                      badges.Badge(
-                        badgeContent: Text(
-                          '2',
-                          textAlign: TextAlign.end,
-                          style: FlutterFlowTheme.of(context)
-                              .labelMedium
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .titleLarge
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .labelMediumFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
+                                    .titleLargeFamily,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .labelMediumFamily),
+                                        .titleLargeFamily),
                               ),
-                        ),
-                        showBadge: true,
-                        shape: badges.BadgeShape.circle,
-                        badgeColor: FlutterFlowTheme.of(context).primary,
-                        elevation: 4.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        position: badges.BadgePosition.topEnd(),
-                        animationType: badges.BadgeAnimationType.scale,
-                        toAnimate: true,
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            icon: Icon(
-                              Icons.notifications,
-                              color: FlutterFlowTheme.of(context)
-                                  .onSurfaceVariantContainer,
-                              size: 24.0,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).info,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: FlutterFlowTheme.of(context).primaryText,
                           ),
                         ),
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleLargeFamily,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleLargeFamily),
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).secondary,
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
                       ),
-                    ].divide(SizedBox(width: 8.0)),
-                  ),
+                    ),
+                    badges.Badge(
+                      badgeContent: Text(
+                        '2',
+                        textAlign: TextAlign.end,
+                        style: FlutterFlowTheme.of(context)
+                            .labelMedium
+                            .override(
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .labelMediumFamily,
+                              color:
+                                  FlutterFlowTheme.of(context).primaryContainer,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .labelMediumFamily),
+                            ),
+                      ),
+                      showBadge: true,
+                      shape: badges.BadgeShape.circle,
+                      badgeColor: FlutterFlowTheme.of(context).primary,
+                      elevation: 4.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      position: badges.BadgePosition.topEnd(),
+                      animationType: badges.BadgeAnimationType.scale,
+                      toAnimate: true,
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          icon: Icon(
+                            Icons.notifications,
+                            color: FlutterFlowTheme.of(context)
+                                .onSurfaceVariantContainer,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ),
+                    ),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -342,7 +341,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 0.0, 8.0),
+                                    0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   'Em Alta',
                                   textAlign: TextAlign.start,
@@ -355,7 +354,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 8.0),
+                                    0.0, 0.0, 0.0, 8.0),
                                 child: Container(
                                   height: 100.0,
                                   decoration: BoxDecoration(),
@@ -620,22 +619,22 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 8.0),
-                    child: Text(
-                      'Acervo Completo',
-                      style: FlutterFlowTheme.of(context).displayLarge,
-                    ),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: AlignmentDirectional(-1.0, 0.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 8.0),
+                  child: Text(
+                    'Acervo Completo',
+                    style: FlutterFlowTheme.of(context).displayLarge,
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -705,7 +704,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowReservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -749,10 +748,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -832,6 +838,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -910,7 +922,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowUnreservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -954,10 +966,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1037,6 +1056,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1115,7 +1140,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowReservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1159,10 +1184,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1242,6 +1274,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1320,7 +1358,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowReservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1364,10 +1402,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1447,6 +1492,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1525,7 +1576,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowUnreservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1569,10 +1620,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1652,6 +1710,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1730,7 +1794,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowReservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1774,10 +1838,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1857,6 +1928,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1935,7 +2012,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowUnreservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1979,10 +2056,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -2062,6 +2146,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -2140,7 +2230,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               'Button_navigate_to');
 
                                           context.pushNamed(
-                                            'LoanPage',
+                                            'BorrowUnreservedPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -2184,10 +2274,17 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
                                       ),
                                     ),
@@ -2267,6 +2364,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -2282,8 +2385,8 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                     ].divide(SizedBox(height: 16.0)),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

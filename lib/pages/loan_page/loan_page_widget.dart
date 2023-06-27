@@ -185,7 +185,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                           onPressed: () async {
                             logFirebaseEvent('LOAN_PAGE_PAGE_menu_ICN_ON_TAP');
                             logFirebaseEvent('IconButton_drawer');
-                            scaffoldKey.currentState!.openEndDrawer();
+                            scaffoldKey.currentState!.openDrawer();
                           },
                         ),
                       ),
@@ -454,11 +454,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -539,7 +547,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -662,11 +677,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -747,7 +770,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -870,11 +900,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -955,7 +993,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -1078,11 +1123,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -1163,7 +1216,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -1286,11 +1346,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -1371,7 +1439,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -1494,11 +1569,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -1579,7 +1662,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -1702,11 +1792,19 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -1787,7 +1885,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),
@@ -1910,11 +2015,18 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
-                                            width: 0.0,
+                                            color: Colors.transparent,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayYellow,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onSecondaryContainer,
                                         ),
+                                        showLoadingIndicator: false,
                                       ),
                                     ),
                                     Align(
@@ -1995,7 +2107,14 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayBlue,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
                                             ),
+                                            showLoadingIndicator: false,
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
                                       ),

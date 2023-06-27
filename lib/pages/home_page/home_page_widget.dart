@@ -195,7 +195,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 logFirebaseEvent(
                                     'HOME_PAGE_PAGE_menu_ICN_ON_TAP');
                                 logFirebaseEvent('IconButton_drawer');
-                                scaffoldKey.currentState!.openEndDrawer();
+                                scaffoldKey.currentState!.openDrawer();
                               },
                             ),
                           ),

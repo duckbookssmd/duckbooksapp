@@ -73,30 +73,34 @@ class _ContactUsersPageWidgetState extends State<ContactUsersPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(-1.0, 0.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
-                  child: Text(
-                    'Usuários ativos',
-                    style: FlutterFlowTheme.of(context).displayMedium,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                    child: Text(
+                      'Usuários ativos',
+                      style: FlutterFlowTheme.of(context).displayMedium,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 1.0,
-                  height: MediaQuery.of(context).size.height * 0.85,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 1.0,
+                    height: MediaQuery.of(context).size.height * 0.85,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

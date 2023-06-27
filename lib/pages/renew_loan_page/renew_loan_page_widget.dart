@@ -52,11 +52,11 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
             borderColor: Colors.transparent,
             borderRadius: 30.0,
             borderWidth: 1.0,
-            buttonSize: 60.0,
+            buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).accent3,
-              size: 30.0,
+              color: FlutterFlowTheme.of(context).primary,
+              size: 32.0,
             ),
             onPressed: () async {
               logFirebaseEvent('RENEW_LOAN_arrow_back_ios_rounded_ICN_ON');
@@ -66,12 +66,7 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
           ),
           title: Text(
             'Renovar Empréstimo',
-            style: FlutterFlowTheme.of(context).displayLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                  color: FlutterFlowTheme.of(context).alternate,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).displayLargeFamily),
-                ),
+            style: FlutterFlowTheme.of(context).displayLarge,
           ),
           actions: [],
           centerTitle: false,

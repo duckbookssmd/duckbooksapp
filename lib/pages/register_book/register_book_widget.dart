@@ -83,424 +83,438 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
-                child: Text(
-                  'Informações da Obra',
-                  style: FlutterFlowTheme.of(context).displayMedium,
-                ),
-              ),
-              Form(
-                key: _model.formKey,
-                autovalidateMode: AutovalidateMode.disabled,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController1,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Cód.',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Cód.',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          validator: _model.textController1Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController2,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Nome',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Nome',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          validator: _model.textController2Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController3,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Autor',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Autor',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          validator: _model.textController3Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController4,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Edição',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Edição',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          validator: _model.textController4Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController5,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Ano',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Ano',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          validator: _model.textController5Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        child: TextFormField(
-                          controller: _model.textController6,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Data de Cadastro',
-                            labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Data de Cadastro',
-                            hintStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryContainer,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                          keyboardType: TextInputType.datetime,
-                          validator: _model.textController6Validator
-                              .asValidator(context),
-                          inputFormatters: [_model.textFieldMask6],
-                        ),
-                      ),
-                      FlutterFlowDropDown<String>(
-                        controller: _model.dropDownValueController ??=
-                            FormFieldController<String>(null),
-                        options: [
-                          'Livro',
-                          'Mangá/Gibi',
-                          'DVD',
-                          'Periódico(Artigo)',
-                          'Revista'
-                        ],
-                        onChanged: (val) =>
-                            setState(() => _model.dropDownValue = val),
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        textStyle: FlutterFlowTheme.of(context).bodyLarge,
-                        hintText: 'Qual o tipo de obra?',
-                        icon: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
-                        ),
-                        fillColor:
-                            FlutterFlowTheme.of(context).surfaceContainer,
-                        elevation: 2.0,
-                        borderColor: Colors.transparent,
-                        borderWidth: 2.0,
-                        borderRadius: 20.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 4.0, 16.0, 4.0),
-                        hidesUnderline: true,
-                        isSearchable: false,
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'REGISTER_BOOK_CADASTRAR_OBRA_BTN_ON_TAP');
-                              logFirebaseEvent('Button_alert_dialog');
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('Confirmar cadastro'),
-                                            content: Text(
-                                                'Deseja finalizar o cadastro dessa obra ?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancelar'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: Text('Confirmar'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                            },
-                            text: 'Cadastrar obra',
-                            icon: Icon(
-                              Icons.note_add,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 48.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .tertiaryContainer,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleLargeFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .onTertiaryContainer,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleLargeFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(815.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ].divide(SizedBox(height: 16.0)),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                  child: Text(
+                    'Informações da Obra',
+                    style: FlutterFlowTheme.of(context).displayMedium,
                   ),
                 ),
-              ),
-            ].divide(SizedBox(height: 8.0)),
+                Form(
+                  key: _model.formKey,
+                  autovalidateMode: AutovalidateMode.always,
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController1,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Cód.',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Cód.',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).primaryContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            validator: _model.textController1Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController2,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Nome',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Nome',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).surfaceContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            validator: _model.textController2Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController3,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Autor',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Autor',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).surfaceContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            validator: _model.textController3Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController4,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Edição',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Edição',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).surfaceContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            validator: _model.textController4Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController5,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Ano',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Ano',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).surfaceContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            validator: _model.textController5Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: TextFormField(
+                            controller: _model.textController6,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Data de Cadastro',
+                              labelStyle:
+                                  FlutterFlowTheme.of(context).bodyLarge,
+                              hintText: 'Data de Cadastro',
+                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).info,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).primaryContainer,
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            keyboardType: TextInputType.datetime,
+                            validator: _model.textController6Validator
+                                .asValidator(context),
+                            inputFormatters: [_model.textFieldMask6],
+                          ),
+                        ),
+                        FlutterFlowDropDown<String>(
+                          controller: _model.dropDownValueController ??=
+                              FormFieldController<String>(null),
+                          options: [
+                            'Livro',
+                            'Mangá/Gibi',
+                            'DVD',
+                            'Periódico(Artigo)',
+                            'Revista'
+                          ],
+                          onChanged: (val) =>
+                              setState(() => _model.dropDownValue = val),
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          textStyle: FlutterFlowTheme.of(context).bodyLarge,
+                          hintText: 'Qual o tipo de obra?',
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          fillColor:
+                              FlutterFlowTheme.of(context).surfaceContainer,
+                          elevation: 2.0,
+                          borderColor: Colors.transparent,
+                          borderWidth: 2.0,
+                          borderRadius: 20.0,
+                          margin: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 4.0, 16.0, 4.0),
+                          hidesUnderline: true,
+                          isSearchable: false,
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 16.0, 0.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'REGISTER_BOOK_CADASTRAR_OBRA_BTN_ON_TAP');
+                                logFirebaseEvent('Button_alert_dialog');
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Confirmar cadastro'),
+                                              content: Text(
+                                                  'Deseja finalizar o cadastro dessa obra ?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Cancelar'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Confirmar'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                              },
+                              text: 'Cadastrar obra',
+                              icon: Icon(
+                                Icons.note_add,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 48.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .tertiaryContainer,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .onTertiaryContainer,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLargeFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(815.0),
+                              ),
+                              showLoadingIndicator: false,
+                            ),
+                          ),
+                        ),
+                      ].divide(SizedBox(height: 16.0)),
+                    ),
+                  ),
+                ),
+              ].divide(SizedBox(height: 8.0)),
+            ),
           ),
         ),
       ),

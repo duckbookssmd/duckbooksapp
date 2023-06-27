@@ -186,7 +186,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                             logFirebaseEvent(
                                 'RESERVATIONS_PAGE_PAGE_menu_ICN_ON_TAP');
                             logFirebaseEvent('IconButton_drawer');
-                            scaffoldKey.currentState!.openEndDrawer();
+                            scaffoldKey.currentState!.openDrawer();
                           },
                         ),
                       ),
@@ -436,10 +436,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -519,6 +526,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -623,10 +636,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -706,6 +726,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -810,10 +836,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -893,6 +926,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -997,10 +1036,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1080,6 +1126,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1184,10 +1236,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1267,6 +1326,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1371,10 +1436,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1454,6 +1526,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1558,10 +1636,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1641,6 +1726,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),
@@ -1745,10 +1836,17 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
+                                            color: Colors.transparent,
                                             width: 0.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(30.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlayBlue,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .onTertiaryContainer,
                                         ),
                                       ),
                                     ),
@@ -1828,6 +1926,12 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .overlayYellow,
+                                              hoverTextColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 8.0)),

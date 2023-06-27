@@ -78,6 +78,9 @@ abstract class FlutterFlowTheme {
   late Color onSurfaceVariantContainer;
   late Color onBackground;
   late Color outline;
+  late Color overlayBrown;
+  late Color overlayBlue;
+  late Color overlayYellow;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -197,6 +200,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color onSurfaceVariantContainer = Color(0xFF52443B);
   late Color onBackground = Color(0xFF211B00);
   late Color outline = Color(0xFF84746A);
+  late Color overlayBrown = Color(0xFF624128);
+  late Color overlayBlue = Color(0xFFA9BFFF);
+  late Color overlayYellow = Color(0xFFFFF583);
 }
 
 abstract class Typography {
@@ -653,6 +659,9 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color onSurfaceVariantContainer = Color(0xFFD6C3B7);
   late Color onBackground = Color(0xFFFDE265);
   late Color outline = Color(0xFF9F8D83);
+  late Color overlayBrown = Color(0xFF774F98);
+  late Color overlayBlue = Color(0xFFE13C7B);
+  late Color overlayYellow = Color(0xFFC7B52B);
 }
 
 extension TextStyleHelper on TextStyle {
