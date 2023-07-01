@@ -3,7 +3,7 @@ import 'package:app/pages/loan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../flutter_flow_theme.dart';
+import '/assets/theme/flutter_flow_theme.dart';
 import 'consult_colletion_page.dart';
 
 class HomeFinalUse extends StatefulWidget {
