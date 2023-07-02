@@ -106,11 +106,10 @@ class AuthService extends ChangeNotifier {
     BuildContext context,
     String registration,
     String password,
-    GlobalKey<FormState> formKey,
     bool rememberPass,
   ) async {
     bool succesSignIn = false;
-    await firebaseFirestore.collection('usuario').where('matriculaSIAPE', isEqualTo: registration).get().then(
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
       (value) async {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
@@ -118,7 +117,12 @@ class AuthService extends ChangeNotifier {
         }
         for (var docSnapshot in value.docs) {
           String email = docSnapshot.data()['email'];
-          succesSignIn = await signIn(context, email, password, formKey, docSnapshot.data()['isAdm']);
+          succesSignIn = await signIn(
+            context,
+            email,
+            password,
+            docSnapshot.data()['typeAdmin'],
+          );
         }
         _getUser();
       },
@@ -139,7 +143,6 @@ class AuthService extends ChangeNotifier {
     BuildContext context,
     String email,
     String senha,
-    GlobalKey<FormState> formKey,
     bool isAdm,
   ) async {
     bool resp = false;
@@ -216,17 +219,18 @@ class AuthService extends ChangeNotifier {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
 
-    UserModel userModel = UserModel();
+    UserModel userModel = UserModel(
+      uId: user!.uid,
+      matriculaSIAPE: texMatriculaController!.text,
+      email: texEmailController!.text,
+      pass: texSenhaController!.text,
+      typeAdmin: true,
+      validated: true, // Após finalizar a validação de usuários colocar pra false
+    );
 
     // * Writing all the values
-    userModel.uId = user!.uid;
-    userModel.userMatricula = texMatriculaController!.text;
-    userModel.userEmail = texEmailController!.text;
-    userModel.userSenha = texSenhaController!.text;
-    userModel.userConfSenha = texConfSenhaController!.text;
-    userModel.isadm = false;
 
-    await firebaseFirestore.collection("usuario").doc(user.uid).set(userModel.toMap());
+    await firebaseFirestore.collection("user").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
 
     // Não sei corrigir
@@ -238,10 +242,16 @@ class AuthService extends ChangeNotifier {
     );
   }
 
-  Future<bool> checkIfExist(String nome) async {
+  Future<bool> checkIfExist(String nome, String autor, String edicao) async {
     // depois trocar pra chave de identificação
     bool resp = false;
-    await firebaseFirestore.collection('obra').where('nome', isEqualTo: nome).get().then(
+    await firebaseFirestore
+        .collection('book')
+        .where('nome', isEqualTo: nome)
+        .where('autor', isEqualTo: autor)
+        .where('edicao', isEqualTo: int.tryParse(edicao))
+        .get()
+        .then(
       (value) {
         if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == 'true') {
           resp = false;
@@ -254,6 +264,7 @@ class AuthService extends ChangeNotifier {
   }
 
   postBookDetailsToFirestore(
+    // separar em 2 funções
     TextEditingController? nomeController,
     TextEditingController? autorController,
     TextEditingController? anoController,
@@ -264,34 +275,50 @@ class AuthService extends ChangeNotifier {
     bool isUpdating,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    if (!await checkIfExist(nomeController!.text) || isUpdating) {
+    if (!await checkIfExist(nomeController!.text, autorController!.text, edicaoController!.text) || isUpdating) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
       BookModel bookModel = BookModel(
+        // tem como otimizar a edição
         nome: nomeController.text,
-        autor: autorController!.text,
+        autor: autorController.text,
         ano: int.tryParse(anoController!.text),
-        edicao: int.tryParse(edicaoController!.text),
-        tipo: tipo,
+        edicao: int.tryParse(edicaoController.text),
+        tipoMidia: tipo,
         genero: genero,
         foto: 'Colocar',
-        dataCadastro: date.format(
-            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+        dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         editora: editoraController!.text,
+        dataDisponibilidade: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         isDeleted: false,
+        userloan: null,
+        admRecorder: usuario?.uid,
       );
 
-      await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
-      (isUpdating)
-          ? Fluttertoast.showToast(msg: "Obra salva no sistema!")
-          : Fluttertoast.showToast(msg: "Obra cadastrada no sistema!");
+      await firebaseFirestore.collection("book").add(bookModel.toMap());
+      Fluttertoast.showToast(msg: "Obra salva no sistema!");
+      if (isUpdating) {
+        // edição
+        await firebaseFirestore
+            .collection('book')
+            .where('nome', isEqualTo: bookModel.nome)
+            .where('autor', isEqualTo: bookModel.autor)
+            .where('edicao', isEqualTo: bookModel.edicao)
+            .get()
+            .then(
+          (value) {
+            firebaseFirestore.doc(value.docs.first.id).set(bookModel.toMap());
+          },
+        );
+      }
     } else {
       Fluttertoast.showToast(msg: 'Livro já Cadastrado');
     }
   }
 
   deleteBook(
+    // reduzir
     TextEditingController? nomeController,
     TextEditingController? autorController,
     TextEditingController? anoController,
@@ -301,25 +328,26 @@ class AuthService extends ChangeNotifier {
     TextEditingController? editoraController,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    if (await checkIfExist(nomeController!.text)) {
+    if (await checkIfExist(nomeController!.text, autorController!.text, edicaoController!.text)) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
       BookModel bookModel = BookModel(
-        nome: nomeController.text,
-        autor: autorController!.text,
-        ano: int.tryParse(anoController!.text),
-        edicao: int.tryParse(edicaoController!.text),
-        tipo: tipo,
-        genero: genero,
-        foto: 'Colocar',
-        dataCadastro: date.format(
-            DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
-        editora: editoraController!.text,
-        isDeleted: true,
-      );
+          nome: nomeController.text,
+          autor: autorController.text,
+          ano: int.tryParse(anoController!.text),
+          edicao: int.tryParse(edicaoController.text),
+          tipoMidia: tipo,
+          genero: genero,
+          foto: 'Colocar',
+          dataCadastro: date.format(
+              DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
+          dataDisponibilidade: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+          editora: editoraController!.text,
+          isDeleted: true,
+          userloan: null);
 
-      await firebaseFirestore.collection("obra").doc(bookModel.nome).set(bookModel.toMap());
+      await firebaseFirestore.collection("book").doc(bookModel.nome).set(bookModel.toMap());
       Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
     } else {
       Fluttertoast.showToast(msg: 'Livro Não existe no sistema');
