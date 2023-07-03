@@ -1,4 +1,5 @@
 import 'package:app/pages/register_book.dart';
+import 'package:app/pages/validation_page.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -344,40 +345,44 @@ class _HomePageCaState extends State<HomePageCa> {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     children: [
-                                      Container(
-                                        width: 96.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context).accent2,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                              child: FaIcon(
-                                                FontAwesomeIcons.userCheck,
-                                                color: FlutterFlowTheme.of(context).tertiary,
-                                                size: 30.0,
+                                      InkWell(
+                                        onTap: () => Navigator.push(
+                                            context, MaterialPageRoute(builder: (context) => const ValidationPage())),
+                                        child: Container(
+                                          width: 96.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context).accent2,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.userCheck,
+                                                  color: FlutterFlowTheme.of(context).tertiary,
+                                                  size: 30.0,
+                                                ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Validar\nusuário',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Validar\nusuário',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).tertiary,
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      ),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(
