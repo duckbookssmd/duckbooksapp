@@ -63,7 +63,7 @@ class _ConsultPageState extends State<ConsultPage> {
 
   atualizarLista() async {
     livros = await firebaseFirestore
-        .collection('obra')
+        .collection('book')
         .where('nome', isNull: false)
         .orderBy('nome', descending: false)
         .get()
@@ -90,7 +90,9 @@ class _ConsultPageState extends State<ConsultPage> {
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         key: scaffoldKey,
-        drawer: DuckAppBar(scaffoldKey: scaffoldKey,),
+        drawer: DuckAppBar(
+          scaffoldKey: scaffoldKey,
+        ),
         body: SafeArea(
           top: true,
           child: Column(

@@ -750,15 +750,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                       ) ??
                                       false;
                                   if (confirmDialogResponse) {
-                                    await context.read<AuthService>().deleteBook(
-                                          textNomeController,
-                                          textAutorController,
-                                          textAnoController,
-                                          textEditionController,
-                                          textType,
-                                          textGenre,
-                                          textPublisherController,
-                                        );
+                                    await context.read<AuthService>().deleteBook(book);
                                   }
                                   Navigator.pop(context);
                                   Navigator.pop(context);

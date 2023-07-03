@@ -243,6 +243,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<bool> checkIfExist(String nome, String autor, String edicao) async {
+    // TODO: Fazer uma função de retorno do _value_
     // depois trocar pra chave de identificação
     bool resp = false;
     await firebaseFirestore
@@ -296,7 +297,7 @@ class AuthService extends ChangeNotifier {
         admRecorder: usuario?.uid,
       );
 
-      await firebaseFirestore.collection("book").add(bookModel.toMap());
+      (!isUpdating) ? await firebaseFirestore.collection("book").add(bookModel.toMap()) : null;
       Fluttertoast.showToast(msg: "Obra salva no sistema!");
       if (isUpdating) {
         // edição
@@ -308,7 +309,7 @@ class AuthService extends ChangeNotifier {
             .get()
             .then(
           (value) {
-            firebaseFirestore.doc(value.docs.first.id).set(bookModel.toMap());
+            firebaseFirestore.collection("book").doc(value.docs.first.id).set(bookModel.toMap());
           },
         );
       }
@@ -318,39 +319,26 @@ class AuthService extends ChangeNotifier {
   }
 
   deleteBook(
-    // reduzir
-    TextEditingController? nomeController,
-    TextEditingController? autorController,
-    TextEditingController? anoController,
-    TextEditingController? edicaoController,
-    String? tipo,
-    String? genero,
-    TextEditingController? editoraController,
-    //TextEditingController? fotoController, Por enquanto não vou colocar foto
+    // reduzir pedindo o id pra fazer a mudança
+    Map<String, dynamic> obra,
   ) async {
-    if (await checkIfExist(nomeController!.text, autorController!.text, edicaoController!.text)) {
-      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-      DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
-
-      BookModel bookModel = BookModel(
-          nome: nomeController.text,
-          autor: autorController.text,
-          ano: int.tryParse(anoController!.text),
-          edicao: int.tryParse(edicaoController.text),
-          tipoMidia: tipo,
-          genero: genero,
-          foto: 'Colocar',
-          dataCadastro: date.format(
-              DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)), // pegar o datatime do dia com horas
-          dataDisponibilidade: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
-          editora: editoraController!.text,
-          isDeleted: true,
-          userloan: null);
-
-      await firebaseFirestore.collection("book").doc(bookModel.nome).set(bookModel.toMap());
-      Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
-    } else {
-      Fluttertoast.showToast(msg: 'Livro Não existe no sistema');
-    }
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    obra['isDeleted'] = true;
+    await firebaseFirestore
+        .collection('book')
+        .where('nome', isEqualTo: obra['nome'])
+        .where('autor', isEqualTo: obra['autor'])
+        .where('edicao', isEqualTo: int.tryParse(obra['nome']))
+        .get()
+        .then(
+      (value) async {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: "Obra não existe no sistema");
+        } else {
+          await firebaseFirestore.collection("book").doc(value.docs.first.id).set(obra);
+          Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
+        }
+      },
+    );
   }
 }
