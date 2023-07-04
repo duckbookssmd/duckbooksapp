@@ -1,16 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class ValidationModel {
   dynamic dateRequest;
   dynamic dateValidation;
   bool status;
-  String userAllwingId;
-  String userReader;
+  String? userAllwingId;
+  String? userReaderId;
   ValidationModel({
     required this.dateRequest,
     required this.dateValidation,
     required this.status,
     required this.userAllwingId,
-    required this.userReader,
+    this.userReaderId,
   });
 
   ValidationModel copyWith({
@@ -18,14 +17,14 @@ class ValidationModel {
     dynamic dateValidation,
     bool? status,
     String? userAllwingId,
-    String? userReader,
+    String? userReaderId,
   }) {
     return ValidationModel(
       dateRequest: dateRequest ?? this.dateRequest,
       dateValidation: dateValidation ?? this.dateValidation,
       status: status ?? this.status,
       userAllwingId: userAllwingId ?? this.userAllwingId,
-      userReader: userReader ?? this.userReader,
+      userReaderId: userReaderId ?? this.userReaderId,
     );
   }
 
@@ -35,7 +34,7 @@ class ValidationModel {
       'dateValidation': dateValidation,
       'status': status,
       'userAllwingId': userAllwingId,
-      'userReader': userReader,
+      'userReaderId': userReaderId,
     };
   }
 
@@ -44,14 +43,14 @@ class ValidationModel {
       dateRequest: map['dateRequest'] as dynamic,
       dateValidation: map['dateValidation'] as dynamic,
       status: map['status'] as bool,
-      userAllwingId: map['userAllwingId'] as String,
-      userReader: map['userReader'] as String,
+      userAllwingId: map['userAllwingId'] != null ? map['userAllwingId'] as String : null,
+      userReaderId: map['userReaderId'] != null ? map['userReaderId'] as String : null,
     );
   }
 
   @override
   String toString() {
-    return 'ValidationModel(dateRequest: $dateRequest, dateValidation: $dateValidation, status: $status, userAllwingId: $userAllwingId, userReader: $userReader)';
+    return 'ValidationModel(dateRequest: $dateRequest, dateValidation: $dateValidation, status: $status, userAllwingId: $userAllwingId, userReaderId: $userReaderId)';
   }
 
 }

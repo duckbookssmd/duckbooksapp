@@ -1,7 +1,9 @@
 import 'package:app/pages/Reservations_page.dart';
 import 'package:app/pages/loan_page.dart';
+// import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:provider/provider.dart';
 
 import '/assets/theme/flutter_flow_theme.dart';
 import 'consult_colletion_page.dart';
@@ -22,6 +24,55 @@ class _HomeFinalUseState extends State<HomeFinalUse> {
   void initState() {
     super.initState();
     pc = PageController(initialPage: paginaAtual);
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   // Se o USUARIO não tiver nickname, Fazer popup para atribuir um
+    //   // print(Provider.of<AuthService>(context, listen: false).nickname);
+    //   // Checar se ele tem ou não
+    //   if (Provider.of<AuthService>(context, listen: false).nickname == null) {
+    //     return showDialog<void>(
+    //       context: context, //fazer ser obrigatio no futuro
+          
+    //       builder: (BuildContext context) {
+    //         return AlertDialog(
+    //           title: const Text('Basic dialog title'),
+    //           content: Column(
+    //             children: [
+    //               const Text(
+    //                 'A dialog is a type of modal window that\n'
+    //                 'appears in front of app content to\n'
+    //                 'provide critical information, or prompt\n'
+    //                 'for a decision to be made.',
+    //               ),
+    //               TextFormField(),
+    //             ],
+    //           ),
+    //           actions: <Widget>[
+    //             TextButton(
+    //               style: TextButton.styleFrom(
+    //                 textStyle: Theme.of(context).textTheme.labelLarge,
+    //               ),
+    //               child: const Text('Disable'),
+    //               onPressed: () {
+    //                 Navigator.of(context).pop();
+    //               },
+    //             ),
+    //             TextButton(
+    //               style: TextButton.styleFrom(
+    //                 textStyle: Theme.of(context).textTheme.labelLarge,
+    //               ),
+    //               child: const Text('Enable'),
+    //               onPressed: () {
+    //                 Navigator.of(context).pop();
+    //               },
+    //             ),
+    //           ],
+    //         );
+    //       },
+    //     );
+    //   }
+    //   // POP up
+    //   // Atribuir
+    // });
   }
 
   setPaginaAtual(pagina) {

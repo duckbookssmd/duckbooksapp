@@ -1,4 +1,5 @@
 import 'package:app/models/book_model.dart';
+import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:app/pages/register_validation_help.dart';
@@ -22,6 +23,7 @@ class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? usuario;
+  // String? nickname;
   late bool isAdm;
   bool isLoading = true;
 
@@ -93,6 +95,17 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  sendValidationRequest(String registration) async {
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    ValidationModel validationRequest = ValidationModel(
+        dateRequest: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+        dateValidation: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+        status: false,
+        userAllwingId: null,
+        userReaderId: registration);
+    await firebaseFirestore.collection("validation").add(validationRequest.toMap());
+  }
+
   saveLogin(BuildContext context, String registration, String password) async {
     // Salvar
     await context.read<AppSettings>().setData(registration, password);
@@ -123,6 +136,7 @@ class AuthService extends ChangeNotifier {
             password,
             docSnapshot.data()['typeAdmin'],
           );
+          // nickname = docSnapshot.data()['nickname']; // Provavelmente não é a melhor prática
         }
         _getUser();
       },
@@ -232,6 +246,7 @@ class AuthService extends ChangeNotifier {
 
     await firebaseFirestore.collection("user").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
+    sendValidationRequest(texMatriculaController.text);
 
     // Não sei corrigir
     // ignore: use_build_context_synchronously
