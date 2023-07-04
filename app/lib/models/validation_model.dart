@@ -2,13 +2,13 @@ class ValidationModel {
   dynamic dateRequest;
   dynamic dateValidation;
   bool status;
-  String? userAllwingId;
+  String? userAllowingId;
   String? userReaderId;
   ValidationModel({
     required this.dateRequest,
     required this.dateValidation,
     required this.status,
-    required this.userAllwingId,
+    this.userAllowingId,
     this.userReaderId,
   });
 
@@ -16,14 +16,14 @@ class ValidationModel {
     dynamic dateRequest,
     dynamic dateValidation,
     bool? status,
-    String? userAllwingId,
+    String? userAllowingId,
     String? userReaderId,
   }) {
     return ValidationModel(
       dateRequest: dateRequest ?? this.dateRequest,
       dateValidation: dateValidation ?? this.dateValidation,
       status: status ?? this.status,
-      userAllwingId: userAllwingId ?? this.userAllwingId,
+      userAllowingId: userAllowingId ?? this.userAllowingId,
       userReaderId: userReaderId ?? this.userReaderId,
     );
   }
@@ -33,7 +33,7 @@ class ValidationModel {
       'dateRequest': dateRequest,
       'dateValidation': dateValidation,
       'status': status,
-      'userAllwingId': userAllwingId,
+      'userAllowingId': userAllowingId,
       'userReaderId': userReaderId,
     };
   }
@@ -43,14 +43,14 @@ class ValidationModel {
       dateRequest: map['dateRequest'] as dynamic,
       dateValidation: map['dateValidation'] as dynamic,
       status: map['status'] as bool,
-      userAllwingId: map['userAllwingId'] != null ? map['userAllwingId'] as String : null,
+      userAllowingId: map['userAllowingId'] != null ? map['userAllowingId'] as String : null,
       userReaderId: map['userReaderId'] != null ? map['userReaderId'] as String : null,
     );
   }
 
   @override
   String toString() {
-    return 'ValidationModel(dateRequest: $dateRequest, dateValidation: $dateValidation, status: $status, userAllwingId: $userAllwingId, userReaderId: $userReaderId)';
+    return 'ValidationModel(dateRequest: $dateRequest, dateValidation: $dateValidation, status: $status, userAllowingId: $userAllowingId, userReaderId: $userReaderId)';
   }
 
 }

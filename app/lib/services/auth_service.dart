@@ -95,13 +95,55 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  updateValidate(Map<String, dynamic> rV, String readerRegistration, String? userRegistration) async {
+    // TODO Fiz uma solução não legal, atualizar quando tiver tempo
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+
+    await firebaseFirestore
+        .collection('validation')
+        .where('userReaderId', isEqualTo: readerRegistration)
+        .get()
+        .then((value) async {
+      await firebaseFirestore.collection("validation").doc(value.docs.first.id).update(
+        {
+          "status": true,
+          "userAllowingId": userRegistration,
+          "dateValidation": date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch))
+        },
+      );
+    });
+  }
+
+  confirmValidation(String registration, Map<String, dynamic> requestValidate) async {
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+      (value) async {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Matrícula não encontrada');
+          return false;
+        }
+        for (var docSnapshot in value.docs) {
+          var usermap = docSnapshot.data();
+          usermap['validated'] = true;
+          firebaseFirestore.collection("user").doc(usermap['uId']).update({"validated": true});
+        }
+        Fluttertoast.showToast(msg: 'Validado com Sucesso');
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        return false;
+      },
+    );
+    updateValidate(requestValidate, registration, usuario?.uid);
+  }
+
   sendValidationRequest(String registration) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     ValidationModel validationRequest = ValidationModel(
         dateRequest: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         dateValidation: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         status: false,
-        userAllwingId: null,
+        userAllowingId: null,
         userReaderId: registration);
     await firebaseFirestore.collection("validation").add(validationRequest.toMap());
   }
@@ -129,13 +171,18 @@ class AuthService extends ChangeNotifier {
           return false;
         }
         for (var docSnapshot in value.docs) {
-          String email = docSnapshot.data()['email'];
-          succesSignIn = await signIn(
-            context,
-            email,
-            password,
-            docSnapshot.data()['typeAdmin'],
-          );
+          if (docSnapshot.data()['validated']) {
+            String email = docSnapshot.data()['email'];
+            succesSignIn = await signIn(
+              context,
+              email,
+              password,
+              docSnapshot.data()['typeAdmin'],
+            );
+          } else {
+            Fluttertoast.showToast(msg: 'Matrícula não validada');
+          }
+
           // nickname = docSnapshot.data()['nickname']; // Provavelmente não é a melhor prática
         }
         _getUser();
@@ -239,7 +286,7 @@ class AuthService extends ChangeNotifier {
       email: texEmailController!.text,
       pass: texSenhaController!.text,
       typeAdmin: true,
-      validated: true, // Após finalizar a validação de usuários colocar pra false
+      validated: false,
     );
 
     // * Writing all the values
