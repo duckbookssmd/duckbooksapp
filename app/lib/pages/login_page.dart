@@ -10,7 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../flutter_flow_theme.dart';
+import '/assets/theme/flutter_flow_theme.dart';
 import 'help_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));           
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
                   },
                   child: FaIcon(
                     // ignore: deprecated_member_use
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 const SizedBox(height: 5),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 90, 0, 50),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 82, 0, 50),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
@@ -130,343 +130,301 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        child: TextFormField(
-                          controller: texMatriculaController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            hintText: 'Matrícula ou SIAPE',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyLargeFamily,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyLargeFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            prefixIcon: Icon(
-                              Icons.location_history_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                            suffixIcon: texMatriculaController!.text.isNotEmpty
-                                ? InkWell(
-                                    onTap: () async {
-                                      texMatriculaController?.clear();
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.clear,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 18,
-                                    ),
-                                  )
-                                : null,
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
+                  alignment: const AlignmentDirectional(0, 0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: TextFormField(
+                        controller: texMatriculaController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          hintText: 'Matrícula ou SIAPE',
+                          hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
+                                fontSize: 16,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                               ),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                          cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Campo obrigatório';
-                            }
-                            // Outras validações
-                            return null; // Retorna nulo se a validação passar
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        child: TextFormField(
-                          controller: texSenhaController,
-                          obscureText: !passwordVisibility,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            hintText: 'Senha',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyLargeFamily,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyLargeFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            prefixIcon: Icon(
-                              Icons.vpn_key,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 20,
-                            ),
-                            suffixIcon: InkWell(
-                              onTap: () => setState(
-                                () => passwordVisibility = !passwordVisibility,
-                              ),
-                              focusNode: FocusNode(skipTraversal: true),
-                              child: Icon(
-                                passwordVisibility
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 18,
-                              ),
-                            ),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
-                              ),
-                          cursorColor: const Color(0xFF311A0B),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Senha vazia!';
-                            } else if (value.length < 6) {
-                              return 'Tamanho mímino de 6 dígitos';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(60, 0, 60, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Theme(
-                            data: ThemeData(
-                              checkboxTheme: CheckboxThemeData(
-                                visualDensity: VisualDensity.compact,
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              unselectedWidgetColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).info,
+                              width: 2,
                             ),
-                            child: Checkbox(
-                              value: checkboxValue,
-                              onChanged: (newValue) async {
-                                setState(() => checkboxValue = newValue!);
-                              },
-                              activeColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              checkColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                            ),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1, 0),
-                            child: Text(
-                              'Lembrar senha',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontWeight: FontWeight.normal,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          filled: true,
+                          fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                          prefixIcon: Icon(
+                            Icons.location_history_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                          suffixIcon: texMatriculaController!.text.isNotEmpty
+                              ? InkWell(
+                                  onTap: () async {
+                                    texMatriculaController?.clear();
+                                    setState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.clear,
+                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    size: 18,
                                   ),
+                                )
+                              : null,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
-                          ),
-                        ],
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Campo obrigatório';
+                          }
+                          // Outras validações
+                          return null; // Retorna nulo se a validação passar
+                        },
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                    child: TextButton(
-                      
-                      onPressed: () async {
-                        if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                            context.read<AuthService>().signInWithRegistration(
-                                  context,
-                                  texMatriculaController!.text,
-                                  texSenhaController!.text,
-                                  _formKey,
-                                  checkboxValue,
-                                );
-
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Entrando...'),
-                                  backgroundColor: Colors.green),
-                            );
-                          }
-                      },
-                      
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        foregroundColor: FlutterFlowTheme.of(context).tertiary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyLarge
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyLargeFamily,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyLargeFamily),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0, 0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: TextFormField(
+                        controller: texSenhaController,
+                        obscureText: !passwordVisibility,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          hintText: 'Senha',
+                          hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                              ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
                             ),
-                        elevation: 5,
-                      ), child: const Text('Entrar'),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).info,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          filled: true,
+                          fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                          prefixIcon: Icon(
+                            Icons.vpn_key,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 20,
+                          ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => passwordVisibility = !passwordVisibility,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              passwordVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                            ),
+                        cursorColor: const Color(0xFF311A0B),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Senha vazia!';
+                          } else if (value.length < 6) {
+                            return 'Tamanho mímino de 6 dígitos';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
                   ),
-                Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 78),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0, 0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(60, 0, 60, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          'Não possui cadastro ?',
-                          style: FlutterFlowTheme.of(context)
-                              .titleLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleLargeFamily),
+                        Theme(
+                          data: ThemeData(
+                            checkboxTheme: CheckboxThemeData(
+                              visualDensity: VisualDensity.compact,
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
                               ),
+                            ),
+                            unselectedWidgetColor: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                          child: Checkbox(
+                            value: checkboxValue,
+                            onChanged: (newValue) async {
+                              setState(() => checkboxValue = newValue!);
+                            },
+                            activeColor: FlutterFlowTheme.of(context).secondaryBackground,
+                            checkColor: FlutterFlowTheme.of(context).primaryText,
+                          ),
                         ),
-                        const SizedBox(width: 8),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroPage()));
-                          },
-                          
+                        Align(
+                          alignment: const AlignmentDirectional(-1, 0),
                           child: Text(
-                            'Cadastre-se',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context).accent2,
-                                  decoration: TextDecoration.underline,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
+                            'Lembrar senha',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                 ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                  child: TextButton(
+                    onPressed: () async {
+                      if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+                        context.read<AuthService>().signInWithRegistration(
+                              context,
+                              texMatriculaController!.text,
+                              texSenhaController!.text,
+                              checkboxValue,
+                            );
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Entrando...'), backgroundColor: Colors.green),
+                        );
+                      }
+                    },
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      backgroundColor: FlutterFlowTheme.of(context).alternate,
+                      foregroundColor: FlutterFlowTheme.of(context).tertiary,
+                      textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            fontSize: 16,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                          ),
+                      elevation: 5,
+                    ),
+                    child: const Text('Entrar'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 92),
+                  child: Text(
+                    'Esqueci a senha',
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                          color: FlutterFlowTheme.of(context).accent2,
+                          decoration: TextDecoration.underline,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Não possui cadastro ?',
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                            ),
+                      ),
+                      const SizedBox(width: 8),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const CadastroPage()));
+                        },
+                        child: Text(
+                          'Cadastre-se',
+                          style: FlutterFlowTheme.of(context).titleLarge.override(
+                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                color: FlutterFlowTheme.of(context).accent2,
+                                decoration: TextDecoration.underline,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),

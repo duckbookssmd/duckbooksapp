@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../flutter_flow_theme.dart';
-import '../services/duck_app_bar.dart';
+import '../assets/theme/flutter_flow_theme.dart';
+import '../widgets/duck_app_bar.dart';
 
 class LoanPage extends StatefulWidget {
   const LoanPage({Key? key}) : super(key: key);

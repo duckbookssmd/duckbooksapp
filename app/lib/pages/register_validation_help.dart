@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'login_page.dart';
 
-
 class RegisterValidationHelpPageWidget extends StatefulWidget {
   const RegisterValidationHelpPageWidget({Key? key}) : super(key: key);
 
@@ -14,7 +13,6 @@ class RegisterValidationHelpPageWidget extends StatefulWidget {
 }
 
 class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHelpPageWidget> {
-
   PageController? pageViewController;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -60,7 +58,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                       Align(
                         alignment: const AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0), 
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,10 +83,10 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                 child: Text(
                                   '2ª Etapa - Validação de Cadastro',
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -99,10 +97,10 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                       TextSpan(
                                         text: 'Pré- cadastro realizado.\nAgora você deve procurar\num membro do ',
                                         style: TextStyle(
-                                              fontFamily: 'Jost',
-                                              // color: Theme.of(context).colorScheme.primaryText,
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                          fontFamily: 'Jost',
+                                          // color: Theme.of(context).colorScheme.primaryText,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                       ),
                                       TextSpan(
                                         text: 'Centro Acadêmico\npara validar seu cadastro.',
@@ -148,10 +146,10 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                 child: Text(
                                   '2ª Etapa - Validação de Cadastro',
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -162,10 +160,10 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                       TextSpan(
                                         text: 'Para validar seu cadastro\nvocê deve apresentar \n',
                                         style: TextStyle(
-                                              fontFamily: 'Jost',
-                                              // color: FlutterFlowTheme.of(context).primaryText,
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                          fontFamily: 'Jost',
+                                          // color: FlutterFlowTheme.of(context).primaryText,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                       ),
                                       TextSpan(
                                         text: 'Atestado de Matrícula\n e documento com foto.',
@@ -211,10 +209,10 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                 child: Text(
                                   '2ª Etapa - Validação de Cadastro',
                                   style: TextStyle(
-                                        fontFamily: 'Jost',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                    fontFamily: 'Jost',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
                               ),
                               const Align(
@@ -224,9 +222,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   child: Text(
                                     'Após este passo você terá\nacesso as funções do aplicativo.',
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.normal 
-                                    ),
+                                    style: TextStyle(fontWeight: FontWeight.normal),
                                   ),
                                 ),
                               ),
@@ -236,11 +232,11 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  
                                   children: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                        Navigator.pushReplacement(
+                                            context, MaterialPageRoute(builder: (context) => const LoginPage()));
                                       },
                                       style: OutlinedButton.styleFrom(
                                         fixedSize: const Size(130, 40),
