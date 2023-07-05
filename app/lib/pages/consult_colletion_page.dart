@@ -435,7 +435,12 @@ class _ConsultPageState extends State<ConsultPage> {
                 ),
               ),
               (isLoading)
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(
+                      child: Image.asset(
+                        'lib/assets/images/pato_girando.gif',                       
+                        width: 200,
+                      ),
+                    )
                   : Expanded(
                       child: RefreshIndicator(
                         displacement: 10,
