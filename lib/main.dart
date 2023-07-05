@@ -14,7 +14,6 @@ import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
@@ -136,57 +135,57 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
-        selectedItemColor: FlutterFlowTheme.of(context).tertiary,
-        unselectedItemColor: FlutterFlowTheme.of(context).outline,
+        backgroundColor: FlutterFlowTheme.of(context).overlayBlue,
+        selectedItemColor: FlutterFlowTheme.of(context).primary,
+        unselectedItemColor: FlutterFlowTheme.of(context).primary,
         showSelectedLabels: true,
-        showUnselectedLabels: true,
+        showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
-              size: 18.0,
+              Icons.home_outlined,
+              size: 22.0,
             ),
             activeIcon: Icon(
-              Icons.home,
-              size: 22.0,
+              Icons.home_rounded,
+              size: 26.0,
             ),
             label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.clipboardList,
+            icon: Icon(
+              Icons.auto_stories_outlined,
               size: 22.0,
             ),
-            activeIcon: FaIcon(
-              FontAwesomeIcons.clipboardList,
-              size: 28.0,
+            activeIcon: Icon(
+              Icons.auto_stories_rounded,
+              size: 26.0,
             ),
             label: 'Empréstimos',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.bookmarks,
-              size: 24.0,
+              Icons.bookmarks_outlined,
+              size: 22.0,
             ),
             activeIcon: Icon(
-              Icons.bookmarks,
-              size: 30.0,
+              Icons.bookmarks_rounded,
+              size: 26.0,
             ),
             label: 'Reservas',
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.searchengin,
-              size: 24.0,
+            icon: Icon(
+              Icons.search,
+              size: 20.0,
             ),
-            activeIcon: FaIcon(
-              FontAwesomeIcons.searchengin,
-              size: 28.0,
+            activeIcon: Icon(
+              Icons.saved_search,
+              size: 30.0,
             ),
             label: 'Consulta',
             tooltip: '',

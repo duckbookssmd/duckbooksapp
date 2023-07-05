@@ -150,7 +150,7 @@ abstract class FlutterFlowTheme {
 }
 
 DeviceSize getDeviceSize(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
+  final width = MediaQuery.sizeOf(context).width;
   if (width < 479) {
     return DeviceSize.mobile;
   } else if (width < 991) {
@@ -168,33 +168,33 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF944B00);
+  late Color primary = const Color(0xFF305DA8);
   late Color secondary = const Color(0xFF676000);
-  late Color tertiary = const Color(0xFF305DA8);
+  late Color tertiary = const Color(0xFF944B00);
   late Color alternate = const Color(0xFF84746A);
-  late Color primaryText = const Color(0xFF301400);
+  late Color primaryText = const Color(0xFF170A00);
   late Color secondaryText = const Color(0xFF52443B);
   late Color primaryBackground = const Color(0xFFF3DFD2);
   late Color secondaryBackground = const Color(0xFFFFFBFF);
-  late Color accent1 = const Color(0xFF301400);
-  late Color accent2 = const Color(0xFF1F1C00);
-  late Color accent3 = const Color(0xFF001A41);
-  late Color accent4 = const Color(0xFF410002);
+  late Color accent1 = const Color(0x4D305DA8);
+  late Color accent2 = const Color(0x4D676000);
+  late Color accent3 = const Color(0x4D944B00);
+  late Color accent4 = const Color(0x4D84746A);
   late Color success = const Color(0xFF2ECC71);
   late Color warning = const Color(0xFFF5E63D);
   late Color error = const Color(0xFFBA1A1A);
   late Color info = const Color(0xFFD8E2FF);
 
-  late Color primaryContainer = Color(0xFFFFDCC5);
+  late Color primaryContainer = Color(0xFFD8E2FF);
   late Color secondaryContainer = Color(0xFFF5E63D);
-  late Color tertiaryContainer = Color(0xFFD8E2FF);
+  late Color tertiaryContainer = Color(0xFFFFDCC5);
   late Color errorContainer = Color(0xFFFFDAD6);
   late Color surfaceContainer = Color(0xFFFFFBFF);
   late Color surfaceVariantContainer = Color(0xFFF3DFD2);
   late Color background = Color(0xFFFFFBFF);
-  late Color onPrimaryContainer = Color(0xFF301400);
+  late Color onPrimaryContainer = Color(0xFF001A41);
   late Color onSecondaryContainer = Color(0xFF1F1C00);
-  late Color onTertiaryContainer = Color(0xFF001A41);
+  late Color onTertiaryContainer = Color(0xFF301400);
   late Color onErrorContainer = Color(0xFF410002);
   late Color onSurfaceContainer = Color(0xFF211B00);
   late Color onSurfaceVariantContainer = Color(0xFF52443B);
@@ -627,41 +627,41 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFFFB783);
+  late Color primary = const Color(0xFF305DA8);
   late Color secondary = const Color(0xFFD8CA1C);
-  late Color tertiary = const Color(0xFFADC7FF);
+  late Color tertiary = const Color(0xFFFFB783);
   late Color alternate = const Color(0xFF9F8D83);
   late Color primaryText = const Color(0xFFFFDCC5);
   late Color secondaryText = const Color(0xFFF5E63D);
   late Color primaryBackground = const Color(0xFF52443B);
   late Color secondaryBackground = const Color(0xFF211B00);
-  late Color accent1 = const Color(0xFFFFDCC5);
-  late Color accent2 = const Color(0xFFF5E63D);
-  late Color accent3 = const Color(0xFFD8E2FF);
-  late Color accent4 = const Color(0xFFFFDAD6);
+  late Color accent1 = const Color(0x4DADC7FF);
+  late Color accent2 = const Color(0x4DD8CA1C);
+  late Color accent3 = const Color(0x4DFFB783);
+  late Color accent4 = const Color(0x4D9F8D83);
   late Color success = const Color(0xFFADFFCF);
   late Color warning = const Color(0xFFFFFAAD);
   late Color error = const Color(0xFFFFB4AB);
   late Color info = const Color(0xFF0C448E);
 
-  late Color primaryContainer = Color(0xFF713700);
+  late Color primaryContainer = Color(0xFFADC7FF);
   late Color secondaryContainer = Color(0xFF4E4800);
-  late Color tertiaryContainer = Color(0xFF0C448E);
+  late Color tertiaryContainer = Color(0xFF713700);
   late Color errorContainer = Color(0xFF93000A);
   late Color surfaceContainer = Color(0xFF211B00);
   late Color surfaceVariantContainer = Color(0xFF52443B);
   late Color background = Color(0xFF211B00);
-  late Color onPrimaryContainer = Color(0xFFFFDCC5);
+  late Color onPrimaryContainer = Color(0xFFD8E2FF);
   late Color onSecondaryContainer = Color(0xFFF5E63D);
-  late Color onTertiaryContainer = Color(0xFFD8E2FF);
+  late Color onTertiaryContainer = Color(0xFFFFDCC5);
   late Color onErrorContainer = Color(0xFFFFDAD6);
   late Color onSurfaceContainer = Color(0xFFFDE265);
   late Color onSurfaceVariantContainer = Color(0xFFD6C3B7);
   late Color onBackground = Color(0xFFFDE265);
   late Color outline = Color(0xFF9F8D83);
-  late Color overlayBrown = Color(0xFF774F98);
-  late Color overlayBlue = Color(0xFFE13C7B);
-  late Color overlayYellow = Color(0xFFC7B52B);
+  late Color overlayBrown = Color(0xFF624128);
+  late Color overlayBlue = Color(0xFFA9BFFF);
+  late Color overlayYellow = Color(0xFFFFF583);
 }
 
 extension TextStyleHelper on TextStyle {
