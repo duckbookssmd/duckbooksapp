@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../flutter_flow_theme.dart';
-import 'auth_service.dart';
+import '/assets/theme/flutter_flow_theme.dart';
+import '../services/auth_service.dart';
 
 class DuckAppBar extends StatelessWidget {
   const DuckAppBar({Key? key, required this.scaffoldKey}) : super(key: key);

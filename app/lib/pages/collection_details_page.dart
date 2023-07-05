@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../flutter_flow_theme.dart';
+import '/assets/theme/flutter_flow_theme.dart';
 
 class CollectionDetailsPage extends StatefulWidget {
   const CollectionDetailsPage({Key? key, required this.book}) : super(key: key);
