@@ -1,4 +1,5 @@
 import 'package:app/pages/register_book.dart';
+import 'package:app/pages/register_loan_page.dart';
 import 'package:app/pages/validation_page.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -209,7 +210,8 @@ class _HomePageCaState extends State<HomePageCa> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterBook()));
+                                          Navigator.push(
+                                              context, MaterialPageRoute(builder: (context) => const RegisterLoanPageWidget()));
                                         },
                                         child: SizedBox(
                                           child: Container(

@@ -5,7 +5,7 @@ class UserModel {
   String? pass;
   String? nickname;
   bool? typeAdmin = true; // Após finalizar a validação de usuários colocar pra false
-  bool? validated = true; // Após finalizar a validação de usuários colocar pra false
+  bool? validated = false; // Após finalizar a validação de usuários colocar pra false
   List<Map>? userLoans = [
     {'loan': {}},
   ];
