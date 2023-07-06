@@ -9,7 +9,7 @@ class BookModel {
   late String? genero = "";
   late String dataCadastro;
   late bool isDeleted;
-  late String dataDisponibilidade;
+  late String? dataDisponibilidade;
   late dynamic userloan;
   late dynamic admRecorder;
 

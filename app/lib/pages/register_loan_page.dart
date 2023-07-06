@@ -1,9 +1,3 @@
-// import '/flutter_flow/flutter_flow_drop_down.dart';
-// import '/flutter_flow/flutter_flow_icon_button.dart';
-// import '/flutter_flow/flutter_flow_theme.dart';
-// import '/flutter_flow/flutter_flow_util.dart';
-// import '/flutter_flow/flutter_flow_widgets.dart';
-// import '/flutter_flow/form_field_controller.dart';
 // import 'package:barcode_widget/barcode_widget.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../assets/theme/flutter_flow_theme.dart';
-// import 'package:provider/provider.dart';
 
 class RegisterLoanPageWidget extends StatefulWidget {
   const RegisterLoanPageWidget({Key? key}) : super(key: key);
@@ -61,7 +54,6 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
         Provider.of<AuthService>(context, listen: false)
             .getEmailByRegistration(matricula)
             .then((value) => emailController!.text = value ?? 'Matrícula não existente no sistema');
-        print(emailController!.text);
       });
     }
 
@@ -669,7 +661,98 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                   ),
                   const SizedBox(height: 32),
                   TextButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      showDialog<bool>(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            // title: const Text('Confirmar Validação de usuário'),
+                            content: SizedBox(
+                              height: 300,
+                              child: Column(
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Icon(
+                                      Icons.sd_card_alert_outlined,
+                                      size: 100,
+                                    ),
+                                  ),
+                                  const Text('Deseja efetuar o empréstimo dessa obra?'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        nomeObraController!.text,
+                                        style: const TextStyle(fontSize: 24),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 30,
+                                      // alignment: Alignment.center,
+                                      child: Text(
+                                        "para a matrícula:",
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(0.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        textRegistrationController!.text,
+                                        style: const TextStyle(fontSize: 24),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            actionsAlignment: MainAxisAlignment.spaceBetween,
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                child: const Text('Cancelar'),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  await context
+                                      .read<AuthService>()
+                                      .registerLoan(textRegistrationController!.text, textCodController!.text, dataDevolucaoController!.text);
+                                  setState(() {
+                                    Navigator.pop(alertDialogContext, true);
+                                  });
+                                },
+                                child: Text(
+                                  'Confirmar',
+                                  style: TextStyle(color: FlutterFlowTheme.of(context).secondary),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),

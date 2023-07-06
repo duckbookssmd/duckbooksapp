@@ -95,6 +95,52 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  getIdByCod(String bookCod) async {
+    return await firebaseFirestore.collection('book').where('codigo', isEqualTo: bookCod).get().then((value) {
+      return value.docs.first.id;
+    });
+  }
+
+  registerLoan(String userRegistration, String bookCod, String dataDevolucao) async {
+    // Realizar a Efetuação do empréstimo
+    // Usuário :
+    //    Colocar map loan com infomrações no UserLoans (Com a referencia de quem permitiu esse empréstimo)                       V
+    //    Referenciar esse usuário no livro (Id provavelmente) e mudar a data de Disponibilidade
+    //
+
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: userRegistration).get().then(
+      (value) async {
+        if (value.docs.first.id == usuario!.uid) {
+          Fluttertoast.showToast(msg: 'Não pode emprestar para sí mesmo');
+        } else {
+          Map loan = {
+            'loan': {
+              'codBook': bookCod,
+              'dataDevolucao': dataDevolucao,
+              'renovacoes': 3,
+              'status': 'Em dia',
+              'admAllowing': usuario!.uid,
+            }
+          };
+          List updatedUserLoans = value.docs.first.data()['userLoans'];
+          updatedUserLoans.add(loan);
+          await firebaseFirestore.collection("user").doc(value.docs.first.id).update({"userLoans": updatedUserLoans});
+          String id = await getIdByCod(bookCod);
+          await firebaseFirestore
+              .collection("book")
+              .doc(id)
+              .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
+          Fluttertoast.showToast(msg: 'Empréstimo realizado');
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e.toString());
+        return null;
+      },
+    );
+  }
+
   Future<String?> getEmailByRegistration(String registration) async {
     String? resp;
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
@@ -131,9 +177,12 @@ class AuthService extends ChangeNotifier {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Livro não encontrada');
           return null;
+        } else if (!(value.docs.first.data()['dataDisponibilidade'].toString() == 'null')) {
+          Fluttertoast.showToast(msg: 'Obra indisponível');
+          return null;
         }
         for (var docSnapshot in value.docs) {
-          resp = {
+          resp = {  
             "nome": docSnapshot.data()['nome'],
             "autor": docSnapshot.data()['autor'],
             "edicao": docSnapshot.data()['edicao'].toString(),
@@ -408,7 +457,7 @@ class AuthService extends ChangeNotifier {
         foto: 'Colocar',
         dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         editora: editoraController!.text,
-        dataDisponibilidade: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+        dataDisponibilidade: null,
         isDeleted: false,
         userloan: null,
         admRecorder: usuario?.uid,
