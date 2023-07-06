@@ -1,6 +1,7 @@
 // import 'package:barcode_widget/barcode_widget.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -218,6 +219,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     color: FlutterFlowTheme.of(context).primaryText,
                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                   ),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Campo vazio';
@@ -756,6 +759,12 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                   textCodController!.text, dataDevolucaoController!.text);
                                               setState(() {
                                                 Navigator.pop(alertDialogContext, true);
+                                                textRegistrationController!.clear();
+                                                textCodController!.clear();
+                                                emailController!.clear();
+                                                nomeObraController!.clear();
+                                                autorController!.clear();
+                                                dataDevolucaoController!.clear();
                                               });
                                             },
                                             child: Text(

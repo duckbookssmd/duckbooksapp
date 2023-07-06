@@ -1,6 +1,8 @@
+import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
@@ -46,11 +48,11 @@ class _LoanPageState extends State<LoanPage> {
     });
     await atualizarLista();
     // TODO: Relizar a lógica de filtro:
-    // for (Map<String, dynamic> livro in livros) {
-    //   if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
-    //     filttedList.add(livro);
-    //   }
-    // }
+    for (Map<String, dynamic> livro in livros) {
+      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
+        filttedList.add(livro);
+      }
+    }
 
     livros = filttedList;
 
@@ -61,7 +63,7 @@ class _LoanPageState extends State<LoanPage> {
 
   atualizarLista() async {
     livros = await firebaseFirestore
-        .collection('obra')
+        .collection('book')
         .where('nome', isNull: false)
         .orderBy('nome', descending: false)
         .get()
@@ -69,8 +71,9 @@ class _LoanPageState extends State<LoanPage> {
       List lista = [];
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
-        if (!(livro['isDeleted'].toString() == 'true')) {
+        if (!(livro['isDeleted'].toString() == 'true') && livro['userloan'] == context.read<AuthService>().usuario!.uid) {
           lista.add(livro);
+          // print(context.read<AuthService>().usuario!.uid);
         }
       }
       return lista;
@@ -89,7 +92,9 @@ class _LoanPageState extends State<LoanPage> {
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         key: scaffoldKey,
-        drawer: DuckAppBar(scaffoldKey: scaffoldKey,),
+        drawer: DuckAppBar(
+          scaffoldKey: scaffoldKey,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -296,7 +301,7 @@ class _LoanPageState extends State<LoanPage> {
                                                 Align(
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
-                                                    'Ano: ${livros[index]['ano']}',
+                                                    '${livros[index]['edicao']}° Edição',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).bodyLarge,
                                                   ),

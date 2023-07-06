@@ -177,12 +177,12 @@ class AuthService extends ChangeNotifier {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Livro não encontrada');
           return null;
-        } else if (!(value.docs.first.data()['dataDisponibilidade'].toString() == 'null')) {
+        } else if (!(value.docs.first.data()['userloan'].toString() == 'null')) {
           Fluttertoast.showToast(msg: 'Obra indisponível');
           return null;
         }
         for (var docSnapshot in value.docs) {
-          resp = {  
+          resp = {
             "nome": docSnapshot.data()['nome'],
             "autor": docSnapshot.data()['autor'],
             "edicao": docSnapshot.data()['edicao'].toString(),
