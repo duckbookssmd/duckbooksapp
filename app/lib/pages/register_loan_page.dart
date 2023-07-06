@@ -218,7 +218,14 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     color: FlutterFlowTheme.of(context).primaryText,
                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                   ),
-                              // validator: _model.textController1Validator.asValidator(context),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Campo vazio';
+                                } else if (value.length < 6) {
+                                  return 'Matrícula inválida';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -370,7 +377,14 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       setBookdata(cod: value);
                                     }
                                   },
-                                  // validator: _model.textController3Validator.asValidator(context),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Campo vazio';
+                                    } else if (value.length <= 6) {
+                                      return 'Matrícula inválida';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               const SizedBox(height: 8),
@@ -660,135 +674,139 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                     ],
                   ),
                   const SizedBox(height: 32),
-                  TextButton(
-                    onPressed: () async {
-                      showDialog<bool>(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            // title: const Text('Confirmar Validação de usuário'),
-                            content: SizedBox(
-                              height: 300,
-                              child: Column(
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Icon(
-                                      Icons.sd_card_alert_outlined,
-                                      size: 100,
-                                    ),
-                                  ),
-                                  const Text('Deseja efetuar o empréstimo dessa obra?'),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        nomeObraController!.text,
-                                        style: const TextStyle(fontSize: 24),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 30,
-                                      // alignment: Alignment.center,
-                                      child: Text(
-                                        "para a matrícula:",
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        textRegistrationController!.text,
-                                        style: const TextStyle(fontSize: 24),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  (emailController!.text.isNotEmpty && nomeObraController!.text.isNotEmpty && nomeObraController!.text != 'Null')
+                      ? TextButton(
+                          onPressed: () async {
+                            (_formKey.currentState!.validate())
+                                ? showDialog<bool>(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        // title: const Text('Confirmar Validação de usuário'),
+                                        content: SizedBox(
+                                          height: 300,
+                                          child: Column(
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.all(16.0),
+                                                child: Icon(
+                                                  Icons.sd_card_alert_outlined,
+                                                  size: 100,
+                                                ),
+                                              ),
+                                              const Text('Deseja efetuar o empréstimo dessa obra?'),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: BorderRadius.circular(8),
+                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    nomeObraController!.text,
+                                                    style: const TextStyle(fontSize: 24),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.all(0.0),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 30,
+                                                  // alignment: Alignment.center,
+                                                  child: Text(
+                                                    "para a matrícula:",
+                                                    textAlign: TextAlign.start,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(0.0),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: BorderRadius.circular(8),
+                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    textRegistrationController!.text,
+                                                    style: const TextStyle(fontSize: 24),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        actionsAlignment: MainAxisAlignment.spaceBetween,
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                            child: const Text('Cancelar'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () async {
+                                              await context.read<AuthService>().registerLoan(textRegistrationController!.text,
+                                                  textCodController!.text, dataDevolucaoController!.text);
+                                              setState(() {
+                                                Navigator.pop(alertDialogContext, true);
+                                              });
+                                            },
+                                            child: Text(
+                                              'Confirmar',
+                                              style: TextStyle(color: FlutterFlowTheme.of(context).secondary),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  )
+                                : null;
+                          },
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            actionsAlignment: MainAxisAlignment.spaceBetween,
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                child: const Text('Cancelar'),
+                            fixedSize: const Size(double.infinity, 60),
+                            backgroundColor: FlutterFlowTheme.of(context).tertiary,
+                            elevation: 3,
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            textStyle: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.assignment_add,
+                                color: FlutterFlowTheme.of(context).tertiaryContainer,
+                                size: 24,
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  await context
-                                      .read<AuthService>()
-                                      .registerLoan(textRegistrationController!.text, textCodController!.text, dataDevolucaoController!.text);
-                                  setState(() {
-                                    Navigator.pop(alertDialogContext, true);
-                                  });
-                                },
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  'Confirmar',
-                                  style: TextStyle(color: FlutterFlowTheme.of(context).secondary),
+                                  'Finalizar empréstimo',
+                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                      color: FlutterFlowTheme.of(context).tertiaryContainer,
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily)),
                                 ),
                               ),
                             ],
-                          );
-                        },
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      fixedSize: const Size(double.infinity, 60),
-                      backgroundColor: FlutterFlowTheme.of(context).tertiary,
-                      elevation: 3,
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      textStyle: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.assignment_add,
-                          color: FlutterFlowTheme.of(context).tertiaryContainer,
-                          size: 24,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            'Finalizar empréstimo',
-                            style: FlutterFlowTheme.of(context).titleLarge.override(
-                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                color: FlutterFlowTheme.of(context).tertiaryContainer,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily)),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        )
+                      : const SizedBox(height: 32),
                 ],
               ),
             ),
