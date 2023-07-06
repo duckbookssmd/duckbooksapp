@@ -1,4 +1,5 @@
 import 'package:app/models/book_model.dart';
+import 'package:app/models/loan_model.dart';
 import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
@@ -106,7 +107,8 @@ class AuthService extends ChangeNotifier {
     // Usuário :
     //    Colocar map loan com infomrações no UserLoans (Com a referencia de quem permitiu esse empréstimo)                       V
     //    Referenciar esse usuário no livro (Id provavelmente) e mudar a data de Disponibilidade
-    //
+    //    Colocar um novo LoanModel no database
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: userRegistration).get().then(
       (value) async {
@@ -131,6 +133,15 @@ class AuthService extends ChangeNotifier {
               .doc(id)
               .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
           Fluttertoast.showToast(msg: 'Empréstimo realizado');
+          await firebaseFirestore.collection("emprestimo").add(LoanModel(
+                bookBorrowed: value.docs.first.id,
+                loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+                renovations: 3,
+                returnDate: dataDevolucao,
+                status: "Em dia",
+                userAllowing: usuario!.uid,
+                userLoan: value.docs.first.id,
+              ).toMap()); // Teoricamente isso é pra facilitar as atividades
         }
       },
     ).catchError(
