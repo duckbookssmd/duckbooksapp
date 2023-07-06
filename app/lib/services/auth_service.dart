@@ -95,6 +95,61 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  Future<String?> getEmailByRegistration(String registration) async {
+    String? resp;
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+      (value) {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Matrícula não encontrada');
+          return null;
+        }
+        for (var docSnapshot in value.docs) {
+          if (!docSnapshot.data()['validated']) {
+            return 'Matrícula não validada';
+          }
+          resp = docSnapshot.data()['email'];
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        return null;
+      },
+    );
+    return resp;
+  }
+
+  Future<Map<String, dynamic>> getBookData(String code) async {
+    Map<String, dynamic> resp = {
+      "nome": 'Null',
+      "autor": 'Null',
+      "edicao": 'Null',
+      "tipo": 'Null',
+    };
+    await firebaseFirestore.collection('book').where('codigo', isEqualTo: code).where('isDeleted', isEqualTo: false).get().then(
+      (value) {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Livro não encontrada');
+          return null;
+        }
+        for (var docSnapshot in value.docs) {
+          resp = {
+            "nome": docSnapshot.data()['nome'],
+            "autor": docSnapshot.data()['autor'],
+            "edicao": docSnapshot.data()['edicao'].toString(),
+            "tipo": docSnapshot.data()['tipo'],
+          };
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        return null;
+      },
+    );
+    return resp;
+  }
+
   updateValidate(Map<String, dynamic> rV, String readerRegistration, String? userRegistration) async {
     // TODO Fiz uma solução não legal, atualizar quando tiver tempo
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
