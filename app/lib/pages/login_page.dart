@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/cadastro_page.dart';
+import 'package:app/pages/reset_pass_page.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -150,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                               color: Color(0x00000000),
-                              width: 2,
+                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -387,6 +388,16 @@ class _LoginPageState extends State<LoginPage> {
                           useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                         ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                  child: TextButton(
+                    child:Text("Esqueci minha senha", style:TextStyle(decoration:TextDecoration.underline),),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ResetPasswordPage()),
+                      ),
+                  )
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
