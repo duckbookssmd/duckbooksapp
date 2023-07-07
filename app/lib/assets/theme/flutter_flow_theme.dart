@@ -17,8 +17,7 @@ enum DeviceSize {
 abstract class FlutterFlowTheme {
   static DeviceSize deviceSize = DeviceSize.mobile;
 
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
+  static Future initialize() async => _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
     final darkMode = _prefs?.getBool(kThemeModeKey);
     return darkMode == null
@@ -28,15 +27,12 @@ abstract class FlutterFlowTheme {
             : ThemeMode.light;
   }
 
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  static void saveThemeMode(ThemeMode mode) =>
+      mode == ThemeMode.system ? _prefs?.remove(kThemeModeKey) : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
     deviceSize = getDeviceSize(context);
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    return Theme.of(context).brightness == Brightness.dark ? DarkModeTheme() : LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -49,6 +45,7 @@ abstract class FlutterFlowTheme {
   late Color primary;
   late Color secondary;
   late Color tertiary;
+  late Color tertiaryContainer;
   late Color alternate;
   late Color primaryText;
   late Color secondaryText;
@@ -152,6 +149,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color primary = const Color(0xFFF5E63D);
   late Color secondary = const Color(0xFF7BC74D);
   late Color tertiary = const Color(0xFFFFFFFF);
+  late Color tertiaryContainer = const Color(0xFFFFDCC5);
   late Color alternate = const Color(0xFF7B593B);
   late Color primaryText = const Color(0xFF1E1E1E);
   late Color secondaryText = const Color(0xFF6B6B6B);
@@ -592,6 +590,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color primary = const Color(0xFFEEDC31);
   late Color secondary = const Color(0xFF6AB441);
   late Color tertiary = const Color(0xFFFFFFFF);
+  late Color tertiaryContainer = const Color(0xFF713700);
   late Color alternate = const Color(0xFF864002);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFFB3B3B3);

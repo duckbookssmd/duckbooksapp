@@ -2,6 +2,7 @@ import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +36,7 @@ class _ValidationPageState extends State<ValidationPage> {
         }
       },
     ).onError((error, stackTrace) {
-      print(
-        // colocar algo melhor para indicar o error
-        error,
-      );
+      Fluttertoast.showToast(msg: error.toString());
     });
     setState(() {
       isLoading = false;
@@ -88,9 +86,8 @@ class _ValidationPageState extends State<ValidationPage> {
           top: true,
           child: RefreshIndicator(
             onRefresh: () async {
-              setState(() async {
-                validationQuests = await getValidation();
-              });
+              validationQuests = await getValidation();
+              setState(() {});
             },
             child: ListView(
               scrollDirection: Axis.vertical,

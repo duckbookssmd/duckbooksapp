@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app/models/book_model.dart';
+import 'package:app/models/loan_model.dart';
 import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
@@ -94,6 +97,157 @@ class AuthService extends ChangeNotifier {
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+  confirmReturn(Map book) async {
+    //Atualizar userloan do livro e datadisponibilidade = null
+    //Atualizar loan do usuário
+    //Atualizar registro do Empréstimo (Usar o id do livro + data de returno);
+
+    await firebaseFirestore.collection('book').where('codigo', isEqualTo: book['codigo']).get().then((value) async {
+      // TODO Colocar o código como id do livro
+      await firebaseFirestore
+          .collection('emprestimo')
+          .where('bookBorrowed', isEqualTo: value.docs.first.id)
+          .where('returnDate', isEqualTo: book['dataDisponibilidade'])
+          .get()
+          .then((value) async {
+        await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({"status": 'Devolvido'});
+      });
+      await firebaseFirestore.collection("book").doc(value.docs.first.id).update({"userloan": null, "dataDisponibilidade": null});
+    });
+    await firebaseFirestore.collection('user').where('uId', isEqualTo: usuario!.uid).get().then((value) async {
+      List userloans = value.docs.first.data()['userLoans'];
+      List userloansNew = json.decode(json.encode(userloans));
+      if (userloans.length > 1) {
+        for (var loan in userloans) {
+          if (loan['loan']['codBook'] == book['codigo']) {
+            userloansNew.removeAt(userloans.indexOf(loan));
+          }
+        }
+      } else {
+        if (userloans[0]['loan']['codBook'] == book['codigo']) {
+          userloansNew.removeAt(0);
+        }
+      }
+
+      await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloansNew});
+    });
+    Fluttertoast.showToast(msg: 'Obra devolvida');
+  }
+
+  getIdByCod(String bookCod) async {
+    return await firebaseFirestore.collection('book').where('codigo', isEqualTo: bookCod).get().then((value) {
+      return value.docs.first.id;
+    });
+  }
+
+  registerLoan(String userRegistration, String bookCod, String dataDevolucao) async {
+    // Realizar a Efetuação do empréstimo
+    // Usuário :
+    //    Colocar map loan com infomrações no UserLoans (Com a referencia de quem permitiu esse empréstimo)                       V
+    //    Referenciar esse usuário no livro (Id provavelmente) e mudar a data de Disponibilidade
+    //    Colocar um novo LoanModel no database
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: userRegistration).get().then(
+      (value) async {
+        if (value.docs.first.id == usuario!.uid) {
+          Fluttertoast.showToast(msg: 'Não pode emprestar para sí mesmo');
+        } else {
+          Map loan = {
+            'loan': {
+              'codBook': bookCod,
+              'dataDevolucao': dataDevolucao,
+              'renovacoes': 3,
+              'status': 'Em dia',
+              'admAllowing': usuario!.uid,
+            }
+          };
+          List updatedUserLoans = value.docs.first.data()['userLoans'];
+          updatedUserLoans.add(loan);
+          await firebaseFirestore.collection("user").doc(value.docs.first.id).update({"userLoans": updatedUserLoans});
+          String id = await getIdByCod(bookCod);
+          await firebaseFirestore
+              .collection("book")
+              .doc(id)
+              .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
+          Fluttertoast.showToast(msg: 'Empréstimo realizado');
+          await firebaseFirestore.collection("emprestimo").add(LoanModel(
+                bookBorrowed: id,
+                loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+                renovations: 3,
+                returnDate: dataDevolucao,
+                status: "Em dia",
+                userAllowing: usuario!.uid,
+                userLoan: value.docs.first.id,
+              ).toMap()); // Teoricamente isso é pra facilitar as atividades
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e.toString());
+        return null;
+      },
+    );
+  }
+
+  Future<String?> getEmailByRegistration(String registration) async {
+    String? resp;
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+      (value) {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Matrícula não encontrada');
+          return null;
+        }
+        for (var docSnapshot in value.docs) {
+          if (!docSnapshot.data()['validated']) {
+            return 'Matrícula não validada';
+          }
+          resp = docSnapshot.data()['email'];
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        return null;
+      },
+    );
+    return resp;
+  }
+
+  Future<Map<String, dynamic>> getBookData(String code) async {
+    Map<String, dynamic> resp = {
+      "nome": 'Null',
+      "autor": 'Null',
+      "edicao": 'Null',
+      "tipo": 'Null',
+    };
+    await firebaseFirestore.collection('book').where('codigo', isEqualTo: code).where('isDeleted', isEqualTo: false).get().then(
+      (value) {
+        if (value.docs.isEmpty) {
+          Fluttertoast.showToast(msg: 'Livro não encontrada');
+          return null;
+        } else if (!(value.docs.first.data()['userloan'].toString() == 'null')) {
+          Fluttertoast.showToast(msg: 'Obra indisponível');
+          return null;
+        }
+        for (var docSnapshot in value.docs) {
+          resp = {
+            "nome": docSnapshot.data()['nome'],
+            "autor": docSnapshot.data()['autor'],
+            "edicao": docSnapshot.data()['edicao'].toString(),
+            "tipo": docSnapshot.data()['tipo'],
+          };
+        }
+      },
+    ).catchError(
+      (e) {
+        Fluttertoast.showToast(msg: e!.message);
+        return null;
+      },
+    );
+    return resp;
+  }
 
   updateValidate(Map<String, dynamic> rV, String readerRegistration, String? userRegistration) async {
     // TODO Fiz uma solução não legal, atualizar quando tiver tempo
@@ -353,7 +507,7 @@ class AuthService extends ChangeNotifier {
         foto: 'Colocar',
         dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
         editora: editoraController!.text,
-        dataDisponibilidade: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+        dataDisponibilidade: null,
         isDeleted: false,
         userloan: null,
         admRecorder: usuario?.uid,

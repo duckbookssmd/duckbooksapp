@@ -1,6 +1,8 @@
+import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
@@ -45,12 +47,11 @@ class _LoanPageState extends State<LoanPage> {
       isLoading = true;
     });
     await atualizarLista();
-    // TODO: Relizar a lógica de filtro:
-    // for (Map<String, dynamic> livro in livros) {
-    //   if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
-    //     filttedList.add(livro);
-    //   }
-    // }
+    for (Map<String, dynamic> livro in livros) {
+      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
+        filttedList.add(livro);
+      }
+    }
 
     livros = filttedList;
 
@@ -61,7 +62,7 @@ class _LoanPageState extends State<LoanPage> {
 
   atualizarLista() async {
     livros = await firebaseFirestore
-        .collection('obra')
+        .collection('book')
         .where('nome', isNull: false)
         .orderBy('nome', descending: false)
         .get()
@@ -69,8 +70,9 @@ class _LoanPageState extends State<LoanPage> {
       List lista = [];
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
-        if (!(livro['isDeleted'].toString() == 'true')) {
+        if (!(livro['isDeleted'].toString() == 'true') && livro['userloan'] == context.read<AuthService>().usuario!.uid) {
           lista.add(livro);
+          // print(context.read<AuthService>().usuario!.uid);
         }
       }
       return lista;
@@ -89,7 +91,9 @@ class _LoanPageState extends State<LoanPage> {
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         key: scaffoldKey,
-        drawer: DuckAppBar(scaffoldKey: scaffoldKey,),
+        drawer: DuckAppBar(
+          scaffoldKey: scaffoldKey,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -296,7 +300,7 @@ class _LoanPageState extends State<LoanPage> {
                                                 Align(
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
-                                                    'Ano: ${livros[index]['ano']}',
+                                                    '${livros[index]['edicao']}° Edição',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).bodyLarge,
                                                   ),
@@ -309,7 +313,89 @@ class _LoanPageState extends State<LoanPage> {
                                                     Align(
                                                       alignment: const AlignmentDirectional(0, 1),
                                                       child: TextButton(
-                                                        onPressed: () async {},
+                                                        onPressed: () async {
+                                                          showDialog<bool>(
+                                                            context: context,
+                                                            builder: (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text('Confirmar Validação de usuário'),
+                                                                content: SizedBox(
+                                                                  height: 300,
+                                                                  child: Column(
+                                                                    children: [
+                                                                      const Padding(
+                                                                        padding: EdgeInsets.all(16.0),
+                                                                        child: Icon(
+                                                                          Icons.sd_card_alert_outlined,
+                                                                          size: 100,
+                                                                        ),
+                                                                      ),
+                                                                      const Text('Devolver a Obra?'),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.all(8.0),
+                                                                        child: Container(
+                                                                          width: double.infinity,
+                                                                          height: 30,
+                                                                          decoration: BoxDecoration(
+                                                                            shape: BoxShape.rectangle,
+                                                                            borderRadius: BorderRadius.circular(8),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          ),
+                                                                          alignment: Alignment.center,
+                                                                          child: Text(
+                                                                            livros[index]['dataDisponibilidade'],
+                                                                            style: const TextStyle(fontSize: 24),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.all(8.0),
+                                                                        child: Container(
+                                                                          width: double.infinity,
+                                                                          height: 30,
+                                                                          decoration: BoxDecoration(
+                                                                            shape: BoxShape.rectangle,
+                                                                            borderRadius: BorderRadius.circular(8),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          ),
+                                                                          alignment: Alignment.center,
+                                                                          child: Text(
+                                                                            livros[index]['nome'],
+                                                                            style: const TextStyle(fontSize: 24),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                actionsAlignment: MainAxisAlignment.spaceBetween,
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                    child: const Text('Cancelar'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () async {
+                                                                      await context
+                                                                          .read<AuthService>()
+                                                                          .confirmReturn(livros[index]);
+                                                                      setState(() {
+                                                                        Navigator.pop(alertDialogContext, true);
+                                                                      });
+                                                                    },
+                                                                    child: Text(
+                                                                      'Confirmar',
+                                                                      style: TextStyle(
+                                                                          color: FlutterFlowTheme.of(context).secondary),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        },
                                                         style: OutlinedButton.styleFrom(
                                                           fixedSize: const Size(90, 40),
                                                           backgroundColor: FlutterFlowTheme.of(context).alternate,
@@ -337,24 +423,51 @@ class _LoanPageState extends State<LoanPage> {
                                                           mainAxisSize: MainAxisSize.max,
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
-                                                            Row(
-                                                              mainAxisSize: MainAxisSize.max,
-                                                              mainAxisAlignment: MainAxisAlignment.end,
-                                                              children: [
-                                                                Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration: BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(context).success,
-                                                                    shape: BoxShape.circle,
+                                                            // livros[index]['dataDisponibilidade']
+                                                            (DateTime.now().isAfter(DateTime.parse(livros[index]
+                                                                        ['dataDisponibilidade']
+                                                                    .toString()
+                                                                    .substring(0, 10)
+                                                                    .replaceAll('/', '-')
+                                                                    .split('-')
+                                                                    .reversed
+                                                                    .join())))
+                                                                ? Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Em dia',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
+                                                                  )
+                                                                : Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).error,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Atrasado',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                                Text(
-                                                                  'Em dia',
-                                                                  style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                ),
-                                                              ],
-                                                            ),
                                                             TextButton(
                                                               onPressed: () async {
                                                                 // Navigator.push(
