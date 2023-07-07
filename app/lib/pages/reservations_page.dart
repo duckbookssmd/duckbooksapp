@@ -89,7 +89,9 @@ class _ReservationsPageState extends State<ReservationsPage> {
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         key: scaffoldKey,
-        drawer: DuckAppBar(scaffoldKey: scaffoldKey,),
+        drawer: DuckAppBar(
+          scaffoldKey: scaffoldKey,
+        ),
         body: SafeArea(
           top: true,
           child: Column(

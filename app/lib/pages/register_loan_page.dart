@@ -715,9 +715,9 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              Padding(
+                                              const Padding(
                                                 padding: EdgeInsets.all(0.0),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   height: 30,
                                                   // alignment: Alignment.center,
@@ -764,7 +764,6 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                 emailController!.clear();
                                                 nomeObraController!.clear();
                                                 autorController!.clear();
-                                                dataDevolucaoController!.clear();
                                               });
                                             },
                                             child: Text(

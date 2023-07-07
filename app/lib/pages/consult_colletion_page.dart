@@ -25,6 +25,7 @@ bool isLoading = false;
 
 class _ConsultPageState extends State<ConsultPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
@@ -437,8 +438,8 @@ class _ConsultPageState extends State<ConsultPage> {
               (isLoading)
                   ? Center(
                       child: Image.asset(
-                        'lib/assets/images/pato_girando.gif',                       
-                        width: 200,
+                        'lib/assets/images/pato_girando.gif',
+                        width: 150,
                       ),
                     )
                   : Expanded(
@@ -466,13 +467,21 @@ class _ConsultPageState extends State<ConsultPage> {
                                       alignment: const AlignmentDirectional(-1, -1),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(8),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/701/600',
-                                            width: 100,
-                                            height: 135,
-                                            fit: BoxFit.cover,
+                                        child: InkWell(
+                                          onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => CollectionDetailsPage(book: livros[index]),
+                                            ),
+                                          ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(8),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/701/600',
+                                              width: 100,
+                                              height: 135,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -546,24 +555,43 @@ class _ConsultPageState extends State<ConsultPage> {
                                                       mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
-                                                        Row(
-                                                          mainAxisSize: MainAxisSize.max,
-                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                          children: [
-                                                            Container(
-                                                              width: 16,
-                                                              height: 16,
-                                                              decoration: BoxDecoration(
-                                                                color: FlutterFlowTheme.of(context).success,
-                                                                shape: BoxShape.circle,
+                                                        (livros[index]['userloan'].toString() == 'null')
+                                                            ? Row(
+                                                                mainAxisSize: MainAxisSize.max,
+                                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration: BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(context).success,
+                                                                      shape: BoxShape.circle,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    'Disponível',
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            : Row(
+                                                                mainAxisSize: MainAxisSize.max,
+                                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration: BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                      shape: BoxShape.circle,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    'Indisponível',
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                  ),
+                                                                ],
                                                               ),
-                                                            ),
-                                                            Text(
-                                                              'Disponível',
-                                                              style: FlutterFlowTheme.of(context).bodyMedium,
-                                                            ),
-                                                          ],
-                                                        ),
                                                         TextButton(
                                                           onPressed: () async {
                                                             Navigator.push(

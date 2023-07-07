@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/models/book_model.dart';
 import 'package:app/models/loan_model.dart';
 import 'package:app/models/validation_model.dart';
@@ -96,6 +98,43 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  confirmReturn(Map book) async {
+    //Atualizar userloan do livro e datadisponibilidade = null
+    //Atualizar loan do usuário
+    //Atualizar registro do Empréstimo (Usar o id do livro + data de returno);
+
+    await firebaseFirestore.collection('book').where('codigo', isEqualTo: book['codigo']).get().then((value) async {
+      // TODO Colocar o código como id do livro
+      await firebaseFirestore
+          .collection('emprestimo')
+          .where('bookBorrowed', isEqualTo: value.docs.first.id)
+          .where('returnDate', isEqualTo: book['dataDisponibilidade'])
+          .get()
+          .then((value) async {
+        await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({"status": 'Devolvido'});
+      });
+      await firebaseFirestore.collection("book").doc(value.docs.first.id).update({"userloan": null, "dataDisponibilidade": null});
+    });
+    await firebaseFirestore.collection('user').where('uId', isEqualTo: usuario!.uid).get().then((value) async {
+      List userloans = value.docs.first.data()['userLoans'];
+      List userloansNew = json.decode(json.encode(userloans));
+      if (userloans.length > 1) {
+        for (var loan in userloans) {
+          if (loan['loan']['codBook'] == book['codigo']) {
+            userloansNew.removeAt(userloans.indexOf(loan));
+          }
+        }
+      } else {
+        if (userloans[0]['loan']['codBook'] == book['codigo']) {
+          userloansNew.removeAt(0);
+        }
+      }
+
+      await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloansNew});
+    });
+    Fluttertoast.showToast(msg: 'Obra devolvida');
+  }
+
   getIdByCod(String bookCod) async {
     return await firebaseFirestore.collection('book').where('codigo', isEqualTo: bookCod).get().then((value) {
       return value.docs.first.id;
@@ -134,7 +173,7 @@ class AuthService extends ChangeNotifier {
               .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
           Fluttertoast.showToast(msg: 'Empréstimo realizado');
           await firebaseFirestore.collection("emprestimo").add(LoanModel(
-                bookBorrowed: value.docs.first.id,
+                bookBorrowed: id,
                 loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
                 renovations: 3,
                 returnDate: dataDevolucao,
