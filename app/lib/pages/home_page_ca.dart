@@ -1,3 +1,4 @@
+import 'package:app/pages/borrow_solicitations_page.dart';
 import 'package:app/pages/register_book.dart';
 import 'package:app/pages/register_loan_page.dart';
 import 'package:app/pages/validation_page.dart';
@@ -160,7 +161,9 @@ class _HomePageCaState extends State<HomePageCa> {
                           Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
+                              },
                               icon: Icon(
                                 Icons.notifications,
                                 size: 24.0,

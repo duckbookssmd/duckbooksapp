@@ -98,6 +98,33 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  Future<bool> hasRequest(String bookCod) async {
+    // Por enquanto devolver um Bool dizendo se tem o alguma solicitação sua lá
+    return await firebaseFirestore
+        .collection('emprestimo')
+        .where('bookBorrowed', isEqualTo: await getIdByCod(bookCod))
+        .where('userLoan', isEqualTo: usuario!.uid)
+        .where('status', isEqualTo: 'Solicitado')
+        .get()
+        .then((value) async {
+      // print(value.docs.first.id);
+      return (value.docs.isEmpty) ? false : true;
+    });
+  }
+
+  sendBorrowRequest(String bookCod) async {
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    await firebaseFirestore.collection("emprestimo").add(LoanModel(
+          bookBorrowed: await getIdByCod(bookCod),
+          loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+          renovations: 3,
+          returnDate: null,
+          status: "Solicitado",
+          userAllowing: null,
+          userLoan: usuario!.uid,
+        ).toMap());
+  }
+
   confirmReturn(Map book) async {
     //Atualizar userloan do livro e datadisponibilidade = null
     //Atualizar loan do usuário
@@ -133,6 +160,18 @@ class AuthService extends ChangeNotifier {
       await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloansNew});
     });
     Fluttertoast.showToast(msg: 'Obra devolvida');
+  }
+
+  Future<String> getRegistrationById(String userId) async {
+    return await firebaseFirestore.collection('user').doc(userId).get().then((value) {
+      return value.data()?['matriculaSIAPE'];
+    });
+  }
+
+  Future<String> getCodById(String bookId) async {
+    return await firebaseFirestore.collection('book').doc(bookId).get().then((value) {
+      return value.data()?['codigo'];
+    });
   }
 
   getIdByCod(String bookCod) async {
@@ -173,6 +212,7 @@ class AuthService extends ChangeNotifier {
               .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
           Fluttertoast.showToast(msg: 'Empréstimo realizado');
           await firebaseFirestore.collection("emprestimo").add(LoanModel(
+                // TODO Checar se já existe algum request se tiver atualizar ele se não criar aqui mesmo
                 bookBorrowed: id,
                 loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
                 renovations: 3,

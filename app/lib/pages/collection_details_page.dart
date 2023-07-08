@@ -18,11 +18,17 @@ class CollectionDetailsPage extends StatefulWidget {
 
 class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
   late Map<String, dynamic> book;
+  late bool isBorrow = false;
 
   @override
   void initState() {
     super.initState();
     book = widget.book;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      isBorrow = await checkBorrowed(book['codigo']);
+      setState(() {});
+    });
   }
 
   @override
@@ -34,8 +40,16 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
+  Future<bool> checkBorrowed(String book) async {
+    return await context.read<AuthService>().hasRequest(book).then((value) {
+      print(value);
+      return value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    checkBorrowed(book['codigo']);
     return GestureDetector(
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -184,44 +198,127 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.all(8),
-                  child: TextButton(
-                    onPressed: () async {},
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      fixedSize: const Size(210, 50),
-                      backgroundColor: FlutterFlowTheme.of(context).alternate,
-                      elevation: 3,
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      textStyle: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.connect_without_contact_rounded,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          size: 32,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Solicitar Empréstimo',
-                            style: FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                  child: (!isBorrow)
+                      ? TextButton(
+                          onPressed: () async {
+                            showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Confirmar Validação de usuário'),
+                                  content: const SizedBox(
+                                    height: 150,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(16.0),
+                                          child: Icon(
+                                            Icons.connect_without_contact_rounded,
+                                            size: 80,
+                                          ),
+                                        ),
+                                        Text('Deseja realizar uma solicitação de Empréstimo?'),
+                                      ],
+                                    ),
+                                  ),
+                                  actionsAlignment: MainAxisAlignment.spaceBetween,
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                      child: const Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        await context.read<AuthService>().sendBorrowRequest(book['codigo']);
+                                        Navigator.pop(alertDialogContext, true);
+                                        setState(() {});
+                                      },
+                                      child: Text(
+                                        'Confirmar',
+                                        style: TextStyle(color: FlutterFlowTheme.of(context).secondary),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            fixedSize: const Size(210, 50),
+                            backgroundColor: FlutterFlowTheme.of(context).alternate,
+                            elevation: 3,
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            textStyle: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.connect_without_contact_rounded,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                size: 32,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Solicitar Empréstimo',
+                                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                        color: FlutterFlowTheme.of(context).tertiary,
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                      ),
                                 ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: () async {},
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            fixedSize: const Size(230, 50),
+                            backgroundColor: FlutterFlowTheme.of(context).alternate,
+                            elevation: 3,
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            textStyle: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.connect_without_contact_rounded,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                size: 32,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Empréstimo Já Solicitado',
+                                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                        color: FlutterFlowTheme.of(context).tertiary,
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),

@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                               color: Color(0x00000000),
-                               width: 2,
+                              width: 2,
                             ),
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -378,27 +378,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 92),
-                  child: Text(
-                    'Esqueci a senha',
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                          color: FlutterFlowTheme.of(context).accent2,
-                          decoration: TextDecoration.underline,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                        ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                  child: TextButton(
-                    child:Text("Esqueci minha senha", style:TextStyle(decoration:TextDecoration.underline),),
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ResetPasswordPage()),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                    child: TextButton(
+                      child: const Text(
+                        "Esqueci minha senha",
+                        style: TextStyle(decoration: TextDecoration.underline),
                       ),
-                  )
-                ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ResetPasswordPage()),
+                      ),
+                    )),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                   child: Row(

@@ -2,11 +2,11 @@ class LoanModel {
   String bookBorrowed;
   String loanDate;
   int renovations;
-  String returnDate;
+  String? returnDate;
   String status;
-  String userAllowing;
+  String? userAllowing;
   String userLoan;
-  
+
   LoanModel({
     required this.bookBorrowed,
     required this.loanDate,
