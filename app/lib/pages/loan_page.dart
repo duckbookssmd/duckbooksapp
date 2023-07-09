@@ -72,7 +72,6 @@ class _LoanPageState extends State<LoanPage> {
         Map<String, dynamic> livro = docSnapshot.data();
         if (!(livro['isDeleted'].toString() == 'true') && livro['userloan'] == context.read<AuthService>().usuario!.uid) {
           lista.add(livro);
-          // print(context.read<AuthService>().usuario!.uid);
         }
       }
       return lista;

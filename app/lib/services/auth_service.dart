@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/models/book_model.dart';
 import 'package:app/models/loan_model.dart';
+import 'package:app/models/reservation_model.dart';
 import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
 import 'package:app/pages/login_page.dart';
@@ -98,11 +99,49 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  doReservation(dynamic book) async {
+    // Por enquanto não deixar um tempo limite para pegar depois de reservar
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    await firebaseFirestore.collection("reservations").add(ReservationModel(
+            bookReservedId: book['codigo'],
+            reservationDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+            reservationList: [usuario!.uid],
+            statusBook: 'Solicitado' // bookBorrowed: await getIdByCod(bookCod),
+            )
+        .toMap());
+    print(book);
+  }
+
+  isReservationUser(String bookCod) async {
+    return await firebaseFirestore
+        .collection('reservations')
+        .where('bookReservedId', isEqualTo: bookCod)
+        .where('statusBook', isEqualTo: 'Solicitado')
+        .where('reservationList', arrayContains: usuario!.uid)
+        .get()
+        .then((value) async {
+      // print(value.docs.first.id);
+      return (value.docs.isEmpty) ? false : true;
+    });
+  }
+
+  hasReservation(String bookCod) async {
+    return await firebaseFirestore
+        .collection('reservations')
+        .where('bookReservedId', isEqualTo: bookCod)
+        .where('statusBook', isEqualTo: 'Solicitado')
+        .get()
+        .then((value) async {
+      // print(value.docs.first.id);
+      return (value.docs.isEmpty) ? false : true;
+    });
+  }
+
   Future<bool> hasRequest(String bookCod) async {
     // Por enquanto devolver um Bool dizendo se tem o alguma solicitação sua lá
     return await firebaseFirestore
         .collection('emprestimo')
-        .where('bookBorrowed', isEqualTo: await getIdByCod(bookCod))
+        .where('bookBorrowedId', isEqualTo: await getIdByCod(bookCod))
         .where('userLoan', isEqualTo: usuario!.uid)
         .where('status', isEqualTo: 'Solicitado')
         .get()
