@@ -424,7 +424,7 @@ class _LoanPageState extends State<LoanPage> {
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
                                                             // livros[index]['dataDisponibilidade']
-                                                            (DateTime.now().isAfter(DateTime.parse(livros[index]
+                                                            (DateTime.now().isBefore(DateTime.parse(livros[index]
                                                                         ['dataDisponibilidade']
                                                                     .toString()
                                                                     .substring(0, 10)

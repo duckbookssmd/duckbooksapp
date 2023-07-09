@@ -211,16 +211,34 @@ class AuthService extends ChangeNotifier {
               .doc(id)
               .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
           Fluttertoast.showToast(msg: 'Empréstimo realizado');
-          await firebaseFirestore.collection("emprestimo").add(LoanModel(
-                // TODO Checar se já existe algum request se tiver atualizar ele se não criar aqui mesmo
-                bookBorrowed: id,
-                loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
-                renovations: 3,
-                returnDate: dataDevolucao,
-                status: "Em dia",
-                userAllowing: usuario!.uid,
-                userLoan: value.docs.first.id,
-              ).toMap()); // Teoricamente isso é pra facilitar as atividades
+          // Fazer uma query por um request solicitado já existente substituir se não :
+          await firebaseFirestore
+              .collection('emprestimo')
+              .where('bookBorrowed', isEqualTo: id)
+              .where('userLoan', isEqualTo: await getIdByRegistration(userRegistration))
+              .where('status', isEqualTo: 'Solicitado')
+              .get()
+              .then((value) async {
+            if (value.docs.isEmpty) {
+              await firebaseFirestore.collection("emprestimo").add(LoanModel(
+                    // Checar se já existe algum request se tiver atualizar ele se não criar aqui mesmo
+                    bookBorrowed: id,
+                    loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+                    renovations: 3,
+                    returnDate: dataDevolucao,
+                    status: "Em dia",
+                    userAllowing: usuario!.uid,
+                    userLoan: value.docs.first.id,
+                  ).toMap()); // Teoricamente isso é pra facilitar as atividades
+            } else {
+              await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
+                "loanDate": date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+                "returnDate": dataDevolucao,
+                "userAllowing": usuario!.uid,
+                "status": 'Em dia',
+              });
+            }
+          });
         }
       },
     ).catchError(
@@ -229,6 +247,12 @@ class AuthService extends ChangeNotifier {
         return null;
       },
     );
+  }
+
+  getIdByRegistration(String registration) async {
+    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then((value) {
+      return value.docs.first.id;
+    });
   }
 
   Future<String?> getEmailByRegistration(String registration) async {
@@ -549,7 +573,7 @@ class AuthService extends ChangeNotifier {
         editora: editoraController!.text,
         dataDisponibilidade: null,
         isDeleted: false,
-        userloan: null,
+        userloan: [],
         admRecorder: usuario?.uid,
       );
 
