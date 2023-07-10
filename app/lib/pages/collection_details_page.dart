@@ -20,6 +20,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
   late Map<String, dynamic> book;
   late bool isBorrow = false;
   late bool isReserved = false;
+  late bool isreservedbyUser = false;
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       isBorrow = await checkBorrowed(book['codigo']);
       isReserved = await checkReserved(book['codigo']);
+      isreservedbyUser = await checkReservationIsThisUser(book['codigo']);
       setState(() {});
     });
   }
@@ -50,6 +52,14 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
 
   checkReserved(String book) async {
     return await context.read<AuthService>().hasReservation(book).then(
+      (value) {
+        return value;
+      },
+    );
+  }
+
+  checkReservationIsThisUser(String book) async {
+    return await context.read<AuthService>().isReservationUser(book).then(
       (value) {
         return value;
       },
@@ -208,7 +218,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                     ),
                   ),
                 ),
-                (book['userloan'].toString() == 'null' && !isReserved)
+                (book['userloan'].toString() == 'null' && (!isReserved || isreservedbyUser)) 
                     ? Padding(
                         padding: const EdgeInsetsDirectional.all(8),
                         child: (!isBorrow)

@@ -109,7 +109,6 @@ class AuthService extends ChangeNotifier {
             statusBook: 'Solicitado' // bookBorrowed: await getIdByCod(bookCod),
             )
         .toMap());
-    print(book);
   }
 
   isReservationUser(String bookCod) async {
