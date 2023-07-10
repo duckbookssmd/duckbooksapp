@@ -207,8 +207,9 @@ class _LoginPageState extends State<LoginPage> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Campo obrigatório';
+                          } else if (value.length < 6) {
+                            return 'Matrícula inválida';
                           }
-                          // Outras validações
                           return null; // Retorna nulo se a validação passar
                         },
                       ),
