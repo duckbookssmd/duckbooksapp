@@ -2,11 +2,15 @@ import 'package:app/pages/borrow_solicitations_page.dart';
 import 'package:app/pages/register_book.dart';
 import 'package:app/pages/register_loan_page.dart';
 import 'package:app/pages/validation_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 
@@ -23,6 +27,10 @@ class HomePageCa extends StatefulWidget {
   _HomePageCaState createState() => _HomePageCaState();
 }
 
+bool isLoading = false;
+List<Map<String, dynamic>> usersActions = [];
+FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
 class _HomePageCaState extends State<HomePageCa> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,11 +45,41 @@ class _HomePageCaState extends State<HomePageCa> {
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
 
+  getActions() async {
+    List<Map<String, dynamic>> actions = [];
+    setState(() {
+      isLoading = true;
+    });
+
+    await firebaseFirestore.collection('emprestimo').where('status', isNotEqualTo: 'Solicitado').get().then(
+      (value) async {
+        for (var docSnapshot in value.docs) {
+          var borrow = docSnapshot.data();
+          borrow.addAll({
+            'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
+            'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
+          });
+          actions.add(borrow);
+        }
+      },
+    ).onError((error, stackTrace) {
+      Fluttertoast.showToast(msg: error.toString());
+    });
+
+    setState(() {
+      isLoading = false;
+    });
+    return actions;
+  }
+
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      usersActions = await getActions();
+      setState(() {});
+    });
   }
 
   @override
@@ -495,71 +533,99 @@ class _HomePageCaState extends State<HomePageCa> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: double.infinity,
-                            height: 240.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                              borderRadius: BorderRadius.circular(0.0),
-                            ),
-                            child: DataTable2(
-                              columnSpacing: 10,
-                              horizontalMargin: 12,
-                              minWidth: 100,
+                          RefreshIndicator(
+                            onRefresh: () async {
+                              usersActions = await getActions();
+                              // print(usersActions);
+                              setState(() {});
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                (isLoading)
+                                    ? const Center(child: CircularProgressIndicator())
+                                    : Container(
+                                        width: double.infinity,
+                                        height: 240.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                                          borderRadius: BorderRadius.circular(0.0),
+                                        ),
+                                        child: DataTable2(
+                                          columnSpacing: 10,
+                                          horizontalMargin: 12,
+                                          minWidth: 100,
 
-                              columns: [
-                                DataColumn2(
-                                  label: SizedBox(
-                                    width: 270,
-                                    child: Text(
-                                      'Ação',
-                                      style: FlutterFlowTheme.of(context).labelLarge,
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
-                                  fixedWidth: 270,
-                                ),
-                                DataColumn2(
-                                  // size: ColumnSize.values.first,
-                                  label: SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      'Data',
-                                      style: FlutterFlowTheme.of(context).labelLarge,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              rows: List<DataRow>.generate(
-                                5, // numero de linhas
-                                (index) => DataRow(
-                                  cells: [
-                                    DataCell(Text('A' * (10 - index % 10))),
-                                    DataCell(SizedBox(
-                                      width: 100,
-                                      child: Text(
-                                        'B' * (10 - (index + 5) % 10),
-                                        textAlign: TextAlign.center,
+                                          columns: [
+                                            DataColumn2(
+                                              label: SizedBox(
+                                                width: 100,
+                                                child: Text(
+                                                  'Ação',
+                                                  style: FlutterFlowTheme.of(context).labelLarge,
+                                                  textAlign: TextAlign.start,
+                                                ),
+                                              ),
+                                              fixedWidth: 100,
+                                            ),
+                                            DataColumn2(
+                                              // size: ColumnSize.values.first,
+                                              label: SizedBox(
+                                                width: 120,
+                                                child: Text(
+                                                  'Data',
+                                                  style: FlutterFlowTheme.of(context).labelLarge,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              fixedWidth: 120,
+                                            ),
+                                            DataColumn2(
+                                              // size: ColumnSize.values.first,
+                                              label: SizedBox(
+                                                width: 100,
+                                                child: Text(
+                                                  'Data',
+                                                  style: FlutterFlowTheme.of(context).labelLarge,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              fixedWidth: 100,
+                                            ),
+                                          ],
+                                          rows: List<DataRow>.generate(
+                                            5, // numero de linhas
+                                            (index) => DataRow(
+                                              cells: [
+                                                DataCell(Text(usersActions[index]['status'])),
+                                                DataCell(Text(usersActions[index]['codBook'])),
+                                                DataCell(SizedBox(
+                                                  width: 100,
+                                                  child: Text(
+                                                    usersActions[index]['returnDate'],
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                )),
+                                              ],
+                                            ),
+                                          ),
+                                          headingRowColor: MaterialStateProperty.all(
+                                            FlutterFlowTheme.of(context).secondary,
+                                          ),
+                                          headingRowHeight: 56.0,
+                                          dataRowColor: MaterialStateProperty.all(
+                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                          ),
+                                          dataRowHeight: 56.0,
+                                          border: TableBorder(
+                                            borderRadius: BorderRadius.circular(0.0),
+                                          ),
+                                          dividerThickness: 1.0,
+                                          showBottomBorder: true,
+                                          // minWidth: 49.0,
+                                        ),
                                       ),
-                                    )),
-                                  ],
-                                ),
-                              ),
-                              headingRowColor: MaterialStateProperty.all(
-                                FlutterFlowTheme.of(context).secondary,
-                              ),
-                              headingRowHeight: 56.0,
-                              dataRowColor: MaterialStateProperty.all(
-                                FlutterFlowTheme.of(context).secondaryBackground,
-                              ),
-                              dataRowHeight: 56.0,
-                              border: TableBorder(
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              dividerThickness: 1.0,
-                              showBottomBorder: true,
-                              // minWidth: 49.0,
+                              ],
                             ),
                           ),
                         ],

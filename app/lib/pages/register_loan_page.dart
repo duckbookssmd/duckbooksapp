@@ -51,10 +51,12 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       textRegistrationController!.text = widget.userRegistration;
       textCodController!.text = widget.codBook;
-      await setEmail(matricula: widget.userRegistration);
-      await setBookdata(cod: widget.codBook);
-      setState(() {
-      });
+      if (textCodController!.text != '') {
+        await setEmail(matricula: widget.userRegistration);
+        await setBookdata(cod: widget.codBook);
+      }
+
+      setState(() {});
     });
   }
 

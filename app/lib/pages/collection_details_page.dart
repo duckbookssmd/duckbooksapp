@@ -402,8 +402,6 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             ),
                           )
                         : Padding(
-                            // TODO Depois colocar condicionar que se já tiver reservado, trocar a imagem
-                            // if book[cod]+ reservation = Solicitado: Livro já solicitado
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                             child: TextButton(
                               onPressed: () async {},
