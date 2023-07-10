@@ -594,7 +594,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             ),
                                           ],
                                           rows: List<DataRow>.generate(
-                                            5, // numero de linhas
+                                            usersActions.length, // numero de linhas
                                             (index) => DataRow(
                                               cells: [
                                                 DataCell(Text(usersActions[index]['status'])),

@@ -620,6 +620,7 @@ class AuthService extends ChangeNotifier {
       pass: texSenhaController!.text,
       typeAdmin: true,
       validated: false,
+      userLoans: [],
     );
 
     // * Writing all the values
@@ -688,7 +689,7 @@ class AuthService extends ChangeNotifier {
         editora: editoraController!.text,
         dataDisponibilidade: null,
         isDeleted: false,
-        userloan: [],
+        userloan: null,
         admRecorder: usuario?.uid,
       );
 
