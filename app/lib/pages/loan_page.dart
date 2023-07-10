@@ -423,7 +423,7 @@ class _LoanPageState extends State<LoanPage> {
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
                                                             // livros[index]['dataDisponibilidade']
-                                                            (DateTime.now().isBefore(DateTime.parse(livros[index]
+                                                            (!DateTime.now().isAfter(DateTime.parse(livros[index]
                                                                         ['dataDisponibilidade']
                                                                     .toString()
                                                                     .substring(0, 10)
@@ -469,13 +469,8 @@ class _LoanPageState extends State<LoanPage> {
                                                                   ),
                                                             TextButton(
                                                               onPressed: () async {
-                                                                // Navigator.push(
-                                                                //   context,
-                                                                //   MaterialPageRoute(
-                                                                //     builder: (context) =>
-                                                                //         CollectionDetailsPage(book: livros[index]),
-                                                                //   ),
-                                                                // ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                                                                await context.read<AuthService>().renewLoan(livros[index]);
+                                                                setState(() {});
                                                               },
                                                               style: OutlinedButton.styleFrom(
                                                                 fixedSize: const Size(90, 40),

@@ -99,6 +99,60 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  renewLoan(dynamic book) async {
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    // mudar numero de renovações nos empréstimos e loans do usuário
+    await firebaseFirestore
+        .collection('emprestimo')
+        .where('bookBorrowed', isEqualTo: await getIdByCod(book["codigo"]))
+        .where('returnDate', isEqualTo: book['dataDisponibilidade'])
+        .where('status', isEqualTo: 'Em dia')
+        .get()
+        .then((value) async {
+      int numRenovations = value.docs.first.data()['renovations'] - 1; // Não pode ser 0
+      bool reservated = await hasReservation(book['codigo']);
+      if (numRenovations > -1 &&
+          (!reservated) &&
+          !DateTime.now().isAfter(
+            DateTime.parse(
+              book['dataDisponibilidade'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join(),
+            ),
+          )) {
+        await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
+          "renovations": numRenovations,
+          "returnDate": date
+              .format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch)),
+        });
+        await firebaseFirestore.collection('user').where('uId', isEqualTo: usuario!.uid).get().then((value) async {
+          List userloans = value.docs.first.data()['userLoans'];
+          for (int i = 0; i < userloans.length; i++) {
+            if (userloans[i]["loan"]['codBook'] == book["codigo"]) {
+              userloans[i]["loan"]['renovacoes'] = userloans[i]["loan"]['renovacoes'] - 1;
+              userloans[i]["loan"]['dataDevolucao'] = date.format(
+                  DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch));
+            }
+          }
+          await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloans});
+        });
+        await firebaseFirestore.collection("book").doc(await getIdByCod(book['codigo'])).update({
+          "dataDisponibilidade": date
+              .format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch))
+        });
+        Fluttertoast.showToast(msg: 'Renovado');
+      } else if (await hasReservation(book['codigo'])) {
+        Fluttertoast.showToast(msg: 'Obra Reservada, impossível renovar');
+      } else if (DateTime.now().isAfter(
+        DateTime.parse(
+          book['dataDisponibilidade'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join(),
+        ),
+      )) {
+        Fluttertoast.showToast(msg: 'Obra atrasada, Por favor Devolva');
+      } else {
+        Fluttertoast.showToast(msg: 'Limite atingido, impossível renovar');
+      }
+    });
+  }
+
   finishReservation(String bookCod) async {
     await firebaseFirestore
         .collection('reservations')

@@ -173,12 +173,14 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                         child: TextButton(
                                           onPressed: () {
                                             Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) => RegisterLoanPageWidget(
-                                                          userRegistration: borrowQuests[index]['userRegistration'],
-                                                          codBook: borrowQuests[index]['codBook'],
-                                                        ))); // Matricula e Código do livro Colocar dados como opcionais
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => RegisterLoanPageWidget(
+                                                  userRegistration: borrowQuests[index]['userRegistration'],
+                                                  codBook: borrowQuests[index]['codBook'],
+                                                ),
+                                              ),
+                                            );
                                             // showDialog<bool>(
                                             //   context: context,
                                             //   builder: (alertDialogContext) {
