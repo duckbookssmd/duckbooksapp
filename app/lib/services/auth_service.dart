@@ -99,6 +99,30 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  finishReservation(String bookCod) async {
+    await firebaseFirestore
+        .collection('reservations')
+        .where('bookReservedId', isEqualTo: bookCod)
+        .where('statusBook', isEqualTo: 'Solicitado')
+        .where('reservationList', arrayContains: usuario!.uid)
+        .get()
+        .then((value) async {
+      firebaseFirestore.collection('reservations').doc(value.docs.first.id).update({"statusBook": "Encerrada"});
+    });
+  }
+
+  cancelReservation(String bookCod) async {
+    await firebaseFirestore
+        .collection('reservations')
+        .where('bookReservedId', isEqualTo: bookCod)
+        .where('statusBook', isEqualTo: 'Solicitado')
+        .where('reservationList', arrayContains: usuario!.uid)
+        .get()
+        .then((value) async {
+      firebaseFirestore.collection('reservations').doc(value.docs.first.id).update({"statusBook": "Cancelada"});
+    });
+  }
+
   doReservation(dynamic book) async {
     // Por enquanto não deixar um tempo limite para pegar depois de reservar
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
@@ -119,7 +143,6 @@ class AuthService extends ChangeNotifier {
         .where('reservationList', arrayContains: usuario!.uid)
         .get()
         .then((value) async {
-      // print(value.docs.first.id);
       return (value.docs.isEmpty) ? false : true;
     });
   }

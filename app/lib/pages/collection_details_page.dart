@@ -218,7 +218,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                     ),
                   ),
                 ),
-                (book['userloan'].toString() == 'null' && (!isReserved || isreservedbyUser)) 
+                (book['userloan'].toString() == 'null' && (!isReserved || isreservedbyUser))
                     ? Padding(
                         padding: const EdgeInsetsDirectional.all(8),
                         child: (!isBorrow)
@@ -253,6 +253,9 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                           TextButton(
                                             onPressed: () async {
                                               await context.read<AuthService>().sendBorrowRequest(book['codigo']);
+                                              (isreservedbyUser)
+                                                  ? context.read<AuthService>().finishReservation(book['codigo'])
+                                                  : null;
                                               Navigator.pop(alertDialogContext, true);
                                               setState(() {});
                                             },
@@ -348,51 +351,101 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         padding: EdgeInsets.all(0),
                       ),
                 (isReserved)
-                    ? Padding(
-                        // TODO Depois colocar condicionar que se já tiver reservado, trocar a imagem
-                        // if book[cod]+ reservation = Solicitado: Livro já solicitado
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-                        child: TextButton(
-                          onPressed: () async {},
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            fixedSize: const Size(190, 40),
-                            backgroundColor: FlutterFlowTheme.of(context).accent2,
-                            elevation: 3,
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            textStyle: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.bookmark_outlined,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  'Obra Já Reservada',
-                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context).tertiary,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                      ),
+                    ? (isreservedbyUser)
+                        ? Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                            child: TextButton(
+                              onPressed: () async {
+                                await context.read<AuthService>().cancelReservation(book['codigo']);
+                                setState(() {
+                                  isReserved = false;
+                                  isreservedbyUser = false;
+                                });
+                              },
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                fixedSize: const Size(190, 40),
+                                backgroundColor: FlutterFlowTheme.of(context).accent2,
+                                elevation: 3,
+                                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                textStyle: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      )
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.bookmark_outlined,
+                                    color: FlutterFlowTheme.of(context).tertiary,
+                                    size: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Cancelar Reserva',
+                                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                                            fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                            color: FlutterFlowTheme.of(context).tertiary,
+                                            useGoogleFonts:
+                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Padding(
+                            // TODO Depois colocar condicionar que se já tiver reservado, trocar a imagem
+                            // if book[cod]+ reservation = Solicitado: Livro já solicitado
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                            child: TextButton(
+                              onPressed: () async {},
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                fixedSize: const Size(190, 40),
+                                backgroundColor: FlutterFlowTheme.of(context).accent2,
+                                elevation: 3,
+                                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                textStyle: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.bookmark_outlined,
+                                    color: FlutterFlowTheme.of(context).tertiary,
+                                    size: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Obra Já Reservada',
+                                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                                            fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                            color: FlutterFlowTheme.of(context).tertiary,
+                                            useGoogleFonts:
+                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
                     : Padding(
                         // if book[cod]+ reservation = Solicitado: Livro já solicitado
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
