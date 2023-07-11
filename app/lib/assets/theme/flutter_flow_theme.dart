@@ -155,12 +155,12 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color secondary = const Color(0xFF676000);
   late Color tertiary = const Color(0xFF944b00);
   late Color alternate = const Color(0xFF84746A);
-  late Color primaryContainer = const Color(0xFFd8e2ff);
-  late Color onPrimaryContainer = const Color(0xFF001a41);
-  late Color secondaryContainer = const Color(0xFFf5e63d);
-  late Color onSecondaryContainer = const Color(0xFF1f1c00);
-  late Color tertiaryContainer = const Color(0xFFffdcc5);
-  late Color onTertiaryContainer = const Color(0xFF301400);
+  late Color primaryContainer = const Color(0xFF001a41);
+  late Color onPrimaryContainer = const Color(0xFFd8e2ff);
+  late Color secondaryContainer = const Color(0xFF1f1c00);
+  late Color onSecondaryContainer = const Color(0xFFf5e63d);
+  late Color tertiaryContainer = const Color(0xFF301400);
+  late Color onTertiaryContainer = const Color(0xFFffdcc5);
   late Color primaryText = const Color(0xFF170a00);
   late Color secondaryText = const Color(0xFF52443b);
   late Color primaryBackground = const Color(0xFFf3dfd2);
@@ -178,7 +178,8 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color warning = const Color(0xFFf5e63d);
   late Color error = const Color(0xFFba1a1a);
   late Color info = const Color(0xFF2F56CC);
-  late Color errorContainer = const Color(0xFFffdad6);
+  late Color errorContainer = const Color(0xFF93000a);
+  late Color onErrorContainer = const Color(0xFFffdad6);
 }
 
 abstract class Typography {
@@ -631,7 +632,8 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color warning = const Color(0xFFFFF58A);
   late Color error = const Color(0xFFFFACA3);
   late Color info = const Color(0xFFd8e2ff);
-  late Color errorContainer = const Color(0xFF93000a);
+  late Color errorContainer = const Color(0xFFffdad6);
+  late Color onErrorContainer = const Color(0xFF93000a);
 }
 
 extension TextStyleHelper on TextStyle {
