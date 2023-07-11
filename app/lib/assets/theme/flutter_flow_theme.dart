@@ -49,12 +49,22 @@ abstract class FlutterFlowTheme {
   late Color primary;
   late Color secondary;
   late Color tertiary;
+  late Color primaryContainer;
+  late Color onPrimaryContainer;
+  late Color secondaryContainer;
+  late Color onSecondaryContainer;
   late Color tertiaryContainer;
+  late Color onTertiaryContainer;
   late Color alternate;
   late Color primaryText;
   late Color secondaryText;
   late Color primaryBackground;
   late Color secondaryBackground;
+  late Color onBackground;
+  late Color outline;
+  late Color overlayPrimary;
+  late Color overlaySecondary;
+  late Color overlayTertiary;
   late Color accent1;
   late Color accent2;
   late Color accent3;
@@ -63,6 +73,8 @@ abstract class FlutterFlowTheme {
   late Color warning;
   late Color error;
   late Color info;
+  late Color errorContainer;
+  late Color onErrorContainer;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
