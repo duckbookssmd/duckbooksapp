@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
+import 'manage_users_page.dart';
 
 class HomePageCa extends StatefulWidget {
   const HomePageCa({
@@ -470,37 +471,43 @@ class _HomePageCaState extends State<HomePageCa> {
                                       const SizedBox(
                                         width: 32,
                                       ),
-                                      Container(
-                                        width: 96.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context).accent2,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.contact_mail,
-                                              color: FlutterFlowTheme.of(context).tertiary,
-                                              size: 32.0,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Contactar\nusuário',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
+                                      InkWell(
+                                        onTap: () async {
+                                          Navigator.push(
+                                              context, MaterialPageRoute(builder: (context) => const ManageUsersPage()));
+                                        },
+                                        child: Container(
+                                          width: 96.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context).accent2,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.contact_mail,
+                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                size: 32.0,
                                               ),
-                                            ),
-                                          ],
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Contactar\nusuário',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).tertiary,
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],

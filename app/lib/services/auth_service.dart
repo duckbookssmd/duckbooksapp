@@ -99,6 +99,33 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  listBorrowNow(List userLoans) {
+    List books = [];
+    for (int i = 0; i < userLoans.length; i++) {
+      // print(userLoans[i]['loan'].toString());
+      if (!(userLoans[i]['loan'] == null)) {
+        books.add(userLoans[i]['loan']['codBook']);
+      }
+    }
+    return books;
+  }
+
+  checkOverdue(List userLoans) {
+    if (userLoans.isEmpty) {
+      return false;
+    }
+    for (int i = 0; i < userLoans.length; i++) {
+      // print(userLoans[i]['loan'].toString());
+      if (!(userLoans[i]['loan'] == null)) {
+        if (DateTime.now().isAfter(DateTime.parse(
+            userLoans[i]['loan']['dataDevolucao'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join()))) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   renewLoan(dynamic book) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     // mudar numero de renovações nos empréstimos e loans do usuário
