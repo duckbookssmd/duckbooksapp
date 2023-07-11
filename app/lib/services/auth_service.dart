@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/models/book_model.dart';
 import 'package:app/models/loan_model.dart';
+import 'package:app/models/log_model.dart';
 import 'package:app/models/reservation_model.dart';
 import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
@@ -98,6 +99,22 @@ class AuthService extends ChangeNotifier {
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+  createLog({
+    String? time,
+    String? userId,
+    String? userAdmId,
+    String? action,
+    String? codBook,
+  }) async {
+    await firebaseFirestore.collection("logs").add(LogModel(
+          time: time ?? '',
+          action: action ?? '',
+          userId: userId ?? await getRegistrationById(usuario!.uid),
+          userAdmId: userAdmId,
+          codBook: codBook,
+        ).toMap());
+  }
 
   listBorrowNow(List userLoans) {
     List books = [];

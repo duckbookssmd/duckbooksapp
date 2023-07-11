@@ -2,6 +2,7 @@ import 'package:app/pages/borrow_solicitations_page.dart';
 import 'package:app/pages/register_book.dart';
 import 'package:app/pages/register_loan_page.dart';
 import 'package:app/pages/validation_page.dart';
+import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
-import '../services/auth_service.dart';
+// import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 import 'manage_users_page.dart';
@@ -52,15 +54,15 @@ class _HomePageCaState extends State<HomePageCa> {
       isLoading = true;
     });
 
-    await firebaseFirestore.collection('emprestimo').where('status', isNotEqualTo: 'Solicitado').get().then(
+    await firebaseFirestore.collection('logs').get().then(
       (value) async {
         for (var docSnapshot in value.docs) {
-          var borrow = docSnapshot.data();
-          borrow.addAll({
-            'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
-            'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
-          });
-          actions.add(borrow);
+          var action = docSnapshot.data();
+          // borrow.addAll({
+          //   'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
+          //   'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
+          // });
+          actions.add(action);
         }
       },
     ).onError((error, stackTrace) {
@@ -70,6 +72,8 @@ class _HomePageCaState extends State<HomePageCa> {
     setState(() {
       isLoading = false;
     });
+
+    actions.sort(((a, b) => b['time'].compareTo(a['time'])));
     return actions;
   }
 
@@ -592,25 +596,62 @@ class _HomePageCaState extends State<HomePageCa> {
                                               label: SizedBox(
                                                 width: 100,
                                                 child: Text(
+                                                  '',
+                                                  style: FlutterFlowTheme.of(context).labelLarge,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              fixedWidth: 50,
+                                            ),
+                                            DataColumn2(
+                                              // size: ColumnSize.values.first,
+                                              label: SizedBox(
+                                                width: 100,
+                                                child: Text(
                                                   'Data',
                                                   style: FlutterFlowTheme.of(context).labelLarge,
                                                   textAlign: TextAlign.center,
                                                 ),
                                               ),
-                                              fixedWidth: 100,
+                                              fixedWidth: 50,
                                             ),
                                           ],
                                           rows: List<DataRow>.generate(
                                             usersActions.length, // numero de linhas
                                             (index) => DataRow(
                                               cells: [
-                                                DataCell(Text(usersActions[index]['status'])),
-                                                DataCell(Text(usersActions[index]['codBook'])),
+                                                DataCell(Text(usersActions[index]['action'])),
+                                                DataCell(Text(
+                                                  usersActions[index]['userId'],
+                                                  textAlign: TextAlign.center ,
+                                                )),
+                                                DataCell(
+                                                  (usersActions[index]['codBook'].toString() != 'null')
+                                                      ? SizedBox(
+                                                          width: 100,
+                                                          child: IconButton(
+                                                            onPressed: () async {
+                                                              Fluttertoast.showToast(
+                                                                  msg: usersActions[index]['codBook'].toString());
+                                                            },
+                                                            icon: const Icon(Icons.library_books_outlined),
+                                                          ),
+                                                        )
+                                                      : const SizedBox(
+                                                          width: 100,
+                                                        ),
+                                                ),
                                                 DataCell(SizedBox(
                                                   width: 100,
-                                                  child: Text(
-                                                    usersActions[index]['returnDate'],
-                                                    textAlign: TextAlign.center,
+                                                  child: IconButton(
+                                                    onPressed: () async {
+                                                      await context.read<AuthService>().createLog(
+                                                            time: DateTime.now().microsecondsSinceEpoch.toString(),
+                                                            action: "Reserva",
+                                                            codBook: 'Emmt-002',
+                                                          );
+                                                    },
+                                                    icon: const Icon(Icons.timer),
                                                   ),
                                                 )),
                                               ],
