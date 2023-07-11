@@ -620,10 +620,60 @@ class _HomePageCaState extends State<HomePageCa> {
                                             usersActions.length, // numero de linhas
                                             (index) => DataRow(
                                               cells: [
-                                                DataCell(Text(usersActions[index]['action'])),
+                                                DataCell(
+                                                  Text(
+                                                    usersActions[index]['action'],
+                                                  ),
+                                                  onTap: () => showDialog<bool>(
+                                                    context: context,
+                                                    builder: (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        content: SizedBox(
+                                                          height: 200,
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              // trocar po RickText
+                                                              Text(
+                                                                'Ação: ${usersActions[index]['action']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              Text(
+                                                                'Usuário que realizou: ${usersActions[index]['userId']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              (usersActions[index]['userAdmId'].toString() != 'null')
+                                                                  ? Text(
+                                                                      'Quem permitiu: ${usersActions[index]['userAdmId']}',
+                                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                                    )
+                                                                  : const Padding(padding: EdgeInsets.all(0)),
+                                                              Text(
+                                                                'Livro: ${usersActions[index]['codBook']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              Text(
+                                                                'Horário: ${DateTime.fromMicrosecondsSinceEpoch(int.parse(usersActions[index]['time'])).toString()}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        actionsAlignment: MainAxisAlignment.center,
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                            child: const Text('Cancelar'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
                                                 DataCell(Text(
                                                   usersActions[index]['userId'],
-                                                  textAlign: TextAlign.center ,
+                                                  textAlign: TextAlign.center,
                                                 )),
                                                 DataCell(
                                                   (usersActions[index]['codBook'].toString() != 'null')
@@ -645,11 +695,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                                   width: 100,
                                                   child: IconButton(
                                                     onPressed: () async {
-                                                      await context.read<AuthService>().createLog(
-                                                            time: DateTime.now().microsecondsSinceEpoch.toString(),
-                                                            action: "Reserva",
-                                                            codBook: 'Emmt-002',
-                                                          );
+                                                      Fluttertoast.showToast(
+                                                          msg: DateTime.fromMicrosecondsSinceEpoch(// Mudar pra millisecondes
+                                                              int.parse(usersActions[index]['time'])).toString());
                                                     },
                                                     icon: const Icon(Icons.timer),
                                                   ),
