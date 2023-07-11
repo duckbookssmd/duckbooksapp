@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ResetPasswordPage extends StatefulWidget {
+  const ResetPasswordPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ResetPasswordPageState createState() => _ResetPasswordPageState();
 }
 
@@ -18,11 +22,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         _isSendingResetLink = true;
       });
       try {
-        await FirebaseAuth.instance
-            .sendPasswordResetEmail(email: _emailController.text);
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text);
         _showResetPasswordSuccessDialog();
       } catch (error) {
-        print('Erro ao enviar e-mail de redefinição de senha: $error');
+        Fluttertoast.showToast(msg: 'Erro ao enviar e-mail de redefinição de senha: $error');
         _showResetPasswordErrorDialog();
       } finally {
         setState(() {
@@ -37,12 +40,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('E-mail de redefinição de senha enviado'),
-          content: Text(
-              'Um link para redefinir sua senha foi enviado para o e-mail fornecido.'),
+          title: const Text('E-mail de redefinição de senha enviado'),
+          content: const Text('Um link para redefinir sua senha foi enviado para o e-mail fornecido.'),
           actions: [
             OutlinedButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -58,12 +60,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Erro ao enviar o e-mail de redefinição de senha'),
-          content: Text(
-              'Ocorreu um erro ao enviar o e-mail de redefinição de senha. Tente novamente mais tarde.'),
+          title: const Text('Erro ao enviar o e-mail de redefinição de senha'),
+          content: const Text('Ocorreu um erro ao enviar o e-mail de redefinição de senha. Tente novamente mais tarde.'),
           actions: [
             OutlinedButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -78,7 +79,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Esqueci a senha'),
+        title: const Text('Esqueci a senha'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -90,7 +91,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(labelText: 'E-mail'),
+                decoration: const InputDecoration(labelText: 'E-mail'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, insira um e-mail';
@@ -98,14 +99,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               OutlinedButton(
+                onPressed: _isSendingResetLink ? null : _resetPassword,
                 child: _isSendingResetLink
-                    ? CircularProgressIndicator(
+                    ? const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       )
-                    : Text('Enviar link de redefinição'),
-                onPressed: _isSendingResetLink ? null : _resetPassword,
+                    : const Text('Enviar link de redefinição'),
               ),
             ],
           ),

@@ -12,7 +12,9 @@ import 'package:provider/provider.dart';
 import '../assets/theme/flutter_flow_theme.dart';
 
 class RegisterLoanPageWidget extends StatefulWidget {
-  const RegisterLoanPageWidget({Key? key}) : super(key: key);
+  const RegisterLoanPageWidget({Key? key, this.userRegistration = '', this.codBook = ''}) : super(key: key);
+  final String userRegistration;
+  final String codBook;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -45,27 +47,37 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
     autorController ??= TextEditingController();
     dataDevolucaoController ??=
         TextEditingController(text: date.format(DateTime.fromMillisecondsSinceEpoch(dataDevolucao.millisecondsSinceEpoch)));
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      textRegistrationController!.text = widget.userRegistration;
+      textCodController!.text = widget.codBook;
+      if (textCodController!.text != '') {
+        await setEmail(matricula: widget.userRegistration);
+        await setBookdata(cod: widget.codBook);
+      }
+
+      setState(() {});
+    });
+  }
+
+  setEmail({String matricula = ''}) async {
+    // Talvez olocar um carregamento
+    await Provider.of<AuthService>(context, listen: false)
+        .getEmailByRegistration(matricula)
+        .then((value) => emailController!.text = value ?? 'Matrícula não existente no sistema');
+    setState(() {});
+  }
+
+  setBookdata({String cod = ''}) async {
+    await Provider.of<AuthService>(context, listen: false).getBookData(cod).then((value) {
+      nomeObraController!.text = value['nome'];
+      autorController!.text = value['autor'];
+      // dataDevolucaoController!.text = value['nome']; Devia
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    setEmail({String matricula = ''}) {
-      setState(() {
-        // Talvez olocar um carregamento
-        Provider.of<AuthService>(context, listen: false)
-            .getEmailByRegistration(matricula)
-            .then((value) => emailController!.text = value ?? 'Matrícula não existente no sistema');
-      });
-    }
-
-    setBookdata({String cod = ''}) {
-      Provider.of<AuthService>(context, listen: false).getBookData(cod).then((value) {
-        nomeObraController!.text = value['nome'];
-        autorController!.text = value['autor'];
-        // dataDevolucaoController!.text = value['nome']; Devia
-      });
-    }
-
     return Scaffold(
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
@@ -159,6 +171,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                             width: MediaQuery.sizeOf(context).width,
                             child: TextFormField(
                               controller: textRegistrationController,
+                              enabled: (widget.userRegistration == ''),
                               obscureText: false,
                               onChanged: (value) {
                                 if (value.length > 5) {
@@ -183,6 +196,12 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       useGoogleFonts:
                                           GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                     ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                     color: Color(0x00000000),
@@ -319,6 +338,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                 width: MediaQuery.sizeOf(context).width,
                                 child: TextFormField(
                                   controller: textCodController,
+                                  enabled: (widget.codBook == ''),
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -337,6 +357,12 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                           useGoogleFonts:
                                               GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                         ),
+                                    disabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).primary,
+                                      ),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                         color: Color(0x00000000),
@@ -395,6 +421,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                 width: MediaQuery.sizeOf(context).width,
                                 child: TextFormField(
                                   controller: nomeObraController,
+
                                   obscureText: false,
                                   enabled: false,
                                   decoration: InputDecoration(
@@ -677,7 +704,10 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                     ],
                   ),
                   const SizedBox(height: 32),
-                  (emailController!.text.isNotEmpty && nomeObraController!.text.isNotEmpty && nomeObraController!.text != 'Null')
+                  (emailController!.text.isNotEmpty &&
+                          nomeObraController!.text.isNotEmpty &&
+                          nomeObraController!.text != 'Null' &&
+                          emailController!.text != "Matrícula não existente no sistema")
                       ? TextButton(
                           onPressed: () async {
                             (_formKey.currentState!.validate())

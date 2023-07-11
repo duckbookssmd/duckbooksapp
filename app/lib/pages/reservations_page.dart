@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 
@@ -45,12 +47,12 @@ class _ReservationsPageState extends State<ReservationsPage> {
       isLoading = true;
     });
     await atualizarLista();
-    // TODO: Relizar a lógica de filtro:
-    // for (Map<String, dynamic> livro in livros) {
-    //   if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
-    //     filttedList.add(livro);
-    //   }
-    // }
+    //TODO: Relizar a lógica de filtro:
+    for (Map<String, dynamic> livro in livros) {
+      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
+        filttedList.add(livro);
+      }
+    }
 
     livros = filttedList;
 
@@ -61,16 +63,19 @@ class _ReservationsPageState extends State<ReservationsPage> {
 
   atualizarLista() async {
     livros = await firebaseFirestore
-        .collection('obra')
+        .collection('book')
         .where('nome', isNull: false)
         .orderBy('nome', descending: false)
         .get()
-        .then((value) {
+        .then((value) async {
       List lista = [];
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
         if (!(livro['isDeleted'].toString() == 'true')) {
-          lista.add(livro);
+          await context.read<AuthService>().hasReservation(livro['codigo']) &&
+                  await context.read<AuthService>().isReservationUser(livro['codigo'])
+              ? lista.add(livro)
+              : null;
         }
       }
       return lista;
@@ -339,24 +344,43 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                           mainAxisSize: MainAxisSize.max,
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
-                                                            Row(
-                                                              mainAxisSize: MainAxisSize.max,
-                                                              mainAxisAlignment: MainAxisAlignment.end,
-                                                              children: [
-                                                                Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration: BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(context).success,
-                                                                    shape: BoxShape.circle,
+                                                            (livros[index]['userloan'].toString() == 'null')
+                                                                ? Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Disponível',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
+                                                                  )
+                                                                : Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).error,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Indisponível',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                                Text(
-                                                                  'Disponível',
-                                                                  style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                ),
-                                                              ],
-                                                            ),
                                                             TextButton(
                                                               onPressed: () async {
                                                                 // Navigator.push(

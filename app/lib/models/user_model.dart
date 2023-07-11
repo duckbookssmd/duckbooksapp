@@ -6,12 +6,8 @@ class UserModel {
   String? nickname;
   bool? typeAdmin = true; // Após finalizar a validação de usuários colocar pra false
   bool? validated = false; // Após finalizar a validação de usuários colocar pra false
-  List<Map>? userLoans = [
-    {'loan': {}},
-  ];
-  List<Map>? userReservations = [
-    {'reservations': {}},
-  ];
+  List<Map>? userLoans = [];
+  List<Map>? userReservations = [];
 
   UserModel({
     required this.uId,
