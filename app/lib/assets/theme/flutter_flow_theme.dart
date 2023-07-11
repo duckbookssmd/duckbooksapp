@@ -177,7 +177,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color success = const Color(0xFF2ECC71);
   late Color warning = const Color(0xFFf5e63d);
   late Color error = const Color(0xFFba1a1a);
-  late Color info = const Color(0xFFd8e2ff);
+  late Color info = const Color(0xFF2F56CC);
   late Color errorContainer = const Color(0xFFffdad6);
 }
 
