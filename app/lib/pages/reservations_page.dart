@@ -344,24 +344,43 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                           mainAxisSize: MainAxisSize.max,
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
-                                                            Row(
-                                                              mainAxisSize: MainAxisSize.max,
-                                                              mainAxisAlignment: MainAxisAlignment.end,
-                                                              children: [
-                                                                Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration: BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(context).success,
-                                                                    shape: BoxShape.circle,
+                                                            (livros[index]['userloan'].toString() == 'null')
+                                                                ? Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).success,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Disponível',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
+                                                                  )
+                                                                : Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: 16,
+                                                                        height: 16,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterFlowTheme.of(context).error,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Indisponível',
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                                Text(
-                                                                  'Disponível',
-                                                                  style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                ),
-                                                              ],
-                                                            ),
                                                             TextButton(
                                                               onPressed: () async {
                                                                 // Navigator.push(
