@@ -55,7 +55,7 @@ class _ReturnLoanPageWidgetState extends State<ReturnLoanPageWidget> {
             buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).tertiary,
               size: 32.0,
             ),
             onPressed: () async {
@@ -238,12 +238,37 @@ class _ReturnLoanPageWidgetState extends State<ReturnLoanPageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'RETURN_LOAN_INFORMAR_DEVOLUÇÃO_BTN_ON_TA');
+                        logFirebaseEvent('Button_alert_dialog');
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Devolver obra'),
+                                  content: Text(
+                                      'Deseja informar a devolução deste empréstimo ?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirmar'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
                       },
                       text: 'Informar devolução',
                       icon: Icon(
-                        Icons.photo_camera_back,
+                        Icons.all_inbox,
                         size: 32.0,
                       ),
                       options: FFButtonOptions(

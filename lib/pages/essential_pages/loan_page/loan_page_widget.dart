@@ -63,7 +63,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                     hoverColor: FlutterFlowTheme.of(context).primaryBackground,
                     icon: Icon(
                       Icons.cancel_outlined,
-                      color: FlutterFlowTheme.of(context).info,
+                      color: FlutterFlowTheme.of(context).primary,
                       size: 24.0,
                     ),
                     onPressed: () async {
@@ -81,7 +81,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.85,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -144,7 +144,7 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
                           children: [
                             Icon(
                               Icons.logout,
-                              color: FlutterFlowTheme.of(context).warning,
+                              color: FlutterFlowTheme.of(context).secondary,
                               size: 24.0,
                             ),
                             Text(
@@ -177,10 +177,21 @@ class _LoanPageWidgetState extends State<LoanPageWidget> {
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-            child: Icon(
-              Icons.menu_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                logFirebaseEvent('LOAN_PAGE_PAGE_Icon_rpjlcq91_ON_TAP');
+                logFirebaseEvent('Icon_drawer');
+                scaffoldKey.currentState!.openDrawer();
+              },
+              child: Icon(
+                Icons.menu_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24.0,
+              ),
             ),
           ),
           actions: [

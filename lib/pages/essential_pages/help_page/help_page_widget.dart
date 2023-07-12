@@ -85,7 +85,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
@@ -98,7 +98,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 0.75,
                       child: Stack(
@@ -205,35 +205,28 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                           ),
                           Align(
                             alignment: AlignmentDirectional(0.0, 1.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 20.0),
-                              child: smooth_page_indicator.SmoothPageIndicator(
-                                controller: _model.pageViewController ??=
-                                    PageController(initialPage: 0),
-                                count: 3,
-                                axisDirection: Axis.horizontal,
-                                onDotClicked: (i) async {
-                                  await _model.pageViewController!
-                                      .animateToPage(
-                                    i,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                },
-                                effect:
-                                    smooth_page_indicator.ExpandingDotsEffect(
-                                  expansionFactor: 3.0,
-                                  spacing: 8.0,
-                                  radius: 16.0,
-                                  dotWidth: 16.0,
-                                  dotHeight: 8.0,
-                                  dotColor:
-                                      FlutterFlowTheme.of(context).accent3,
-                                  activeDotColor:
-                                      FlutterFlowTheme.of(context).tertiary,
-                                  paintStyle: PaintingStyle.fill,
-                                ),
+                            child: smooth_page_indicator.SmoothPageIndicator(
+                              controller: _model.pageViewController ??=
+                                  PageController(initialPage: 0),
+                              count: 3,
+                              axisDirection: Axis.horizontal,
+                              onDotClicked: (i) async {
+                                await _model.pageViewController!.animateToPage(
+                                  i,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.ease,
+                                );
+                              },
+                              effect: smooth_page_indicator.ExpandingDotsEffect(
+                                expansionFactor: 3.0,
+                                spacing: 8.0,
+                                radius: 16.0,
+                                dotWidth: 16.0,
+                                dotHeight: 8.0,
+                                dotColor: FlutterFlowTheme.of(context).accent3,
+                                activeDotColor:
+                                    FlutterFlowTheme.of(context).tertiary,
+                                paintStyle: PaintingStyle.fill,
                               ),
                             ),
                           ),

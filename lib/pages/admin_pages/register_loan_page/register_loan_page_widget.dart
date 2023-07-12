@@ -63,7 +63,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
             buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).tertiary,
               size: 32.0,
             ),
             onPressed: () async {

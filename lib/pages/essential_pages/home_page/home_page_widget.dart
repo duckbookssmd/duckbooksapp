@@ -3,8 +3,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -67,7 +69,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           FlutterFlowTheme.of(context).primaryBackground,
                       icon: Icon(
                         Icons.cancel_outlined,
-                        color: FlutterFlowTheme.of(context).info,
+                        color: FlutterFlowTheme.of(context).primary,
                         size: 24.0,
                       ),
                       onPressed: () async {
@@ -85,7 +87,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 0.85,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   child: ListView(
                     padding: EdgeInsets.zero,
@@ -150,7 +152,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             children: [
                               Icon(
                                 Icons.logout,
-                                color: FlutterFlowTheme.of(context).warning,
+                                color: FlutterFlowTheme.of(context).secondary,
                                 size: 24.0,
                               ),
                               Text(
@@ -183,10 +185,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             automaticallyImplyLeading: false,
             leading: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-              child: Icon(
-                Icons.menu_rounded,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 24.0,
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  logFirebaseEvent('HOME_PAGE_PAGE_Icon_l788sugr_ON_TAP');
+                  logFirebaseEvent('Icon_drawer');
+                  scaffoldKey.currentState!.openDrawer();
+                },
+                child: Icon(
+                  Icons.menu_rounded,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
               ),
             ),
             actions: [
@@ -463,7 +476,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         size: 30.0,
                                       ),
                                       AutoSizeText(
-                                        'Gerenciar\nobras',
+                                        'Cadastrar\nobra',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .labelLarge
@@ -498,7 +511,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   logFirebaseEvent('Container_navigate_to');
 
                                   context.pushNamed(
-                                    'EditUsersPage',
+                                    'ManageUsersPage',
                                     extra: <String, dynamic>{
                                       kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
@@ -524,11 +537,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(
-                                        Icons.groups_2_rounded,
+                                      FaIcon(
+                                        FontAwesomeIcons.usersCog,
                                         color: FlutterFlowTheme.of(context)
                                             .onSecondaryContainer,
-                                        size: 30.0,
+                                        size: 24.0,
                                       ),
                                       AutoSizeText(
                                         'Gerenciar\nusuários',
@@ -593,11 +606,166 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Container(
                             width: double.infinity,
-                            height: 240.0,
+                            height: 280.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            child: DataTable2(
+                              columns: [
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
+                                      'Ação',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .onTertiaryContainer,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
+                                      'Matrícula',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .onTertiaryContainer,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Text(
+                                        'Detalhes',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLargeFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onTertiaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleLargeFamily),
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              rows: dataTableRecordList
+                                  .mapIndexed((dataTableIndex,
+                                          dataTableRecord) =>
+                                      [
+                                        Text(
+                                          'Renovação',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
+                                        Text(
+                                          '559856',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons.newspaper,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                            Icon(
+                                              Icons.timer_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                          ],
+                                        ),
+                                      ].map((c) => DataCell(c)).toList())
+                                  .map((e) => DataRow(cells: e))
+                                  .toList(),
+                              headingRowColor: MaterialStateProperty.all(
+                                FlutterFlowTheme.of(context).tertiaryContainer,
+                              ),
+                              headingRowHeight: 56.0,
+                              dataRowColor: MaterialStateProperty.all(
+                                FlutterFlowTheme.of(context)
+                                    .onTertiaryContainer,
+                              ),
+                              dataRowHeight: 56.0,
+                              border: TableBorder(
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              dividerThickness: 1.0,
+                              columnSpacing: 4.0,
+                              showBottomBorder: true,
+                              minWidth: 49.0,
                             ),
                           ),
                         ],

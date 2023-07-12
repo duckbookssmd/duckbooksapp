@@ -169,6 +169,35 @@ class _CollectionDetailsPageWidgetState
                                     ),
                                   ],
                                 ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'COLLECTION_DETAILS_Icon_szkchcuq_ON_TAP');
+                                    logFirebaseEvent('Icon_navigate_to');
+
+                                    context.pushNamed(
+                                      'EditBookPage',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.bottomToTop,
+                                          duration: Duration(milliseconds: 300),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.edit_square,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    size: 24.0,
+                                  ),
+                                ),
                                 Align(
                                   alignment: AlignmentDirectional(1.0, 0.0),
                                   child: FlutterFlowIconButton(
@@ -205,7 +234,7 @@ class _CollectionDetailsPageWidgetState
                                     },
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 64.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                             Text(
                               'Autor: Lorem ipsum',
@@ -283,8 +312,33 @@ class _CollectionDetailsPageWidgetState
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'COLLECTION_DETAILS_SOLICITAR_EMPRÉSTIMO_');
+                        logFirebaseEvent('Button_alert_dialog');
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Solicitar empréstimo'),
+                                  content: Text(
+                                      'Deseja solicitar o empréstimo desta obra ?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirmar'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
                       },
                       text: 'Solicitar Empréstimo',
                       icon: Icon(

@@ -191,9 +191,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color onErrorContainer = Color(0xFFFFDAD6);
   late Color onBackground = Color(0xFF343434);
   late Color outline = Color(0xFF84746A);
-  late Color overlayPrimary = Color(0xFF624128);
-  late Color overlaySecondary = Color(0xFFA9BFFF);
-  late Color overlayTertiary = Color(0xFFFFF583);
+  late Color overlayPrimary = Color(0xFFA9BFFF);
+  late Color overlaySecondary = Color(0xFFFFF583);
+  late Color overlayTertiary = Color(0xFF624128);
   late Color inactiveBottomBar = Color(0xFF8FABFF);
 }
 

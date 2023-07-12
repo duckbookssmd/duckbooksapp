@@ -27,9 +27,7 @@ export '/pages/admin_pages/edit_book_page/edit_book_page_widget.dart'
     show EditBookPageWidget;
 export '/pages/admin_pages/users_validation_page/users_validation_page_widget.dart'
     show UsersValidationPageWidget;
-export '/pages/admin_pages/edit_users_page/edit_users_page_widget.dart'
-    show EditUsersPageWidget;
-export '/pages/admin_pages/contact_users_page/contact_users_page_widget.dart'
-    show ContactUsersPageWidget;
+export '/pages/admin_pages/manage_users_page/manage_users_page_widget.dart'
+    show ManageUsersPageWidget;
 export '/pages/secondary_pages/collection_details_reserved_page/collection_details_reserved_page_widget.dart'
     show CollectionDetailsReservedPageWidget;

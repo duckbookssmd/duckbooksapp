@@ -238,8 +238,33 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'RENEW_LOAN_RENOVAR_EMPRÉSTIMO_BTN_ON_TAP');
+                        logFirebaseEvent('Button_alert_dialog');
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Renovar empréstimo'),
+                                  content: Text(
+                                      '1/3 Renovações restantes. Deseja renovar este empréstimo ?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirmar'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
                       },
                       text: 'Renovar empréstimo',
                       icon: Icon(

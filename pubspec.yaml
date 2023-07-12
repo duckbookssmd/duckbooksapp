@@ -28,6 +28,7 @@ dependencies:
   auto_size_text: 3.0.0
   badges: 2.0.2
   cached_network_image: 3.2.1
+  data_table_2: 2.3.12
   dropdown_button2: 2.0.0
   easy_debounce: 2.0.1
   firebase_analytics: 10.4.2

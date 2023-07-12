@@ -68,7 +68,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                     hoverColor: FlutterFlowTheme.of(context).primaryBackground,
                     icon: Icon(
                       Icons.cancel_outlined,
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: FlutterFlowTheme.of(context).primary,
                       size: 24.0,
                     ),
                     onPressed: () async {
@@ -87,7 +87,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.85,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -101,12 +101,22 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                         children: [
                           Icon(
                             Icons.power_settings_new_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).error,
                             size: 24.0,
                           ),
                           Text(
                             'Sair do app',
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                           ),
                         ].divide(SizedBox(width: 16.0)),
                       ),
@@ -139,12 +149,23 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                           children: [
                             Icon(
                               Icons.logout,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: FlutterFlowTheme.of(context).secondary,
                               size: 24.0,
                             ),
                             Text(
                               'Fazer logout',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                             ),
                           ].divide(SizedBox(width: 16.0)),
                         ),
@@ -161,10 +182,21 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-            child: Icon(
-              Icons.menu_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                logFirebaseEvent('CONSULTATION_Icon_xfnb4sq9_ON_TAP');
+                logFirebaseEvent('Icon_drawer');
+                scaffoldKey.currentState!.openDrawer();
+              },
+              child: Icon(
+                Icons.menu_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24.0,
+              ),
             ),
           ),
           actions: [

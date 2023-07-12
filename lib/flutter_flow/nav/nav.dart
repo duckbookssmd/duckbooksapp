@@ -164,14 +164,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => UsersValidationPageWidget(),
             ),
             FFRoute(
-              name: 'EditUsersPage',
-              path: 'editUsersPage',
-              builder: (context, params) => EditUsersPageWidget(),
-            ),
-            FFRoute(
-              name: 'ContactUsersPage',
-              path: 'contactUsersPage',
-              builder: (context, params) => ContactUsersPageWidget(),
+              name: 'ManageUsersPage',
+              path: 'manageUsersPage',
+              builder: (context, params) => ManageUsersPageWidget(),
             ),
             FFRoute(
               name: 'CollectionDetailsReservedPage',
