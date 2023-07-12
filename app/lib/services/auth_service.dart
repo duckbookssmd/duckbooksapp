@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/models/book_model.dart';
 import 'package:app/models/loan_model.dart';
+import 'package:app/models/log_model.dart';
 import 'package:app/models/reservation_model.dart';
 import 'package:app/models/validation_model.dart';
 import 'package:app/pages/home_final_user.dart';
@@ -30,6 +31,24 @@ class AuthService extends ChangeNotifier {
   // String? nickname;
   late bool isAdm;
   bool isLoading = true;
+
+  List<String> genreList = [
+    "Empreendedorismo",
+    "Arte e educação",
+    "Comics e HQs",
+    "Html/xml",
+    "Redes e informática",
+    "Java",
+    "C++",
+    "Outras linguagens",
+    "Design",
+    "Cultura digital",
+    "Web",
+    "Computação gráfica",
+    "Programação de jogos",
+    "Mangá",
+    "N.D.A"
+  ];
 
   AuthService() {
     _authCheck();
@@ -98,6 +117,22 @@ class AuthService extends ChangeNotifier {
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+  createLog({
+    String? time,
+    String? userId,
+    String? userAdmId,
+    String? action,
+    String? codBook,
+  }) async {
+    await firebaseFirestore.collection("logs").add(LogModel(
+          time: time ?? '',
+          action: action ?? '',
+          userId: userId ?? await getRegistrationById(usuario!.uid),
+          userAdmId: userAdmId,
+          codBook: codBook,
+        ).toMap());
+  }
 
   listBorrowNow(List userLoans) {
     List books = [];
@@ -201,6 +236,12 @@ class AuthService extends ChangeNotifier {
         .get()
         .then((value) async {
       firebaseFirestore.collection('reservations').doc(value.docs.first.id).update({"statusBook": "Cancelada"});
+      await createLog(
+        time: DateTime.now().millisecondsSinceEpoch.toString(),
+        action: "Cancelamento", // de reserva
+        userId: await getRegistrationById(usuario!.uid), //TODO Atualizar depois aqui tambem,
+        codBook: bookCod,
+      );
     });
   }
 
@@ -214,6 +255,12 @@ class AuthService extends ChangeNotifier {
             statusBook: 'Solicitado' // bookBorrowed: await getIdByCod(bookCod),
             )
         .toMap());
+    await createLog(
+      time: DateTime.now().millisecondsSinceEpoch.toString(),
+      action: "Reserva", // de reserva
+      userId: await getRegistrationById(usuario!.uid), //TODO Atualizar depois aqui tambem,
+      codBook: book['codigo'],
+    );
   }
 
   isReservationUser(String bookCod) async {
@@ -300,6 +347,13 @@ class AuthService extends ChangeNotifier {
       }
 
       await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloansNew});
+      await createLog(
+        time: DateTime.now().millisecondsSinceEpoch.toString(),
+        action: "Devolução",
+        userAdmId: usuario!.uid,
+        userId: await getRegistrationById(value.docs.first.id), //TODO Atualizar depois aqui tambem,
+        codBook: book['codigo'],
+      );
     });
     Fluttertoast.showToast(msg: 'Obra devolvida');
   }
@@ -370,7 +424,7 @@ class AuthService extends ChangeNotifier {
                     returnDate: dataDevolucao,
                     status: "Em dia",
                     userAllowing: usuario!.uid,
-                    userLoan: value.docs.first.id,
+                    userLoan: await getIdByRegistration(userRegistration),
                   ).toMap()); // Teoricamente isso é pra facilitar as atividades
             } else {
               await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
@@ -381,6 +435,13 @@ class AuthService extends ChangeNotifier {
               });
             }
           });
+          await createLog(
+            time: DateTime.now().millisecondsSinceEpoch.toString(),
+            action: "Empréstimo",
+            userAdmId: usuario!.uid,
+            userId: await getRegistrationById(value.docs.first.id), //TODO Atualizar depois aqui tambem,
+            codBook: bookCod,
+          );
         }
       },
     ).catchError(
@@ -472,6 +533,12 @@ class AuthService extends ChangeNotifier {
         },
       );
     });
+    await createLog(
+      time: DateTime.now().millisecondsSinceEpoch.toString(),
+      action: "Validação",
+      userAdmId: userRegistration,
+      userId: readerRegistration,
+    );
   }
 
   confirmValidation(String registration, Map<String, dynamic> requestValidate) async {
@@ -719,7 +786,12 @@ class AuthService extends ChangeNotifier {
         userloan: null,
         admRecorder: usuario?.uid,
       );
-
+      await createLog(
+        time: DateTime.now().millisecondsSinceEpoch.toString(),
+        action: "Cadastro",
+        userAdmId: usuario!.uid,
+        codBook: 'EMP-123', //TODO atualizar com o sistema de codigo automático
+      );
       (!isUpdating) ? await firebaseFirestore.collection("book").add(bookModel.toMap()) : null;
       Fluttertoast.showToast(msg: "Obra salva no sistema!");
       if (isUpdating) {
@@ -731,8 +803,14 @@ class AuthService extends ChangeNotifier {
             .where('edicao', isEqualTo: bookModel.edicao)
             .get()
             .then(
-          (value) {
+          (value) async {
             firebaseFirestore.collection("book").doc(value.docs.first.id).set(bookModel.toMap());
+            await createLog(
+              time: DateTime.now().millisecondsSinceEpoch.toString(),
+              action: "Edição",
+              userAdmId: usuario!.uid,
+              codBook: value.docs.first.id, //TODO Colocar o getCodByID
+            );
           },
         );
       }
@@ -760,6 +838,12 @@ class AuthService extends ChangeNotifier {
         } else {
           await firebaseFirestore.collection("book").doc(value.docs.first.id).set(obra);
           Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
+          await createLog(
+            time: DateTime.now().millisecondsSinceEpoch.toString(),
+            action: "Remoção",
+            userAdmId: usuario!.uid,
+            codBook: value.docs.first.id, //TODO Colocar o getCodByID
+          );
         }
       },
     );

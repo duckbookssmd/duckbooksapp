@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 import 'manage_users_page.dart';
@@ -52,15 +50,15 @@ class _HomePageCaState extends State<HomePageCa> {
       isLoading = true;
     });
 
-    await firebaseFirestore.collection('emprestimo').where('status', isNotEqualTo: 'Solicitado').get().then(
+    await firebaseFirestore.collection('logs').get().then(
       (value) async {
         for (var docSnapshot in value.docs) {
-          var borrow = docSnapshot.data();
-          borrow.addAll({
-            'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
-            'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
-          });
-          actions.add(borrow);
+          var action = docSnapshot.data();
+          // borrow.addAll({
+          //   'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
+          //   'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
+          // });
+          actions.add(action);
         }
       },
     ).onError((error, stackTrace) {
@@ -70,6 +68,8 @@ class _HomePageCaState extends State<HomePageCa> {
     setState(() {
       isLoading = false;
     });
+
+    actions.sort(((a, b) => b['time'].compareTo(a['time'])));
     return actions;
   }
 
@@ -592,25 +592,110 @@ class _HomePageCaState extends State<HomePageCa> {
                                               label: SizedBox(
                                                 width: 100,
                                                 child: Text(
+                                                  '',
+                                                  style: FlutterFlowTheme.of(context).labelLarge,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              fixedWidth: 50,
+                                            ),
+                                            DataColumn2(
+                                              // size: ColumnSize.values.first,
+                                              label: SizedBox(
+                                                width: 100,
+                                                child: Text(
                                                   'Data',
                                                   style: FlutterFlowTheme.of(context).labelLarge,
                                                   textAlign: TextAlign.center,
                                                 ),
                                               ),
-                                              fixedWidth: 100,
+                                              fixedWidth: 50,
                                             ),
                                           ],
                                           rows: List<DataRow>.generate(
                                             usersActions.length, // numero de linhas
                                             (index) => DataRow(
                                               cells: [
-                                                DataCell(Text(usersActions[index]['status'])),
-                                                DataCell(Text(usersActions[index]['codBook'])),
+                                                DataCell(
+                                                  Text(
+                                                    usersActions[index]['action'],
+                                                  ),
+                                                  onTap: () => showDialog<bool>(
+                                                    context: context,
+                                                    builder: (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        content: SizedBox(
+                                                          height: 200,
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              // trocar po RickText
+                                                              Text(
+                                                                'Ação: ${usersActions[index]['action']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              Text(
+                                                                'Usuário que realizou: ${usersActions[index]['userId']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              (usersActions[index]['userAdmId'].toString() != 'null')
+                                                                  ? Text(
+                                                                      'Quem permitiu: ${usersActions[index]['userAdmId']}',
+                                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                                    )
+                                                                  : const Padding(padding: EdgeInsets.all(0)),
+                                                              Text(
+                                                                'Livro: ${usersActions[index]['codBook']}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                              Text(
+                                                                'Horário: ${DateTime.fromMicrosecondsSinceEpoch(int.parse(usersActions[index]['time'])).toString()}',
+                                                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        actionsAlignment: MainAxisAlignment.center,
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                            child: const Text('Cancelar'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                DataCell(Text(
+                                                  usersActions[index]['userId'],
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                                DataCell(
+                                                  (usersActions[index]['codBook'].toString() != 'null')
+                                                      ? SizedBox(
+                                                          width: 100,
+                                                          child: IconButton(
+                                                            onPressed: () async {
+                                                              Fluttertoast.showToast(
+                                                                  msg: usersActions[index]['codBook'].toString());
+                                                            },
+                                                            icon: const Icon(Icons.library_books_outlined),
+                                                          ),
+                                                        )
+                                                      : const SizedBox(
+                                                          width: 100,
+                                                        ),
+                                                ),
                                                 DataCell(SizedBox(
                                                   width: 100,
-                                                  child: Text(
-                                                    usersActions[index]['returnDate'],
-                                                    textAlign: TextAlign.center,
+                                                  child: IconButton(
+                                                    onPressed: () async {
+                                                      Fluttertoast.showToast(
+                                                          msg: DateTime.fromMicrosecondsSinceEpoch(// Mudar pra millisecondes
+                                                              int.parse(usersActions[index]['time'])).toString());
+                                                    },
+                                                    icon: const Icon(Icons.timer),
                                                   ),
                                                 )),
                                               ],

@@ -273,7 +273,7 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.all(3.0),
-                                                child: Text('Email'), // TODO Colocar opção de negar
+                                                child: Text('Email'),
                                               ),
                                             ],
                                           ),
