@@ -1,4 +1,5 @@
 import 'package:app/pages/collection_details_page.dart';
+import 'package:app/pages/consultion_genre_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -194,7 +195,14 @@ class _ConsultPageState extends State<ConsultPage> {
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ConsultionGenrePage(genre: 'Tipografia'),
+                            ),
+                          ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                        },
                         icon: Icon(
                           Icons.notifications,
                           size: 24.0,

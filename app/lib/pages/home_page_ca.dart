@@ -2,17 +2,13 @@ import 'package:app/pages/borrow_solicitations_page.dart';
 import 'package:app/pages/register_book.dart';
 import 'package:app/pages/register_loan_page.dart';
 import 'package:app/pages/validation_page.dart';
-import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-// import 'package:provider/provider.dart';
 
-// import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 import 'manage_users_page.dart';
