@@ -191,7 +191,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Gênero: ${book['codigo']}',
+                            'Código: ${book['codigo']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                         ],

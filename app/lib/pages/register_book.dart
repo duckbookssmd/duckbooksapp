@@ -26,7 +26,7 @@ class _RegisterBookState extends State<RegisterBook> {
   String? textType;
   String? textGenre;
   final List<String> _types = ['Livro', 'Mangá/Gibi', 'DVD', 'Periódico(Artigo)', 'Revista', 'N.D.A'];
-  final List<String> _genres = ['Programação', 'Design Gráfico', 'Redes', 'Tipografia', 'N.D.A'];
+  late List<String> _genres;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -38,6 +38,7 @@ class _RegisterBookState extends State<RegisterBook> {
     textPublisherController ??= TextEditingController();
     textAnoController ??= TextEditingController();
     textEditionController ??= TextEditingController();
+    _genres = context.read<AuthService>().genreList;
   }
 
   @override
@@ -599,15 +600,14 @@ class _RegisterBookState extends State<RegisterBook> {
                                     false;
                                 if (confirmDialogResponse) {
                                   context.read<AuthService>().postBookDetailsToFirestore(
-                                        textNomeController,
-                                        textAutorController,
-                                        textAnoController,
-                                        textEditionController,
-                                        textType,
-                                        textGenre,
-                                        textPublisherController,
-                                        false
-                                      );
+                                      textNomeController,
+                                      textAutorController,
+                                      textAnoController,
+                                      textEditionController,
+                                      textType,
+                                      textGenre,
+                                      textPublisherController,
+                                      false);
                                 }
                               }
                             },

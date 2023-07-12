@@ -50,6 +50,23 @@ class AuthService extends ChangeNotifier {
     "N.D.A"
   ];
 
+  List<String> genreListAcronym = [
+    'EMP',
+    'AED',
+    'CHQ',
+    'WEB',
+    'RDI',
+    'JVA',
+    'CPP',
+    'OLI',
+    'DSN',
+    'CDG',
+    'CGR',
+    'PJG',
+    'MGS',
+    'NDA'
+  ];
+
   AuthService() {
     _authCheck();
   }
@@ -771,26 +788,28 @@ class AuthService extends ChangeNotifier {
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
       BookModel bookModel = BookModel(
-        // tem como otimizar a edição
-        nome: nomeController.text,
-        autor: autorController.text,
-        ano: int.tryParse(anoController!.text),
-        edicao: int.tryParse(edicaoController.text),
-        tipoMidia: tipo,
-        genero: genero,
-        foto: 'Colocar',
-        dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
-        editora: editoraController!.text,
-        dataDisponibilidade: null,
-        isDeleted: false,
-        userloan: null,
-        admRecorder: usuario?.uid,
-      );
+          // tem como otimizar a edição
+          nome: nomeController.text,
+          autor: autorController.text,
+          ano: int.tryParse(anoController!.text),
+          edicao: int.tryParse(edicaoController.text),
+          tipoMidia: tipo,
+          genero: genero,
+          foto: 'Colocar',
+          dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+          editora: editoraController!.text,
+          dataDisponibilidade: null,
+          isDeleted: false,
+          userloan: null,
+          admRecorder: usuario?.uid,
+          codigo: await firebaseFirestore.collection('book').where('genero', isEqualTo: 'Java').get().then((value) {
+            return '${genreListAcronym[genreList.indexOf(genero ?? 'NDA')]}-${value.size.toString().padLeft(3, '0')}';
+          }));
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Cadastro",
         userAdmId: usuario!.uid,
-        codBook: 'EMP-123', //TODO atualizar com o sistema de codigo automático
+        codBook: bookModel.codigo, //TODO atualizar com o sistema de codigo automático
       );
       (!isUpdating) ? await firebaseFirestore.collection("book").add(bookModel.toMap()) : null;
       Fluttertoast.showToast(msg: "Obra salva no sistema!");

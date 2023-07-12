@@ -12,6 +12,7 @@ class BookModel {
   late String? dataDisponibilidade;
   late dynamic userloan;
   late dynamic admRecorder;
+  late String codigo;
 
   BookModel({
     required this.nome,
@@ -27,6 +28,7 @@ class BookModel {
     required this.dataDisponibilidade,
     required this.userloan,
     this.admRecorder,
+    required this.codigo,
   });
 
   Map<String, dynamic> toMap() {
@@ -44,6 +46,7 @@ class BookModel {
       'dataDisponibilidade': dataDisponibilidade,
       'userloan': userloan,
       'admRecorder': admRecorder,
+      'codigo': codigo,
     };
   }
 }
