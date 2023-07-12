@@ -32,6 +32,24 @@ class AuthService extends ChangeNotifier {
   late bool isAdm;
   bool isLoading = true;
 
+  List<String> genreList = [
+    "Empreendedorismo",
+    "Arte e educação",
+    "Comics e HQs",
+    "Html/xml",
+    "Redes e informática",
+    "Java",
+    "C++",
+    "Outras linguagens",
+    "Design",
+    "Cultura digital",
+    "Web",
+    "Computação gráfica",
+    "Programação de jogos",
+    "Mangá",
+    "N.D.A"
+  ];
+
   AuthService() {
     _authCheck();
   }

@@ -1,9 +1,10 @@
 import 'package:app/pages/collection_details_page.dart';
 import 'package:app/pages/consultion_genre_page.dart';
+import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
@@ -83,11 +84,14 @@ class _ConsultPageState extends State<ConsultPage> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
   }
 
   @override
   Widget build(BuildContext context) {
+    List generos = context.read<AuthService>().genreList;
+
     return GestureDetector(
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -249,175 +253,49 @@ class _ConsultPageState extends State<ConsultPage> {
                                   alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context).secondary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  Icons.developer_mode,
-                                                  color: FlutterFlowTheme.of(context).tertiary,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Programação',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context).secondary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  Icons.palette,
-                                                  color: FlutterFlowTheme.of(context).tertiary,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Design \nde Interface',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                    child: ListView.builder(
+                                        itemCount: generos.length,
+                                        scrollDirection: axisDirectionToAxis(AxisDirection.left),
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 85,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                      shape: BoxShape.circle,
                                                     ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context).secondary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Align(
-                                                  alignment: const AlignmentDirectional(0, 0.25),
-                                                  child: FaIcon(
-                                                    FontAwesomeIcons.database,
-                                                    color: FlutterFlowTheme.of(context).tertiary,
-                                                    size: 24,
+                                                    child: IconButton(
+                                                      onPressed: () => Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => ConsultionGenrePage(genre: generos[index]),
+                                                        ),
+                                                      ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                                      icon: Icon(
+                                                        Icons.developer_mode,
+                                                        color: FlutterFlowTheme.of(context).tertiary,
+                                                        size: 24,
+                                                      ),
+                                                    )),
+                                                SizedBox(
+                                                  width: 80,
+                                                  child: Text(
+                                                    truncateWithEllipsis(22, generos[index]),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(context).labelLarge,
                                                   ),
                                                 ),
-                                              ),
-                                              Text(
-                                                'Banco\nde Dados',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context).secondary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  Icons.auto_stories,
-                                                  color: FlutterFlowTheme.of(context).tertiary,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Mangás',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context).secondary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  Icons.ondemand_video_rounded,
-                                                  color: FlutterFlowTheme.of(context).tertiary,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Filmes',
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                      useGoogleFonts: GoogleFonts.asMap()
-                                                          .containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                              ],
+                                            ),
+                                          );
+                                        }),
                                   ),
                                 ),
                               ),
