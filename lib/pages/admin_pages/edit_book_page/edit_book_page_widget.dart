@@ -114,11 +114,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Cód.',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                               hintText: 'Cód.',
-                              hintStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -149,9 +169,19 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent2,
+                              fillColor: FlutterFlowTheme.of(context).outline,
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
@@ -164,10 +194,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Nome',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Nome',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -197,15 +248,25 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               suffixIcon: Icon(
                                 Icons.edit_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),
@@ -218,10 +279,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Autor',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Autor',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -251,15 +333,25 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               suffixIcon: Icon(
                                 Icons.edit_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             validator: _model.textController3Validator
                                 .asValidator(context),
                           ),
@@ -272,10 +364,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Edição',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Edição',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -305,15 +418,25 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               suffixIcon: Icon(
                                 Icons.edit_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             validator: _model.textController4Validator
                                 .asValidator(context),
                           ),
@@ -326,10 +449,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Ano',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Ano',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -359,15 +503,25 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               suffixIcon: Icon(
                                 Icons.edit_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             validator: _model.textController5Validator
                                 .asValidator(context),
                           ),
@@ -380,11 +534,31 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Data de Cadastro',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                               hintText: 'Data de Cadastro',
-                              hintStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -414,9 +588,19 @@ class _EditBookPageWidgetState extends State<EditBookPageWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent2,
+                              fillColor: FlutterFlowTheme.of(context).outline,
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                             keyboardType: TextInputType.datetime,
                             validator: _model.textController6Validator
                                 .asValidator(context),

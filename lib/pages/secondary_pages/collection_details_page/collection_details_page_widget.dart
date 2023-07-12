@@ -57,7 +57,7 @@ class _CollectionDetailsPageWidgetState
             buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).tertiary,
               size: 32.0,
             ),
             onPressed: () async {
@@ -250,8 +250,12 @@ class _CollectionDetailsPageWidgetState
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 64.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 3.0,
+                        ),
                       ),
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
@@ -265,8 +269,8 @@ class _CollectionDetailsPageWidgetState
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
+                                color:
+                                    FlutterFlowTheme.of(context).onBackground,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),
@@ -294,14 +298,14 @@ class _CollectionDetailsPageWidgetState
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
-                        color: FlutterFlowTheme.of(context).tertiaryContainer,
+                        color: FlutterFlowTheme.of(context).primaryContainer,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
                               color: FlutterFlowTheme.of(context)
-                                  .onTertiaryContainer,
+                                  .onPrimaryContainer,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
@@ -312,13 +316,26 @@ class _CollectionDetailsPageWidgetState
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(25.0),
-                        hoverColor: FlutterFlowTheme.of(context).overlayBrown,
+                        hoverColor: FlutterFlowTheme.of(context).overlayPrimary,
                       ),
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      logFirebaseEvent(
+                          'COLLECTION_DETAILS_RESERVAR_BTN_ON_TAP');
+                      logFirebaseEvent('Button_navigate_to');
+
+                      context.pushNamed(
+                        'CollectionDetailsReservedPage',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
                     },
                     text: 'Reservar',
                     icon: Icon(
@@ -349,7 +366,7 @@ class _CollectionDetailsPageWidgetState
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(25.0),
-                      hoverColor: FlutterFlowTheme.of(context).overlayYellow,
+                      hoverColor: FlutterFlowTheme.of(context).overlaySecondary,
                     ),
                   ),
                   Align(
@@ -479,7 +496,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -489,7 +521,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -610,7 +642,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -620,7 +667,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -741,7 +788,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -751,7 +813,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -872,7 +934,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -882,7 +959,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1003,7 +1080,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1013,7 +1105,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1134,7 +1226,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1144,7 +1251,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1265,7 +1372,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1275,7 +1397,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1396,7 +1518,22 @@ class _CollectionDetailsPageWidgetState
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1406,7 +1543,7 @@ class _CollectionDetailsPageWidgetState
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,

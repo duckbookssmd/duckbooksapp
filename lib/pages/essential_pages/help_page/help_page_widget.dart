@@ -89,10 +89,8 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        'assets/images/Ativo_1_1.png',
-                        width: 300.0,
-                        height: 200.0,
-                        fit: BoxFit.scaleDown,
+                        'assets/images/export202307032125078453.png',
+                        fit: BoxFit.none,
                       ),
                     ),
                   ),
@@ -100,7 +98,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 50.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 0.75,
                       child: Stack(

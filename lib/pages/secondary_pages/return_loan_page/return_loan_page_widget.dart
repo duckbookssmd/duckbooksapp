@@ -205,8 +205,12 @@ class _ReturnLoanPageWidgetState extends State<ReturnLoanPageWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 64.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 3.0,
+                        ),
                       ),
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
@@ -220,8 +224,8 @@ class _ReturnLoanPageWidgetState extends State<ReturnLoanPageWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
+                                color:
+                                    FlutterFlowTheme.of(context).onBackground,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),

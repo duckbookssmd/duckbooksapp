@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +28,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     _model = createModel(context, () => HomePageModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'HomePage'});
-    _model.textController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -69,7 +67,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           FlutterFlowTheme.of(context).primaryBackground,
                       icon: Icon(
                         Icons.cancel_outlined,
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).info,
                         size: 24.0,
                       ),
                       onPressed: () async {
@@ -101,12 +99,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           children: [
                             Icon(
                               Icons.power_settings_new_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: FlutterFlowTheme.of(context).error,
                               size: 24.0,
                             ),
                             Text(
                               'Sair do app',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                             ),
                           ].divide(SizedBox(width: 16.0)),
                         ),
@@ -141,13 +150,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             children: [
                               Icon(
                                 Icons.logout,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                                color: FlutterFlowTheme.of(context).warning,
                                 size: 24.0,
                               ),
                               Text(
                                 'Fazer logout',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
                               ),
                             ].divide(SizedBox(width: 16.0)),
                           ),
@@ -179,7 +198,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).primaryContainer,
+                          color:
+                              FlutterFlowTheme.of(context).onPrimaryContainer,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
@@ -215,107 +235,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: TextFormField(
-                              controller: _model.textController,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.textController',
-                                Duration(milliseconds: 2000),
-                                () => setState(() {}),
-                              ),
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                labelText: 'Pesquise uma obra aqui...',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleLargeFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .onSurfaceContainer,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLargeFamily),
-                                    ),
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleLargeFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .onSurfaceContainer,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLargeFamily),
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).info,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .surfaceContainer,
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: FlutterFlowTheme.of(context)
-                                      .onSurfaceContainer,
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleLargeFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .onSurfaceContainer,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleLargeFamily),
-                                  ),
-                              cursorColor: FlutterFlowTheme.of(context)
-                                  .onSurfaceContainer,
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                        ].divide(SizedBox(width: 8.0)),
-                      ),
-                    ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -381,7 +300,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     height: 48.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondary,
+                                          .secondaryContainer,
                                       borderRadius: BorderRadius.circular(30.0),
                                       shape: BoxShape.rectangle,
                                     ),
@@ -394,7 +313,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Icon(
                                           Icons.emoji_people_rounded,
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryContainer,
+                                              .onSecondaryContainer,
                                           size: 30.0,
                                         ),
                                         AutoSizeText(
@@ -408,7 +327,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .labelLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onSecondaryContainer,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -449,7 +369,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     height: 48.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondary,
+                                          .secondaryContainer,
                                       borderRadius: BorderRadius.circular(30.0),
                                       shape: BoxShape.rectangle,
                                     ),
@@ -462,7 +382,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Icon(
                                           Icons.assignment_add,
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryContainer,
+                                              .onSecondaryContainer,
                                           size: 28.0,
                                         ),
                                         AutoSizeText(
@@ -476,7 +396,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .labelLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onSecondaryContainer,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -525,8 +446,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       MediaQuery.sizeOf(context).width * 0.43,
                                   height: 48.0,
                                   decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryContainer,
                                     borderRadius: BorderRadius.circular(30.0),
                                     shape: BoxShape.rectangle,
                                   ),
@@ -538,7 +459,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icon(
                                         Icons.collections_bookmark,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryContainer,
+                                            .onSecondaryContainer,
                                         size: 30.0,
                                       ),
                                       AutoSizeText(
@@ -552,7 +473,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .labelLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onSecondaryContainer,
+                                              fontSize: 14.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -592,8 +514,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       MediaQuery.sizeOf(context).width * 0.43,
                                   height: 48.0,
                                   decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryContainer,
                                     borderRadius: BorderRadius.circular(30.0),
                                     shape: BoxShape.rectangle,
                                   ),
@@ -605,7 +527,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icon(
                                         Icons.groups_2_rounded,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryContainer,
+                                            .onSecondaryContainer,
                                         size: 30.0,
                                       ),
                                       AutoSizeText(
@@ -619,7 +541,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .labelLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onSecondaryContainer,
+                                              fontSize: 14.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(

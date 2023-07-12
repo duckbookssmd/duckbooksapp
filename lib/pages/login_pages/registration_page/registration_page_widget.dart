@@ -132,7 +132,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: 'Apelido',
-                          hintStyle: FlutterFlowTheme.of(context).titleLarge,
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .titleLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleLargeFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleLargeFamily),
+                              ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -164,7 +173,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           ),
                           filled: true,
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           prefixIcon: Icon(
                             Icons.face_retouching_natural,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -185,7 +194,14 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                                 )
                               : null,
                         ),
-                        style: FlutterFlowTheme.of(context).titleLarge,
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleLargeFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleLargeFamily),
+                            ),
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
                         validator: _model.textController1Validator
                             .asValidator(context),
@@ -211,7 +227,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: 'Matrícula ou SIAPE',
-                          hintStyle: FlutterFlowTheme.of(context).titleLarge,
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .titleLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleLargeFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleLargeFamily),
+                              ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -243,7 +268,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           ),
                           filled: true,
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           prefixIcon: Icon(
                             Icons.location_history_rounded,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -264,7 +289,14 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                                 )
                               : null,
                         ),
-                        style: FlutterFlowTheme.of(context).titleLarge,
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleLargeFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleLargeFamily),
+                            ),
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
                         validator: _model.textController2Validator
                             .asValidator(context),
@@ -332,7 +364,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           ),
                           filled: true,
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           prefixIcon: Icon(
                             Icons.alternate_email_rounded,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -421,7 +453,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           ),
                           filled: true,
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           prefixIcon: Icon(
                             Icons.vpn_key,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -510,7 +542,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           ),
                           filled: true,
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           prefixIcon: Icon(
                             Icons.vpn_key,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -577,24 +609,24 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleMedium
-                            .override(
-                              fontFamily: FlutterFlowTheme.of(context)
-                                  .titleMediumFamily,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryContainer,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleMediumFamily),
-                            ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .onPrimaryContainer,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                         elevation: 5.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(10.0),
-                        hoverColor: FlutterFlowTheme.of(context).overlayBlue,
+                        hoverColor:
+                            FlutterFlowTheme.of(context).overlaySecondary,
                       ),
                     ),
                   ),

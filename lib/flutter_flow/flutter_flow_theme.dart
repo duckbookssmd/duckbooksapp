@@ -67,20 +67,16 @@ abstract class FlutterFlowTheme {
   late Color secondaryContainer;
   late Color tertiaryContainer;
   late Color errorContainer;
-  late Color surfaceContainer;
-  late Color surfaceVariantContainer;
-  late Color background;
   late Color onPrimaryContainer;
   late Color onSecondaryContainer;
   late Color onTertiaryContainer;
   late Color onErrorContainer;
-  late Color onSurfaceContainer;
-  late Color onSurfaceVariantContainer;
   late Color onBackground;
   late Color outline;
-  late Color overlayBrown;
-  late Color overlayBlue;
-  late Color overlayYellow;
+  late Color overlayPrimary;
+  late Color overlaySecondary;
+  late Color overlayTertiary;
+  late Color inactiveBottomBar;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -185,24 +181,20 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFBA1A1A);
   late Color info = const Color(0xFFD8E2FF);
 
-  late Color primaryContainer = Color(0xFFD8E2FF);
-  late Color secondaryContainer = Color(0xFFF5E63D);
-  late Color tertiaryContainer = Color(0xFFFFDCC5);
-  late Color errorContainer = Color(0xFFFFDAD6);
-  late Color surfaceContainer = Color(0xFFFFFBFF);
-  late Color surfaceVariantContainer = Color(0xFFF3DFD2);
-  late Color background = Color(0xFFFFFBFF);
-  late Color onPrimaryContainer = Color(0xFF001A41);
-  late Color onSecondaryContainer = Color(0xFF1F1C00);
-  late Color onTertiaryContainer = Color(0xFF301400);
-  late Color onErrorContainer = Color(0xFF410002);
-  late Color onSurfaceContainer = Color(0xFF211B00);
-  late Color onSurfaceVariantContainer = Color(0xFF52443B);
-  late Color onBackground = Color(0xFF211B00);
+  late Color primaryContainer = Color(0xFF001A41);
+  late Color secondaryContainer = Color(0xFF1F1C00);
+  late Color tertiaryContainer = Color(0xFF301400);
+  late Color errorContainer = Color(0xFF410002);
+  late Color onPrimaryContainer = Color(0xFFD8E2FF);
+  late Color onSecondaryContainer = Color(0xFFF5E63D);
+  late Color onTertiaryContainer = Color(0xFFFFDCC5);
+  late Color onErrorContainer = Color(0xFFFFDAD6);
+  late Color onBackground = Color(0xFF343434);
   late Color outline = Color(0xFF84746A);
-  late Color overlayBrown = Color(0xFF624128);
-  late Color overlayBlue = Color(0xFFA9BFFF);
-  late Color overlayYellow = Color(0xFFFFF583);
+  late Color overlayPrimary = Color(0xFF624128);
+  late Color overlaySecondary = Color(0xFFA9BFFF);
+  late Color overlayTertiary = Color(0xFFFFF583);
+  late Color inactiveBottomBar = Color(0xFF8FABFF);
 }
 
 abstract class Typography {
@@ -627,41 +619,37 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF305DA8);
-  late Color secondary = const Color(0xFFD8CA1C);
+  late Color primary = const Color(0xFFADC6FF);
+  late Color secondary = const Color(0xFFD4CA51);
   late Color tertiary = const Color(0xFFFFB783);
-  late Color alternate = const Color(0xFF9F8D83);
-  late Color primaryText = const Color(0xFFFFDCC5);
-  late Color secondaryText = const Color(0xFFF5E63D);
-  late Color primaryBackground = const Color(0xFF52443B);
-  late Color secondaryBackground = const Color(0xFF211B00);
-  late Color accent1 = const Color(0x4DADC7FF);
-  late Color accent2 = const Color(0x4DD8CA1C);
+  late Color alternate = const Color(0xFF8E9099);
+  late Color primaryText = const Color(0xFFEEEEEE);
+  late Color secondaryText = const Color(0xFFCDCDCD);
+  late Color primaryBackground = const Color(0xFF111111);
+  late Color secondaryBackground = const Color(0xFF333333);
+  late Color accent1 = const Color(0x4DADC6FF);
+  late Color accent2 = const Color(0x4DD4CA51);
   late Color accent3 = const Color(0x4DFFB783);
-  late Color accent4 = const Color(0x4D9F8D83);
-  late Color success = const Color(0xFFADFFCF);
-  late Color warning = const Color(0xFFFFFAAD);
-  late Color error = const Color(0xFFFFB4AB);
-  late Color info = const Color(0xFF0C448E);
+  late Color accent4 = const Color(0x4D8E9099);
+  late Color success = const Color(0xFF8AFFBB);
+  late Color warning = const Color(0xFFFFF58A);
+  late Color error = const Color(0xFFFFACA3);
+  late Color info = const Color(0xFFD8E2FF);
 
-  late Color primaryContainer = Color(0xFFADC7FF);
-  late Color secondaryContainer = Color(0xFF4E4800);
-  late Color tertiaryContainer = Color(0xFF713700);
+  late Color primaryContainer = Color(0xFFD8E2FF);
+  late Color secondaryContainer = Color(0xFFFFFC7A);
+  late Color tertiaryContainer = Color(0xFFFFDCC5);
   late Color errorContainer = Color(0xFF93000A);
-  late Color surfaceContainer = Color(0xFF211B00);
-  late Color surfaceVariantContainer = Color(0xFF52443B);
-  late Color background = Color(0xFF211B00);
-  late Color onPrimaryContainer = Color(0xFFD8E2FF);
-  late Color onSecondaryContainer = Color(0xFFF5E63D);
-  late Color onTertiaryContainer = Color(0xFFFFDCC5);
+  late Color onPrimaryContainer = Color(0xFF002E68);
+  late Color onSecondaryContainer = Color(0xFF1F1C00);
+  late Color onTertiaryContainer = Color(0xFF301400);
   late Color onErrorContainer = Color(0xFFFFDAD6);
-  late Color onSurfaceContainer = Color(0xFFFDE265);
-  late Color onSurfaceVariantContainer = Color(0xFFD6C3B7);
-  late Color onBackground = Color(0xFFFDE265);
-  late Color outline = Color(0xFF9F8D83);
-  late Color overlayBrown = Color(0xFF624128);
-  late Color overlayBlue = Color(0xFFA9BFFF);
-  late Color overlayYellow = Color(0xFFFFF583);
+  late Color onBackground = Color(0xFFCDCDCD);
+  late Color outline = Color(0xFF84746A);
+  late Color overlayPrimary = Color(0xFFA9BFFF);
+  late Color overlaySecondary = Color(0xFFFFF583);
+  late Color overlayTertiary = Color(0xFF624128);
+  late Color inactiveBottomBar = Color(0xFF7598FF);
 }
 
 extension TextStyleHelper on TextStyle {

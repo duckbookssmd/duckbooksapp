@@ -176,7 +176,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
-                        color: FlutterFlowTheme.of(context).primaryContainer,
+                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
@@ -234,8 +234,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .onSurfaceContainer,
+                                  color: Color(0xFF211B00),
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleLargeFamily),
@@ -245,8 +244,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .onSurfaceContainer,
+                                  color: Color(0xFF211B00),
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleLargeFamily),
@@ -280,12 +278,10 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
+                            fillColor: Color(0xFFFFFBFF),
                             suffixIcon: Icon(
                               Icons.search,
-                              color: FlutterFlowTheme.of(context)
-                                  .onSurfaceContainer,
+                              color: Color(0xFF211B00),
                             ),
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -293,14 +289,12 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .onSurfaceContainer,
+                                color: Color(0xFF211B00),
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),
                               ),
-                          cursorColor:
-                              FlutterFlowTheme.of(context).onSurfaceContainer,
+                          cursorColor: Color(0xFF211B00),
                           validator: _model.textControllerValidator
                               .asValidator(context),
                         ),
@@ -421,7 +415,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                                             .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryContainer,
+                                                                        .info,
                                                                     letterSpacing:
                                                                         1.5,
                                                                     useGoogleFonts: GoogleFonts
@@ -509,7 +503,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                                             .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryContainer,
+                                                                        .info,
                                                                     letterSpacing:
                                                                         1.5,
                                                                     useGoogleFonts: GoogleFonts
@@ -542,23 +536,28 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         0.4,
                                                 child: Stack(
                                                   children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        'https://picsum.photos/seed/613/600',
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                0.22,
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                0.4,
-                                                        fit: BoxFit.none,
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                          'https://picsum.photos/seed/613/600',
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.22,
+                                                          height:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .height *
+                                                                  0.4,
+                                                          fit: BoxFit.none,
+                                                        ),
                                                       ),
                                                     ),
                                                     Align(
@@ -597,7 +596,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                                             .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryContainer,
+                                                                        .info,
                                                                     fontSize:
                                                                         16.0,
                                                                     letterSpacing:
@@ -687,7 +686,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                                             .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryContainer,
+                                                                        .info,
                                                                     fontSize:
                                                                         16.0,
                                                                     letterSpacing:
@@ -777,7 +776,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                                             .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryContainer,
+                                                                        .info,
                                                                     fontSize:
                                                                         16.0,
                                                                     letterSpacing:
@@ -931,7 +930,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -941,7 +940,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -958,7 +957,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1072,7 +1071,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1082,7 +1081,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1099,7 +1098,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1213,7 +1212,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1223,7 +1222,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1240,7 +1239,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1353,7 +1352,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1363,7 +1362,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1380,7 +1379,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1493,7 +1492,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1503,7 +1502,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1520,7 +1519,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1634,7 +1633,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1644,7 +1643,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1661,7 +1660,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1774,7 +1773,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1784,7 +1783,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1801,7 +1800,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,
@@ -1914,7 +1913,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .tertiaryContainer,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleLarge
@@ -1924,7 +1923,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                                         .titleLargeFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryContainer,
+                                                        .onTertiaryContainer,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -1941,7 +1940,7 @@ class _ConsultationPageWidgetState extends State<ConsultationPageWidget> {
                                               BorderRadius.circular(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
-                                                  .overlayBlue,
+                                                  .overlaySecondary,
                                           hoverTextColor:
                                               FlutterFlowTheme.of(context)
                                                   .onTertiaryContainer,

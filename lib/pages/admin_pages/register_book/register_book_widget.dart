@@ -113,10 +113,31 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Cód.',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Cód.',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -146,9 +167,19 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent2,
+                              fillColor: FlutterFlowTheme.of(context).outline,
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
@@ -194,8 +225,8 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context).bodyLarge,
                             validator: _model.textController2Validator
@@ -243,8 +274,8 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context).bodyLarge,
                             validator: _model.textController3Validator
@@ -292,8 +323,8 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context).bodyLarge,
                             validator: _model.textController4Validator
@@ -341,8 +372,8 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).surfaceContainer,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context).bodyLarge,
                             validator: _model.textController5Validator
@@ -357,10 +388,31 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Data de Cadastro',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyLarge,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               hintText: 'Data de Cadastro',
-                              hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -390,9 +442,19 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent2,
+                              fillColor: FlutterFlowTheme.of(context).outline,
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
                             keyboardType: TextInputType.datetime,
                             validator: _model.textController6Validator
                                 .asValidator(context),
@@ -421,7 +483,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                             size: 24.0,
                           ),
                           fillColor:
-                              FlutterFlowTheme.of(context).surfaceContainer,
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           elevation: 2.0,
                           borderColor: Colors.transparent,
                           borderWidth: 2.0,
@@ -482,14 +544,15 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                                     0.0, 0.0, 0.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).tertiary,
+                                color: FlutterFlowTheme.of(context)
+                                    .tertiaryContainer,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .titleLargeFamily,
                                       color: FlutterFlowTheme.of(context)
-                                          .tertiaryContainer,
+                                          .onTertiaryContainer,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)

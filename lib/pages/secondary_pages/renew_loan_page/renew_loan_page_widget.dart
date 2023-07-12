@@ -55,7 +55,7 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
             buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).tertiary,
               size: 32.0,
             ),
             onPressed: () async {
@@ -205,8 +205,12 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 64.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 3.0,
+                        ),
                       ),
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
@@ -220,8 +224,8 @@ class _RenewLoanPageWidgetState extends State<RenewLoanPageWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
+                                color:
+                                    FlutterFlowTheme.of(context).onBackground,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),

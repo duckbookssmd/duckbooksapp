@@ -303,9 +303,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                              unselectedWidgetColor:
-                                  FlutterFlowTheme.of(context)
-                                      .onSurfaceVariantContainer,
+                              unselectedWidgetColor: Color(0xFF52443B),
                             ),
                             child: Checkbox(
                               value: _model.checkboxValue ??= false,
@@ -313,10 +311,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 setState(
                                     () => _model.checkboxValue = newValue!);
                               },
-                              activeColor: FlutterFlowTheme.of(context)
-                                  .onSurfaceVariantContainer,
-                              checkColor: FlutterFlowTheme.of(context)
-                                  .surfaceVariantContainer,
+                              activeColor: Color(0xFF52443B),
+                              checkColor: Color(0xFFF3DFD2),
                             ),
                           ),
                           Align(
@@ -378,7 +374,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleMediumFamily,
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
+                                    .onPrimaryContainer,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleMediumFamily),
@@ -389,7 +385,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             width: 0.0,
                           ),
                           borderRadius: BorderRadius.circular(10.0),
-                          hoverColor: FlutterFlowTheme.of(context).overlayBlue,
+                          hoverColor:
+                              FlutterFlowTheme.of(context).overlaySecondary,
                         ),
                       ),
                     ),

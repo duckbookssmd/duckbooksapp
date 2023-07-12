@@ -17,10 +17,6 @@ export '/pages/secondary_pages/return_loan_page/return_loan_page_widget.dart'
     show ReturnLoanPageWidget;
 export '/pages/secondary_pages/renew_loan_page/renew_loan_page_widget.dart'
     show RenewLoanPageWidget;
-export '/pages/secondary_pages/borrow_reserved_page/borrow_reserved_page_widget.dart'
-    show BorrowReservedPageWidget;
-export '/pages/secondary_pages/borrow_unreserved_page/borrow_unreserved_page_widget.dart'
-    show BorrowUnreservedPageWidget;
 export '/pages/secondary_pages/collection_details_page/collection_details_page_widget.dart'
     show CollectionDetailsPageWidget;
 export '/pages/admin_pages/register_loan_page/register_loan_page_widget.dart'
@@ -35,3 +31,5 @@ export '/pages/admin_pages/edit_users_page/edit_users_page_widget.dart'
     show EditUsersPageWidget;
 export '/pages/admin_pages/contact_users_page/contact_users_page_widget.dart'
     show ContactUsersPageWidget;
+export '/pages/secondary_pages/collection_details_reserved_page/collection_details_reserved_page_widget.dart'
+    show CollectionDetailsReservedPageWidget;

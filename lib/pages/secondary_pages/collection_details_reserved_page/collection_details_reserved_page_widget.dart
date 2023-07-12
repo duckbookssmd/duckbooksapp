@@ -6,29 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'borrow_reserved_page_model.dart';
-export 'borrow_reserved_page_model.dart';
+import 'collection_details_reserved_page_model.dart';
+export 'collection_details_reserved_page_model.dart';
 
-class BorrowReservedPageWidget extends StatefulWidget {
-  const BorrowReservedPageWidget({Key? key}) : super(key: key);
+class CollectionDetailsReservedPageWidget extends StatefulWidget {
+  const CollectionDetailsReservedPageWidget({Key? key}) : super(key: key);
 
   @override
-  _BorrowReservedPageWidgetState createState() =>
-      _BorrowReservedPageWidgetState();
+  _CollectionDetailsReservedPageWidgetState createState() =>
+      _CollectionDetailsReservedPageWidgetState();
 }
 
-class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
-  late BorrowReservedPageModel _model;
+class _CollectionDetailsReservedPageWidgetState
+    extends State<CollectionDetailsReservedPageWidget> {
+  late CollectionDetailsReservedPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BorrowReservedPageModel());
+    _model = createModel(context, () => CollectionDetailsReservedPageModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'BorrowReservedPage'});
+        parameters: {'screen_name': 'CollectionDetailsReservedPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -56,17 +57,17 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
             buttonSize: 62.0,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).tertiary,
               size: 32.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('BORROW_RESERVED_arrow_back_ios_rounded_I');
+              logFirebaseEvent('COLLECTION_DETAILS_RESERVED_arrow_back_i');
               logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
           title: Text(
-            'Pedir Empréstimo',
+            'Detalhes da obra',
             style: FlutterFlowTheme.of(context).displayLarge,
           ),
           actions: [],
@@ -149,51 +150,95 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Obra: Lorem Ipsum',
-                                style:
-                                    FlutterFlowTheme.of(context).headlineLarge,
-                              ),
-                              Text(
-                                'Autor: Lorem ipsum',
-                                style: FlutterFlowTheme.of(context).titleLarge,
-                              ),
-                              Text(
-                                'Ano: 2099',
-                                style: FlutterFlowTheme.of(context).titleLarge,
-                              ),
-                              Text(
-                                'Editora: Lorem',
-                                style: FlutterFlowTheme.of(context).titleLarge,
-                              ),
-                              Text(
-                                'Edição: 1ª',
-                                style: FlutterFlowTheme.of(context).titleLarge,
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Tipo:',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleLarge,
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Obra: Lorem Ipsum',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineLarge,
+                                    ),
+                                  ],
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    hoverColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    icon: Icon(
+                                      Icons.edit_document,
+                                      color: FlutterFlowTheme.of(context).info,
+                                      size: 16.0,
+                                    ),
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'COLLECTION_DETAILS_RESERVED_edit_documen');
+                                      logFirebaseEvent(
+                                          'IconButton_navigate_to');
+
+                                      context.pushNamed(
+                                        'EditBookPage',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.leftToRight,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                          ),
+                                        },
+                                      );
+                                    },
                                   ),
-                                  Icon(
-                                    Icons.auto_stories,
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    size: 16.0,
-                                  ),
-                                ].divide(SizedBox(width: 4.0)),
-                              ),
-                            ],
-                          ),
+                                ),
+                              ].divide(SizedBox(width: 64.0)),
+                            ),
+                            Text(
+                              'Autor: Lorem ipsum',
+                              style: FlutterFlowTheme.of(context).titleLarge,
+                            ),
+                            Text(
+                              'Ano: 2099',
+                              style: FlutterFlowTheme.of(context).titleLarge,
+                            ),
+                            Text(
+                              'Editora: Lorem',
+                              style: FlutterFlowTheme.of(context).titleLarge,
+                            ),
+                            Text(
+                              'Edição: 1ª',
+                              style: FlutterFlowTheme.of(context).titleLarge,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Tipo:',
+                                  style:
+                                      FlutterFlowTheme.of(context).titleLarge,
+                                ),
+                                Icon(
+                                  Icons.auto_stories,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  size: 20.0,
+                                ),
+                              ].divide(SizedBox(width: 4.0)),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -205,8 +250,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 64.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(20.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 3.0,
+                        ),
                       ),
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
@@ -220,8 +269,8 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryContainer,
+                                color:
+                                    FlutterFlowTheme.of(context).onBackground,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .titleLargeFamily),
@@ -249,14 +298,14 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
-                        color: FlutterFlowTheme.of(context).tertiaryContainer,
+                        color: FlutterFlowTheme.of(context).primaryContainer,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
                               color: FlutterFlowTheme.of(context)
-                                  .onTertiaryContainer,
+                                  .onPrimaryContainer,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
@@ -267,17 +316,30 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(25.0),
-                        hoverColor: FlutterFlowTheme.of(context).accent3,
+                        hoverColor: FlutterFlowTheme.of(context).overlayPrimary,
                       ),
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      logFirebaseEvent(
+                          'COLLECTION_DETAILS_RESERVED_CANCELAR_RES');
+                      logFirebaseEvent('Button_navigate_to');
+
+                      context.pushNamed(
+                        'CollectionDetailsPage',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
                     },
                     text: 'Cancelar reserva',
                     icon: Icon(
-                      Icons.bookmark_remove_outlined,
+                      Icons.bookmark_remove,
                       size: 15.0,
                     ),
                     options: FFButtonOptions(
@@ -287,14 +349,14 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
-                      color: FlutterFlowTheme.of(context).secondaryContainer,
+                      color: FlutterFlowTheme.of(context).accent2,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
                           .override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: FlutterFlowTheme.of(context)
-                                .onSecondaryContainer,
+                            color:
+                                FlutterFlowTheme.of(context).secondaryContainer,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
@@ -304,6 +366,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(25.0),
+                      hoverColor: FlutterFlowTheme.of(context).overlaySecondary,
                     ),
                   ),
                   Align(
@@ -314,7 +377,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                       child: Text(
                         'Mais lidos do gênero',
                         textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).displayMedium,
+                        style: FlutterFlowTheme.of(context).displayLarge,
                       ),
                     ),
                   ),
@@ -412,12 +475,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -433,7 +496,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -443,7 +521,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -543,12 +621,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -564,7 +642,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -574,7 +667,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -674,12 +767,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -695,7 +788,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -705,7 +813,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -805,12 +913,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -826,7 +934,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -836,7 +959,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -936,12 +1059,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -957,7 +1080,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -967,7 +1105,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1067,12 +1205,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -1088,7 +1226,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1098,7 +1251,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1198,12 +1351,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -1219,7 +1372,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1229,7 +1397,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,
@@ -1329,12 +1497,12 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'BORROW_RESERVED_DETALHES_BTN_ON_TAP');
+                                                'COLLECTION_DETAILS_RESERVED_DETALHES_BTN');
                                             logFirebaseEvent(
                                                 'Button_navigate_to');
 
                                             context.pushNamed(
-                                                'CollectionDetailsPage');
+                                                'CollectionDetailsReservedPage');
                                           },
                                           text: 'Detalhes',
                                           options: FFButtonOptions(
@@ -1350,7 +1518,22 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 .tertiaryContainer,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    .titleLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleLargeFamily,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily),
+                                                    ),
                                             elevation: 3.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
@@ -1360,7 +1543,7 @@ class _BorrowReservedPageWidgetState extends State<BorrowReservedPageWidget> {
                                                 BorderRadius.circular(20.0),
                                             hoverColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .overlayBlue,
+                                                    .overlaySecondary,
                                             hoverTextColor:
                                                 FlutterFlowTheme.of(context)
                                                     .onTertiaryContainer,

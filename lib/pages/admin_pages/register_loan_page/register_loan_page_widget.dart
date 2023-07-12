@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -102,42 +101,6 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                             'Informações do Usuário',
                             style: FlutterFlowTheme.of(context).displayMedium,
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
-                                child: BarcodeWidget(
-                                  data: 'Barcode',
-                                  barcode: Barcode.qrCode(),
-                                  width: 32.0,
-                                  height: 32.0,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  backgroundColor: Colors.transparent,
-                                  errorBuilder: (_context, _error) => SizedBox(
-                                    width: 32.0,
-                                    height: 32.0,
-                                  ),
-                                  drawText: false,
-                                ),
-                              ),
-                              Text(
-                                'Ler QR Code',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .labelLargeFamily,
-                                      decoration: TextDecoration.underline,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .labelLargeFamily),
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 8.0)),
-                          ),
                         ],
                       ),
                       Form(
@@ -160,6 +123,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -167,8 +132,18 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                   hintText: 'Matrícula/SIAPE',
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).bodyLarge,
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
+                                      ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
@@ -199,9 +174,20 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   ),
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)
-                                      .surfaceContainer,
+                                      .secondaryBackground,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
                                 validator: _model.textController1Validator
                                     .asValidator(context),
                               ),
@@ -219,6 +205,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -226,8 +214,18 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                   hintText: 'Email de Contato',
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).bodyLarge,
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
+                                      ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
@@ -258,9 +256,20 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   ),
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)
-                                      .surfaceContainer,
+                                      .secondaryBackground,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyLarge,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
                                 validator: _model.textController2Validator
                                     .asValidator(context),
                               ),
@@ -296,6 +305,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
@@ -304,7 +315,18 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                           ),
                                       hintText: 'Código de registro',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
@@ -342,10 +364,21 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
-                                          .surfaceContainer,
+                                          .secondaryBackground,
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
                                     validator: _model.textController3Validator
                                         .asValidator(context),
                                   ),
@@ -364,6 +397,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
@@ -372,7 +407,18 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                           ),
                                       hintText: 'Nome da obra',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
@@ -410,10 +456,21 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
-                                          .surfaceContainer,
+                                          .secondaryBackground,
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
                                     validator: _model.textController4Validator
                                         .asValidator(context),
                                   ),
@@ -432,6 +489,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
@@ -440,7 +499,18 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                           ),
                                       hintText: 'Autor da obra',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
@@ -478,10 +548,21 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       ),
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
-                                          .surfaceContainer,
+                                          .secondaryBackground,
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
                                     validator: _model.textController5Validator
                                         .asValidator(context),
                                   ),
@@ -588,10 +669,32 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       isDense: true,
                                       labelText: 'Data do Empréstimo',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       hintText: 'Data do Empréstimo',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
@@ -629,7 +732,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       ),
                                       filled: true,
                                       fillColor:
-                                          FlutterFlowTheme.of(context).accent2,
+                                          FlutterFlowTheme.of(context).outline,
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyLarge,
@@ -647,10 +750,32 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       isDense: true,
                                       labelText: 'Data de Devolução',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       hintText: 'Data de Devolução',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0x00000000),
@@ -688,7 +813,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                       ),
                                       filled: true,
                                       fillColor:
-                                          FlutterFlowTheme.of(context).accent2,
+                                          FlutterFlowTheme.of(context).outline,
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyLarge,
@@ -747,14 +872,15 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   0.0, 24.0, 0.0, 24.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: FlutterFlowTheme.of(context)
+                                  .tertiaryContainer,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleLargeFamily,
                                     color: FlutterFlowTheme.of(context)
-                                        .tertiaryContainer,
+                                        .onTertiaryContainer,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)

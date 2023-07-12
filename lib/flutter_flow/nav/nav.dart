@@ -139,16 +139,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => RenewLoanPageWidget(),
             ),
             FFRoute(
-              name: 'BorrowReservedPage',
-              path: 'borrowReservedPage',
-              builder: (context, params) => BorrowReservedPageWidget(),
-            ),
-            FFRoute(
-              name: 'BorrowUnreservedPage',
-              path: 'borrowUnreservedPage',
-              builder: (context, params) => BorrowUnreservedPageWidget(),
-            ),
-            FFRoute(
               name: 'CollectionDetailsPage',
               path: 'collectionDetailsPage',
               builder: (context, params) => CollectionDetailsPageWidget(),
@@ -182,6 +172,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ContactUsersPage',
               path: 'contactUsersPage',
               builder: (context, params) => ContactUsersPageWidget(),
+            ),
+            FFRoute(
+              name: 'CollectionDetailsReservedPage',
+              path: 'collectionDetailsReservedPage',
+              builder: (context, params) =>
+                  CollectionDetailsReservedPageWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

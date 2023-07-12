@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,7 +29,6 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'ReservationsPage'});
-    _model.textController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -174,7 +172,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
-                        color: FlutterFlowTheme.of(context).primaryContainer,
+                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
@@ -208,104 +206,6 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _model.textController,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.textController',
-                            Duration(milliseconds: 2000),
-                            () => setState(() {}),
-                          ),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Pesquise uma obra aqui...',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .onSurfaceContainer,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .onSurfaceContainer,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            filled: true,
-                            fillColor:
-                                FlutterFlowTheme.of(context).surfaceContainer,
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: FlutterFlowTheme.of(context)
-                                  .onSurfaceContainer,
-                            ),
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .titleLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .onSurfaceContainer,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleLargeFamily),
-                              ),
-                          cursorColor:
-                              FlutterFlowTheme.of(context).onSurfaceContainer,
-                          validator: _model.textControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ].divide(SizedBox(width: 8.0)),
-                  ),
-                ),
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
@@ -419,7 +319,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -428,7 +328,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -444,7 +344,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -552,7 +452,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -561,7 +461,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -577,7 +477,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -686,7 +586,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -695,7 +595,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -711,7 +611,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -820,7 +720,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -829,7 +729,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -845,7 +745,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -953,7 +853,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -962,7 +862,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -978,7 +878,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -1086,7 +986,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -1095,7 +995,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -1111,7 +1011,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -1220,7 +1120,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -1229,7 +1129,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -1245,7 +1145,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
@@ -1353,7 +1253,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .tertiaryContainer,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
@@ -1362,7 +1262,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                                       .titleLargeFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryContainer,
+                                                      .onTertiaryContainer,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -1378,7 +1278,7 @@ class _ReservationsPageWidgetState extends State<ReservationsPageWidget> {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         hoverColor: FlutterFlowTheme.of(context)
-                                            .overlayBlue,
+                                            .overlaySecondary,
                                         hoverTextColor:
                                             FlutterFlowTheme.of(context)
                                                 .onTertiaryContainer,
