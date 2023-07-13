@@ -19,6 +19,7 @@ class _EditBookPageState extends State<EditBookPage> {
   late Map<String, dynamic> book;
 
   setBookData() {
+    textCodController = TextEditingController(text: book['isbn'] ?? '');
     textNomeController = TextEditingController(text: book['nome'] ?? '');
     textAutorController = TextEditingController(text: book['autor'] ?? '');
     textPublisherController = TextEditingController(text: book['editora'] ?? '');
@@ -39,13 +40,14 @@ class _EditBookPageState extends State<EditBookPage> {
   String? textType;
   String? textGenre;
   final List<String> _types = ['Livro', 'Mangá/Gibi', 'DVD', 'Periódico(Artigo)', 'Revista', 'design', 'N.D.A'];
-  final List<String> _genres = ['Programação', 'Design Gráfico', 'Redes', 'Tipografia', 'N.D.A'];
+  late List<String> _genres;
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     book = widget.book;
+    _genres = context.read<AuthService>().genreList;
     SchedulerBinding.instance.addPostFrameCallback((s) {
       setBookData();
     });
@@ -112,8 +114,6 @@ class _EditBookPageState extends State<EditBookPage> {
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: TextFormField(
-                            readOnly: true,
-                            enabled: false,
                             controller: textCodController,
                             autofocus: false,
                             obscureText: false,
@@ -123,12 +123,6 @@ class _EditBookPageState extends State<EditBookPage> {
                               labelStyle: FlutterFlowTheme.of(context).labelMedium,
                               hintText: 'Cód.',
                               hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                              disabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                                ),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   color: Color(0x00000000),
@@ -158,7 +152,6 @@ class _EditBookPageState extends State<EditBookPage> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).secondaryBackground.withOpacity(0.2), // teste
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
@@ -685,6 +678,7 @@ class _EditBookPageState extends State<EditBookPage> {
                                         false;
                                     if (confirmDialogResponse) {
                                       context.read<AuthService>().postBookDetailsToFirestore(
+                                            textCodController,
                                             textNomeController,
                                             textAutorController,
                                             textAnoController,

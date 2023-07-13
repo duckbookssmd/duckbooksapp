@@ -157,7 +157,7 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                     cells: [
                                       DataCell(
                                         Text(
-                                          borrowQuests[index]['userRegistration'], // TODO trocar por getRegistrationById
+                                          borrowQuests[index]['userRegistration'],
                                         ),
                                       ),
                                       DataCell(SizedBox(

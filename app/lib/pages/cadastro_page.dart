@@ -35,6 +35,7 @@ class _CadastroPageState extends State<CadastroPage> {
   // // * Firebase Auth
   // final _auth = FirebaseAuth.instance;
 
+  TextEditingController? texNicknameController = TextEditingController();
   TextEditingController? texMatriculaController = TextEditingController();
   TextEditingController? texEmailController = TextEditingController();
   TextEditingController? texSenhaController = TextEditingController();
@@ -103,6 +104,93 @@ class _CadastroPageState extends State<CadastroPage> {
                               width: 300,
                               height: 200,
                               fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 10),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: TextFormField(
+                                controller: texNicknameController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  hintText: 'Apelido',
+                                  hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                                        fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                                        color: FlutterFlowTheme.of(context).primaryText,
+                                        fontSize: 14,
+                                        useGoogleFonts:
+                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).info,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  prefixIcon: Icon(
+                                    Icons.face_retouching_natural,
+                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    size: 20,
+                                  ),
+                                  suffixIcon: texMatriculaController!.text.isNotEmpty
+                                      ? InkWell(
+                                          onTap: () async {
+                                            texMatriculaController?.clear();
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.clear,
+                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            size: 18,
+                                          ),
+                                        )
+                                      : null,
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                    ),
+                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Campo vazio';
+                                  } else if (value.length < 3) {
+                                    return 'Nick Muito pequeno';
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -464,6 +552,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                                   context.read<AuthService>().signUp(
                                       context,
+                                      texNicknameController!.text,
                                       texEmailController!.text,
                                       texSenhaController!.text,
                                       _formKey,
@@ -498,19 +587,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 50),
-                          child: Text(
-                            'Esqueci a senha',
-                            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                  fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                  color: FlutterFlowTheme.of(context).accent2,
-                                  decoration: TextDecoration.underline,
-                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                           child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: [
                             Text(
                               'Já possui cadastro ?',

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
@@ -650,7 +651,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                                 style: FlutterFlowTheme.of(context).bodyLarge,
                                                               ),
                                                               Text(
-                                                                'Horário: ${DateTime.fromMicrosecondsSinceEpoch(int.parse(usersActions[index]['time'])).toString()}',
+                                                                'Horário: ${DateFormat('dd/MM/yyyy HH:mm').format(DateTime.fromMillisecondsSinceEpoch(int.parse(usersActions[index]['time'])))}',
                                                                 style: FlutterFlowTheme.of(context).bodyLarge,
                                                               ),
                                                             ],
@@ -692,8 +693,9 @@ class _HomePageCaState extends State<HomePageCa> {
                                                   child: IconButton(
                                                     onPressed: () async {
                                                       Fluttertoast.showToast(
-                                                          msg: DateTime.fromMicrosecondsSinceEpoch(// Mudar pra millisecondes
-                                                              int.parse(usersActions[index]['time'])).toString());
+                                                          msg: DateFormat('dd/MM/yyyy HH:mm').format(
+                                                              DateTime.fromMillisecondsSinceEpoch(
+                                                                  int.parse(usersActions[index]['time']))));
                                                     },
                                                     icon: const Icon(Icons.timer),
                                                   ),

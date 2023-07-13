@@ -50,6 +50,7 @@ dependencies:
   google_fonts: ^5.1.0
   shared_preferences: ^2.1.2
   data_table_2: ^2.5.3
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

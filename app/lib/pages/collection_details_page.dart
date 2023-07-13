@@ -117,7 +117,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.network(
-                                'https://picsum.photos/seed/725/600',
+                                (book['foto'] == 'Colocar' || book['foto'] == 'null') ? 'https://picsum.photos/seed/701/600' : book['foto'],
                                 width: MediaQuery.of(context).size.width * 0.25,
                                 height: MediaQuery.of(context).size.height * 0.15,
                                 fit: BoxFit.cover,
@@ -191,7 +191,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
-                            'Gênero: ${book['codigo']}',
+                            'Código: ${book['codigo']}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                         ],
@@ -327,7 +327,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                   children: [
                                     Icon(
                                       Icons
-                                          .connect_without_contact_rounded, // TODO substituir reservar por renovar caso você tenha pegado alguma obra
+                                          .connect_without_contact_rounded, 
                                       color: FlutterFlowTheme.of(context).tertiary,
                                       size: 32,
                                     ),

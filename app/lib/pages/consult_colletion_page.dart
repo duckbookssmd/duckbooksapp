@@ -199,14 +199,7 @@ class _ConsultPageState extends State<ConsultPage> {
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ConsultionGenrePage(genre: 'Tipografia'),
-                            ),
-                          ).whenComplete(() => searchByName(searchController?.text ?? ''));
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.notifications,
                           size: 24.0,
@@ -363,7 +356,9 @@ class _ConsultPageState extends State<ConsultPage> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(8),
                                             child: Image.network(
-                                              'https://picsum.photos/seed/701/600',
+                                              (livros[index]['foto'] == 'Colocar' || livros[index]['foto'] == 'null')
+                                                  ? 'https://picsum.photos/seed/701/600'
+                                                  : livros[index]['foto'],
                                               width: 100,
                                               height: 135,
                                               fit: BoxFit.cover,
