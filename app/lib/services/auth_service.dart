@@ -15,6 +15,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:app/models/user_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import '../configs/app_settings.dart';
 import '../pages/home_ca.dart';
@@ -54,13 +55,14 @@ class AuthService extends ChangeNotifier {
     'EMP',
     'AED',
     'CHQ',
-    'WEB',
+    'HML',
     'RDI',
     'JVA',
     'CPP',
     'OLI',
     'DSN',
     'CDG',
+    'WEB',
     'CGR',
     'PJG',
     'MGS',
@@ -134,6 +136,14 @@ class AuthService extends ChangeNotifier {
   }
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+  getHttpImage(String isbn) async {
+    // TODO Colocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
+    var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn';
+    var response = await http.get(Uri.parse(url));
+    var json = jsonDecode((response.body));
+    return (json['totalItems'] == 0) ? 'null' : json['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
+  }
 
   createLog({
     String? time,
@@ -614,6 +624,7 @@ class AuthService extends ChangeNotifier {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
           return false;
         }
+        print(genreListAcronym[genreList.indexOf('N.D.A')]);
         for (var docSnapshot in value.docs) {
           if (docSnapshot.data()['validated']) {
             String email = docSnapshot.data()['email'];
@@ -773,6 +784,7 @@ class AuthService extends ChangeNotifier {
 
   postBookDetailsToFirestore(
     // separar em 2 funções
+    TextEditingController? codController,
     TextEditingController? nomeController,
     TextEditingController? autorController,
     TextEditingController? anoController,
@@ -786,7 +798,6 @@ class AuthService extends ChangeNotifier {
     if (!await checkIfExist(nomeController!.text, autorController!.text, edicaoController!.text) || isUpdating) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
-
       BookModel bookModel = BookModel(
           // tem como otimizar a edição
           nome: nomeController.text,
@@ -795,15 +806,15 @@ class AuthService extends ChangeNotifier {
           edicao: int.tryParse(edicaoController.text),
           tipoMidia: tipo,
           genero: genero,
-          foto: 'Colocar',
+          foto: await getHttpImage(codController!.text),
           dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
           editora: editoraController!.text,
           dataDisponibilidade: null,
           isDeleted: false,
           userloan: null,
           admRecorder: usuario?.uid,
-          codigo: await firebaseFirestore.collection('book').where('genero', isEqualTo: 'Java').get().then((value) {
-            return '${genreListAcronym[genreList.indexOf(genero ?? 'NDA')]}-${value.size.toString().padLeft(3, '0')}';
+          codigo: await firebaseFirestore.collection('book').where('genero', isEqualTo: genero).get().then((value) {
+            return '${genreListAcronym[genreList.indexOf(genero ?? 'N.D.A')]}-${value.size.toString().padLeft(3, '0')}';
           }));
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
