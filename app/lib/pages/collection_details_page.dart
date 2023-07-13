@@ -117,7 +117,9 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.network(
-                                (book['foto'] == 'Colocar' || book['foto'] == 'null') ? 'https://picsum.photos/seed/701/600' : book['foto'],
+                                (book['foto'] == 'Colocar' || book['foto'] == 'null')
+                                    ? 'https://picsum.photos/seed/701/600'
+                                    : book['foto'],
                                 width: MediaQuery.of(context).size.width * 0.25,
                                 height: MediaQuery.of(context).size.height * 0.15,
                                 fit: BoxFit.cover,
@@ -163,11 +165,11 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Obra: ${truncateWithEllipsis(25, book['nome'])}',
+                            '${truncateWithEllipsis(30, book['nome'])}',
                             style: FlutterFlowTheme.of(context).titleLarge,
                           ),
                           Text(
-                            'Autor: ${book['autor']}',
+                            'Autor: ${truncateWithEllipsis(30, book['autor'])}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
@@ -326,8 +328,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
-                                      Icons
-                                          .connect_without_contact_rounded, 
+                                      Icons.connect_without_contact_rounded,
                                       color: FlutterFlowTheme.of(context).tertiary,
                                       size: 32,
                                     ),

@@ -609,6 +609,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                       textGenre,
                                       textPublisherController,
                                       false);
+                                  Navigator.pop(context);
                                 }
                               }
                             },
