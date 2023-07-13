@@ -138,7 +138,8 @@ class AuthService extends ChangeNotifier {
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
   getHttpImage(String isbn) async {
-    // TODO Colocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
+    // Colocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
+
     var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn';
     var response = await http.get(Uri.parse(url));
     var json = jsonDecode((response.body));
@@ -266,7 +267,7 @@ class AuthService extends ChangeNotifier {
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Cancelamento", // de reserva
-        userId: await getRegistrationById(usuario!.uid), //TODO Atualizar depois aqui tambem,
+        userId: await getRegistrationById(usuario!.uid),
         codBook: bookCod,
       );
     });
@@ -285,7 +286,7 @@ class AuthService extends ChangeNotifier {
     await createLog(
       time: DateTime.now().millisecondsSinceEpoch.toString(),
       action: "Reserva", // de reserva
-      userId: await getRegistrationById(usuario!.uid), //TODO Atualizar depois aqui tambem,
+      userId: await getRegistrationById(usuario!.uid),
       codBook: book['codigo'],
     );
   }
@@ -347,7 +348,7 @@ class AuthService extends ChangeNotifier {
     //Atualizar registro do Empréstimo (Usar o id do livro + data de returno);
 
     await firebaseFirestore.collection('book').where('codigo', isEqualTo: book['codigo']).get().then((value) async {
-      // TODO Colocar o código como id do livro
+      // Colocar o código como id do livro
       await firebaseFirestore
           .collection('emprestimo')
           .where('bookBorrowed', isEqualTo: value.docs.first.id)
@@ -378,7 +379,7 @@ class AuthService extends ChangeNotifier {
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Devolução",
         userAdmId: usuario!.uid,
-        userId: await getRegistrationById(value.docs.first.id), //TODO Atualizar depois aqui tambem,
+        userId: await getRegistrationById(value.docs.first.id),
         codBook: book['codigo'],
       );
     });
@@ -466,7 +467,7 @@ class AuthService extends ChangeNotifier {
             time: DateTime.now().millisecondsSinceEpoch.toString(),
             action: "Empréstimo",
             userAdmId: usuario!.uid,
-            userId: await getRegistrationById(value.docs.first.id), //TODO Atualizar depois aqui tambem,
+            userId: await getRegistrationById(value.docs.first.id),
             codBook: bookCod,
           );
         }
@@ -624,7 +625,6 @@ class AuthService extends ChangeNotifier {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
           return false;
         }
-        print(genreListAcronym[genreList.indexOf('N.D.A')]);
         for (var docSnapshot in value.docs) {
           if (docSnapshot.data()['validated']) {
             String email = docSnapshot.data()['email'];
@@ -694,6 +694,7 @@ class AuthService extends ChangeNotifier {
 
   signUp(
     BuildContext context,
+    String nick,
     String email,
     String senha,
     GlobalKey<FormState> formKey,
@@ -708,6 +709,7 @@ class AuthService extends ChangeNotifier {
           .then((value) => {
                 postDetailsToFirestore(
                   context,
+                  nick,
                   texMatriculaController,
                   texEmailController,
                   texSenhaController,
@@ -724,6 +726,7 @@ class AuthService extends ChangeNotifier {
 
   postDetailsToFirestore(
     BuildContext context,
+    String nickname,
     TextEditingController? texMatriculaController,
     TextEditingController? texEmailController,
     TextEditingController? texSenhaController,
@@ -737,6 +740,7 @@ class AuthService extends ChangeNotifier {
 
     UserModel userModel = UserModel(
       uId: user!.uid,
+      nickname: nickname,
       matriculaSIAPE: texMatriculaController!.text,
       email: texEmailController!.text,
       pass: texSenhaController!.text,
@@ -815,12 +819,13 @@ class AuthService extends ChangeNotifier {
           admRecorder: usuario?.uid,
           codigo: await firebaseFirestore.collection('book').where('genero', isEqualTo: genero).get().then((value) {
             return '${genreListAcronym[genreList.indexOf(genero ?? 'N.D.A')]}-${value.size.toString().padLeft(3, '0')}';
-          }));
+          }),
+          isbn: codController.text);
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Cadastro",
-        userAdmId: usuario!.uid,
-        codBook: bookModel.codigo, //TODO atualizar com o sistema de codigo automático
+        userAdmId: await getRegistrationById(usuario!.uid),
+        codBook: bookModel.codigo,
       );
       (!isUpdating) ? await firebaseFirestore.collection("book").add(bookModel.toMap()) : null;
       Fluttertoast.showToast(msg: "Obra salva no sistema!");
@@ -838,8 +843,8 @@ class AuthService extends ChangeNotifier {
             await createLog(
               time: DateTime.now().millisecondsSinceEpoch.toString(),
               action: "Edição",
-              userAdmId: usuario!.uid,
-              codBook: value.docs.first.id, //TODO Colocar o getCodByID
+              userAdmId: await getRegistrationById(usuario!.uid),
+              codBook: await getCodById(value.docs.first.id),
             );
           },
         );
@@ -871,8 +876,8 @@ class AuthService extends ChangeNotifier {
           await createLog(
             time: DateTime.now().millisecondsSinceEpoch.toString(),
             action: "Remoção",
-            userAdmId: usuario!.uid,
-            codBook: value.docs.first.id, //TODO Colocar o getCodByID
+            userAdmId: await getRegistrationById(usuario!.uid),
+            codBook: await getCodById(value.docs.first.id),
           );
         }
       },

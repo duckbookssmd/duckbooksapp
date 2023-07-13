@@ -47,7 +47,6 @@ class _ReservationsPageState extends State<ReservationsPage> {
       isLoading = true;
     });
     await atualizarLista();
-    //TODO: Relizar a lógica de filtro:
     for (Map<String, dynamic> livro in livros) {
       if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
         filttedList.add(livro);

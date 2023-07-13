@@ -327,7 +327,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                   children: [
                                     Icon(
                                       Icons
-                                          .connect_without_contact_rounded, // TODO substituir reservar por renovar caso você tenha pegado alguma obra
+                                          .connect_without_contact_rounded, 
                                       color: FlutterFlowTheme.of(context).tertiary,
                                       size: 32,
                                     ),

@@ -19,7 +19,7 @@ class _EditBookPageState extends State<EditBookPage> {
   late Map<String, dynamic> book;
 
   setBookData() {
-    textCodController = TextEditingController();
+    textCodController = TextEditingController(text: book['isbn'] ?? '');
     textNomeController = TextEditingController(text: book['nome'] ?? '');
     textAutorController = TextEditingController(text: book['autor'] ?? '');
     textPublisherController = TextEditingController(text: book['editora'] ?? '');
