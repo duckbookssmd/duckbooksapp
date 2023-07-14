@@ -341,7 +341,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                     children: [
                                       Icon(
                                         Icons.connect_without_contact_rounded,
-                                        color: FlutterFlowTheme.of(context).overlayPrimary,
+                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
                                         size: 40,
                                       ),
                                       Padding(
@@ -380,7 +380,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                     children: [
                                       Icon(
                                         Icons.connect_without_contact_rounded,
-                                        color: FlutterFlowTheme.of(context).overlayPrimary,
+                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
                                         size: 40,
                                       ),
                                       Padding(
