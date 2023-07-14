@@ -30,6 +30,9 @@ class _ConsultPageState extends State<ConsultPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   String truncateWithEllipsis(int cutoff, String myString) {
+    return (myString.length <= cutoff)
+        ? myString
+        : '${myString.substring(0, cutoff)}...';
   }
 
   String removeAccents(String str) {
@@ -138,6 +141,21 @@ class _ConsultPageState extends State<ConsultPage> {
           centerTitle: false,
           elevation: 2,
 =======
+          elevation: 2,
+          leading: IconButton(
+            onPressed: () {
+              setState(
+                () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+              );
+            },
+            icon: Icon(
+              Icons.menu,
+              size: 24.0,
+              color: FlutterFlowTheme.of(context).onBackground,
+            ),
+          ),
 >>>>>>> Stashed changes
         ),
         body: SafeArea(
@@ -235,16 +253,123 @@ class _ConsultPageState extends State<ConsultPage> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Expanded(
+                              child: TextFormField(
+                                controller: searchController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  labelText: 'Pesquise uma obra aqui...',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
+                                      ),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).info,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  suffixIcon: IconButton(
+                                    onPressed: () => searchByName(
+                                        searchController?.text ?? ''),
+                                    icon: const Icon(
+                                      Icons.search,
+                                      size: 26,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLargeFamily),
+                                    ),
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).tertiary,
+                                // validator: _model.textControllerValidator
+                                //     .asValidator(context),
+                              ),
+                            ),
+                          ),
                           Align(
                             alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
 <<<<<<< Updated upstream
                               padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
 =======
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 16, 0, 8),
 >>>>>>> Stashed changes
                               child: Text(
                                 'Em Alta',
                                 textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .displayLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .onBackground,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLargeFamily),
                                     ),
                               ),
                             ),
@@ -276,6 +401,76 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   MaterialPageRoute(
                                                     builder: (context) => ConsultionGenrePage(genre: generos[index]),
 =======
+                          Align(
+                            alignment: const AlignmentDirectional(-1, 0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 0, 16, 8),
+                              child: Container(
+                                height: 100,
+                                alignment: const AlignmentDirectional(0, 0),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16, 0, 16, 0),
+                                    child: ListView.builder(
+                                        itemCount: generos.length,
+                                        scrollDirection: axisDirectionToAxis(
+                                            AxisDirection.left),
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 85,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryContainer,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: IconButton(
+                                                      onPressed: () => Navigator
+                                                          .push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ConsultionGenrePage(
+                                                                  genre: generos[
+                                                                      index]),
+                                                        ),
+                                                      ).whenComplete(() =>
+                                                          searchByName(
+                                                              searchController
+                                                                      ?.text ??
+                                                                  '')),
+                                                      icon: Icon(
+                                                        Icons.library_books,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .onPrimaryContainer,
+                                                        size: 24,
+                                                      ),
+                                                    )),
+                                                SizedBox(
+                                                  width: 85,
+                                                  child: Text(
+                                                    truncateWithEllipsis(
+                                                        22, generos[index]),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge,
 >>>>>>> Stashed changes
                                                   ),
                                                 ).whenComplete(() => searchByName(searchController?.text ?? '')),
@@ -331,6 +526,11 @@ class _ConsultPageState extends State<ConsultPage> {
                   child: Text(
                     'Acervo Completo',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).displayLargeFamily,
+                          color: FlutterFlowTheme.of(context).onBackground,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).displayLargeFamily),
                         ),
                   ),
                 ),
@@ -343,6 +543,61 @@ class _ConsultPageState extends State<ConsultPage> {
                       ),
                     )
                   : Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RefreshIndicator(
+                          displacement: 10,
+                          color: FlutterFlowTheme.of(context).secondary,
+                          onRefresh: () =>
+                              searchByName(searchController?.text ?? ''),
+                          child: ListView.builder(
+                            itemCount: livros.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                // substituir pelo modelo do card
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 10, top: 10),
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                    left: 15,
+                                    right: 15,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1, -1),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 0),
+                                          child: InkWell(
+                                            onTap: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CollectionDetailsPage(
+                                                        book: livros[index]),
+                                              ),
+                                            ).whenComplete(() => searchByName(
+                                                searchController?.text ?? '')),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                (livros[index]['foto'] ==
+                                                            'Colocar' ||
+                                                        livros[index]['foto'] ==
+                                                            'null')
+                                                    ? 'https://picsum.photos/id/24/367/267'
+                                                    : livros[index]['foto'],
+                                                width: 100,
+                                                height: 135,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -435,8 +690,74 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   child: Padding(
                                                     padding: const EdgeInsets.only(left: 16.0),
 =======
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, 0),
+                                                child: Text(
+                                                  truncateWithEllipsis(25,
+                                                      livros[index]['nome']),
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleLarge,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, 0),
+                                                child: Text(
+                                                  'Autor: ${truncateWithEllipsis(30, livros[index]['autor'])}',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment:
+                                                    const AlignmentDirectional(
+                                                        -1, 0),
+                                                child: Text(
+                                                  'Ano: ${livros[index]['ano']}',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            -1, 0),
 >>>>>>> Stashed changes
                                                     child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
                                                       children: [
 <<<<<<< Updated upstream
                                                         TextButton(
@@ -465,16 +786,152 @@ class _ConsultPageState extends State<ConsultPage> {
                                                                   useGoogleFonts: GoogleFonts.asMap()
                                                                       .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
 =======
+                                                        (livros[index]['userloan']
+                                                                    .toString() ==
+                                                                'null')
+                                                            ? Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .end,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 8),
+                                                                  Text(
+                                                                    'Disponível',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            : Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .end,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 8),
+                                                                  Text(
+                                                                    'Indisponível',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: TextButton(
+                                                            onPressed:
+                                                                () async {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      CollectionDetailsPage(
+                                                                          book:
+                                                                              livros[index]),
 >>>>>>> Stashed changes
                                                                 ),
+                                                              ).whenComplete(() =>
+                                                                  searchByName(
+                                                                      searchController
+                                                                              ?.text ??
+                                                                          ''));
+                                                            },
+                                                            style:
+                                                                OutlinedButton
+                                                                    .styleFrom(
+                                                              fixedSize:
+                                                                  const Size(
+                                                                      90, 40),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiaryContainer,
+                                                              elevation: 3,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                      16,
+                                                                      0,
+                                                                      16,
+                                                                      0),
+                                                              shape: const StadiumBorder(
+                                                                  side: BorderSide(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      width:
+                                                                          3.5)),
+                                                              // shape: ,
+                                                            ),
+                                                            child: Text(
+                                                              'Detalhes',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyLargeFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .onTertiaryContainer,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
+                                    ],
+                                  ),
                                 ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),

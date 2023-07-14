@@ -28,7 +28,9 @@ bool isLoading = false;
 class _ReservationsPageState extends State<ReservationsPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
+    return (myString.length <= cutoff)
+        ? myString
+        : '${myString.substring(0, cutoff)}...';
   }
 
   String removeAccents(String str) {
@@ -74,7 +76,9 @@ class _ReservationsPageState extends State<ReservationsPage> {
         Map<String, dynamic> livro = docSnapshot.data();
         if (!(livro['isDeleted'].toString() == 'true')) {
           await context.read<AuthService>().hasReservation(livro['codigo']) &&
-                  await context.read<AuthService>().isReservationUser(livro['codigo'])
+                  await context
+                      .read<AuthService>()
+                      .isReservationUser(livro['codigo'])
               ? lista.add(livro)
               : null;
         }
@@ -100,6 +104,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+<<<<<<< Updated upstream
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -135,6 +140,23 @@ class _ReservationsPageState extends State<ReservationsPage> {
           ],
           centerTitle: false,
           elevation: 2,
+=======
+          elevation: 2,
+          leading: IconButton(
+            onPressed: () {
+              setState(
+                () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+              );
+            },
+            icon: Icon(
+              Icons.menu,
+              size: 24.0,
+              color: FlutterFlowTheme.of(context).onBackground,
+            ),
+          ),
+>>>>>>> Stashed changes
         ),
         body: SafeArea(
           top: true,
@@ -142,6 +164,135 @@ class _ReservationsPageState extends State<ReservationsPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+<<<<<<< Updated upstream
+=======
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              scaffoldKey.currentState!.openDrawer();
+                            },
+                          );
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          size: 24.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                        child: TextFormField(
+                          controller: searchController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            labelText: 'Pesquise uma obra aqui...',
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleLargeFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleLargeFamily),
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleLargeFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleLargeFamily),
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).info,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            suffixIcon: IconButton(
+                              onPressed: () =>
+                                  searchByName(searchController?.text ?? ''),
+                              icon: const Icon(
+                                Icons.search,
+                                size: 26,
+                              ),
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .titleLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleLargeFamily,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleLargeFamily),
+                              ),
+                          cursorColor: FlutterFlowTheme.of(context).secondary,
+                          // validator: _model.textControllerValidator
+                          //     .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.notifications,
+                          size: 24.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+>>>>>>> Stashed changes
               Align(
                 alignment: const AlignmentDirectional(-1, 0),
                 child: Padding(
@@ -149,9 +300,11 @@ class _ReservationsPageState extends State<ReservationsPage> {
                   child: Text(
                     'Minhas Reservas',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).displayLargeFamily,
                           color: FlutterFlowTheme.of(context).alternate,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).displayLargeFamily),
                         ),
                   ),
                 ),
@@ -163,11 +316,13 @@ class _ReservationsPageState extends State<ReservationsPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () => searchByName(searchController?.text ?? ''),
+                            onRefresh: () =>
+                                searchByName(searchController?.text ?? ''),
                             child: ListView(
                               children: const [
                                 Center(
-                                  child: Text('Você não reservou nenhuma obra!!'),
+                                  child:
+                                      Text('Você não reservou nenhuma obra!!'),
                                 ),
                               ],
                             ),
@@ -177,13 +332,15 @@ class _ReservationsPageState extends State<ReservationsPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () => searchByName(searchController?.text ?? ''),
+                            onRefresh: () =>
+                                searchByName(searchController?.text ?? ''),
                             child: ListView.builder(
                               itemCount: livros.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   // substituir pelo modelo do card
-                                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 0, bottom: 10, top: 10),
                                   child: Container(
                                     margin: const EdgeInsets.only(
                                       left: 15,
@@ -191,12 +348,16 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Align(
-                                          alignment: const AlignmentDirectional(-1, -1),
+                                          alignment: const AlignmentDirectional(
+                                              -1, -1),
                                           child: Padding(
+<<<<<<< Updated upstream
                                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                             child: InkWell(
                                               onTap: () => Navigator.push(
@@ -215,23 +376,46 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                   height: 135,
                                                   fit: BoxFit.cover,
                                                 ),
+=======
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0, 0, 0, 0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                'https://picsum.photos/seed/701/600',
+                                                width: 100,
+                                                height: 135,
+                                                fit: BoxFit.cover,
+>>>>>>> Stashed changes
                                               ),
                                             ),
                                           ),
                                         ),
                                         const SizedBox(width: 16),
                                         Align(
-                                          alignment: const AlignmentDirectional(-1, 0),
+                                          alignment:
+                                              const AlignmentDirectional(-1, 0),
                                           child: Padding(
+<<<<<<< Updated upstream
                                             padding: const EdgeInsets.only(left: 0.0),
+=======
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0),
+>>>>>>> Stashed changes
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1, 0),
                                                   child: Text(
+<<<<<<< Updated upstream
                                                     truncateWithEllipsis(20, livros[index]['nome']),
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).headlineLarge,
@@ -241,13 +425,22 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
                                                     'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
+=======
+                                                    truncateWithEllipsis(30,
+                                                        livros[index]['nome']),
+>>>>>>> Stashed changes
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(context).titleLarge,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleLarge,
                                                   ),
                                                 ),
                                                 Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1, 0),
                                                   child: Text(
+<<<<<<< Updated upstream
                                                     'Ano: ${livros[index]['ano']}',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).titleLarge,
@@ -270,6 +463,78 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                                   color: FlutterFlowTheme.of(context).success,
                                                                   shape: BoxShape.circle,
                                                                 ),
+=======
+                                                    'Autor: ${livros[index]['autor']}',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge,
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1, 0),
+                                                  child: Text(
+                                                    'Ano: ${livros[index]['ano']}',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0, 1),
+                                                      child: TextButton(
+                                                        onPressed: () async {},
+                                                        style: OutlinedButton
+                                                            .styleFrom(
+                                                          fixedSize: const Size(
+                                                              145, 40),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          elevation: 3,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                  16, 0, 16, 0),
+                                                          shape: const StadiumBorder(
+                                                              side: BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 3.5)),
+                                                        ),
+                                                        child: Text(
+                                                          'Cancelar reserva',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyLargeFamily),
+>>>>>>> Stashed changes
                                                               ),
                                                               const SizedBox(width: 4),
                                                               Text(
@@ -301,13 +566,22 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                             ],
                                                           ),
                                                     Align(
-                                                      alignment: const AlignmentDirectional(0, 1),
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0, 1),
                                                       child: Padding(
-                                                        padding: const EdgeInsets.only(left: 16.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 16.0),
                                                         child: Column(
-                                                          mainAxisSize: MainAxisSize.max,
-                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
                                                           children: [
+<<<<<<< Updated upstream
                                                             TextButton(
                                                               onPressed: () async {
                                                                 Navigator.push(
@@ -321,19 +595,129 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                               style: OutlinedButton.styleFrom(
                                                                 fixedSize: const Size(120, 40),
                                                                 backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
+=======
+                                                            (livros[index]['userloan']
+                                                                        .toString() ==
+                                                                    'null')
+                                                                ? Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            16,
+                                                                        height:
+                                                                            16,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).success,
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Disponível',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium,
+                                                                      ),
+                                                                    ],
+                                                                  )
+                                                                : Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .end,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            16,
+                                                                        height:
+                                                                            16,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).error,
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'Indisponível',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                            TextButton(
+                                                              onPressed:
+                                                                  () async {
+                                                                // Navigator.push(
+                                                                //   context,
+                                                                //   MaterialPageRoute(
+                                                                //     builder: (context) =>
+                                                                //         CollectionDetailsPage(book: livros[index]),
+                                                                //   ),
+                                                                // ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                                                              },
+                                                              style:
+                                                                  OutlinedButton
+                                                                      .styleFrom(
+                                                                fixedSize:
+                                                                    const Size(
+                                                                        90, 40),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+>>>>>>> Stashed changes
                                                                 elevation: 3,
-                                                                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                        16,
+                                                                        0,
+                                                                        16,
+                                                                        0),
                                                                 shape: const StadiumBorder(
-                                                                    side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                                    side: BorderSide(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        width:
+                                                                            3.5)),
                                                                 // shape: ,
                                                               ),
                                                               child: Text(
+<<<<<<< Updated upstream
                                                                 'Detalhes',
                                                                 style: FlutterFlowTheme.of(context).titleLarge.override(
                                                                       fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                                                       color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                                                                           FlutterFlowTheme.of(context).titleLargeFamily),
+=======
+                                                                'Renovar',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyLargeFamily),
+>>>>>>> Stashed changes
                                                                     ),
                                                               ),
                                                             ),

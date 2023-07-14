@@ -77,6 +77,10 @@ abstract class FlutterFlowTheme {
   late Color error;
   late Color info;
 <<<<<<< Updated upstream
+=======
+  late Color errorContainer;
+  late Color onErrorContainer;
+  late Color inactiveBottomBar;
 >>>>>>> Stashed changes
 
   @Deprecated('Use displaySmallFamily instead')
@@ -201,6 +205,8 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color warning = const Color(0xFFf5e63d);
   late Color error = const Color(0xFFba1a1a);
   late Color info = const Color(0xFF2F56CC);
+  late Color errorContainer = const Color(0xFF93000a);
+  late Color onErrorContainer = const Color(0xFFffdad6);
 >>>>>>> Stashed changes
   late Color inactiveBottomBar = const Color(0xFF8FABFF);
 }
@@ -662,6 +668,8 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color inactiveBottomBar = const Color(0xFF7598FF);
 =======
   late Color info = const Color(0xFFd8e2ff);
+  late Color errorContainer = const Color(0xFFffdad6);
+  late Color onErrorContainer = const Color(0xFF93000a);
   late Color inactiveBottomBar = const Color(0xFF8FABFF);
 >>>>>>> Stashed changes
 }
