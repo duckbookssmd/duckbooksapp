@@ -54,15 +54,6 @@ abstract class FlutterFlowTheme {
   late Color secondaryText;
   late Color primaryBackground;
   late Color secondaryBackground;
-  late Color accent1;
-  late Color accent2;
-  late Color accent3;
-  late Color accent4;
-  late Color success;
-  late Color warning;
-  late Color error;
-  late Color info;
-
   late Color primaryContainer;
   late Color secondaryContainer;
   late Color tertiaryContainer;
@@ -77,6 +68,14 @@ abstract class FlutterFlowTheme {
   late Color overlaySecondary;
   late Color overlayTertiary;
   late Color inactiveBottomBar;
+  late Color accent1;
+  late Color accent2;
+  late Color accent3;
+  late Color accent4;
+  late Color success;
+  late Color warning;
+  late Color error;
+  late Color info;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -156,6 +155,7 @@ DeviceSize getDeviceSize(BuildContext context) {
   }
 }
 
+//  * Início da definição do Light Mode
 class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use primary instead')
   Color get primaryColor => primary;
@@ -434,7 +434,7 @@ class TabletTypography extends Typography {
         fontSize: 24.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelLargeFamily => 'Jost';
+  String get labelLargeFamily => 'Inter';
   TextStyle get labelLarge => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -442,7 +442,7 @@ class TabletTypography extends Typography {
         fontSize: 18.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelMediumFamily => 'Jost';
+  String get labelMediumFamily => 'Inter';
   TextStyle get labelMedium => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -450,7 +450,7 @@ class TabletTypography extends Typography {
         fontSize: 16.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelSmallFamily => 'Jost';
+  String get labelSmallFamily => 'Inter';
   TextStyle get labelSmall => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -458,7 +458,7 @@ class TabletTypography extends Typography {
         fontSize: 16.0,
         fontStyle: FontStyle.normal,
       );
-  String get bodyLargeFamily => 'Jost';
+  String get bodyLargeFamily => 'Inter';
   TextStyle get bodyLarge => GoogleFonts.getFont(
         'Jost',
         color: theme.primaryText,
@@ -561,7 +561,7 @@ class DesktopTypography extends Typography {
         fontSize: 24.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelLargeFamily => 'Jost';
+  String get labelLargeFamily => 'Inter';
   TextStyle get labelLarge => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -569,7 +569,7 @@ class DesktopTypography extends Typography {
         fontSize: 18.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelMediumFamily => 'Jost';
+  String get labelMediumFamily => 'Inter';
   TextStyle get labelMedium => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -577,7 +577,7 @@ class DesktopTypography extends Typography {
         fontSize: 16.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelSmallFamily => 'Jost';
+  String get labelSmallFamily => 'Inter';
   TextStyle get labelSmall => GoogleFonts.getFont(
         'Jost',
         color: theme.secondaryText,
@@ -611,6 +611,7 @@ class DesktopTypography extends Typography {
       );
 }
 
+//  * Início da definição do Dark Mode
 class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use primary instead')
   Color get primaryColor => primary;
