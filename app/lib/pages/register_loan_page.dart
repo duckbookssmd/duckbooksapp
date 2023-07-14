@@ -96,7 +96,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
           icon: Icon(
             Icons.arrow_back_ios_rounded,
             size: 30,
-            color: FlutterFlowTheme.of(context).onBackground,
+            color: FlutterFlowTheme.of(context).tertiary,
           ),
         ),
         title: Text(
