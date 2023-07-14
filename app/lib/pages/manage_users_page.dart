@@ -28,14 +28,21 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
       isLoading = true;
     });
 
-    await firebaseFirestore.collection('user').where('validated', isEqualTo: true).get().then(
+    await firebaseFirestore
+        .collection('user')
+        .where('validated', isEqualTo: true)
+        .get()
+        .then(
       (value) async {
         for (var docSnapshot in value.docs) {
           var user = docSnapshot.data();
           user.addAll(
             {
-              "books": context.read<AuthService>().listBorrowNow(user["userLoans"]),
-              "isOverdue": await context.read<AuthService>().checkOverdue(user["userLoans"])
+              "books":
+                  context.read<AuthService>().listBorrowNow(user["userLoans"]),
+              "isOverdue": await context
+                  .read<AuthService>()
+                  .checkOverdue(user["userLoans"])
             },
           );
           users.add(user);
@@ -49,7 +56,10 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
     setState(() {
       isLoading = false;
     });
-    users.sort(((a, b) => a['isOverdue'].toString().length.compareTo(b['isOverdue'].toString().length)));
+    users.sort(((a, b) => a['isOverdue']
+        .toString()
+        .length
+        .compareTo(b['isOverdue'].toString().length)));
     return users;
   }
 
@@ -76,15 +86,16 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
             icon: Icon(
               Icons.arrow_back_ios_rounded,
               size: 30,
-              color: FlutterFlowTheme.of(context).accent3,
+              color: FlutterFlowTheme.of(context).tertiary,
             ),
           ),
           title: Text(
             'Gerenciar Usuários',
             style: FlutterFlowTheme.of(context).displayLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                  color: FlutterFlowTheme.of(context).alternate,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                  color: FlutterFlowTheme.of(context).onBackground,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).displayLargeFamily),
                 ),
           ),
           centerTitle: false,
@@ -106,12 +117,14 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                     (isLoading)
                         ? const Center(child: CircularProgressIndicator())
                         : Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 16, end: 8, start: 8),
+                            padding: const EdgeInsetsDirectional.only(
+                                top: 16, end: 8, start: 8),
                             child: Container(
                               width: double.infinity,
                               height: MediaQuery.of(context).size.height * 0.86,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: DataTable2(
@@ -125,7 +138,22 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                       width: 270,
                                       child: Text(
                                         'Matrícula',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 16),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -139,7 +167,9 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                       width: 105,
                                       child: Text(
                                         '',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 14),
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .copyWith(fontSize: 14),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -150,7 +180,22 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                       width: 100,
                                       child: Text(
                                         'Contato',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 16),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -168,10 +213,14 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                             height: 25,
                                             width: 20,
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(6.0),
-                                                color: FlutterFlowTheme.of(context).accent2),
+                                                borderRadius:
+                                                    BorderRadius.circular(6.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent2),
                                             child: Text(
-                                              usersData[index]['matriculaSIAPE'],
+                                              usersData[index]
+                                                  ['matriculaSIAPE'],
                                               textAlign: TextAlign.center,
                                             ),
                                           ),
@@ -180,41 +229,63 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text("Matrícula ${usersData[index]['matriculaSIAPE']}"),
+                                              title: Text(
+                                                  "Matrícula ${usersData[index]['matriculaSIAPE']}"),
                                               content: SizedBox(
                                                 height: 300,
                                                 child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     // trocar po RickText
                                                     Text(
                                                       'Validação: ${usersData[index]['validated']}',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
                                                     ),
                                                     Text(
                                                       'Email: ${usersData[index]['email']}',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
                                                     ),
                                                     Text(
                                                       'Id: ${usersData[index]['uId']}',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
                                                     ),
                                                     Text(
                                                       'Livros Alugados: ${(usersData[index]['userLoans'].toString() == '[]') ? "Sem empréstimos" : usersData[index]['books']}',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
                                                     ),
                                                     Text(
                                                       'Possui atrasos: ${(usersData[index]['isOverdue']) ? 'Sim' : 'Não'}',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                              actionsAlignment: MainAxisAlignment.center,
+                                              actionsAlignment:
+                                                  MainAxisAlignment.center,
                                               actions: [
                                                 TextButton(
-                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
                                                   child: const Text('Cancelar'),
                                                 ),
                                               ],
@@ -225,7 +296,9 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                       DataCell(SizedBox(
                                         width: double.infinity,
                                         child: Text(
-                                          (usersData[index]['isOverdue']) ? 'Atraso' : '',
+                                          (usersData[index]['isOverdue'])
+                                              ? 'Atraso'
+                                              : '',
                                           textAlign: TextAlign.center,
                                         ),
                                       )),
@@ -235,10 +308,15 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                         child: TextButton(
                                           onPressed: () {
                                             // TODO abrir um popup para ver o email e cópiar ele
-                                            Clipboard.setData(ClipboardData(text: usersData[index]['email'])).then((value) {
+                                            Clipboard.setData(ClipboardData(
+                                                    text: usersData[index]
+                                                        ['email']))
+                                                .then((value) {
                                               //only if ->
-                                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                                content: Text('Copiado com sucesso'),
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                content:
+                                                    Text('Copiado com sucesso'),
                                                 // action: SnackBarAction(
                                                 //   label: 'desfazer',
                                                 //   onPressed: () {},
@@ -257,15 +335,22 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                           },
                                           style: OutlinedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(16),
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
                                             ),
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                            backgroundColor: FlutterFlowTheme.of(context).accent3,
-                                            foregroundColor: FlutterFlowTheme.of(context).tertiary,
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0, 0, 0, 0),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryContainer,
+                                            foregroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .onSecondaryContainer,
                                             elevation: 2,
                                           ),
                                           child: const Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Icon(
                                                 Icons.email,
@@ -283,11 +368,13 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                                   ),
                                 ),
                                 headingRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context).accent2,
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryContainer,
                                 ),
                                 headingRowHeight: 56.0,
                                 dataRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context).secondaryBackground,
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                 ),
                                 dataRowHeight: 56.0,
                                 border: TableBorder(

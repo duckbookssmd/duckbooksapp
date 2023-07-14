@@ -29,14 +29,15 @@ class DuckAppBar extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     child: IconButton(
                       onPressed: () {
-                        if (scaffoldKey!.currentState!.isDrawerOpen || scaffoldKey!.currentState!.isEndDrawerOpen) {
+                        if (scaffoldKey!.currentState!.isDrawerOpen ||
+                            scaffoldKey!.currentState!.isEndDrawerOpen) {
                           Navigator.pop(context);
                         }
                       },
                       icon: Icon(
                         Icons.cancel_outlined,
                         size: 24.0,
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).errorContainer,
                       ),
                     ),
                   ),
@@ -52,10 +53,12 @@ class DuckAppBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop', true);
+                            await SystemChannels.platform.invokeMethod<void>(
+                                'SystemNavigator.pop', true);
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -63,7 +66,8 @@ class DuckAppBar extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.power_settings_new_rounded,
-                                color: FlutterFlowTheme.of(context).secondaryText, //
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryText, //
                                 size: 24,
                               ),
                               Padding(
@@ -78,7 +82,8 @@ class DuckAppBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                         child: InkWell(
                           onTap: () async {
                             await context.read<AuthService>().logout(context);
@@ -89,7 +94,8 @@ class DuckAppBar extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.logout,
-                                color: FlutterFlowTheme.of(context).secondaryText,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryContainer,
                                 size: 24,
                               ),
                               Padding(
