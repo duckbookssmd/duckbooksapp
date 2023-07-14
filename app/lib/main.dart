@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeMode themeMode = FlutterFlowTheme.themeMode;
 
-
     return MaterialApp(
       title: 'DuckBooks App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: themeMode,

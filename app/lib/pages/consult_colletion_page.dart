@@ -30,7 +30,6 @@ class _ConsultPageState extends State<ConsultPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
   String removeAccents(String str) {
@@ -102,6 +101,7 @@ class _ConsultPageState extends State<ConsultPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+<<<<<<< Updated upstream
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -137,6 +137,8 @@ class _ConsultPageState extends State<ConsultPage> {
           ],
           centerTitle: false,
           elevation: 2,
+=======
+>>>>>>> Stashed changes
         ),
         body: SafeArea(
           top: true,
@@ -144,6 +146,7 @@ class _ConsultPageState extends State<ConsultPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+<<<<<<< Updated upstream
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
@@ -221,6 +224,8 @@ class _ConsultPageState extends State<ConsultPage> {
                   ],
                 ),
               ),
+=======
+>>>>>>> Stashed changes
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -233,19 +238,18 @@ class _ConsultPageState extends State<ConsultPage> {
                           Align(
                             alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
+<<<<<<< Updated upstream
                               padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+=======
+>>>>>>> Stashed changes
                               child: Text(
                                 'Em Alta',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context).displayLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                                      color: FlutterFlowTheme.of(context).alternate,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                                     ),
                               ),
                             ),
                           ),
+<<<<<<< Updated upstream
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                             child: Container(
@@ -271,6 +275,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) => ConsultionGenrePage(genre: generos[index]),
+=======
+>>>>>>> Stashed changes
                                                   ),
                                                 ).whenComplete(() => searchByName(searchController?.text ?? '')),
                                                 child: Stack(
@@ -325,9 +331,6 @@ class _ConsultPageState extends State<ConsultPage> {
                   child: Text(
                     'Acervo Completo',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                          color: FlutterFlowTheme.of(context).alternate,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                         ),
                   ),
                 ),
@@ -340,50 +343,11 @@ class _ConsultPageState extends State<ConsultPage> {
                       ),
                     )
                   : Expanded(
-                      child: RefreshIndicator(
-                        displacement: 10,
-                        color: FlutterFlowTheme.of(context).secondary,
-                        onRefresh: () => searchByName(searchController?.text ?? ''),
-                        child: ListView.builder(
-                          itemCount: livros.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              // substituir pelo modelo do card
-                              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
-                              child: Container(
-                                margin: const EdgeInsets.only(
-                                  left: 15,
-                                  right: 15,
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Align(
-                                      alignment: const AlignmentDirectional(-1, -1),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                        child: InkWell(
-                                          onTap: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => CollectionDetailsPage(book: livros[index]),
-                                            ),
-                                          ).whenComplete(() => searchByName(searchController?.text ?? '')),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(8),
-                                            child: Image.network(
-                                              (livros[index]['foto'] == 'Colocar' || livros[index]['foto'] == 'null')
-                                                  ? 'https://picsum.photos/seed/701/600'
-                                                  : livros[index]['foto'],
-                                              width: 100,
-                                              height: 135,
-                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
                                       ),
+<<<<<<< Updated upstream
                                     ),
                                     const SizedBox(width: 16),
                                     Align(
@@ -470,10 +434,11 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   alignment: const AlignmentDirectional(0, 1),
                                                   child: Padding(
                                                     padding: const EdgeInsets.only(left: 16.0),
+=======
+>>>>>>> Stashed changes
                                                     child: Column(
-                                                      mainAxisSize: MainAxisSize.max,
-                                                      mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
+<<<<<<< Updated upstream
                                                         TextButton(
                                                           onPressed: () async {
                                                             Navigator.push(
@@ -499,24 +464,17 @@ class _ConsultPageState extends State<ConsultPage> {
                                                                   color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                                   useGoogleFonts: GoogleFonts.asMap()
                                                                       .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+=======
+>>>>>>> Stashed changes
                                                                 ),
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
                                         ),
                                       ),
-                                    ),
-                                  ],
                                 ),
-                              ),
-                            );
-                          },
                         ),
                       ),
                     ),

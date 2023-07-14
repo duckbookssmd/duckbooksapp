@@ -28,7 +28,6 @@ bool isLoading = false;
 class _LoanPageState extends State<LoanPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
   String removeAccents(String str) {
@@ -72,7 +71,6 @@ class _LoanPageState extends State<LoanPage> {
       List lista = [];
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
-        if (!(livro['isDeleted'].toString() == 'true') && livro['userloan'] == context.read<AuthService>().usuario!.uid) {
           lista.add(livro);
         }
       }
@@ -97,6 +95,7 @@ class _LoanPageState extends State<LoanPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+<<<<<<< Updated upstream
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -132,6 +131,8 @@ class _LoanPageState extends State<LoanPage> {
           ],
           centerTitle: false,
           elevation: 2,
+=======
+>>>>>>> Stashed changes
         ),
         body: SafeArea(
           top: true,
@@ -139,6 +140,9 @@ class _LoanPageState extends State<LoanPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
               Align(
                 alignment: const AlignmentDirectional(-1, 0),
                 child: Padding(
@@ -146,9 +150,7 @@ class _LoanPageState extends State<LoanPage> {
                   child: Text(
                     'Meus Empréstimos',
                     style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                           color: FlutterFlowTheme.of(context).alternate,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                         ),
                   ),
                 ),
@@ -160,11 +162,9 @@ class _LoanPageState extends State<LoanPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () => searchByName(searchController?.text ?? ''),
                             child: ListView(
                               children: const [
                                 Center(
-                                  child: Text('Você não tem obras emprestadas!!'),
                                 ),
                               ],
                             ),
@@ -174,13 +174,11 @@ class _LoanPageState extends State<LoanPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () => searchByName(searchController?.text ?? ''),
                             child: ListView.builder(
                               itemCount: livros.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   // substituir pelo modelo do card
-                                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
                                   child: Container(
                                     margin: const EdgeInsets.only(
                                       left: 15,
@@ -188,12 +186,10 @@ class _LoanPageState extends State<LoanPage> {
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Align(
-                                          alignment: const AlignmentDirectional(-1, -1),
                                           child: Padding(
+<<<<<<< Updated upstream
                                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                             child: InkWell(
                                               onTap: () => Navigator.push(
@@ -212,23 +208,25 @@ class _LoanPageState extends State<LoanPage> {
                                                   height: 135,
                                                   fit: BoxFit.cover,
                                                 ),
+=======
+>>>>>>> Stashed changes
                                               ),
                                             ),
                                           ),
                                         ),
                                         const SizedBox(width: 16),
                                         Align(
-                                          alignment: const AlignmentDirectional(-1, 0),
                                           child: Padding(
+<<<<<<< Updated upstream
                                             padding: const EdgeInsets.only(left: 0.0),
+=======
+>>>>>>> Stashed changes
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
+<<<<<<< Updated upstream
                                                     truncateWithEllipsis(20, livros[index]['nome']),
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).headlineLarge,
@@ -238,24 +236,25 @@ class _LoanPageState extends State<LoanPage> {
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
                                                     'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
+=======
+>>>>>>> Stashed changes
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(context).titleLarge,
                                                   ),
                                                 ),
                                                 Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
                                                     'Ano: ${livros[index]['ano']}',
                                                     textAlign: TextAlign.start,
+<<<<<<< Updated upstream
                                                     style: FlutterFlowTheme.of(context).titleLarge,
+=======
+>>>>>>> Stashed changes
                                                   ),
                                                 ),
                                                 Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
                                                     Align(
+<<<<<<< Updated upstream
                                                       alignment: const AlignmentDirectional(0, 1),
                                                       child: Column(
                                                         mainAxisSize: MainAxisSize.max,
@@ -338,83 +337,48 @@ class _LoanPageState extends State<LoanPage> {
                                                     const SizedBox(width: 16),
                                                     Align(
                                                       alignment: const AlignmentDirectional(0, 1),
+=======
+>>>>>>> Stashed changes
                                                       child: TextButton(
                                                         onPressed: () async {
                                                           showDialog<bool>(
                                                             context: context,
-                                                            builder: (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: const Text('Confirmar Validação de usuário'),
-                                                                content: SizedBox(
                                                                   height: 300,
                                                                   child: Column(
                                                                     children: [
                                                                       const Padding(
-                                                                        padding: EdgeInsets.all(16.0),
-                                                                        child: Icon(
-                                                                          Icons.sd_card_alert_outlined,
-                                                                          size: 100,
                                                                         ),
                                                                       ),
-                                                                      const Text('Devolver a Obra?'),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
-                                                                        child: Container(
-                                                                          width: double.infinity,
-                                                                          height: 30,
-                                                                          decoration: BoxDecoration(
-                                                                            shape: BoxShape.rectangle,
-                                                                            borderRadius: BorderRadius.circular(8),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).secondaryBackground,
                                                                           ),
-                                                                          alignment: Alignment.center,
-                                                                          child: Text(
                                                                             livros[index]['dataDisponibilidade'],
-                                                                            style: const TextStyle(fontSize: 24),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
-                                                                        child: Container(
-                                                                          width: double.infinity,
-                                                                          height: 30,
-                                                                          decoration: BoxDecoration(
-                                                                            shape: BoxShape.rectangle,
-                                                                            borderRadius: BorderRadius.circular(8),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).secondaryBackground,
                                                                           ),
-                                                                          alignment: Alignment.center,
-                                                                          child: Text(
                                                                             livros[index]['nome'],
-                                                                            style: const TextStyle(fontSize: 24),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                 ),
-                                                                actionsAlignment: MainAxisAlignment.spaceBetween,
                                                                 actions: [
                                                                   TextButton(
-                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                    child: const Text('Cancelar'),
                                                                   ),
                                                                   TextButton(
-                                                                    onPressed: () async {
                                                                       await context
-                                                                          .read<AuthService>()
-                                                                          .confirmReturn(livros[index]);
-                                                                      setState(() {
-                                                                        Navigator.pop(alertDialogContext, true);
                                                                       });
                                                                     },
                                                                     child: Text(
                                                                       'Confirmar',
                                                                       style: TextStyle(
-                                                                          color: FlutterFlowTheme.of(context).secondary),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -422,25 +386,33 @@ class _LoanPageState extends State<LoanPage> {
                                                             },
                                                           );
                                                         },
+<<<<<<< Updated upstream
                                                         style: OutlinedButton.styleFrom(
                                                           fixedSize: const Size(110, 40),
                                                           backgroundColor: FlutterFlowTheme.of(context).primary,
                                                           elevation: 3,
                                                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+=======
+>>>>>>> Stashed changes
                                                           shape: const StadiumBorder(
-                                                              side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                         ),
                                                         child: Text(
                                                           'Devolver',
+<<<<<<< Updated upstream
                                                           style: FlutterFlowTheme.of(context).titleLarge.override(
                                                                 fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                                                 color: FlutterFlowTheme.of(context).onPrimaryContainer,
                                                                 useGoogleFonts: GoogleFonts.asMap()
                                                                     .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+=======
+>>>>>>> Stashed changes
                                                               ),
                                                         ),
                                                       ),
                                                     ),
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
                                                   ],
                                                 ),
                                               ],

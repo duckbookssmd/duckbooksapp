@@ -31,7 +31,7 @@ class _HomeFinalUseState extends State<HomeFinalUse> {
     //   if (Provider.of<AuthService>(context, listen: false).nickname == null) {
     //     return showDialog<void>(
     //       context: context, //fazer ser obrigatio no futuro
-          
+
     //       builder: (BuildContext context) {
     //         return AlertDialog(
     //           title: const Text('Basic dialog title'),
@@ -105,45 +105,45 @@ class _HomeFinalUseState extends State<HomeFinalUse> {
             // );
           },
         ),
-        backgroundColor: FlutterFlowTheme.of(context).accent2,
-        selectedItemColor: FlutterFlowTheme.of(context).primary,
-        unselectedItemColor: FlutterFlowTheme.of(context).primaryBackground, // tertiary
+        backgroundColor: FlutterFlowTheme.of(context).primaryContainer,
+        selectedItemColor: FlutterFlowTheme.of(context).onPrimaryContainer,
+        unselectedItemColor: FlutterFlowTheme.of(context).inactiveBottomBar,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: FaIcon(
-              FontAwesomeIcons.searchengin,
-              size: 24.0,
+              Icons.search,
+              size: 20.0,
             ),
             activeIcon: FaIcon(
-              FontAwesomeIcons.searchengin,
-              size: 28.0,
+              Icons.saved_search,
+              size: 30.0,
             ),
             label: 'Consulta',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: FaIcon(
-              FontAwesomeIcons.clipboardList,
+              Icons.auto_stories_outlined,
               size: 22.0,
             ),
             activeIcon: FaIcon(
-              FontAwesomeIcons.clipboardList,
-              size: 28.0,
+              Icons.auto_stories_rounded,
+              size: 26.0,
             ),
             label: 'Empréstimos',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.bookmarks,
-              size: 24.0,
+              Icons.bookmarks_outlined,
+              size: 22.0,
             ),
             activeIcon: Icon(
-              Icons.bookmarks,
-              size: 30.0,
+              Icons.bookmarks_rounded,
+              size: 26.0,
             ),
             label: 'Reservas',
             tooltip: '',
