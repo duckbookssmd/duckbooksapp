@@ -190,7 +190,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Align(
                                           alignment: const AlignmentDirectional(-1, -1),
@@ -273,7 +273,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                               Text(
                                                                 // TODO Continuar a ajeitar as partes dos cards
                                                                 'Disponível',
-                                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                style: FlutterFlowTheme.of(context).labelLarge,
                                                               ),
                                                               const SizedBox(width: 27),
                                                             ],
@@ -301,38 +301,46 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                     Align(
                                                       alignment: const AlignmentDirectional(0, 1),
                                                       child: Padding(
-                                                        padding: const EdgeInsets.only(left: 16.0),
+                                                        padding: const EdgeInsets.only(
+                                                          left: 16.0,
+                                                        ),
                                                         child: Column(
                                                           mainAxisSize: MainAxisSize.max,
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
-                                                            TextButton(
-                                                              onPressed: () async {
-                                                                Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        CollectionDetailsPage(book: livros[index]),
-                                                                  ),
-                                                                ).whenComplete(() => searchByName(searchController?.text ?? ''));
-                                                              },
-                                                              style: OutlinedButton.styleFrom(
-                                                                fixedSize: const Size(120, 40),
-                                                                backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
-                                                                elevation: 3,
-                                                                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                                shape: const StadiumBorder(
-                                                                    side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                                // shape: ,
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(
+                                                                top: 16.0,
                                                               ),
-                                                              child: Text(
-                                                                'Detalhes',
-                                                                style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                      color: FlutterFlowTheme.of(context).onTertiaryContainer,
-                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                                                          FlutterFlowTheme.of(context).titleLargeFamily),
+                                                              child: TextButton(
+                                                                onPressed: () async {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          CollectionDetailsPage(book: livros[index]),
                                                                     ),
+                                                                  ).whenComplete(
+                                                                      () => searchByName(searchController?.text ?? ''));
+                                                                },
+                                                                style: OutlinedButton.styleFrom(
+                                                                  fixedSize: const Size(120, 40),
+                                                                  backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
+                                                                  elevation: 3,
+                                                                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                                  shape: const StadiumBorder(
+                                                                      side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                                  // shape: ,
+                                                                ),
+                                                                child: Text(
+                                                                  'Detalhes',
+                                                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
+                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                                                            FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],

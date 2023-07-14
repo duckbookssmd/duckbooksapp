@@ -460,8 +460,10 @@ class _ConsultPageState extends State<ConsultPage> {
                                                         const SizedBox(width: 23),
                                                       ],
                                                     ),
-                                              Align(
-                                                alignment: const AlignmentDirectional(-1, 0),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 16.0,
+                                                ),
                                                 child: TextButton(
                                                   onPressed: () async {
                                                     Navigator.push(
