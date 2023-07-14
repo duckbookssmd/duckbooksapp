@@ -100,7 +100,9 @@ class _CadastroPageState extends State<CadastroPage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
-                              'lib/assets/images/logo_black_text_no_bg.png',
+                              (FlutterFlowTheme.of(context).toString().contains('Dark'))
+                                  ? 'lib/assets/images/logo_black_text_no_bg.png'
+                                  : 'lib/assets/images/logo_to_white.png',
                               width: 300,
                               height: 200,
                               fit: BoxFit.scaleDown,

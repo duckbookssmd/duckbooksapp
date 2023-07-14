@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'assets/theme/flutter_flow_theme.dart';
 import 'configs/hive_config.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveConfig.start();
