@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
-import 'borrow_solicitations_page.dart';
-import 'collection_details_page.dart';
 
 class LoanPage extends StatefulWidget {
   const LoanPage({Key? key}) : super(key: key);
@@ -100,43 +98,6 @@ class _LoanPageState extends State<LoanPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-<<<<<<< Updated upstream
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-            child: IconButton(
-              onPressed: () {
-                setState(
-                  () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                );
-              },
-              icon: Icon(
-                Icons.menu,
-                size: 24.0,
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 24, 0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  size: 24.0,
-                  color: FlutterFlowTheme.of(context).alternate,
-                ),
-              ),
-            ),
-          ],
-          centerTitle: false,
-          elevation: 2,
-=======
           elevation: 2,
           leading: IconButton(
             onPressed: () {
@@ -152,7 +113,6 @@ class _LoanPageState extends State<LoanPage> {
               color: FlutterFlowTheme.of(context).onBackground,
             ),
           ),
->>>>>>> Stashed changes
         ),
         body: SafeArea(
           top: true,
@@ -160,8 +120,6 @@ class _LoanPageState extends State<LoanPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-<<<<<<< Updated upstream
-=======
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                 child: Row(
@@ -288,7 +246,6 @@ class _LoanPageState extends State<LoanPage> {
                   ],
                 ),
               ),
->>>>>>> Stashed changes
               Align(
                 alignment: const AlignmentDirectional(-1, 0),
                 child: Padding(
@@ -353,26 +310,6 @@ class _LoanPageState extends State<LoanPage> {
                                           alignment: const AlignmentDirectional(
                                               -1, -1),
                                           child: Padding(
-<<<<<<< Updated upstream
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                            child: InkWell(
-                                              onTap: () => Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => CollectionDetailsPage(book: livros[index]),
-                                                ),
-                                              ).whenComplete(() => searchByName(searchController?.text ?? '')),
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(8),
-                                                child: Image.network(
-                                                  (livros[index]['foto'] == 'Colocar' || livros[index]['foto'] == 'null')
-                                                      ? 'https://picsum.photos/seed/701/600'
-                                                      : livros[index]['foto'],
-                                                  width: 100,
-                                                  height: 135,
-                                                  fit: BoxFit.cover,
-                                                ),
-=======
                                             padding: const EdgeInsetsDirectional
                                                 .fromSTEB(0, 0, 0, 0),
                                             child: ClipRRect(
@@ -383,7 +320,6 @@ class _LoanPageState extends State<LoanPage> {
                                                 width: 100,
                                                 height: 135,
                                                 fit: BoxFit.cover,
->>>>>>> Stashed changes
                                               ),
                                             ),
                                           ),
@@ -393,12 +329,8 @@ class _LoanPageState extends State<LoanPage> {
                                           alignment:
                                               const AlignmentDirectional(-1, 0),
                                           child: Padding(
-<<<<<<< Updated upstream
-                                            padding: const EdgeInsets.only(left: 0.0),
-=======
                                             padding: const EdgeInsets.only(
                                                 left: 8.0),
->>>>>>> Stashed changes
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -411,20 +343,8 @@ class _LoanPageState extends State<LoanPage> {
                                                       const AlignmentDirectional(
                                                           -1, 0),
                                                   child: Text(
-<<<<<<< Updated upstream
-                                                    truncateWithEllipsis(20, livros[index]['nome']),
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(context).headlineLarge,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
-                                                  child: Text(
-                                                    'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
-=======
                                                     truncateWithEllipsis(30,
                                                         livros[index]['nome']),
->>>>>>> Stashed changes
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -438,9 +358,6 @@ class _LoanPageState extends State<LoanPage> {
                                                   child: Text(
                                                     'Ano: ${livros[index]['ano']}',
                                                     textAlign: TextAlign.start,
-<<<<<<< Updated upstream
-                                                    style: FlutterFlowTheme.of(context).titleLarge,
-=======
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyLarge,
@@ -456,7 +373,6 @@ class _LoanPageState extends State<LoanPage> {
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyLarge,
->>>>>>> Stashed changes
                                                   ),
                                                 ),
                                                 Row(
@@ -469,94 +385,9 @@ class _LoanPageState extends State<LoanPage> {
                                                       CrossAxisAlignment.end,
                                                   children: [
                                                     Align(
-<<<<<<< Updated upstream
-                                                      alignment: const AlignmentDirectional(0, 1),
-                                                      child: Column(
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                        children: [
-                                                          // livros[index]['dataDisponibilidade']
-                                                          (!DateTime.now().isAfter(DateTime.parse(livros[index]
-                                                                      ['dataDisponibilidade']
-                                                                  .toString()
-                                                                  .substring(0, 10)
-                                                                  .replaceAll('/', '-')
-                                                                  .split('-')
-                                                                  .reversed
-                                                                  .join())))
-                                                              ? Row(
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                                  children: [
-                                                                    Container(
-                                                                      width: 16,
-                                                                      height: 16,
-                                                                      decoration: BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context).success,
-                                                                        shape: BoxShape.circle,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      'Em dia',
-                                                                      style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                              : Row(
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                                  children: [
-                                                                    Container(
-                                                                      width: 16,
-                                                                      height: 16,
-                                                                      decoration: BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context).error,
-                                                                        shape: BoxShape.circle,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      'Atrasado',
-                                                                      style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                          TextButton(
-                                                            onPressed: () async {
-                                                              await context.read<AuthService>().renewLoan(livros[index]);
-                                                              setState(() {});
-                                                            },
-                                                            style: OutlinedButton.styleFrom(
-                                                              fixedSize: const Size(110, 40),
-                                                              backgroundColor: FlutterFlowTheme.of(context).secondaryContainer,
-                                                              elevation: 3,
-                                                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                              shape: const StadiumBorder(
-                                                                  side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                              // shape: ,
-                                                            ),
-                                                            child: Text(
-                                                              'Renovar',
-                                                              style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                    fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                    color: FlutterFlowTheme.of(context).onSecondaryContainer,
-                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                                                        FlutterFlowTheme.of(context).titleLargeFamily),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    const SizedBox(width: 16),
-                                                    Align(
-                                                      alignment: const AlignmentDirectional(0, 1),
-=======
                                                       alignment:
                                                           const AlignmentDirectional(
                                                               0, 1),
->>>>>>> Stashed changes
                                                       child: TextButton(
                                                         onPressed: () async {
                                                           showDialog<bool>(
@@ -682,13 +513,6 @@ class _LoanPageState extends State<LoanPage> {
                                                             },
                                                           );
                                                         },
-<<<<<<< Updated upstream
-                                                        style: OutlinedButton.styleFrom(
-                                                          fixedSize: const Size(110, 40),
-                                                          backgroundColor: FlutterFlowTheme.of(context).primary,
-                                                          elevation: 3,
-                                                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-=======
                                                         style: OutlinedButton
                                                             .styleFrom(
                                                           fixedSize: const Size(
@@ -702,7 +526,6 @@ class _LoanPageState extends State<LoanPage> {
                                                               const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                   16, 0, 16, 0),
->>>>>>> Stashed changes
                                                           shape: const StadiumBorder(
                                                               side: BorderSide(
                                                                   color: Colors
@@ -711,13 +534,6 @@ class _LoanPageState extends State<LoanPage> {
                                                         ),
                                                         child: Text(
                                                           'Devolver',
-<<<<<<< Updated upstream
-                                                          style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                color: FlutterFlowTheme.of(context).onPrimaryContainer,
-                                                                useGoogleFonts: GoogleFonts.asMap()
-                                                                    .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-=======
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyLarge
@@ -733,13 +549,10 @@ class _LoanPageState extends State<LoanPage> {
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyLargeFamily),
->>>>>>> Stashed changes
                                                               ),
                                                         ),
                                                       ),
                                                     ),
-<<<<<<< Updated upstream
-=======
                                                     Align(
                                                       alignment:
                                                           const AlignmentDirectional(
@@ -887,7 +700,6 @@ class _LoanPageState extends State<LoanPage> {
                                                         ),
                                                       ),
                                                     ),
->>>>>>> Stashed changes
                                                   ],
                                                 ),
                                               ],

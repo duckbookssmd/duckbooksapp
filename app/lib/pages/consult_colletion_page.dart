@@ -104,7 +104,6 @@ class _ConsultPageState extends State<ConsultPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-<<<<<<< Updated upstream
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -140,31 +139,13 @@ class _ConsultPageState extends State<ConsultPage> {
           ],
           centerTitle: false,
           elevation: 2,
-=======
-          elevation: 2,
-          leading: IconButton(
-            onPressed: () {
-              setState(
-                () {
-                  scaffoldKey.currentState!.openDrawer();
-                },
-              );
-            },
-            icon: Icon(
-              Icons.menu,
-              size: 24.0,
-              color: FlutterFlowTheme.of(context).onBackground,
-            ),
-          ),
->>>>>>> Stashed changes
-        ),
+         ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-<<<<<<< Updated upstream
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
@@ -242,8 +223,6 @@ class _ConsultPageState extends State<ConsultPage> {
                   ],
                 ),
               ),
-=======
->>>>>>> Stashed changes
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -350,12 +329,7 @@ class _ConsultPageState extends State<ConsultPage> {
                           Align(
                             alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-<<<<<<< Updated upstream
                               padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
-=======
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16, 16, 0, 8),
->>>>>>> Stashed changes
                               child: Text(
                                 'Em Alta',
                                 textAlign: TextAlign.start,
@@ -374,7 +348,6 @@ class _ConsultPageState extends State<ConsultPage> {
                               ),
                             ),
                           ),
-<<<<<<< Updated upstream
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                             child: Container(
@@ -400,78 +373,6 @@ class _ConsultPageState extends State<ConsultPage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) => ConsultionGenrePage(genre: generos[index]),
-=======
-                          Align(
-                            alignment: const AlignmentDirectional(-1, 0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16, 0, 16, 8),
-                              child: Container(
-                                height: 100,
-                                alignment: const AlignmentDirectional(0, 0),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0, 0),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            16, 0, 16, 0),
-                                    child: ListView.builder(
-                                        itemCount: generos.length,
-                                        scrollDirection: axisDirectionToAxis(
-                                            AxisDirection.left),
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                    width: 85,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryContainer,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: IconButton(
-                                                      onPressed: () => Navigator
-                                                          .push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ConsultionGenrePage(
-                                                                  genre: generos[
-                                                                      index]),
-                                                        ),
-                                                      ).whenComplete(() =>
-                                                          searchByName(
-                                                              searchController
-                                                                      ?.text ??
-                                                                  '')),
-                                                      icon: Icon(
-                                                        Icons.library_books,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .onPrimaryContainer,
-                                                        size: 24,
-                                                      ),
-                                                    )),
-                                                SizedBox(
-                                                  width: 85,
-                                                  child: Text(
-                                                    truncateWithEllipsis(
-                                                        22, generos[index]),
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelLarge,
->>>>>>> Stashed changes
                                                   ),
                                                 ).whenComplete(() => searchByName(searchController?.text ?? '')),
                                                 child: Stack(
@@ -602,94 +503,6 @@ class _ConsultPageState extends State<ConsultPage> {
                                           ),
                                         ),
                                       ),
-<<<<<<< Updated upstream
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Align(
-                                      alignment: const AlignmentDirectional(-1, 0),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(-1, 0),
-                                              child: Text(
-                                                truncateWithEllipsis(20, livros[index]['nome']),
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(context).headlineLarge,
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(-1, 0),
-                                              child: Text(
-                                                'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(context).titleLarge,
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(-1, 0),
-                                              child: Text(
-                                                'Ano: ${livros[index]['ano']}',
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(context).titleLarge,
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                (livros[index]['userloan'].toString() == 'null')
-                                                    ? Row(
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                        children: [
-                                                          Container(
-                                                            width: 16,
-                                                            height: 16,
-                                                            decoration: BoxDecoration(
-                                                              color: FlutterFlowTheme.of(context).success,
-                                                              shape: BoxShape.circle,
-                                                            ),
-                                                          ),
-                                                          const SizedBox(width: 4),
-                                                          Text(
-                                                            // TODO Continuar a ajeitar as partes dos cards
-                                                            'Disponível',
-                                                            style: FlutterFlowTheme.of(context).bodyMedium,
-                                                          ),
-                                                          const SizedBox(width: 27),
-                                                        ],
-                                                      )
-                                                    : Row(
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                        children: [
-                                                          Container(
-                                                            width: 16,
-                                                            height: 16,
-                                                            decoration: BoxDecoration(
-                                                              color: FlutterFlowTheme.of(context).error,
-                                                              shape: BoxShape.circle,
-                                                            ),
-                                                          ),
-                                                          const SizedBox(width: 4),
-                                                          Text(
-                                                            'Indisponível',
-                                                            style: FlutterFlowTheme.of(context).bodyMedium,
-                                                          ),
-                                                          const SizedBox(width: 18),
-                                                        ],
-                                                      ),
-                                                Align(
-                                                  alignment: const AlignmentDirectional(0, 1),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.only(left: 16.0),
-=======
                                       Align(
                                         alignment:
                                             const AlignmentDirectional(-1, 0),
@@ -752,40 +565,12 @@ class _ConsultPageState extends State<ConsultPage> {
                                                     alignment:
                                                         const AlignmentDirectional(
                                                             -1, 0),
->>>>>>> Stashed changes
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
                                                       children: [
-<<<<<<< Updated upstream
-                                                        TextButton(
-                                                          onPressed: () async {
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (context) => CollectionDetailsPage(book: livros[index]),
-                                                              ),
-                                                            ).whenComplete(() => searchByName(searchController?.text ?? ''));
-                                                          },
-                                                          style: OutlinedButton.styleFrom(
-                                                            fixedSize: const Size(120, 40),
-                                                            backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
-                                                            elevation: 3,
-                                                            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                            shape: const StadiumBorder(
-                                                                side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                            // shape: ,
-                                                          ),
-                                                          child: Text(
-                                                            'Detalhes',
-                                                            style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                  color: FlutterFlowTheme.of(context).onTertiaryContainer,
-                                                                  useGoogleFonts: GoogleFonts.asMap()
-                                                                      .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-=======
                                                         (livros[index]['userloan']
                                                                     .toString() ==
                                                                 'null')
@@ -863,7 +648,6 @@ class _ConsultPageState extends State<ConsultPage> {
                                                                       CollectionDetailsPage(
                                                                           book:
                                                                               livros[index]),
->>>>>>> Stashed changes
                                                                 ),
                                                               ).whenComplete(() =>
                                                                   searchByName(

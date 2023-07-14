@@ -76,12 +76,6 @@ abstract class FlutterFlowTheme {
   late Color warning;
   late Color error;
   late Color info;
-<<<<<<< Updated upstream
-=======
-  late Color errorContainer;
-  late Color onErrorContainer;
-  late Color inactiveBottomBar;
->>>>>>> Stashed changes
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -183,7 +177,6 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color accent3 = const Color(0x4D944B00);
   late Color accent4 = const Color(0x4D84746A);
   late Color success = const Color(0xFF2ECC71);
-<<<<<<< Updated upstream
   late Color warning = const Color(0xFFF5E63D);
   late Color error = const Color(0xFFBA1A1A);
   late Color info = const Color(0xFFD8E2FF);
@@ -201,13 +194,6 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color overlayPrimary = const Color(0xFFA9BFFF);
   late Color overlaySecondary = const Color(0xFFFFF583);
   late Color overlayTertiary = const Color(0xFF624128);
-=======
-  late Color warning = const Color(0xFFf5e63d);
-  late Color error = const Color(0xFFba1a1a);
-  late Color info = const Color(0xFF2F56CC);
-  late Color errorContainer = const Color(0xFF93000a);
-  late Color onErrorContainer = const Color(0xFFffdad6);
->>>>>>> Stashed changes
   late Color inactiveBottomBar = const Color(0xFF8FABFF);
 }
 
@@ -649,7 +635,6 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color success = const Color(0xFF8AFFBB);
   late Color warning = const Color(0xFFFFF58A);
   late Color error = const Color(0xFFFFACA3);
-<<<<<<< Updated upstream
   late Color info = const Color(0xFFD8E2FF);
 
   late Color primaryContainer = const Color(0xFFD8E2FF);
@@ -666,12 +651,6 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color overlaySecondary = const Color(0xFFFFF583);
   late Color overlayTertiary = const Color(0xFF624128);
   late Color inactiveBottomBar = const Color(0xFF7598FF);
-=======
-  late Color info = const Color(0xFFd8e2ff);
-  late Color errorContainer = const Color(0xFFffdad6);
-  late Color onErrorContainer = const Color(0xFF93000a);
-  late Color inactiveBottomBar = const Color(0xFF8FABFF);
->>>>>>> Stashed changes
 }
 
 extension TextStyleHelper on TextStyle {
