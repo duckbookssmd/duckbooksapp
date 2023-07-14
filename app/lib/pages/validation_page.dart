@@ -29,7 +29,11 @@ class _ValidationPageState extends State<ValidationPage> {
     setState(() {
       isLoading = true;
     });
-    await firebaseFirestore.collection('validation').where('status', isEqualTo: false).get().then(
+    await firebaseFirestore
+        .collection('validation')
+        .where('status', isEqualTo: false)
+        .get()
+        .then(
       (value) {
         for (var docSnapshot in value.docs) {
           validations.add(docSnapshot.data());
@@ -67,15 +71,16 @@ class _ValidationPageState extends State<ValidationPage> {
             icon: Icon(
               Icons.arrow_back_ios_rounded,
               size: 30,
-              color: FlutterFlowTheme.of(context).accent3,
+              color: FlutterFlowTheme.of(context).tertiary,
             ),
           ),
           title: Text(
             'Validar usuários',
             style: FlutterFlowTheme.of(context).displayLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                  color: FlutterFlowTheme.of(context).alternate,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                  color: FlutterFlowTheme.of(context).onBackground,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).displayLargeFamily),
                 ),
           ),
           actions: const [],
@@ -98,12 +103,14 @@ class _ValidationPageState extends State<ValidationPage> {
                     (isLoading)
                         ? const Center(child: CircularProgressIndicator())
                         : Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 16, end: 8, start: 8),
+                            padding: const EdgeInsetsDirectional.only(
+                                top: 16, end: 8, start: 8),
                             child: Container(
                               width: double.infinity,
                               height: MediaQuery.of(context).size.height * 0.86,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: DataTable2(
@@ -116,7 +123,22 @@ class _ValidationPageState extends State<ValidationPage> {
                                       width: 270,
                                       child: Text(
                                         'Matrícula',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 16),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
                                         textAlign: TextAlign.start,
                                       ),
                                     ),
@@ -127,11 +149,26 @@ class _ValidationPageState extends State<ValidationPage> {
                                     fixedWidth: 125,
 
                                     label: SizedBox(
-                                      width: 105,
+                                      width: 115,
                                       child: Text(
                                         'Data do Pedido',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 14),
-                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        textAlign: TextAlign.start,
                                       ),
                                     ),
                                   ),
@@ -141,7 +178,22 @@ class _ValidationPageState extends State<ValidationPage> {
                                       width: 100,
                                       child: Text(
                                         'Status',
-                                        style: FlutterFlowTheme.of(context).labelLarge.copyWith(fontSize: 16),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .onSecondaryContainer,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -153,13 +205,15 @@ class _ValidationPageState extends State<ValidationPage> {
                                     cells: [
                                       DataCell(
                                         Text(
-                                          validationQuests[index]['userReaderId'],
+                                          validationQuests[index]
+                                              ['userReaderId'],
                                         ),
                                       ),
                                       DataCell(SizedBox(
                                         width: double.infinity,
                                         child: Text(
-                                          validationQuests[index]['dateRequest'],
+                                          validationQuests[index]
+                                              ['dateRequest'],
                                           textAlign: TextAlign.center,
                                         ),
                                       )),
@@ -172,74 +226,129 @@ class _ValidationPageState extends State<ValidationPage> {
                                               context: context,
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
-                                                  title: const Text('Confirmar Validação de usuário'),
+                                                  title: const Text(
+                                                      'Confirmar Validação de usuário'),
                                                   content: SizedBox(
                                                     height: 300,
                                                     child: Column(
                                                       children: [
                                                         const Padding(
-                                                          padding: EdgeInsets.all(16.0),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  16.0),
                                                           child: Icon(
-                                                            Icons.sd_card_alert_outlined,
+                                                            Icons
+                                                                .sd_card_alert_outlined,
                                                             size: 100,
                                                           ),
                                                         ),
                                                         const Text(
                                                             'Você confirma que esse cadastro é de um discente/docente do SMD?'),
                                                         Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Container(
-                                                            width: double.infinity,
+                                                            width:
+                                                                double.infinity,
                                                             height: 30,
-                                                            decoration: BoxDecoration(
-                                                              shape: BoxShape.rectangle,
-                                                              borderRadius: BorderRadius.circular(8),
-                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .rectangle,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
                                                             ),
-                                                            alignment: Alignment.center,
+                                                            alignment: Alignment
+                                                                .center,
                                                             child: Text(
-                                                              validationQuests[index]['userReaderId'],
-                                                              style: const TextStyle(fontSize: 24),
+                                                              validationQuests[
+                                                                      index][
+                                                                  'userReaderId'],
+                                                              style:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          24),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Container(
-                                                            width: double.infinity,
+                                                            width:
+                                                                double.infinity,
                                                             height: 30,
-                                                            decoration: BoxDecoration(
-                                                              shape: BoxShape.rectangle,
-                                                              borderRadius: BorderRadius.circular(8),
-                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .rectangle,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
                                                             ),
-                                                            alignment: Alignment.center,
+                                                            alignment: Alignment
+                                                                .center,
                                                             child: Text(
-                                                              validationQuests[index]['dateRequest'],
-                                                              style: const TextStyle(fontSize: 24),
+                                                              validationQuests[
+                                                                      index][
+                                                                  'dateRequest'],
+                                                              style:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          24),
                                                             ),
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                  actionsAlignment: MainAxisAlignment.spaceBetween,
+                                                  actionsAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   actions: [
                                                     TextButton(
-                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                      child: const Text('Cancelar'),
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text(
+                                                          'Cancelar'),
                                                     ),
                                                     TextButton(
                                                       onPressed: () async {
                                                         setState(() async {
-                                                          await context.read<AuthService>().confirmValidation(
-                                                              validationQuests[index]['userReaderId'], validationQuests[index]);
-                                                          Navigator.pop(alertDialogContext, true);
+                                                          await context
+                                                              .read<
+                                                                  AuthService>()
+                                                              .confirmValidation(
+                                                                  validationQuests[
+                                                                          index]
+                                                                      [
+                                                                      'userReaderId'],
+                                                                  validationQuests[
+                                                                      index]);
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true);
                                                         });
                                                       },
                                                       child: Text(
                                                         'Confirmar',
-                                                        style: TextStyle(color: FlutterFlowTheme.of(context).secondary),
+                                                        style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .success),
                                                       ),
                                                     ),
                                                   ],
@@ -249,22 +358,22 @@ class _ValidationPageState extends State<ValidationPage> {
                                           },
                                           style: OutlinedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(16),
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
                                             ),
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                            backgroundColor: FlutterFlowTheme.of(context).accent3,
-                                            foregroundColor: FlutterFlowTheme.of(context).tertiary,
-                                            // textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                            //       fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                            //       color: FlutterFlowTheme.of(context).tertiary,
-                                            //       fontSize: 16,
-                                            //       useGoogleFonts:
-                                            //           GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                            //     ),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0, 0, 0, 0),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .tertiaryContainer,
+                                            foregroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .onTertiaryContainer,
                                             elevation: 2,
                                           ),
-                                          child: const Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Icon(
                                                 Icons.crisis_alert,
@@ -272,7 +381,13 @@ class _ValidationPageState extends State<ValidationPage> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.all(3.0),
-                                                child: Text('Validar'),
+                                                child: Text(
+                                                  'Validar',
+                                                  style: TextStyle(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .onTertiaryContainer),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -282,11 +397,13 @@ class _ValidationPageState extends State<ValidationPage> {
                                   ),
                                 ),
                                 headingRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context).accent2,
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryContainer,
                                 ),
                                 headingRowHeight: 56.0,
                                 dataRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context).secondaryBackground,
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                 ),
                                 dataRowHeight: 56.0,
                                 border: TableBorder(
