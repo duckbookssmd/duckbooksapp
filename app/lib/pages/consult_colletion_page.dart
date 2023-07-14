@@ -420,7 +420,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 (livros[index]['userloan'].toString() == 'null')
