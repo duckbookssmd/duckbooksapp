@@ -140,12 +140,11 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                                     child: Text(
                                       'Ver capa',
                                       textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                                            fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
-                                            color: FlutterFlowTheme.of(context).info,
+                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                             decoration: TextDecoration.underline,
                                             useGoogleFonts:
-                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                           ),
                                     ),
                                   ),
@@ -505,6 +504,7 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                               context.read<AuthService>().doReservation(book);
                               setState(() {
                                 isReserved = true;
+                                isreservedbyUser = true;
                               });
                             },
                             style: OutlinedButton.styleFrom(
