@@ -28,9 +28,7 @@ bool isLoading = false;
 class _ReservationsPageState extends State<ReservationsPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff)
-        ? myString
-        : '${myString.substring(0, cutoff)}...';
+    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
   String removeAccents(String str) {
@@ -76,9 +74,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
         Map<String, dynamic> livro = docSnapshot.data();
         if (!(livro['isDeleted'].toString() == 'true')) {
           await context.read<AuthService>().hasReservation(livro['codigo']) &&
-                  await context
-                      .read<AuthService>()
-                      .isReservationUser(livro['codigo'])
+                  await context.read<AuthService>().isReservationUser(livro['codigo'])
               ? lista.add(livro)
               : null;
         }
@@ -104,41 +100,43 @@ class _ReservationsPageState extends State<ReservationsPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-            child: IconButton(
-              onPressed: () {
-                setState(
-                  () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                );
-              },
-              icon: Icon(
-                Icons.menu,
-                size: 24.0,
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
+          elevation: 2,
+          leading: IconButton(
+            onPressed: () {
+              setState(
+                () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+              );
+            },
+            icon: Icon(
+              Icons.menu,
+              size: 24.0,
+              color: FlutterFlowTheme.of(context).onBackground,
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 24, 0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  size: 24.0,
-                  color: FlutterFlowTheme.of(context).alternate,
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
+              },
+              icon: Badge(
+                textColor: FlutterFlowTheme.of(context).onPrimaryContainer,
+                backgroundColor: FlutterFlowTheme.of(context).primaryContainer,
+                largeSize: 20,
+                smallSize: 20,
+                label: Text('!'),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10.0, top: 4.0),
+                  child: Icon(
+                    Icons.notifications,
+                    size: 24.0,
+                    color: FlutterFlowTheme.of(context).onBackground,
+                  ),
                 ),
               ),
             ),
           ],
-          centerTitle: false,
-          elevation: 2,
         ),
         body: SafeArea(
           top: true,
@@ -152,13 +150,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
                   padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 8),
                   child: Text(
                     'Minhas Reservas',
-                    style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).displayLargeFamily,
-                          color: FlutterFlowTheme.of(context).alternate,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).displayLargeFamily),
-                        ),
+                    style: FlutterFlowTheme.of(context).displayLarge,
                   ),
                 ),
               ),
@@ -169,13 +161,11 @@ class _ReservationsPageState extends State<ReservationsPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () =>
-                                searchByName(searchController?.text ?? ''),
+                            onRefresh: () => searchByName(searchController?.text ?? ''),
                             child: ListView(
                               children: const [
                                 Center(
-                                  child:
-                                      Text('Você não reservou nenhuma obra!!'),
+                                  child: Text('Você não reservou nenhuma obra!!'),
                                 ),
                               ],
                             ),
@@ -185,15 +175,13 @@ class _ReservationsPageState extends State<ReservationsPage> {
                           child: RefreshIndicator(
                             displacement: 10,
                             color: FlutterFlowTheme.of(context).secondary,
-                            onRefresh: () =>
-                                searchByName(searchController?.text ?? ''),
+                            onRefresh: () => searchByName(searchController?.text ?? ''),
                             child: ListView.builder(
                               itemCount: livros.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   // substituir pelo modelo do card
-                                  padding: const EdgeInsets.only(
-                                      left: 0, right: 0, bottom: 10, top: 10),
+                                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10),
                                   child: Container(
                                     margin: const EdgeInsets.only(
                                       left: 15,
@@ -201,14 +189,11 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Align(
-                                          alignment: const AlignmentDirectional(
-                                              -1, -1),
+                                          alignment: const AlignmentDirectional(-1, -1),
                                           child: Padding(
                                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                             child: InkWell(
@@ -234,21 +219,16 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                         ),
                                         const SizedBox(width: 16),
                                         Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1, 0),
+                                          alignment: const AlignmentDirectional(-1, 0),
                                           child: Padding(
                                             padding: const EdgeInsets.only(left: 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          -1, 0),
+                                                  alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
                                                     truncateWithEllipsis(20, livros[index]['nome']),
                                                     textAlign: TextAlign.start,
@@ -260,15 +240,11 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                   child: Text(
                                                     'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleLarge,
+                                                    style: FlutterFlowTheme.of(context).titleLarge,
                                                   ),
                                                 ),
                                                 Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          -1, 0),
+                                                  alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
                                                     'Ano: ${livros[index]['ano']}',
                                                     textAlign: TextAlign.start,
@@ -323,20 +299,12 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                             ],
                                                           ),
                                                     Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0, 1),
+                                                      alignment: const AlignmentDirectional(0, 1),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 16.0),
+                                                        padding: const EdgeInsets.only(left: 16.0),
                                                         child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
+                                                          mainAxisSize: MainAxisSize.max,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
                                                             TextButton(
                                                               onPressed: () async {
@@ -352,19 +320,9 @@ class _ReservationsPageState extends State<ReservationsPage> {
                                                                 fixedSize: const Size(120, 40),
                                                                 backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
                                                                 elevation: 3,
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                            .fromSTEB(
-                                                                        16,
-                                                                        0,
-                                                                        16,
-                                                                        0),
+                                                                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                                                                 shape: const StadiumBorder(
-                                                                    side: BorderSide(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                        width:
-                                                                            3.5)),
+                                                                    side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                                 // shape: ,
                                                               ),
                                                               child: Text(

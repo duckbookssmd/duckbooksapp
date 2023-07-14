@@ -102,11 +102,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
           ),
           title: Text(
             genre,
-            style: FlutterFlowTheme.of(context).displayLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
-                  color: FlutterFlowTheme.of(context).alternate,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
-                ),
+            style: FlutterFlowTheme.of(context).displayLarge,
           ),
           actions: const [],
           centerTitle: false,

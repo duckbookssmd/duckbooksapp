@@ -102,41 +102,43 @@ class _ConsultPageState extends State<ConsultPage> {
         ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-            child: IconButton(
-              onPressed: () {
-                setState(
-                  () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                );
-              },
-              icon: Icon(
-                Icons.menu,
-                size: 24.0,
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
+          elevation: 2,
+          leading: IconButton(
+            onPressed: () {
+              setState(
+                () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+              );
+            },
+            icon: Icon(
+              Icons.menu,
+              size: 24.0,
+              color: FlutterFlowTheme.of(context).onBackground,
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 24, 0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  size: 24.0,
-                  color: FlutterFlowTheme.of(context).alternate,
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
+              },
+              icon: Badge(
+                textColor: FlutterFlowTheme.of(context).onPrimaryContainer,
+                backgroundColor: FlutterFlowTheme.of(context).primaryContainer,
+                largeSize: 20,
+                smallSize: 20,
+                label: Text('!'),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10.0, top: 4.0),
+                  child: Icon(
+                    Icons.notifications,
+                    size: 24.0,
+                    color: FlutterFlowTheme.of(context).onBackground,
+                  ),
                 ),
               ),
             ),
           ],
-          centerTitle: false,
-          elevation: 2,
         ),
         body: SafeArea(
           top: true,
