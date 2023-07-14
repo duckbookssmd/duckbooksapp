@@ -101,7 +101,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
             ),
           ),
           title: Text(
-            'Detalhes da obra',
+            genre,
             style: FlutterFlowTheme.of(context).displayLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                   color: FlutterFlowTheme.of(context).alternate,
@@ -230,7 +230,9 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(8),
                                             child: Image.network(
-                                              'https://picsum.photos/seed/701/600',
+                                              (livros[index]['foto'] == 'Colocar' || livros[index]['foto'] == 'null')
+                                                  ? 'https://picsum.photos/seed/701/600'
+                                                  : livros[index]['foto'],
                                               width: 100,
                                               height: 135,
                                               fit: BoxFit.cover,
@@ -251,7 +253,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                             Align(
                                               alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
-                                                truncateWithEllipsis(30, livros[index]['nome']),
+                                                truncateWithEllipsis(28, livros[index]['nome']),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(context).titleLarge,
                                               ),
@@ -259,7 +261,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                             Align(
                                               alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
-                                                'Autor: ${livros[index]['autor']}',
+                                                'Autor: ${truncateWithEllipsis(30, livros[index]['autor'])}',
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(context).bodyLarge,
                                               ),

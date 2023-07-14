@@ -379,7 +379,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                             Align(
                                               alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
-                                                truncateWithEllipsis(30, livros[index]['nome']),
+                                                truncateWithEllipsis(28, livros[index]['nome']),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(context).titleLarge,
                                               ),

@@ -143,7 +143,9 @@ class AuthService extends ChangeNotifier {
     var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn';
     var response = await http.get(Uri.parse(url));
     var json = jsonDecode((response.body));
-    return (json['totalItems'] == 0) ? 'null' : json['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
+    return (json['totalItems'] == 0 || json['items'][0]['volumeInfo']['imageLinks'].toString() == 'null')
+        ? 'null'
+        : json['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
   }
 
   createLog({

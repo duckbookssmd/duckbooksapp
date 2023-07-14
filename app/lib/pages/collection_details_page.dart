@@ -165,11 +165,11 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${truncateWithEllipsis(30, book['nome'])}',
+                            truncateWithEllipsis(28, book['nome']),
                             style: FlutterFlowTheme.of(context).titleLarge,
                           ),
                           Text(
-                            'Autor: ${truncateWithEllipsis(30, book['autor'])}',
+                            'Autor: ${truncateWithEllipsis(28, book['autor'])}',
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Text(
