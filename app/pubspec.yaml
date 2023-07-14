@@ -95,6 +95,7 @@ flutter:
     - lib/assets/images/logo_black_text_no_bg.png
     - lib/assets/images/logo_white_text_no_bg.png
     - lib/assets/images/mulhar_enduvidada.png
+    - lib/assets/images/logo_to_white.png
     - lib/assets/images/pato_girando.gif
 
   # To add custom fonts to your application, add a fonts section here,
