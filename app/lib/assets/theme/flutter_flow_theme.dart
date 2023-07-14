@@ -17,7 +17,8 @@ enum DeviceSize {
 abstract class FlutterFlowTheme {
   static DeviceSize deviceSize = DeviceSize.mobile;
 
-  static Future initialize() async => _prefs = await SharedPreferences.getInstance();
+  static Future initialize() async =>
+      _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
     final darkMode = _prefs?.getBool(kThemeModeKey);
     return darkMode == null
@@ -27,12 +28,15 @@ abstract class FlutterFlowTheme {
             : ThemeMode.light;
   }
 
-  static void saveThemeMode(ThemeMode mode) =>
-      mode == ThemeMode.system ? _prefs?.remove(kThemeModeKey) : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
+      ? _prefs?.remove(kThemeModeKey)
+      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
     deviceSize = getDeviceSize(context);
-    return Theme.of(context).brightness == Brightness.dark ? DarkModeTheme() : LightModeTheme();
+    return Theme.of(context).brightness == Brightness.dark
+        ? DarkModeTheme()
+        : LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -45,7 +49,6 @@ abstract class FlutterFlowTheme {
   late Color primary;
   late Color secondary;
   late Color tertiary;
-  late Color tertiaryContainer;
   late Color alternate;
   late Color primaryText;
   late Color secondaryText;
@@ -59,6 +62,21 @@ abstract class FlutterFlowTheme {
   late Color warning;
   late Color error;
   late Color info;
+
+  late Color primaryContainer;
+  late Color secondaryContainer;
+  late Color tertiaryContainer;
+  late Color errorContainer;
+  late Color onPrimaryContainer;
+  late Color onSecondaryContainer;
+  late Color onTertiaryContainer;
+  late Color onErrorContainer;
+  late Color onBackground;
+  late Color outline;
+  late Color overlayPrimary;
+  late Color overlaySecondary;
+  late Color overlayTertiary;
+  late Color inactiveBottomBar;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -128,7 +146,7 @@ abstract class FlutterFlowTheme {
 }
 
 DeviceSize getDeviceSize(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
+  final width = MediaQuery.sizeOf(context).width;
   if (width < 479) {
     return DeviceSize.mobile;
   } else if (width < 991) {
@@ -146,23 +164,37 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFF5E63D);
-  late Color secondary = const Color(0xFF7BC74D);
-  late Color tertiary = const Color(0xFFFFFFFF);
-  late Color tertiaryContainer = const Color(0xFFFFDCC5);
-  late Color alternate = const Color(0xFF7B593B);
-  late Color primaryText = const Color(0xFF1E1E1E);
-  late Color secondaryText = const Color(0xFF6B6B6B);
-  late Color primaryBackground = const Color(0xFFDAD2B8);
-  late Color secondaryBackground = const Color(0xFFFFFFFF);
-  late Color accent1 = const Color(0xFFEA4A26);
-  late Color accent2 = const Color(0xFF3F5A8D);
-  late Color accent3 = const Color(0xFFA06A42);
-  late Color accent4 = const Color(0xFF7D3C98);
+  late Color primary = const Color(0xFF305DA8);
+  late Color secondary = const Color(0xFF676000);
+  late Color tertiary = const Color(0xFF944B00);
+  late Color alternate = const Color(0xFF84746A);
+  late Color primaryText = const Color(0xFF170A00);
+  late Color secondaryText = const Color(0xFF52443B);
+  late Color primaryBackground = const Color(0xFFF3DFD2);
+  late Color secondaryBackground = const Color(0xFFFFFBFF);
+  late Color accent1 = const Color(0x4D305DA8);
+  late Color accent2 = const Color(0x4D676000);
+  late Color accent3 = const Color(0x4D944B00);
+  late Color accent4 = const Color(0x4D84746A);
   late Color success = const Color(0xFF2ECC71);
-  late Color warning = const Color(0xFFF1C40F);
-  late Color error = const Color(0xFFE74C3C);
-  late Color info = const Color(0xFF3498DB);
+  late Color warning = const Color(0xFFF5E63D);
+  late Color error = const Color(0xFFBA1A1A);
+  late Color info = const Color(0xFFD8E2FF);
+
+  late Color primaryContainer = const Color(0xFF001A41);
+  late Color secondaryContainer = const Color(0xFF1F1C00);
+  late Color tertiaryContainer = const Color(0xFF301400);
+  late Color errorContainer = const Color(0xFF410002);
+  late Color onPrimaryContainer = const Color(0xFFD8E2FF);
+  late Color onSecondaryContainer = const Color(0xFFF5E63D);
+  late Color onTertiaryContainer = const Color(0xFFFFDCC5);
+  late Color onErrorContainer = const Color(0xFFFFDAD6);
+  late Color onBackground = const Color(0xFF343434);
+  late Color outline = const Color(0xFF84746A);
+  late Color overlayPrimary = const Color(0xFFA9BFFF);
+  late Color overlaySecondary = const Color(0xFFFFF583);
+  late Color overlayTertiary = const Color(0xFF624128);
+  late Color inactiveBottomBar = const Color(0xFF8FABFF);
 }
 
 abstract class Typography {
@@ -203,25 +235,25 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Indie Flower';
+  String get displayLargeFamily => 'Jost';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Indie Flower',
+        'Jost',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 26.0,
         fontStyle: FontStyle.normal,
       );
-  String get displayMediumFamily => 'Indie Flower';
+  String get displayMediumFamily => 'Jost';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Indie Flower',
+        'Jost',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
         fontStyle: FontStyle.normal,
       );
-  String get displaySmallFamily => 'Indie Flower';
+  String get displaySmallFamily => 'Jost';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Indie Flower',
+        'Jost',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
@@ -278,7 +310,7 @@ class MobileTypography extends Typography {
   String get labelLargeFamily => 'Inter';
   TextStyle get labelLarge => GoogleFonts.getFont(
         'Inter',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
@@ -286,7 +318,7 @@ class MobileTypography extends Typography {
   String get labelMediumFamily => 'Inter';
   TextStyle get labelMedium => GoogleFonts.getFont(
         'Inter',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
@@ -294,7 +326,7 @@ class MobileTypography extends Typography {
   String get labelSmallFamily => 'Inter';
   TextStyle get labelSmall => GoogleFonts.getFont(
         'Inter',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
         fontStyle: FontStyle.italic,
@@ -302,7 +334,7 @@ class MobileTypography extends Typography {
   String get bodyLargeFamily => 'Jost';
   TextStyle get bodyLarge => GoogleFonts.getFont(
         'Jost',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
         fontStyle: FontStyle.normal,
@@ -310,7 +342,7 @@ class MobileTypography extends Typography {
   String get bodyMediumFamily => 'Jost';
   TextStyle get bodyMedium => GoogleFonts.getFont(
         'Jost',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
         fontStyle: FontStyle.normal,
@@ -318,7 +350,7 @@ class MobileTypography extends Typography {
   String get bodySmallFamily => 'Jost';
   TextStyle get bodySmall => GoogleFonts.getFont(
         'Jost',
-        color: theme.primaryText,
+        color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
         fontStyle: FontStyle.italic,
@@ -587,23 +619,37 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFEEDC31);
-  late Color secondary = const Color(0xFF6AB441);
-  late Color tertiary = const Color(0xFFFFFFFF);
-  late Color tertiaryContainer = const Color(0xFF713700);
-  late Color alternate = const Color(0xFF864002);
-  late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFFB3B3B3);
-  late Color primaryBackground = const Color(0xFF222222);
-  late Color secondaryBackground = const Color(0xFF2F2F2F);
-  late Color accent1 = const Color(0xFFD13F22);
-  late Color accent2 = const Color(0xFF2F4B78);
-  late Color accent3 = const Color(0xFF8E5F3D);
-  late Color accent4 = const Color(0xFF6C3483);
-  late Color success = const Color(0xFF27AE60);
-  late Color warning = const Color(0xFFF39C12);
-  late Color error = const Color(0xFFC0392B);
-  late Color info = const Color(0xFF2980B9);
+  late Color primary = const Color(0xFFADC6FF);
+  late Color secondary = const Color(0xFFD4CA51);
+  late Color tertiary = const Color(0xFFFFB783);
+  late Color alternate = const Color(0xFF8E9099);
+  late Color primaryText = const Color(0xFFEEEEEE);
+  late Color secondaryText = const Color(0xFFCDCDCD);
+  late Color primaryBackground = const Color(0xFF111111);
+  late Color secondaryBackground = const Color(0xFF333333);
+  late Color accent1 = const Color(0x4DADC6FF);
+  late Color accent2 = const Color(0x4DD4CA51);
+  late Color accent3 = const Color(0x4DFFB783);
+  late Color accent4 = const Color(0x4D8E9099);
+  late Color success = const Color(0xFF8AFFBB);
+  late Color warning = const Color(0xFFFFF58A);
+  late Color error = const Color(0xFFFFACA3);
+  late Color info = const Color(0xFFD8E2FF);
+
+  late Color primaryContainer = const Color(0xFFD8E2FF);
+  late Color secondaryContainer = const Color(0xFFFFFC7A);
+  late Color tertiaryContainer = const Color(0xFFFFDCC5);
+  late Color errorContainer = const Color(0xFF93000A);
+  late Color onPrimaryContainer = const Color(0xFF002E68);
+  late Color onSecondaryContainer = const Color(0xFF1F1C00);
+  late Color onTertiaryContainer = const Color(0xFF301400);
+  late Color onErrorContainer = const Color(0xFFFFDAD6);
+  late Color onBackground = const Color(0xFFCDCDCD);
+  late Color outline = const Color(0xFF84746A);
+  late Color overlayPrimary = const Color(0xFFA9BFFF);
+  late Color overlaySecondary = const Color(0xFFFFF583);
+  late Color overlayTertiary = const Color(0xFF624128);
+  late Color inactiveBottomBar = const Color(0xFF7598FF);
 }
 
 extension TextStyleHelper on TextStyle {
