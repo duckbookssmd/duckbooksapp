@@ -67,7 +67,7 @@ class _EditBookPageState extends State<EditBookPage> {
           icon: Icon(
             Icons.arrow_back_ios_rounded,
             size: 30,
-            color: FlutterFlowTheme.of(context).accent3,
+            color: FlutterFlowTheme.of(context).tertiary,
           ),
         ),
         title: Text(
