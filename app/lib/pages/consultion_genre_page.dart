@@ -274,112 +274,87 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                                 style: FlutterFlowTheme.of(context).bodyLarge,
                                               ),
                                             ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                Align(
-                                                  alignment: const AlignmentDirectional(0, 1),
-                                                  child: TextButton(
-                                                    onPressed: () async {},
-                                                    style: OutlinedButton.styleFrom(
-                                                      fixedSize: const Size(145, 40),
-                                                      backgroundColor: FlutterFlowTheme.of(context).alternate,
-                                                      elevation: 3,
-                                                      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                      shape: const StadiumBorder(
-                                                          side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                    ),
-                                                    child: Text(
-                                                      'Pedir empréstimo',
-                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                            color: FlutterFlowTheme.of(context).tertiary,
-                                                            useGoogleFonts: GoogleFonts.asMap()
-                                                                .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment: const AlignmentDirectional(0, 1),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.only(left: 16.0),
-                                                    child: Column(
-                                                      mainAxisSize: MainAxisSize.max,
-                                                      mainAxisAlignment: MainAxisAlignment.end,
-                                                      children: [
-                                                        (livros[index]['userloan'].toString() == 'null')
-                                                            ? Row(
-                                                                mainAxisSize: MainAxisSize.max,
-                                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                                children: [
-                                                                  Container(
-                                                                    width: 16,
-                                                                    height: 16,
-                                                                    decoration: BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(context).success,
-                                                                      shape: BoxShape.circle,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    'Disponível',
-                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            : Row(
-                                                                mainAxisSize: MainAxisSize.max,
-                                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                                children: [
-                                                                  Container(
-                                                                    width: 16,
-                                                                    height: 16,
-                                                                    decoration: BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(context).error,
-                                                                      shape: BoxShape.circle,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    'Indisponível',
-                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                        TextButton(
-                                                          onPressed: () async {
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (context) => CollectionDetailsPage(book: livros[index]),
-                                                              ),
-                                                            ).whenComplete(() => searchByName(searchController?.text ?? ''));
-                                                          },
-                                                          style: OutlinedButton.styleFrom(
-                                                            fixedSize: const Size(90, 40),
-                                                            backgroundColor: FlutterFlowTheme.of(context).secondaryText,
-                                                            elevation: 3,
-                                                            padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                            shape: const StadiumBorder(
-                                                                side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                            // shape: ,
-                                                          ),
-                                                          child: Text(
-                                                            'Detalhes',
-                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                  fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                  color: FlutterFlowTheme.of(context).tertiary,
-                                                                  useGoogleFonts: GoogleFonts.asMap()
-                                                                      .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                            Align(
+                                              alignment: const AlignmentDirectional(0, 1),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(left: 0.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: [
+                                                    (livros[index]['userloan'].toString() == 'null')
+                                                        ? Row(
+                                                            mainAxisSize: MainAxisSize.max,
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              Container(
+                                                                width: 16,
+                                                                height: 16,
+                                                                decoration: BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(context).success,
+                                                                  shape: BoxShape.circle,
                                                                 ),
+                                                              ),
+                                                              SizedBox(width: 8),
+                                                              Text(
+                                                                'Disponível',
+                                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                                              ),
+                                                            ],
+                                                          )
+                                                        : Row(
+                                                            mainAxisSize: MainAxisSize.max,
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              Container(
+                                                                width: 16,
+                                                                height: 16,
+                                                                decoration: BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(context).error,
+                                                                  shape: BoxShape.circle,
+                                                                ),
+                                                              ),
+                                                              SizedBox(width: 8),
+                                                              Text(
+                                                                'Indisponível',
+                                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                                              ),
+                                                            ],
                                                           ),
+                                                    Align(
+                                                      alignment: const AlignmentDirectional(-1, 0),
+                                                      child: TextButton(
+                                                        onPressed: () async {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) => CollectionDetailsPage(book: livros[index]),
+                                                            ),
+                                                          ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                                                        },
+                                                        style: OutlinedButton.styleFrom(
+                                                          fixedSize: const Size(90, 40),
+                                                          backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
+                                                          elevation: 3,
+                                                          padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                          shape: const StadiumBorder(
+                                                              side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                          // shape: ,
                                                         ),
-                                                      ],
+                                                        child: Text(
+                                                          'Detalhes',
+                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                color: FlutterFlowTheme.of(context).onTertiaryContainer,
+                                                                useGoogleFonts: GoogleFonts.asMap()
+                                                                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                              ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
-                                              ],
+                                              ),
                                             ),
                                           ],
                                         ),
