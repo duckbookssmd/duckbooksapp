@@ -24,7 +24,11 @@ class _CadastroPageState extends State<CadastroPage> {
   @override
   void initState() {
     super.initState();
-    FirebaseFirestore.instance.collection("usuario").doc(user?.uid).get().then((value) {
+    FirebaseFirestore.instance
+        .collection("usuario")
+        .doc(user?.uid)
+        .get()
+        .then((value) {
       // final loggedInUser = UserModel.fromMap(value.data()); // Entendi, é para entrada automárica
       setState(() {});
     });
@@ -65,7 +69,10 @@ class _CadastroPageState extends State<CadastroPage> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HelpPage()));
                   },
                   child: FaIcon(
                     // ignore: deprecated_member_use
@@ -96,15 +103,18 @@ class _CadastroPageState extends State<CadastroPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 48),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 32),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
-                              (FlutterFlowTheme.of(context).toString().contains('Dark'))
+                              (FlutterFlowTheme.of(context)
+                                      .toString()
+                                      .contains('Dark'))
                                   ? 'lib/assets/images/logo_black_text_no_bg.png'
                                   : 'lib/assets/images/logo_to_white.png',
-                              width: 300,
-                              height: 200,
+                              width: 230,
+                              height: 130,
                               fit: BoxFit.scaleDown,
                             ),
                           ),
@@ -112,7 +122,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 10),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 8, 10),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextFormField(
@@ -121,11 +132,17 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   isDense: true,
                                   hintText: 'Apelido',
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -156,13 +173,16 @@ class _CadastroPageState extends State<CadastroPage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   prefixIcon: Icon(
                                     Icons.face_retouching_natural,
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 20,
                                   ),
-                                  suffixIcon: texMatriculaController!.text.isNotEmpty
+                                  suffixIcon: texMatriculaController!
+                                          .text.isNotEmpty
                                       ? InkWell(
                                           onTap: () async {
                                             texMatriculaController?.clear();
@@ -170,19 +190,27 @@ class _CadastroPageState extends State<CadastroPage> {
                                           },
                                           child: Icon(
                                             Icons.clear,
-                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             size: 18,
                                           ),
                                         )
                                       : null,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context).primaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
-                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Campo vazio';
@@ -198,7 +226,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 10),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 8, 10),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextFormField(
@@ -207,11 +236,17 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   isDense: true,
                                   hintText: 'Matrícula ou SIAPE',
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -242,13 +277,16 @@ class _CadastroPageState extends State<CadastroPage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   prefixIcon: Icon(
                                     Icons.location_history_rounded,
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 20,
                                   ),
-                                  suffixIcon: texMatriculaController!.text.isNotEmpty
+                                  suffixIcon: texMatriculaController!
+                                          .text.isNotEmpty
                                       ? InkWell(
                                           onTap: () async {
                                             texMatriculaController?.clear();
@@ -256,21 +294,31 @@ class _CadastroPageState extends State<CadastroPage> {
                                           },
                                           child: Icon(
                                             Icons.clear,
-                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             size: 18,
                                           ),
                                         )
                                       : null,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context).primaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                                 keyboardType: TextInputType.number,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Campo vazio';
@@ -286,7 +334,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 10),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 8, 10),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextFormField(
@@ -295,11 +344,17 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   isDense: true,
                                   hintText: 'Email',
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -330,13 +385,16 @@ class _CadastroPageState extends State<CadastroPage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   prefixIcon: Icon(
                                     Icons.alternate_email_rounded,
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 20,
                                   ),
-                                  suffixIcon: texEmailController!.text.isNotEmpty
+                                  suffixIcon: texEmailController!
+                                          .text.isNotEmpty
                                       ? InkWell(
                                           onTap: () async {
                                             texEmailController?.clear();
@@ -344,26 +402,36 @@ class _CadastroPageState extends State<CadastroPage> {
                                           },
                                           child: Icon(
                                             Icons.clear,
-                                            color: FlutterFlowTheme.of(context).primaryText,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             size: 18,
                                           ),
                                         )
                                       : null,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context).primaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
-                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Campo vazio';
                                   } else {
                                     RegExp regexEmail = RegExp(
                                         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
-                                    return (!regexEmail.hasMatch(value)) ? 'Email invalido' : null;
+                                    return (!regexEmail.hasMatch(value))
+                                        ? 'Email invalido'
+                                        : null;
                                   }
                                 },
                               ),
@@ -373,7 +441,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 8, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextFormField(
@@ -382,11 +451,17 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   isDense: true,
                                   hintText: 'Senha',
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -417,29 +492,41 @@ class _CadastroPageState extends State<CadastroPage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   prefixIcon: Icon(
                                     Icons.vpn_key,
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 20,
                                   ),
                                   suffixIcon: InkWell(
                                     onTap: () => setState(
-                                      () => passwordVisibility1 = !passwordVisibility1,
+                                      () => passwordVisibility1 =
+                                          !passwordVisibility1,
                                     ),
                                     focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
-                                      passwordVisibility1 ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      passwordVisibility1
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       size: 18,
                                     ),
                                   ),
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).primaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 cursorColor: const Color(0xFF311A0B),
                                 validator: (value) {
@@ -458,7 +545,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 8, 8),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextFormField(
@@ -467,11 +555,17 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   isDense: true,
                                   hintText: 'Confirmação de Senha',
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -502,29 +596,41 @@ class _CadastroPageState extends State<CadastroPage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   prefixIcon: Icon(
                                     Icons.vpn_key,
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 20,
                                   ),
                                   suffixIcon: InkWell(
                                     onTap: () => setState(
-                                      () => passwordVisibility2 = !passwordVisibility2,
+                                      () => passwordVisibility2 =
+                                          !passwordVisibility2,
                                     ),
                                     focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
-                                      passwordVisibility2 ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      passwordVisibility2
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       size: 18,
                                     ),
                                   ),
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).primaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 cursorColor: const Color(0xFF311A0B),
                                 validator: (value) {
@@ -544,11 +650,13 @@ class _CadastroPageState extends State<CadastroPage> {
                         Align(
                           alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 5),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                30, 10, 30, 5),
                             child: TextButton(
                               onPressed: () {
                                 // Validate returns true if the form is valid, or false otherwise.
-                                if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+                                if (_formKey.currentState != null &&
+                                    _formKey.currentState!.validate()) {
                                   context.read<AuthService>().signUp(
                                       context,
                                       texNicknameController!.text,
@@ -561,7 +669,9 @@ class _CadastroPageState extends State<CadastroPage> {
                                       texConfSenhaController);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Cadastrando...'), backgroundColor: Colors.green),
+                                    const SnackBar(
+                                        content: Text('Cadastrando...'),
+                                        backgroundColor: Colors.green),
                                   );
                                 }
                               },
@@ -569,59 +679,86 @@ class _CadastroPageState extends State<CadastroPage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                fixedSize: Size(MediaQuery.of(context).size.width * 0.7, 40),
-                                padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                                backgroundColor: FlutterFlowTheme.of(context).primary,
+                                fixedSize: Size(
+                                    MediaQuery.of(context).size.width * 0.7,
+                                    40),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24, 0, 24, 0),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
                                 // foregroundColor: FlutterFlowTheme.of(context).tertiary,
-                                textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).tertiary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
                                       fontSize: 16,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 elevation: 5,
                               ),
                               child: Text(
                                 'Cadastrar',
-                                style: FlutterFlowTheme.of(context).titleMedium.override(
-                                      fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
-                                      color: FlutterFlowTheme.of(context).onPrimaryContainer,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .onPrimaryContainer,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMediumFamily),
                                     ),
                               ),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-                          child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: [
-                            Text(
-                              'Já possui cadastro ?',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                            const SizedBox(width: 8),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                'Faça login',
-                                style: FlutterFlowTheme.of(context).titleLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                      color: FlutterFlowTheme.of(context).tertiary,
-                                      decoration: TextDecoration.underline,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                    ),
-                              ),
-                            ),
-                          ]),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0, 20, 0, 20),
+                          child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Já possui cadastro ?',
+                                  style: FlutterFlowTheme.of(context).bodyLarge,
+                                ),
+                                const SizedBox(width: 8),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Faça login',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          decoration: TextDecoration.underline,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLargeFamily),
+                                        ),
+                                  ),
+                                ),
+                              ]),
                         ),
                       ],
                     )),
