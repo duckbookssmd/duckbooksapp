@@ -89,7 +89,7 @@ class _HelpPageState extends State<HelpPage> {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: 'Quem sabe que ler é importante\nbucava um aplicativo para critar ou\nmelhorar seu hábito de leitura.\n\n\n',
+                                            text: 'Quem sabe que ler é importante\nbuscava um aplicativo para criar ou\nmelhorar seu hábito de leitura.\n\n\n',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w500,
@@ -136,7 +136,7 @@ class _HelpPageState extends State<HelpPage> {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: 'Descrição e informações sobre\nemprestimo.\n\n',
+                                            text: 'Aqui você pode solicitar o empréstimo\nde obras do acervo do centro acadêmico\n\n',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w500,
@@ -169,7 +169,7 @@ class _HelpPageState extends State<HelpPage> {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: 'Descrição e informações sobre\nreservas.\n\n',
+                                            text: 'Você pode também reservar\nas obras de maior interesse.\n\n',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w500,
@@ -202,7 +202,7 @@ class _HelpPageState extends State<HelpPage> {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: 'Descrição e informações sobre\nconsulta.\n\n',
+                                            text: 'Você pode também consultar o\nacervo disponível a qualquer momento\n\n',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w500,
