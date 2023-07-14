@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
+import 'borrow_solicitations_page.dart';
+import 'collection_details_page.dart';
 
 class LoanPage extends StatefulWidget {
   const LoanPage({Key? key}) : super(key: key);
@@ -93,117 +95,50 @@ class _LoanPageState extends State<LoanPage> {
         drawer: DuckAppBar(
           scaffoldKey: scaffoldKey,
         ),
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+            child: IconButton(
+              onPressed: () {
+                setState(
+                  () {
+                    scaffoldKey.currentState!.openDrawer();
+                  },
+                );
+              },
+              icon: Icon(
+                Icons.menu,
+                size: 24.0,
+                color: FlutterFlowTheme.of(context).alternate,
+              ),
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 24, 0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BorrowSolicitationsPage()));
+                },
+                icon: Icon(
+                  Icons.notifications,
+                  size: 24.0,
+                  color: FlutterFlowTheme.of(context).alternate,
+                ),
+              ),
+            ),
+          ],
+          centerTitle: false,
+          elevation: 2,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: IconButton(
-                        onPressed: () {
-                          setState(
-                            () {
-                              scaffoldKey.currentState!.openDrawer();
-                            },
-                          );
-                        },
-                        icon: Icon(
-                          Icons.menu,
-                          size: 24.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: TextFormField(
-                          controller: searchController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Pesquise uma obra aqui...',
-                            labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).info,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                            suffixIcon: IconButton(
-                              onPressed: () => searchByName(searchController?.text ?? ''),
-                              icon: const Icon(
-                                Icons.search,
-                                size: 26,
-                              ),
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          style: FlutterFlowTheme.of(context).titleLarge.override(
-                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                color: FlutterFlowTheme.of(context).secondaryText,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                              ),
-                          cursorColor: FlutterFlowTheme.of(context).secondary,
-                          // validator: _model.textControllerValidator
-                          //     .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.notifications,
-                          size: 24.0,
-                          color: FlutterFlowTheme.of(context).alternate,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Align(
                 alignment: const AlignmentDirectional(-1, 0),
                 child: Padding(
@@ -260,21 +195,32 @@ class _LoanPageState extends State<LoanPage> {
                                           alignment: const AlignmentDirectional(-1, -1),
                                           child: Padding(
                                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(8),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/701/600',
-                                                width: 100,
-                                                height: 135,
-                                                fit: BoxFit.cover,
+                                            child: InkWell(
+                                              onTap: () => Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => CollectionDetailsPage(book: livros[index]),
+                                                ),
+                                              ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(8),
+                                                child: Image.network(
+                                                  (livros[index]['foto'] == 'Colocar' || livros[index]['foto'] == 'null')
+                                                      ? 'https://picsum.photos/seed/701/600'
+                                                      : livros[index]['foto'],
+                                                  width: 100,
+                                                  height: 135,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
+                                        const SizedBox(width: 16),
                                         Align(
                                           alignment: const AlignmentDirectional(-1, 0),
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left: 8.0),
+                                            padding: const EdgeInsets.only(left: 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -283,7 +229,15 @@ class _LoanPageState extends State<LoanPage> {
                                                 Align(
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
-                                                    truncateWithEllipsis(30, livros[index]['nome']),
+                                                    truncateWithEllipsis(20, livros[index]['nome']),
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(context).headlineLarge,
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: const AlignmentDirectional(-1, 0),
+                                                  child: Text(
+                                                    'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(context).titleLarge,
                                                   ),
@@ -291,17 +245,9 @@ class _LoanPageState extends State<LoanPage> {
                                                 Align(
                                                   alignment: const AlignmentDirectional(-1, 0),
                                                   child: Text(
-                                                    'Autor: ${livros[index]['autor']}',
+                                                    'Ano: ${livros[index]['ano']}',
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(context).bodyLarge,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment: const AlignmentDirectional(-1, 0),
-                                                  child: Text(
-                                                    '${livros[index]['edicao']}° Edição',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(context).bodyLarge,
+                                                    style: FlutterFlowTheme.of(context).titleLarge,
                                                   ),
                                                 ),
                                                 Row(
@@ -309,6 +255,87 @@ class _LoanPageState extends State<LoanPage> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
+                                                    Align(
+                                                      alignment: const AlignmentDirectional(0, 1),
+                                                      child: Column(
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        children: [
+                                                          // livros[index]['dataDisponibilidade']
+                                                          (!DateTime.now().isAfter(DateTime.parse(livros[index]
+                                                                      ['dataDisponibilidade']
+                                                                  .toString()
+                                                                  .substring(0, 10)
+                                                                  .replaceAll('/', '-')
+                                                                  .split('-')
+                                                                  .reversed
+                                                                  .join())))
+                                                              ? Row(
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                  children: [
+                                                                    Container(
+                                                                      width: 16,
+                                                                      height: 16,
+                                                                      decoration: BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context).success,
+                                                                        shape: BoxShape.circle,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      'Em dia',
+                                                                      style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              : Row(
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                  children: [
+                                                                    Container(
+                                                                      width: 16,
+                                                                      height: 16,
+                                                                      decoration: BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context).error,
+                                                                        shape: BoxShape.circle,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      'Atrasado',
+                                                                      style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                          TextButton(
+                                                            onPressed: () async {
+                                                              await context.read<AuthService>().renewLoan(livros[index]);
+                                                              setState(() {});
+                                                            },
+                                                            style: OutlinedButton.styleFrom(
+                                                              fixedSize: const Size(110, 40),
+                                                              backgroundColor: FlutterFlowTheme.of(context).secondaryContainer,
+                                                              elevation: 3,
+                                                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                              shape: const StadiumBorder(
+                                                                  side: BorderSide(color: Colors.transparent, width: 3.5)),
+                                                              // shape: ,
+                                                            ),
+                                                            child: Text(
+                                                              'Renovar',
+                                                              style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                    fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                    color: FlutterFlowTheme.of(context).onSecondaryContainer,
+                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                                                        FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 16),
                                                     Align(
                                                       alignment: const AlignmentDirectional(0, 1),
                                                       child: TextButton(
@@ -396,102 +423,21 @@ class _LoanPageState extends State<LoanPage> {
                                                           );
                                                         },
                                                         style: OutlinedButton.styleFrom(
-                                                          fixedSize: const Size(90, 40),
-                                                          backgroundColor: FlutterFlowTheme.of(context).alternate,
+                                                          fixedSize: const Size(110, 40),
+                                                          backgroundColor: FlutterFlowTheme.of(context).primary,
                                                           elevation: 3,
-                                                          padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                                                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                           shape: const StadiumBorder(
                                                               side: BorderSide(color: Colors.transparent, width: 3.5)),
                                                         ),
                                                         child: Text(
                                                           'Devolver',
-                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                          style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                color: FlutterFlowTheme.of(context).onPrimaryContainer,
                                                                 useGoogleFonts: GoogleFonts.asMap()
-                                                                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                    .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                               ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment: const AlignmentDirectional(0, 1),
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.only(left: 16.0),
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize.max,
-                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                          children: [
-                                                            // livros[index]['dataDisponibilidade']
-                                                            (!DateTime.now().isAfter(DateTime.parse(livros[index]
-                                                                        ['dataDisponibilidade']
-                                                                    .toString()
-                                                                    .substring(0, 10)
-                                                                    .replaceAll('/', '-')
-                                                                    .split('-')
-                                                                    .reversed
-                                                                    .join())))
-                                                                ? Row(
-                                                                    mainAxisSize: MainAxisSize.max,
-                                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                                    children: [
-                                                                      Container(
-                                                                        width: 16,
-                                                                        height: 16,
-                                                                        decoration: BoxDecoration(
-                                                                          color: FlutterFlowTheme.of(context).success,
-                                                                          shape: BoxShape.circle,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        'Em dia',
-                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                      ),
-                                                                    ],
-                                                                  )
-                                                                : Row(
-                                                                    mainAxisSize: MainAxisSize.max,
-                                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                                    children: [
-                                                                      Container(
-                                                                        width: 16,
-                                                                        height: 16,
-                                                                        decoration: BoxDecoration(
-                                                                          color: FlutterFlowTheme.of(context).error,
-                                                                          shape: BoxShape.circle,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        'Atrasado',
-                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                            TextButton(
-                                                              onPressed: () async {
-                                                                await context.read<AuthService>().renewLoan(livros[index]);
-                                                                setState(() {});
-                                                              },
-                                                              style: OutlinedButton.styleFrom(
-                                                                fixedSize: const Size(90, 40),
-                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                elevation: 3,
-                                                                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                                                                shape: const StadiumBorder(
-                                                                    side: BorderSide(color: Colors.transparent, width: 3.5)),
-                                                                // shape: ,
-                                                              ),
-                                                              child: Text(
-                                                                'Renovar',
-                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                      color: FlutterFlowTheme.of(context).tertiary,
-                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                                                          FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
                                                         ),
                                                       ),
                                                     ),

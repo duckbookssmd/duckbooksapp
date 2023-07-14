@@ -385,10 +385,11 @@ class _ConsultPageState extends State<ConsultPage> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(width: 16),
                                     Align(
                                       alignment: const AlignmentDirectional(-1, 0),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 8.0),
+                                        padding: const EdgeInsets.only(left: 0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment: MainAxisAlignment.start,
@@ -397,7 +398,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                             Align(
                                               alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
-                                                truncateWithEllipsis(21, livros[index]['nome']),
+                                                truncateWithEllipsis(20, livros[index]['nome']),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(context).headlineLarge,
                                               ),
@@ -405,7 +406,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                             Align(
                                               alignment: const AlignmentDirectional(-1, 0),
                                               child: Text(
-                                                'Autor: ${truncateWithEllipsis(24, livros[index]['autor'])}',
+                                                'Autor: ${truncateWithEllipsis(22, livros[index]['autor'])}',
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(context).titleLarge,
                                               ),
@@ -442,6 +443,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                             'Disponível',
                                                             style: FlutterFlowTheme.of(context).bodyMedium,
                                                           ),
+                                                          const SizedBox(width: 27),
                                                         ],
                                                       )
                                                     : Row(
@@ -461,9 +463,9 @@ class _ConsultPageState extends State<ConsultPage> {
                                                             'Indisponível',
                                                             style: FlutterFlowTheme.of(context).bodyMedium,
                                                           ),
+                                                          const SizedBox(width: 18),
                                                         ],
                                                       ),
-                                                const SizedBox(width: 36),
                                                 Align(
                                                   alignment: const AlignmentDirectional(0, 1),
                                                   child: Padding(
