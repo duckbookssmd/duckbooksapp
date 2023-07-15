@@ -58,7 +58,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                       Align(
                         alignment: const AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0), 
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +70,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'lib/assets/images/mulhar_enduvidada.png',
+                                      'lib/assets/images/pato_enduvidado.png',
                                       width: 250,
                                       height: 250,
                                       fit: BoxFit.contain,
@@ -133,7 +133,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'lib/assets/images/mulhar_enduvidada.png',
+                                      'lib/assets/images/pato_enduvidado.png',
                                       width: 250,
                                       height: 250,
                                       fit: BoxFit.contain,
@@ -196,7 +196,7 @@ class _RegisterValidationHelpPageWidgetState extends State<RegisterValidationHel
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'lib/assets/images/mulhar_enduvidada.png',
+                                      'lib/assets/images/pato_enduvidado.png',
                                       width: 250,
                                       height: 250,
                                       fit: BoxFit.contain,
