@@ -157,74 +157,72 @@ class _ConsultPageState extends State<ConsultPage> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Expanded(
-                              child: TextFormField(
-                                controller: searchController,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  isDense: true,
-                                  labelText: 'Pesquise uma obra aqui...',
-                                  labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).info,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  filled: true,
-                                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                  suffixIcon: IconButton(
-                                    onPressed: () => searchByName(searchController?.text ?? ''),
-                                    icon: const Icon(
-                                      Icons.search,
-                                      size: 26,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).primaryText,
-                                  ),
-                                ),
-                                style: FlutterFlowTheme.of(context).titleLarge.override(
+                            child: TextFormField(
+                              controller: searchController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                labelText: 'Pesquise uma obra aqui...',
+                                labelStyle: FlutterFlowTheme.of(context).titleLarge.override(
                                       fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                       color: FlutterFlowTheme.of(context).secondaryText,
                                       useGoogleFonts:
                                           GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                     ),
-                                cursorColor: FlutterFlowTheme.of(context).tertiary,
-                                // validator: _model.textControllerValidator
-                                //     .asValidator(context),
+                                hintStyle: FlutterFlowTheme.of(context).titleLarge.override(
+                                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                      useGoogleFonts:
+                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).info,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                suffixIcon: IconButton(
+                                  onPressed: () => searchByName(searchController?.text ?? ''),
+                                  icon: const Icon(
+                                    Icons.search,
+                                    size: 26,
+                                  ),
+                                  color: FlutterFlowTheme.of(context).primaryText,
+                                ),
                               ),
+                              style: FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                    useGoogleFonts:
+                                        GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                  ),
+                              cursorColor: FlutterFlowTheme.of(context).tertiary,
+                              // validator: _model.textControllerValidator
+                              //     .asValidator(context),
                             ),
                           ),
                           Align(
