@@ -394,19 +394,19 @@ class _HomePageCaState extends State<HomePageCa> {
                                           columns: [
                                             DataColumn2(
                                               label: SizedBox(
-                                                width: 100,
+                                                width: 101.5,
                                                 child: Text(
                                                   'Ação',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                            .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
                                                   textAlign: TextAlign.start,
                                                 ),
                                               ),
-                                              fixedWidth: 100,
+                                              fixedWidth: 101.5,
                                             ),
                                             DataColumn2(
                                               // size: ColumnSize.values.first,
@@ -414,11 +414,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 width: 120,
                                                 child: Text(
                                                   'Matrícula',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                            .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
                                                   textAlign: TextAlign.start,
                                                 ),
@@ -428,36 +428,19 @@ class _HomePageCaState extends State<HomePageCa> {
                                             DataColumn2(
                                               // size: ColumnSize.values.first,
                                               label: SizedBox(
-                                                width: 100,
+                                                width: 120,
                                                 child: Text(
                                                   'Detalhes',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
-                                                        useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                      ),
-                                                  textAlign: TextAlign.start,
-                                                ),
-                                              ),
-                                              fixedWidth: 70,
-                                            ),
-                                            DataColumn2(
-                                              // size: ColumnSize.values.first,
-                                              label: SizedBox(
-                                                width: 16,
-                                                child: Text(
-                                                  '',
                                                   style: FlutterFlowTheme.of(context).titleLarge.override(
                                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
                                                             .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
-                                                  textAlign: TextAlign.start,
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               ),
-                                              fixedWidth: 50,
+                                              fixedWidth: 120,
                                             ),
                                           ],
                                           rows: List<DataRow>.generate(
@@ -467,6 +450,13 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 DataCell(
                                                   Text(
                                                     usersActions[index]['action'],
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                          fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                          useGoogleFonts: GoogleFonts.asMap()
+                                                              .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                        ),
                                                   ),
                                                   onTap: () => showDialog<bool>(
                                                     context: context,
@@ -519,45 +509,63 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 ),
                                                 DataCell(Text(
                                                   usersActions[index]['userId'],
+                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                      ),
                                                   textAlign: TextAlign.center,
                                                 )),
                                                 DataCell(
-                                                  (usersActions[index]['codBook'].toString() != 'null')
-                                                      ? SizedBox(
-                                                          width: 100,
-                                                          child: IconButton(
-                                                            onPressed: () async {
-                                                              Fluttertoast.showToast(
-                                                                  msg: usersActions[index]['codBook'].toString());
-                                                            },
-                                                            icon: const Icon(Icons.library_books_outlined),
+                                                  Row(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      (usersActions[index]['codBook'].toString() != 'null')
+                                                          ? SizedBox(
+                                                              width: 50,
+                                                              child: IconButton(
+                                                                onPressed: () async {
+                                                                  Fluttertoast.showToast(
+                                                                      msg: usersActions[index]['codBook'].toString());
+                                                                },
+                                                                icon: const Icon(
+                                                                  Icons.newspaper,
+                                                                  size: 26,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          : const SizedBox(
+                                                              width: 50,
+                                                            ),
+                                                      SizedBox(
+                                                        width: 50,
+                                                        child: IconButton(
+                                                          onPressed: () async {
+                                                            Fluttertoast.showToast(
+                                                                msg: DateFormat('dd/MM/yyyy HH:mm').format(
+                                                                    DateTime.fromMillisecondsSinceEpoch(
+                                                                        int.parse(usersActions[index]['time']))));
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.timer,
+                                                            size: 26,
                                                           ),
-                                                        )
-                                                      : const SizedBox(
-                                                          width: 100,
                                                         ),
-                                                ),
-                                                DataCell(SizedBox(
-                                                  width: 100,
-                                                  child: IconButton(
-                                                    onPressed: () async {
-                                                      Fluttertoast.showToast(
-                                                          msg: DateFormat('dd/MM/yyyy HH:mm').format(
-                                                              DateTime.fromMillisecondsSinceEpoch(
-                                                                  int.parse(usersActions[index]['time']))));
-                                                    },
-                                                    icon: const Icon(Icons.timer),
+                                                      ),
+                                                    ],
                                                   ),
-                                                )),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           headingRowColor: MaterialStateProperty.all(
-                                            FlutterFlowTheme.of(context).primaryContainer,
+                                            FlutterFlowTheme.of(context).tertiaryContainer,
                                           ),
                                           headingRowHeight: 56.0,
                                           dataRowColor: MaterialStateProperty.all(
-                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                            FlutterFlowTheme.of(context).onTertiaryContainer,
                                           ),
                                           dataRowHeight: 56.0,
                                           dividerThickness: 1.0,
