@@ -67,11 +67,27 @@ class _LoanPageState extends State<LoanPage> {
         .where('nome', isNull: false)
         .orderBy('nome', descending: false)
         .get()
-        .then((value) {
+        .then((value) async {
       List lista = [];
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
+        String bookId = docSnapshot.id;
         if (!(livro['isDeleted'].toString() == 'true') && livro['userloan'] == context.read<AuthService>().usuario!.uid) {
+          livro.addAll(
+            {
+              'renovacoes': await firebaseFirestore
+                  .collection('emprestimo')
+                  .where('bookBorrowed', isEqualTo: bookId)
+                  .where('returnDate', isEqualTo: livro['dataDisponibilidade'])
+                  .where('status', isEqualTo: 'Em dia')
+                  .get()
+                  .then(
+                (value) async {
+                  return value.docs.first.data()['renovations'];
+                },
+              ),
+            },
+          );
           lista.add(livro);
         }
       }
@@ -307,7 +323,41 @@ class _LoanPageState extends State<LoanPage> {
                                                                   ),
                                                             TextButton(
                                                               onPressed: () async {
-                                                                await context.read<AuthService>().renewLoan(livros[index]);
+                                                                showDialog<bool>(
+                                                                  context: context,
+                                                                  builder: (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: const Text('Confirmar Validação de usuário'),
+                                                                      content: Text(
+                                                                          "${livros[index]['renovacoes']}/3 Renovações restantes. Deseja renovar este empréstimo?"),
+                                                                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext, false),
+                                                                          child: const Text('Cancelar'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () async {
+                                                                            await context
+                                                                                .read<AuthService>()
+                                                                                .renewLoan(livros[index]);
+
+                                                                            setState(() {
+                                                                              Navigator.pop(alertDialogContext, true);
+                                                                            });
+                                                                          },
+                                                                          child: Text(
+                                                                            'Confirmar',
+                                                                            style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).secondary),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+
                                                                 setState(() {});
                                                               },
                                                               style: OutlinedButton.styleFrom(
