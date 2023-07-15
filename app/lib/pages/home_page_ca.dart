@@ -122,7 +122,7 @@ class _HomePageCaState extends State<HomePageCa> {
                   backgroundColor: FlutterFlowTheme.of(context).primaryContainer,
                   largeSize: 20,
                   smallSize: 20,
-                  label: Text('!'),
+                  label: const Text('!'),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 10.0, top: 4.0),
                     child: Icon(
@@ -187,7 +187,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                 size: 30,
                                               ),
-                                              SizedBox(width: 16),
+                                              const SizedBox(width: 16),
                                               Text(
                                                 'Validar\nusuário',
                                                 textAlign: TextAlign.center,
@@ -213,7 +213,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 16),
+                                      const SizedBox(width: 22),
                                       InkWell(
                                         onTap: () async {
                                           Navigator.push(
@@ -227,7 +227,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +237,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                 size: 28,
                                               ),
-                                              SizedBox(width: 8),
+                                              const SizedBox(width: 8),
                                               Text(
                                                 'Registrar\nempréstimo',
                                                 textAlign: TextAlign.center,
@@ -255,7 +255,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Row(
                                     children: [
                                       InkWell(
@@ -270,7 +270,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment: MainAxisAlignment.center,
@@ -280,7 +280,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                   color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                   size: 30,
                                                 ),
-                                                SizedBox(width: 8),
+                                                const SizedBox(width: 8),
                                                 Text(
                                                   'Cadastrar\nobra',
                                                   textAlign: TextAlign.center,
@@ -295,7 +295,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               ]),
                                         ),
                                       ),
-                                      SizedBox(width: 16),
+                                      const SizedBox(width: 22),
                                       InkWell(
                                         onTap: () async {
                                           Navigator.push(
@@ -309,7 +309,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,

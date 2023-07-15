@@ -73,7 +73,7 @@ class _ReservationsPageState extends State<ReservationsPage> {
       for (var docSnapshot in value.docs) {
         Map<String, dynamic> livro = docSnapshot.data();
         if (!(livro['isDeleted'].toString() == 'true')) {
-          await context.read<AuthService>().hasReservation(livro['codigo']) &&
+          await context.read<AuthService>().hasReservation(livro['codigo']) && // Talvez der pra turar essa primeira linha
                   await context.read<AuthService>().isReservationUser(livro['codigo'])
               ? lista.add(livro)
               : null;
