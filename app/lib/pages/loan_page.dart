@@ -151,7 +151,12 @@ class _LoanPageState extends State<LoanPage> {
                 ),
               ),
               (isLoading)
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(
+                      child: Image.asset(
+                        'lib/assets/images/pato_girando.gif',
+                        width: 150,
+                      ),
+                    )
                   : (livros.isEmpty)
                       ? Expanded(
                           child: RefreshIndicator(

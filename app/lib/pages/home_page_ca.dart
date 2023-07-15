@@ -374,7 +374,12 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 (isLoading)
-                                    ? const Center(child: CircularProgressIndicator())
+                                    ? Center(
+                                        child: Image.asset(
+                                          'lib/assets/images/pato_girando.gif',
+                                          width: 150,
+                                        ),
+                                      )
                                     : Container(
                                         width: double.infinity,
                                         height: 400.0,
