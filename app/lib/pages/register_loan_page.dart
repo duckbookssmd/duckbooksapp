@@ -707,7 +707,6 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.rectangle,
                                                     borderRadius: BorderRadius.circular(8),
-                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -736,7 +735,6 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.rectangle,
                                                     borderRadius: BorderRadius.circular(8),
-                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
