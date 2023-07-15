@@ -12,7 +12,9 @@ import 'package:provider/provider.dart';
 import '../assets/theme/flutter_flow_theme.dart';
 
 class RegisterLoanPageWidget extends StatefulWidget {
-  const RegisterLoanPageWidget({Key? key, this.userRegistration = '', this.codBook = ''}) : super(key: key);
+  const RegisterLoanPageWidget(
+      {Key? key, this.userRegistration = '', this.codBook = ''})
+      : super(key: key);
   final String userRegistration;
   final String codBook;
 
@@ -45,8 +47,9 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
     emailController ??= TextEditingController();
     nomeObraController ??= TextEditingController();
     autorController ??= TextEditingController();
-    dataDevolucaoController ??=
-        TextEditingController(text: date.format(DateTime.fromMillisecondsSinceEpoch(dataDevolucao.millisecondsSinceEpoch)));
+    dataDevolucaoController ??= TextEditingController(
+        text: date.format(DateTime.fromMillisecondsSinceEpoch(
+            dataDevolucao.millisecondsSinceEpoch)));
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       textRegistrationController!.text = widget.userRegistration;
@@ -64,12 +67,15 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
     // Talvez olocar um carregamento
     await Provider.of<AuthService>(context, listen: false)
         .getEmailByRegistration(matricula)
-        .then((value) => emailController!.text = value ?? 'Matrícula não existente no sistema');
+        .then((value) => emailController!.text =
+            value ?? 'Matrícula não existente no sistema');
     setState(() {});
   }
 
   setBookdata({String cod = ''}) async {
-    await Provider.of<AuthService>(context, listen: false).getBookData(cod).then((value) {
+    await Provider.of<AuthService>(context, listen: false)
+        .getBookData(cod)
+        .then((value) {
       nomeObraController!.text = value['nome'];
       autorController!.text = value['autor'];
       // dataDevolucaoController!.text = value['nome']; Devia
@@ -98,7 +104,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
           style: FlutterFlowTheme.of(context).displayLarge.override(
                 fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                 color: FlutterFlowTheme.of(context).onBackground,
-                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
+                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                    FlutterFlowTheme.of(context).displayLargeFamily),
               ),
         ),
         actions: const [],
@@ -114,7 +121,10 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
             autovalidateMode: AutovalidateMode.disabled,
             child: // Generated code for this Column Widget...
                 Padding(
-              padding: const EdgeInsets.only(top: 8, left: 16, right: 16), // Depois tonar menos fazer responsivo
+              padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 16,
+                  right: 16), // Depois tonar menos fazer responsivo
               child: Column(
                 children: [
                   Column(
@@ -145,26 +155,40 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                               onChanged: (value) {
                                 if (value.length > 5) {
                                   // Pesquisar email que essa mátricula dá
-                                  setEmail(matricula: value); //(Mudar as cores para indicar que ta ok)
+                                  setEmail(
+                                      matricula:
+                                          value); //(Mudar as cores para indicar que ta ok)
                                   setState(() {});
                                 }
                               },
                               decoration: InputDecoration(
                                 isDense: true,
                                 labelText: 'Matrícula/SIAPE',
-                                labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                       fontWeight: FontWeight.w500,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 hintText: 'Matrícula/SIAPE',
-                                hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 disabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -201,15 +225,25 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 filled: true,
-                                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                               ),
-                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                    color: FlutterFlowTheme.of(context).secondaryText,
-                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
                                   ),
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Campo vazio';
@@ -230,19 +264,31 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                               decoration: InputDecoration(
                                 isDense: true,
                                 labelText: 'Email de Contato',
-                                labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                       fontWeight: FontWeight.w500,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 // hintText: 'Email de Contato',
-                                hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                                 disabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -279,12 +325,20 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 filled: true,
-                                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                               ),
-                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                    color: FlutterFlowTheme.of(context).secondaryText,
-                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
                                   ),
                               // validator: _model.textController2Validator.asValidator(context),
                             ),
@@ -313,23 +367,38 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelText: 'Cód.',
-                                    labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).primaryText,
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           fontWeight: FontWeight.w500,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     hintText: 'Código de registro',
-                                    hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).primaryText,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     disabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
@@ -342,33 +411,43 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).info,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                        color: FlutterFlowTheme.of(context).primaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
                                       ),
                                   onChanged: (value) async {
                                     if (value.length > 6) {
@@ -398,23 +477,38 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelText: 'Nome',
-                                    labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
                                           fontWeight: FontWeight.w500,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     hintText: 'Nome da obra',
-                                    hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     disabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
@@ -427,33 +521,43 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).info,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
                                       ),
                                   // validator: _model.textController4Validator.asValidator(context),
                                 ),
@@ -468,23 +572,38 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                   decoration: InputDecoration(
                                     isDense: true,
                                     labelText: 'Autor',
-                                    labelStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
                                           fontWeight: FontWeight.w500,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     hintText: 'Autor da obra',
-                                    hintStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                          fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                          useGoogleFonts:
-                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
                                         ),
                                     disabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
@@ -497,105 +616,47 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).info,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                        fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                        useGoogleFonts:
-                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
                                       ),
                                   // validator: _model.textController5Validator.asValidator(context),
                                 ),
                               ),
-                              const SizedBox(height: 8),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                    child: Text(
-                                      'Tipo',
-                                      style: FlutterFlowTheme.of(context).titleLarge,
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 100,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.auto_stories,
-                                            color: FlutterFlowTheme.of(context).tertiaryContainer,
-                                            size: 30,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            'Livro',
-                                            style: FlutterFlowTheme.of(context).titleLarge,
-                                          ),
-                                        ]),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Icon(
-                                    Icons.newspaper,
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    size: 28,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Icon(
-                                    Icons.menu_book,
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    size: 30,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Icon(
-                                    Icons.movie_filter,
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    size: 30,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  FaIcon(
-                                    FontAwesomeIcons.award,
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    size: 28,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Icon(
-                                    Icons.app_shortcut_sharp,
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                              // const SizedBox(height: 8),
                             ],
                           ),
                         ],
@@ -625,9 +686,11 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                               decoration: InputDecoration(
                                 isDense: true,
                                 labelText: 'Data de Devolução',
-                                labelStyle: FlutterFlowTheme.of(context).bodyLarge,
+                                labelStyle:
+                                    FlutterFlowTheme.of(context).bodyLarge,
                                 hintText: 'Data de Devolução',
-                                hintStyle: FlutterFlowTheme.of(context).bodyLarge,
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).bodyLarge,
                                 disabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).primary,
@@ -678,7 +741,8 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                   (emailController!.text.isNotEmpty &&
                           nomeObraController!.text.isNotEmpty &&
                           nomeObraController!.text != 'Null' &&
-                          emailController!.text != "Matrícula não existente no sistema")
+                          emailController!.text !=
+                              "Matrícula não existente no sistema")
                       ? TextButton(
                           onPressed: () async {
                             (_formKey.currentState!.validate())
@@ -698,20 +762,25 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                   size: 100,
                                                 ),
                                               ),
-                                              const Text('Deseja efetuar o empréstimo dessa obra?'),
+                                              const Text(
+                                                  'Deseja efetuar o empréstimo dessa obra?'),
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 30,
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.rectangle,
-                                                    borderRadius: BorderRadius.circular(8),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
                                                     nomeObraController!.text,
-                                                    style: const TextStyle(fontSize: 24),
+                                                    style: const TextStyle(
+                                                        fontSize: 24),
                                                   ),
                                                 ),
                                               ),
@@ -728,37 +797,52 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.all(0.0),
+                                                padding:
+                                                    const EdgeInsets.all(0.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 30,
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.rectangle,
-                                                    borderRadius: BorderRadius.circular(8),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                    textRegistrationController!.text,
-                                                    style: const TextStyle(fontSize: 24),
+                                                    textRegistrationController!
+                                                        .text,
+                                                    style: const TextStyle(
+                                                        fontSize: 24),
                                                   ),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        actionsAlignment: MainAxisAlignment.spaceBetween,
+                                        actionsAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         actions: [
                                           TextButton(
-                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext, false),
                                             child: const Text('Cancelar'),
                                           ),
                                           TextButton(
                                             onPressed: () async {
-                                              await context.read<AuthService>().registerLoan(textRegistrationController!.text,
-                                                  textCodController!.text, dataDevolucaoController!.text);
+                                              await context
+                                                  .read<AuthService>()
+                                                  .registerLoan(
+                                                      textRegistrationController!
+                                                          .text,
+                                                      textCodController!.text,
+                                                      dataDevolucaoController!
+                                                          .text);
                                               setState(() {
-                                                Navigator.pop(alertDialogContext, true);
-                                                textRegistrationController!.clear();
+                                                Navigator.pop(
+                                                    alertDialogContext, true);
+                                                textRegistrationController!
+                                                    .clear();
                                                 textCodController!.clear();
                                                 emailController!.clear();
                                                 nomeObraController!.clear();
@@ -767,7 +851,10 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                             },
                                             child: Text(
                                               'Confirmar',
-                                              style: TextStyle(color: FlutterFlowTheme.of(context).success),
+                                              style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .success),
                                             ),
                                           ),
                                         ],
@@ -781,9 +868,11 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             fixedSize: const Size(double.infinity, 60),
-                            backgroundColor: FlutterFlowTheme.of(context).tertiaryContainer,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).tertiaryContainer,
                             elevation: 3,
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 0, 0, 0),
                             textStyle: const TextStyle(
                               fontFamily: 'Jost',
                               fontSize: 16,
@@ -796,18 +885,26 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                             children: [
                               Icon(
                                 Icons.assignment_add,
-                                color: FlutterFlowTheme.of(context).onTertiaryContainer,
+                                color: FlutterFlowTheme.of(context)
+                                    .onTertiaryContainer,
                                 size: 24,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'Finalizar empréstimo',
-                                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                      color: FlutterFlowTheme.of(context).onTertiaryContainer,
-                                      useGoogleFonts:
-                                          GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily)),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .onTertiaryContainer,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLargeFamily)),
                                 ),
                               ),
                             ],

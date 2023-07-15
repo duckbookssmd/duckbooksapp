@@ -143,7 +143,8 @@ class AuthService extends ChangeNotifier {
     var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn';
     var response = await http.get(Uri.parse(url));
     var json = jsonDecode((response.body));
-    return (json['totalItems'] == 0 || json['items'][0]['volumeInfo']['imageLinks'].toString() == 'null')
+    return (json['totalItems'] == 0 ||
+            json['items'][0]['volumeInfo']['imageLinks'].toString() == 'null')
         ? 'null'
         : json['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
   }
@@ -182,8 +183,14 @@ class AuthService extends ChangeNotifier {
     for (int i = 0; i < userLoans.length; i++) {
       // print(userLoans[i]['loan'].toString());
       if (!(userLoans[i]['loan'] == null)) {
-        if (DateTime.now().isAfter(DateTime.parse(
-            userLoans[i]['loan']['dataDevolucao'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join()))) {
+        if (DateTime.now().isAfter(DateTime.parse(userLoans[i]['loan']
+                ['dataDevolucao']
+            .toString()
+            .substring(0, 10)
+            .replaceAll('/', '-')
+            .split('-')
+            .reversed
+            .join()))) {
           return true;
         }
       }
@@ -201,41 +208,74 @@ class AuthService extends ChangeNotifier {
         .where('status', isEqualTo: 'Em dia')
         .get()
         .then((value) async {
-      int numRenovations = value.docs.first.data()['renovations'] - 1; // Não pode ser 0
+      int numRenovations =
+          value.docs.first.data()['renovations'] - 1; // Não pode ser 0
       bool reservated = await hasReservation(book['codigo']);
       if (numRenovations > -1 &&
           (!reservated) &&
           !DateTime.now().isAfter(
             DateTime.parse(
-              book['dataDisponibilidade'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join(),
+              book['dataDisponibilidade']
+                  .toString()
+                  .substring(0, 10)
+                  .replaceAll('/', '-')
+                  .split('-')
+                  .reversed
+                  .join(),
             ),
           )) {
-        await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
+        await firebaseFirestore
+            .collection("emprestimo")
+            .doc(value.docs.first.id)
+            .update({
           "renovations": numRenovations,
-          "returnDate": date
-              .format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch)),
+          "returnDate": date.format(DateTime.fromMillisecondsSinceEpoch(
+              DateTime.now()
+                  .add(const Duration(days: 15))
+                  .millisecondsSinceEpoch)),
         });
-        await firebaseFirestore.collection('user').where('uId', isEqualTo: usuario!.uid).get().then((value) async {
+        await firebaseFirestore
+            .collection('user')
+            .where('uId', isEqualTo: usuario!.uid)
+            .get()
+            .then((value) async {
           List userloans = value.docs.first.data()['userLoans'];
           for (int i = 0; i < userloans.length; i++) {
             if (userloans[i]["loan"]['codBook'] == book["codigo"]) {
-              userloans[i]["loan"]['renovacoes'] = userloans[i]["loan"]['renovacoes'] - 1;
+              userloans[i]["loan"]['renovacoes'] =
+                  userloans[i]["loan"]['renovacoes'] - 1;
               userloans[i]["loan"]['dataDevolucao'] = date.format(
-                  DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch));
+                  DateTime.fromMillisecondsSinceEpoch(DateTime.now()
+                      .add(const Duration(days: 15))
+                      .millisecondsSinceEpoch));
             }
           }
-          await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloans});
+          await firebaseFirestore
+              .collection("user")
+              .doc(usuario!.uid)
+              .update({"userLoans": userloans});
         });
-        await firebaseFirestore.collection("book").doc(await getIdByCod(book['codigo'])).update({
-          "dataDisponibilidade": date
-              .format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().add(const Duration(days: 15)).millisecondsSinceEpoch))
+        await firebaseFirestore
+            .collection("book")
+            .doc(await getIdByCod(book['codigo']))
+            .update({
+          "dataDisponibilidade": date.format(
+              DateTime.fromMillisecondsSinceEpoch(DateTime.now()
+                  .add(const Duration(days: 15))
+                  .millisecondsSinceEpoch))
         });
         Fluttertoast.showToast(msg: 'Renovado');
       } else if (await hasReservation(book['codigo'])) {
         Fluttertoast.showToast(msg: 'Obra Reservada, impossível renovar');
       } else if (DateTime.now().isAfter(
         DateTime.parse(
-          book['dataDisponibilidade'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join(),
+          book['dataDisponibilidade']
+              .toString()
+              .substring(0, 10)
+              .replaceAll('/', '-')
+              .split('-')
+              .reversed
+              .join(),
         ),
       )) {
         Fluttertoast.showToast(msg: 'Obra atrasada, Por favor Devolva');
@@ -253,7 +293,10 @@ class AuthService extends ChangeNotifier {
         .where('reservationList', arrayContains: usuario!.uid)
         .get()
         .then((value) async {
-      firebaseFirestore.collection('reservations').doc(value.docs.first.id).update({"statusBook": "Encerrada"});
+      firebaseFirestore
+          .collection('reservations')
+          .doc(value.docs.first.id)
+          .update({"statusBook": "Encerrada"});
     });
   }
 
@@ -265,7 +308,10 @@ class AuthService extends ChangeNotifier {
         .where('reservationList', arrayContains: usuario!.uid)
         .get()
         .then((value) async {
-      firebaseFirestore.collection('reservations').doc(value.docs.first.id).update({"statusBook": "Cancelada"});
+      firebaseFirestore
+          .collection('reservations')
+          .doc(value.docs.first.id)
+          .update({"statusBook": "Cancelada"});
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Cancelamento", // de reserva
@@ -280,7 +326,8 @@ class AuthService extends ChangeNotifier {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     await firebaseFirestore.collection("reservations").add(ReservationModel(
             bookReservedId: book['codigo'],
-            reservationDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+            reservationDate: date.format(DateTime.fromMillisecondsSinceEpoch(
+                DateTime.now().millisecondsSinceEpoch)),
             reservationList: [usuario!.uid],
             statusBook: 'Solicitado' // bookBorrowed: await getIdByCod(bookCod),
             )
@@ -335,7 +382,8 @@ class AuthService extends ChangeNotifier {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     await firebaseFirestore.collection("emprestimo").add(LoanModel(
           bookBorrowed: await getIdByCod(bookCod),
-          loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+          loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(
+              DateTime.now().millisecondsSinceEpoch)),
           renovations: 3,
           returnDate: null,
           status: "Solicitado",
@@ -349,7 +397,11 @@ class AuthService extends ChangeNotifier {
     //Atualizar loan do usuário
     //Atualizar registro do Empréstimo (Usar o id do livro + data de returno);
 
-    await firebaseFirestore.collection('book').where('codigo', isEqualTo: book['codigo']).get().then((value) async {
+    await firebaseFirestore
+        .collection('book')
+        .where('codigo', isEqualTo: book['codigo'])
+        .get()
+        .then((value) async {
       // Colocar o código como id do livro
       await firebaseFirestore
           .collection('emprestimo')
@@ -357,11 +409,21 @@ class AuthService extends ChangeNotifier {
           .where('returnDate', isEqualTo: book['dataDisponibilidade'])
           .get()
           .then((value) async {
-        await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({"status": 'Devolvido'});
+        await firebaseFirestore
+            .collection("emprestimo")
+            .doc(value.docs.first.id)
+            .update({"status": 'Devolvido'});
       });
-      await firebaseFirestore.collection("book").doc(value.docs.first.id).update({"userloan": null, "dataDisponibilidade": null});
+      await firebaseFirestore
+          .collection("book")
+          .doc(value.docs.first.id)
+          .update({"userloan": null, "dataDisponibilidade": null});
     });
-    await firebaseFirestore.collection('user').where('uId', isEqualTo: usuario!.uid).get().then((value) async {
+    await firebaseFirestore
+        .collection('user')
+        .where('uId', isEqualTo: usuario!.uid)
+        .get()
+        .then((value) async {
       List userloans = value.docs.first.data()['userLoans'];
       List userloansNew = json.decode(json.encode(userloans));
       if (userloans.length > 1) {
@@ -376,7 +438,10 @@ class AuthService extends ChangeNotifier {
         }
       }
 
-      await firebaseFirestore.collection("user").doc(usuario!.uid).update({"userLoans": userloansNew});
+      await firebaseFirestore
+          .collection("user")
+          .doc(usuario!.uid)
+          .update({"userLoans": userloansNew});
       await createLog(
         time: DateTime.now().millisecondsSinceEpoch.toString(),
         action: "Devolução",
@@ -389,24 +454,37 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<String> getRegistrationById(String userId) async {
-    return await firebaseFirestore.collection('user').doc(userId).get().then((value) {
+    return await firebaseFirestore
+        .collection('user')
+        .doc(userId)
+        .get()
+        .then((value) {
       return value.data()?['matriculaSIAPE'];
     });
   }
 
   Future<String> getCodById(String bookId) async {
-    return await firebaseFirestore.collection('book').doc(bookId).get().then((value) {
+    return await firebaseFirestore
+        .collection('book')
+        .doc(bookId)
+        .get()
+        .then((value) {
       return value.data()?['codigo'];
     });
   }
 
   getIdByCod(String bookCod) async {
-    return await firebaseFirestore.collection('book').where('codigo', isEqualTo: bookCod).get().then((value) {
+    return await firebaseFirestore
+        .collection('book')
+        .where('codigo', isEqualTo: bookCod)
+        .get()
+        .then((value) {
       return value.docs.first.id;
     });
   }
 
-  registerLoan(String userRegistration, String bookCod, String dataDevolucao) async {
+  registerLoan(
+      String userRegistration, String bookCod, String dataDevolucao) async {
     // Realizar a Efetuação do empréstimo
     // Usuário :
     //    Colocar map loan com infomrações no UserLoans (Com a referencia de quem permitiu esse empréstimo)                       V
@@ -414,7 +492,11 @@ class AuthService extends ChangeNotifier {
     //    Colocar um novo LoanModel no database
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
-    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: userRegistration).get().then(
+    await firebaseFirestore
+        .collection('user')
+        .where('matriculaSIAPE', isEqualTo: userRegistration)
+        .get()
+        .then(
       (value) async {
         if (value.docs.first.id == usuario!.uid) {
           Fluttertoast.showToast(msg: 'Não pode emprestar para sí mesmo');
@@ -430,13 +512,16 @@ class AuthService extends ChangeNotifier {
           };
           List updatedUserLoans = value.docs.first.data()['userLoans'];
           updatedUserLoans.add(loan);
-          await firebaseFirestore.collection("user").doc(value.docs.first.id).update({"userLoans": updatedUserLoans});
+          await firebaseFirestore
+              .collection("user")
+              .doc(value.docs.first.id)
+              .update({"userLoans": updatedUserLoans});
           String id = await getIdByCod(bookCod);
           String userId = value.docs.first.id;
-          await firebaseFirestore
-              .collection("book")
-              .doc(id)
-              .update({"userloan": value.docs.first.id, "dataDisponibilidade": dataDevolucao});
+          await firebaseFirestore.collection("book").doc(id).update({
+            "userloan": value.docs.first.id,
+            "dataDisponibilidade": dataDevolucao
+          });
           Fluttertoast.showToast(msg: 'Empréstimo realizado');
           // Fazer uma query por um request solicitado já existente substituir se não :
           await firebaseFirestore
@@ -450,7 +535,8 @@ class AuthService extends ChangeNotifier {
               await firebaseFirestore.collection("emprestimo").add(LoanModel(
                     // Checar se já existe algum request se tiver atualizar ele se não criar aqui mesmo
                     bookBorrowed: id,
-                    loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+                    loanDate: date.format(DateTime.fromMillisecondsSinceEpoch(
+                        DateTime.now().millisecondsSinceEpoch)),
                     renovations: 3,
                     returnDate: dataDevolucao,
                     status: "Em dia",
@@ -458,8 +544,12 @@ class AuthService extends ChangeNotifier {
                     userLoan: userId,
                   ).toMap()); // Teoricamente isso é pra facilitar as atividades
             } else {
-              await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
-                "loanDate": date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+              await firebaseFirestore
+                  .collection("emprestimo")
+                  .doc(value.docs.first.id)
+                  .update({
+                "loanDate": date.format(DateTime.fromMillisecondsSinceEpoch(
+                    DateTime.now().millisecondsSinceEpoch)),
                 "returnDate": dataDevolucao,
                 "userAllowing": usuario!.uid,
                 "status": 'Em dia',
@@ -484,14 +574,22 @@ class AuthService extends ChangeNotifier {
   }
 
   getIdByRegistration(String registration) async {
-    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then((value) {
+    await firebaseFirestore
+        .collection('user')
+        .where('matriculaSIAPE', isEqualTo: registration)
+        .get()
+        .then((value) {
       return value.docs.first.id;
     });
   }
 
   Future<String?> getEmailByRegistration(String registration) async {
     String? resp;
-    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+    await firebaseFirestore
+        .collection('user')
+        .where('matriculaSIAPE', isEqualTo: registration)
+        .get()
+        .then(
       (value) {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
@@ -520,12 +618,18 @@ class AuthService extends ChangeNotifier {
       "edicao": 'Null',
       "tipo": 'Null',
     };
-    await firebaseFirestore.collection('book').where('codigo', isEqualTo: code).where('isDeleted', isEqualTo: false).get().then(
+    await firebaseFirestore
+        .collection('book')
+        .where('codigo', isEqualTo: code)
+        .where('isDeleted', isEqualTo: false)
+        .get()
+        .then(
       (value) {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Livro não encontrada');
           return null;
-        } else if (!(value.docs.first.data()['userloan'].toString() == 'null')) {
+        } else if (!(value.docs.first.data()['userloan'].toString() ==
+            'null')) {
           Fluttertoast.showToast(msg: 'Obra indisponível');
           return null;
         }
@@ -547,7 +651,8 @@ class AuthService extends ChangeNotifier {
     return resp;
   }
 
-  updateValidate(Map<String, dynamic> rV, String readerRegistration, String? userRegistration) async {
+  updateValidate(Map<String, dynamic> rV, String readerRegistration,
+      String? userRegistration) async {
     // TODO Fiz uma solução não legal, atualizar quando tiver tempo
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
 
@@ -556,11 +661,15 @@ class AuthService extends ChangeNotifier {
         .where('userReaderId', isEqualTo: readerRegistration)
         .get()
         .then((value) async {
-      await firebaseFirestore.collection("validation").doc(value.docs.first.id).update(
+      await firebaseFirestore
+          .collection("validation")
+          .doc(value.docs.first.id)
+          .update(
         {
           "status": true,
           "userAllowingId": userRegistration,
-          "dateValidation": date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch))
+          "dateValidation": date.format(DateTime.fromMillisecondsSinceEpoch(
+              DateTime.now().millisecondsSinceEpoch))
         },
       );
     });
@@ -572,8 +681,13 @@ class AuthService extends ChangeNotifier {
     );
   }
 
-  confirmValidation(String registration, Map<String, dynamic> requestValidate) async {
-    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+  confirmValidation(
+      String registration, Map<String, dynamic> requestValidate) async {
+    await firebaseFirestore
+        .collection('user')
+        .where('matriculaSIAPE', isEqualTo: registration)
+        .get()
+        .then(
       (value) async {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
@@ -582,7 +696,10 @@ class AuthService extends ChangeNotifier {
         for (var docSnapshot in value.docs) {
           var usermap = docSnapshot.data();
           usermap['validated'] = true;
-          firebaseFirestore.collection("user").doc(usermap['uId']).update({"validated": true});
+          firebaseFirestore
+              .collection("user")
+              .doc(usermap['uId'])
+              .update({"validated": true});
         }
         Fluttertoast.showToast(msg: 'Validado com Sucesso');
       },
@@ -598,12 +715,16 @@ class AuthService extends ChangeNotifier {
   sendValidationRequest(String registration) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     ValidationModel validationRequest = ValidationModel(
-        dateRequest: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
-        dateValidation: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+        dateRequest: date.format(DateTime.fromMillisecondsSinceEpoch(
+            DateTime.now().millisecondsSinceEpoch)),
+        dateValidation: date.format(DateTime.fromMillisecondsSinceEpoch(
+            DateTime.now().millisecondsSinceEpoch)),
         status: false,
         userAllowingId: null,
         userReaderId: registration);
-    await firebaseFirestore.collection("validation").add(validationRequest.toMap());
+    await firebaseFirestore
+        .collection("validation")
+        .add(validationRequest.toMap());
   }
 
   saveLogin(BuildContext context, String registration, String password) async {
@@ -622,7 +743,11 @@ class AuthService extends ChangeNotifier {
     bool rememberPass,
   ) async {
     bool succesSignIn = false;
-    await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
+    await firebaseFirestore
+        .collection('user')
+        .where('matriculaSIAPE', isEqualTo: registration)
+        .get()
+        .then(
       (value) async {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: 'Matrícula não encontrada');
@@ -665,7 +790,9 @@ class AuthService extends ChangeNotifier {
     bool isAdm,
   ) async {
     bool resp = false;
-    await _auth.signInWithEmailAndPassword(email: email, password: senha).then((uid) {
+    await _auth
+        .signInWithEmailAndPassword(email: email, password: senha)
+        .then((uid) {
       Fluttertoast.showToast(msg: "Logado com sucesso");
       if (isAdm) {
         Navigator.of(context).pushReplacement(
@@ -685,7 +812,8 @@ class AuthService extends ChangeNotifier {
       resp = true; // sucesso ao logar
     }).catchError(
       (e) {
-        if (e!.message == 'The password is invalid or the user does not have a password.') {
+        if (e!.message ==
+            'The password is invalid or the user does not have a password.') {
           Fluttertoast.showToast(msg: 'Senha inválida');
         }
         _getUser();
@@ -754,7 +882,10 @@ class AuthService extends ChangeNotifier {
 
     // * Writing all the values
 
-    await firebaseFirestore.collection("user").doc(user.uid).set(userModel.toMap());
+    await firebaseFirestore
+        .collection("user")
+        .doc(user.uid)
+        .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Conta criada com sucesso");
     sendValidationRequest(texMatriculaController.text);
 
@@ -762,7 +893,9 @@ class AuthService extends ChangeNotifier {
     // ignore: use_build_context_synchronously
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (BuildContext context) => const RegisterValidationHelpPageWidget()),
+      MaterialPageRoute(
+          builder: (BuildContext context) =>
+              const RegisterValidationHelpPageWidget()),
       (route) => false,
     );
   }
@@ -779,7 +912,8 @@ class AuthService extends ChangeNotifier {
         .get()
         .then(
       (value) {
-        if (value.docs.isEmpty || value.docs[0].data()['isDeleted'].toString() == 'true') {
+        if (value.docs.isEmpty ||
+            value.docs[0].data()['isDeleted'].toString() == 'true') {
           resp = false;
         } else {
           resp = true;
@@ -802,7 +936,9 @@ class AuthService extends ChangeNotifier {
     bool isUpdating,
     //TextEditingController? fotoController, Por enquanto não vou colocar foto
   ) async {
-    if (!await checkIfExist(nomeController!.text, autorController!.text, edicaoController!.text) || isUpdating) {
+    if (!await checkIfExist(nomeController!.text, autorController!.text,
+            edicaoController!.text) ||
+        isUpdating) {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
       DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
       BookModel bookModel = BookModel(
@@ -814,13 +950,18 @@ class AuthService extends ChangeNotifier {
           tipoMidia: tipo,
           genero: genero,
           foto: await getHttpImage(codController!.text),
-          dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch)),
+          dataCadastro: date.format(DateTime.fromMillisecondsSinceEpoch(
+              DateTime.now().millisecondsSinceEpoch)),
           editora: editoraController!.text,
           dataDisponibilidade: null,
           isDeleted: false,
           userloan: null,
           admRecorder: usuario?.uid,
-          codigo: await firebaseFirestore.collection('book').where('genero', isEqualTo: genero).get().then((value) {
+          codigo: await firebaseFirestore
+              .collection('book')
+              .where('genero', isEqualTo: genero)
+              .get()
+              .then((value) {
             return '${genreListAcronym[genreList.indexOf(genero ?? 'N.D.A')]}-${value.size.toString().padLeft(3, '0')}';
           }),
           isbn: codController.text);
@@ -830,7 +971,9 @@ class AuthService extends ChangeNotifier {
         userAdmId: await getRegistrationById(usuario!.uid),
         codBook: bookModel.codigo,
       );
-      (!isUpdating) ? await firebaseFirestore.collection("book").add(bookModel.toMap()) : null;
+      (!isUpdating)
+          ? await firebaseFirestore.collection("book").add(bookModel.toMap())
+          : null;
       Fluttertoast.showToast(msg: "Obra salva no sistema!");
       if (isUpdating) {
         // edição
@@ -842,7 +985,10 @@ class AuthService extends ChangeNotifier {
             .get()
             .then(
           (value) async {
-            firebaseFirestore.collection("book").doc(value.docs.first.id).set(bookModel.toMap());
+            firebaseFirestore
+                .collection("book")
+                .doc(value.docs.first.id)
+                .set(bookModel.toMap());
             await createLog(
               time: DateTime.now().millisecondsSinceEpoch.toString(),
               action: "Edição",
@@ -874,7 +1020,10 @@ class AuthService extends ChangeNotifier {
         if (value.docs.isEmpty) {
           Fluttertoast.showToast(msg: "Obra não existe no sistema");
         } else {
-          await firebaseFirestore.collection("book").doc(value.docs.first.id).set(obra);
+          await firebaseFirestore
+              .collection("book")
+              .doc(value.docs.first.id)
+              .set(obra);
           Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
           await createLog(
             time: DateTime.now().millisecondsSinceEpoch.toString(),

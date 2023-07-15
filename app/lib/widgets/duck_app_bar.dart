@@ -18,6 +18,7 @@ class DuckAppBar extends StatelessWidget {
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5,
         child: Drawer(
+          backgroundColor: FlutterFlowTheme.of(context).onTertiaryContainer,
           elevation: 16,
           child: SizedBox(
             child: Column(
@@ -37,7 +38,7 @@ class DuckAppBar extends StatelessWidget {
                       icon: Icon(
                         Icons.cancel_outlined,
                         size: 24.0,
-                        color: FlutterFlowTheme.of(context).errorContainer,
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
                   ),
@@ -46,7 +47,7 @@ class DuckAppBar extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.30,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).onTertiaryContainer,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -66,8 +67,7 @@ class DuckAppBar extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.power_settings_new_rounded,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryText, //
+                                color: FlutterFlowTheme.of(context).error, //
                                 size: 24,
                               ),
                               Padding(
@@ -94,8 +94,7 @@ class DuckAppBar extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.logout,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryContainer,
+                                color: FlutterFlowTheme.of(context).secondary,
                                 size: 24,
                               ),
                               Padding(
