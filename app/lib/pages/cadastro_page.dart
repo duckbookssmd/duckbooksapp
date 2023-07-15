@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/services/auth_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -668,11 +669,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                       texSenhaController,
                                       texConfSenhaController);
 
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Cadastrando...'),
-                                        backgroundColor: Colors.green),
-                                  );
+                                  Fluttertoast.showToast(msg: 'Cadastrando...');
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   const SnackBar(
+                                  //       content: Text('Cadastrando...'),
+                                  //       backgroundColor: Colors.green),
+                                  // );
                                 }
                               },
                               style: OutlinedButton.styleFrom(

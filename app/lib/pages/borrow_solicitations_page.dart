@@ -100,7 +100,12 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     (isLoading)
-                        ? const Center(child: CircularProgressIndicator())
+                        ? Center(
+                            child: Image.asset(
+                              'lib/assets/images/pato_girando.gif',
+                              width: 150,
+                            ),
+                          )
                         : Padding(
                             padding: const EdgeInsetsDirectional.only(top: 16, end: 8, start: 8),
                             child: Container(

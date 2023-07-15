@@ -432,6 +432,7 @@ class AuthService extends ChangeNotifier {
           updatedUserLoans.add(loan);
           await firebaseFirestore.collection("user").doc(value.docs.first.id).update({"userLoans": updatedUserLoans});
           String id = await getIdByCod(bookCod);
+          String userId = value.docs.first.id;
           await firebaseFirestore
               .collection("book")
               .doc(id)
@@ -441,7 +442,7 @@ class AuthService extends ChangeNotifier {
           await firebaseFirestore
               .collection('emprestimo')
               .where('bookBorrowed', isEqualTo: id)
-              .where('userLoan', isEqualTo: await getIdByRegistration(userRegistration))
+              .where('userLoan', isEqualTo: userId)
               .where('status', isEqualTo: 'Solicitado')
               .get()
               .then((value) async {
@@ -454,7 +455,7 @@ class AuthService extends ChangeNotifier {
                     returnDate: dataDevolucao,
                     status: "Em dia",
                     userAllowing: usuario!.uid,
-                    userLoan: await getIdByRegistration(userRegistration),
+                    userLoan: userId,
                   ).toMap()); // Teoricamente isso é pra facilitar as atividades
             } else {
               await firebaseFirestore.collection("emprestimo").doc(value.docs.first.id).update({
@@ -476,7 +477,7 @@ class AuthService extends ChangeNotifier {
       },
     ).catchError(
       (e) {
-        Fluttertoast.showToast(msg: e.toString());
+        Fluttertoast.showToast(msg: e!.message);
         return null;
       },
     );

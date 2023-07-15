@@ -122,7 +122,7 @@ class _HomePageCaState extends State<HomePageCa> {
                   backgroundColor: FlutterFlowTheme.of(context).primaryContainer,
                   largeSize: 20,
                   smallSize: 20,
-                  label: Text('!'),
+                  label: const Text('!'),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 10.0, top: 4.0),
                     child: Icon(
@@ -187,7 +187,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                 size: 30,
                                               ),
-                                              SizedBox(width: 16),
+                                              const SizedBox(width: 16),
                                               Text(
                                                 'Validar\nusuário',
                                                 textAlign: TextAlign.center,
@@ -213,7 +213,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 16),
+                                      const SizedBox(width: 22),
                                       InkWell(
                                         onTap: () async {
                                           Navigator.push(
@@ -227,7 +227,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +237,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                 size: 28,
                                               ),
-                                              SizedBox(width: 8),
+                                              const SizedBox(width: 8),
                                               Text(
                                                 'Registrar\nempréstimo',
                                                 textAlign: TextAlign.center,
@@ -255,7 +255,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Row(
                                     children: [
                                       InkWell(
@@ -270,7 +270,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment: MainAxisAlignment.center,
@@ -280,7 +280,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                                   color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                   size: 30,
                                                 ),
-                                                SizedBox(width: 8),
+                                                const SizedBox(width: 8),
                                                 Text(
                                                   'Cadastrar\nobra',
                                                   textAlign: TextAlign.center,
@@ -295,7 +295,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                               ]),
                                         ),
                                       ),
-                                      SizedBox(width: 16),
+                                      const SizedBox(width: 22),
                                       InkWell(
                                         onTap: () async {
                                           Navigator.push(
@@ -309,7 +309,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             borderRadius: BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment: const AlignmentDirectional(0, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -374,7 +374,12 @@ class _HomePageCaState extends State<HomePageCa> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 (isLoading)
-                                    ? const Center(child: CircularProgressIndicator())
+                                    ? Center(
+                                        child: Image.asset(
+                                          'lib/assets/images/pato_girando.gif',
+                                          width: 150,
+                                        ),
+                                      )
                                     : Container(
                                         width: double.infinity,
                                         height: 400.0,
@@ -389,19 +394,19 @@ class _HomePageCaState extends State<HomePageCa> {
                                           columns: [
                                             DataColumn2(
                                               label: SizedBox(
-                                                width: 100,
+                                                width: 101.5,
                                                 child: Text(
                                                   'Ação',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                            .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
                                                   textAlign: TextAlign.start,
                                                 ),
                                               ),
-                                              fixedWidth: 100,
+                                              fixedWidth: 101.5,
                                             ),
                                             DataColumn2(
                                               // size: ColumnSize.values.first,
@@ -409,11 +414,11 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 width: 120,
                                                 child: Text(
                                                   'Matrícula',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                            .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
                                                   textAlign: TextAlign.start,
                                                 ),
@@ -423,36 +428,19 @@ class _HomePageCaState extends State<HomePageCa> {
                                             DataColumn2(
                                               // size: ColumnSize.values.first,
                                               label: SizedBox(
-                                                width: 100,
+                                                width: 120,
                                                 child: Text(
                                                   'Detalhes',
-                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                        fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
-                                                        useGoogleFonts: GoogleFonts.asMap()
-                                                            .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                      ),
-                                                  textAlign: TextAlign.start,
-                                                ),
-                                              ),
-                                              fixedWidth: 70,
-                                            ),
-                                            DataColumn2(
-                                              // size: ColumnSize.values.first,
-                                              label: SizedBox(
-                                                width: 16,
-                                                child: Text(
-                                                  '',
                                                   style: FlutterFlowTheme.of(context).titleLarge.override(
                                                         fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                        color: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                        color: FlutterFlowTheme.of(context).onTertiaryContainer,
                                                         useGoogleFonts: GoogleFonts.asMap()
                                                             .containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                                       ),
-                                                  textAlign: TextAlign.start,
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               ),
-                                              fixedWidth: 50,
+                                              fixedWidth: 120,
                                             ),
                                           ],
                                           rows: List<DataRow>.generate(
@@ -462,6 +450,13 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 DataCell(
                                                   Text(
                                                     usersActions[index]['action'],
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                          fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                          useGoogleFonts: GoogleFonts.asMap()
+                                                              .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                        ),
                                                   ),
                                                   onTap: () => showDialog<bool>(
                                                     context: context,
@@ -514,45 +509,63 @@ class _HomePageCaState extends State<HomePageCa> {
                                                 ),
                                                 DataCell(Text(
                                                   usersActions[index]['userId'],
+                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                        fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                        useGoogleFonts: GoogleFonts.asMap()
+                                                            .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                      ),
                                                   textAlign: TextAlign.center,
                                                 )),
                                                 DataCell(
-                                                  (usersActions[index]['codBook'].toString() != 'null')
-                                                      ? SizedBox(
-                                                          width: 100,
-                                                          child: IconButton(
-                                                            onPressed: () async {
-                                                              Fluttertoast.showToast(
-                                                                  msg: usersActions[index]['codBook'].toString());
-                                                            },
-                                                            icon: const Icon(Icons.library_books_outlined),
+                                                  Row(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      (usersActions[index]['codBook'].toString() != 'null')
+                                                          ? SizedBox(
+                                                              width: 50,
+                                                              child: IconButton(
+                                                                onPressed: () async {
+                                                                  Fluttertoast.showToast(
+                                                                      msg: usersActions[index]['codBook'].toString());
+                                                                },
+                                                                icon: const Icon(
+                                                                  Icons.newspaper,
+                                                                  size: 26,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          : const SizedBox(
+                                                              width: 50,
+                                                            ),
+                                                      SizedBox(
+                                                        width: 50,
+                                                        child: IconButton(
+                                                          onPressed: () async {
+                                                            Fluttertoast.showToast(
+                                                                msg: DateFormat('dd/MM/yyyy HH:mm').format(
+                                                                    DateTime.fromMillisecondsSinceEpoch(
+                                                                        int.parse(usersActions[index]['time']))));
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.timer,
+                                                            size: 26,
                                                           ),
-                                                        )
-                                                      : const SizedBox(
-                                                          width: 100,
                                                         ),
-                                                ),
-                                                DataCell(SizedBox(
-                                                  width: 100,
-                                                  child: IconButton(
-                                                    onPressed: () async {
-                                                      Fluttertoast.showToast(
-                                                          msg: DateFormat('dd/MM/yyyy HH:mm').format(
-                                                              DateTime.fromMillisecondsSinceEpoch(
-                                                                  int.parse(usersActions[index]['time']))));
-                                                    },
-                                                    icon: const Icon(Icons.timer),
+                                                      ),
+                                                    ],
                                                   ),
-                                                )),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           headingRowColor: MaterialStateProperty.all(
-                                            FlutterFlowTheme.of(context).primaryContainer,
+                                            FlutterFlowTheme.of(context).tertiaryContainer,
                                           ),
                                           headingRowHeight: 56.0,
                                           dataRowColor: MaterialStateProperty.all(
-                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                            FlutterFlowTheme.of(context).onTertiaryContainer,
                                           ),
                                           dataRowHeight: 56.0,
                                           dividerThickness: 1.0,
