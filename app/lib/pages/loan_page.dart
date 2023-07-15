@@ -1,6 +1,7 @@
 import 'package:app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -327,7 +328,7 @@ class _LoanPageState extends State<LoanPage> {
                                                                   context: context,
                                                                   builder: (alertDialogContext) {
                                                                     return AlertDialog(
-                                                                      title: const Text('Confirmar Validação de usuário'),
+                                                                      title: const Text('Renovar Empréstimo'),
                                                                       content: Text(
                                                                           "${livros[index]['renovacoes']}/3 Renovações restantes. Deseja renovar este empréstimo?"),
                                                                       actionsAlignment: MainAxisAlignment.spaceBetween,
@@ -392,52 +393,46 @@ class _LoanPageState extends State<LoanPage> {
                                                             context: context,
                                                             builder: (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: const Text('Confirmar Validação de usuário'),
+                                                                backgroundColor: FlutterFlowTheme.of(context).onPrimaryContainer,
+                                                                title: Text(
+                                                                  'Devolução de Empréstimo',
+                                                                  textAlign: TextAlign.center,
+                                                                  style: TextStyle(
+                                                                    color: FlutterFlowTheme.of(context).primaryContainer,
+                                                                  ),
+                                                                ),
                                                                 content: SizedBox(
-                                                                  height: 300,
+                                                                  height: 220,
                                                                   child: Column(
                                                                     children: [
-                                                                      const Padding(
-                                                                        padding: EdgeInsets.all(16.0),
-                                                                        child: Icon(
-                                                                          Icons.sd_card_alert_outlined,
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.all(16.0),
+                                                                        child: FaIcon(
+                                                                          // ignore: deprecated_member_use
+                                                                          FontAwesomeIcons.circleExclamation,
+                                                                          color: FlutterFlowTheme.of(context).primaryContainer,
                                                                           size: 100,
                                                                         ),
                                                                       ),
-                                                                      const Text('Devolver a Obra?'),
-                                                                      Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
-                                                                        child: Container(
-                                                                          width: double.infinity,
-                                                                          height: 30,
-                                                                          decoration: BoxDecoration(
-                                                                            shape: BoxShape.rectangle,
-                                                                            borderRadius: BorderRadius.circular(8),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          ),
-                                                                          alignment: Alignment.center,
-                                                                          child: Text(
-                                                                            livros[index]['dataDisponibilidade'],
-                                                                            style: const TextStyle(fontSize: 24),
-                                                                          ),
+                                                                      Text(
+                                                                        'Deseja informar a devolução da obra',
+                                                                        style: TextStyle(
+                                                                          color: FlutterFlowTheme.of(context).primaryContainer,
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.all(8.0),
+                                                                        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
                                                                         child: Container(
                                                                           width: double.infinity,
-                                                                          height: 30,
-                                                                          decoration: BoxDecoration(
-                                                                            shape: BoxShape.rectangle,
-                                                                            borderRadius: BorderRadius.circular(8),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          ),
+                                                                          height: 60,
                                                                           alignment: Alignment.center,
                                                                           child: Text(
-                                                                            livros[index]['nome'],
-                                                                            style: const TextStyle(fontSize: 24),
+                                                                            livros[index]['nome'] + ' ?',
+                                                                            style: TextStyle(
+                                                                                fontSize: 16,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                color: FlutterFlowTheme.of(context)
+                                                                                    .primaryContainer),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -448,7 +443,11 @@ class _LoanPageState extends State<LoanPage> {
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                    child: const Text('Cancelar'),
+                                                                    child: Text(
+                                                                      'Cancelar',
+                                                                      style: TextStyle(
+                                                                          color: FlutterFlowTheme.of(context).alternate),
+                                                                    ),
                                                                   ),
                                                                   TextButton(
                                                                     onPressed: () async {
@@ -461,8 +460,8 @@ class _LoanPageState extends State<LoanPage> {
                                                                     },
                                                                     child: Text(
                                                                       'Confirmar',
-                                                                      style: TextStyle(
-                                                                          color: FlutterFlowTheme.of(context).secondary),
+                                                                      style:
+                                                                          TextStyle(color: FlutterFlowTheme.of(context).success),
                                                                     ),
                                                                   ),
                                                                 ],
