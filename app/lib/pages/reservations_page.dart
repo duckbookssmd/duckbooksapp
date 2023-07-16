@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
-import 'borrow_solicitations_page.dart';
 import 'collection_details_page.dart';
 
 class ReservationsPage extends StatefulWidget {

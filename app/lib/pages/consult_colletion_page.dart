@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
-import 'borrow_solicitations_page.dart';
 
 class ConsultPage extends StatefulWidget {
   const ConsultPage({Key? key}) : super(key: key);
