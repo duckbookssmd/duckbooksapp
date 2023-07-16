@@ -103,7 +103,7 @@ class _HelpPageState extends State<HelpPage> {
                                           ),
                                           TextSpan(
                                             text:
-                                                'Um app para quem sabe que ler é importante\nbuscava um aplicativo para criar ou\nmelhorar seu hábito de leitura.\n\n\n',
+                                                'Um app para quem sabe que ler é importante\nbuscava um aplicativo para \nfacilitar seu hábito de leitura.\n\n\n',
                                             style: FlutterFlowTheme.of(context)
                                                 .titleSmall,
                                           ),

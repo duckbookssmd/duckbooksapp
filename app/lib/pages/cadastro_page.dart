@@ -92,6 +92,7 @@ class _CadastroPageState extends State<CadastroPage> {
           top: true,
           child: Form(
             key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: SingleChildScrollView(
               child: Column(
                 children: [
