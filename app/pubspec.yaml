@@ -44,17 +44,40 @@ dependencies:
   fluttertoast: ^8.2.2
   cloud_firestore: ^4.8.0
   intl: ^0.18.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  font_awesome_flutter: ^10.4.0
+  google_fonts: ^5.1.0
+  shared_preferences: ^2.1.2
+  data_table_2: ^2.5.3
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.1
+  flutter_lints: ^2.0.0
+
+
+flutter_native_splash:
+  color: "#d1e3e0"
+  image: lib/assets/images/app_launcher_icon.png
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "lib/assets/images/app_launcher_icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -72,6 +95,9 @@ flutter:
     - lib/assets/images/logo_black_text_no_bg.png
     - lib/assets/images/logo_white_text_no_bg.png
     - lib/assets/images/mulhar_enduvidada.png
+    - lib/assets/images/pato_enduvidado.png
+    - lib/assets/images/logo_to_white.png
+    - lib/assets/images/pato_girando.gif
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
