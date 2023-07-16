@@ -238,7 +238,7 @@ class AuthService extends ChangeNotifier {
           book['dataDisponibilidade'].toString().substring(0, 10).replaceAll('/', '-').split('-').reversed.join(),
         ),
       )) {
-        Fluttertoast.showToast(msg: 'Obra atrasada, Por favor Devolva');
+        Fluttertoast.showToast(msg: 'Obra atrasada, Por favor Devolva !');
       } else {
         Fluttertoast.showToast(msg: 'Limite atingido, impossível renovar');
       }
@@ -417,7 +417,7 @@ class AuthService extends ChangeNotifier {
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: userRegistration).get().then(
       (value) async {
         if (value.docs.first.id == usuario!.uid) {
-          Fluttertoast.showToast(msg: 'Não pode emprestar para sí mesmo');
+          Fluttertoast.showToast(msg: 'Não pode emprestar para você mesmo');
         } else {
           Map loan = {
             'loan': {
@@ -523,7 +523,7 @@ class AuthService extends ChangeNotifier {
     await firebaseFirestore.collection('book').where('codigo', isEqualTo: code).where('isDeleted', isEqualTo: false).get().then(
       (value) {
         if (value.docs.isEmpty) {
-          Fluttertoast.showToast(msg: 'Livro não encontrada');
+          Fluttertoast.showToast(msg: 'Obra não encontrada');
           return null;
         } else if (!(value.docs.first.data()['userloan'].toString() == 'null')) {
           Fluttertoast.showToast(msg: 'Obra indisponível');
@@ -887,7 +887,7 @@ class AuthService extends ChangeNotifier {
           Fluttertoast.showToast(msg: "Obra não existe no sistema");
         } else {
           await firebaseFirestore.collection("book").doc(value.docs.first.id).set(obra);
-          Fluttertoast.showToast(msg: "Obra Deleta do sistema!");
+          Fluttertoast.showToast(msg: "Obra deletada do sistema!");
           await createLog(
             time: DateTime.now().millisecondsSinceEpoch.toString(),
             action: "Remoção",

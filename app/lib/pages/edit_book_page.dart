@@ -740,8 +740,8 @@ class _EditBookPageState extends State<EditBookPage> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Confirmar edição'),
-                                            content: const Text('Deseja alterar os dados dessa obra ?'),
+                                            title: const Text('Confirmar exclusão'),
+                                            content: const Text('Deseja apagar os dados dessa obra ?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(alertDialogContext, false),
