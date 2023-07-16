@@ -14,8 +14,7 @@ class BorrowSolicitationsPage extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _BorrowSolicitationsPageState createState() =>
-      _BorrowSolicitationsPageState();
+  _BorrowSolicitationsPageState createState() => _BorrowSolicitationsPageState();
 }
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -29,21 +28,13 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
       isLoading = true;
     });
 
-    await firebaseFirestore
-        .collection('emprestimo')
-        .where('status', isEqualTo: 'Solicitado')
-        .get()
-        .then(
+    await firebaseFirestore.collection('emprestimo').where('status', isEqualTo: 'Solicitado').get().then(
       (value) async {
         for (var docSnapshot in value.docs) {
           var borrow = docSnapshot.data();
           borrow.addAll({
-            'userRegistration': await context
-                .read<AuthService>()
-                .getRegistrationById(borrow['userLoan']),
-            'codBook': await context
-                .read<AuthService>()
-                .getCodById(borrow['bookBorrowed']),
+            'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
+            'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
           });
           borrows.add(borrow);
         }
@@ -89,8 +80,7 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
             style: FlutterFlowTheme.of(context).displayLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).displayLargeFamily,
                   color: FlutterFlowTheme.of(context).onBackground,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).displayLargeFamily),
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
                 ),
           ),
           centerTitle: false,
@@ -117,14 +107,12 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                                top: 16, end: 8, start: 8),
+                            padding: const EdgeInsetsDirectional.only(top: 16, end: 8, start: 8),
                             child: Container(
                               width: double.infinity,
                               height: MediaQuery.of(context).size.height * 0.86,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: FlutterFlowTheme.of(context).secondaryBackground,
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: DataTable2(
@@ -137,21 +125,11 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                       width: 270,
                                       child: Text(
                                         'Matrícula',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLargeFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .onSecondaryContainer,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLargeFamily),
+                                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                              color: FlutterFlowTheme.of(context).onSecondaryContainer,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                             ),
                                         textAlign: TextAlign.start,
                                       ),
@@ -166,21 +144,11 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                       width: 105,
                                       child: Text(
                                         'Data do Pedido',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLargeFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .onSecondaryContainer,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLargeFamily),
+                                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                              color: FlutterFlowTheme.of(context).onSecondaryContainer,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                             ),
                                         textAlign: TextAlign.center,
                                       ),
@@ -192,21 +160,11 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                       width: 100,
                                       child: Text(
                                         'Status',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLargeFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .onSecondaryContainer,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLargeFamily),
+                                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                                              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                              color: FlutterFlowTheme.of(context).onSecondaryContainer,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
                                             ),
                                         textAlign: TextAlign.center,
                                       ),
@@ -219,8 +177,7 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                     cells: [
                                       DataCell(
                                         Text(
-                                          borrowQuests[index]
-                                              ['userRegistration'],
+                                          borrowQuests[index]['userRegistration'],
                                         ),
                                       ),
                                       DataCell(SizedBox(
@@ -238,35 +195,24 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    RegisterLoanPageWidget(
-                                                  userRegistration:
-                                                      borrowQuests[index]
-                                                          ['userRegistration'],
-                                                  codBook: borrowQuests[index]
-                                                      ['codBook'],
+                                                builder: (context) => RegisterLoanPageWidget(
+                                                  userRegistration: borrowQuests[index]['userRegistration'],
+                                                  codBook: borrowQuests[index]['codBook'],
                                                 ),
                                               ),
                                             );
                                           },
                                           style: OutlinedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
+                                              borderRadius: BorderRadius.circular(16),
                                             ),
-                                            padding: const EdgeInsetsDirectional
-                                                .fromSTEB(0, 0, 0, 0),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            foregroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .onSecondaryContainer,
+                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                            backgroundColor: FlutterFlowTheme.of(context).secondaryContainer,
+                                            foregroundColor: FlutterFlowTheme.of(context).onSecondaryContainer,
                                             elevation: 2,
                                           ),
                                           child: const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               // Icon(
                                               //   Icons.crisis_alert,
@@ -274,8 +220,7 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                               // ),
                                               Padding(
                                                 padding: EdgeInsets.all(3.0),
-                                                child: Text(
-                                                    'Confirmar'), // TODO Colocar opção de negar
+                                                child: Text('Confirmar'), // TODO Colocar opção de negar
                                               ),
                                             ],
                                           ),
@@ -285,13 +230,11 @@ class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
                                   ),
                                 ),
                                 headingRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context)
-                                      .secondaryContainer,
+                                  FlutterFlowTheme.of(context).secondaryContainer,
                                 ),
                                 headingRowHeight: 56.0,
                                 dataRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  FlutterFlowTheme.of(context).secondaryBackground,
                                 ),
                                 dataRowHeight: 56.0,
                                 border: TableBorder(
