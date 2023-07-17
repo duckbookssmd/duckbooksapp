@@ -50,7 +50,7 @@ Utilizamos o Framework <img align="top" height="20" width="20" src="https://cdn.
 
 ## Backend
 
-Para o rmazenamento e gerenciamento dos dados de forma simples utilizamos o 
+Para o armazenamento e gerenciamento dos dados de forma simples utilizamos o 
             <img align="top" height="20" width="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" />
           [Firebase](https://firebase.google.com/)
 
