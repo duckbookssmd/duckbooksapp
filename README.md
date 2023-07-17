@@ -173,9 +173,9 @@ flutter build apk # O .apk dá aplicação será buildado para a pasta \duckbook
 | RF PF028 | Solicitar empréstimo | ✓ |
 | RF PF029 | Renovar Empréstimo | ✓ |
 
-<!-- ## Relatório Técnico
+## Relatório Técnico
 
-> O relatório completo sobre o processo de desenvolvimento dessa aplicação pode ser encontrado em: [Colocar relatório aqui]. -->
+> O relatório completo sobre o processo de desenvolvimento dessa aplicação pode ser encontrado em: https://docs.google.com/document/d/1Ow8hW8ZdKiJDEwX_o_AcZtUE6P38Fs0FCZwSfswA1_w/edit?usp=drivesdk.
 
 ---
 
