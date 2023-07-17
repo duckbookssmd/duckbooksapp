@@ -102,7 +102,7 @@ class _EditBookPageState extends State<EditBookPage> {
               ),
               Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.disabled,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
