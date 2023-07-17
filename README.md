@@ -7,7 +7,9 @@
 
 
 
-### Sumário: [Sobre](#sobre) • [Equipe](#equipe) • [Licença](#licença) • [Tecnologias](#tecnologias) • [Configurações do ambiente](#configurações-do-ambiente) • [Requisitos funcionais](#requisitos-funcionais) • [Relatório Técnico](#relatório-técnico) •
+### Sumário: [Sobre](#sobre) • [Equipe](#equipe) • [Licença](#licença) • [Tecnologias](#tecnologias) • [Configurações do ambiente](#configurações-do-ambiente) • [Requisitos funcionais](#requisitos-funcionais) 
+
+<!-- [Relatório Técnico](#relatório-técnico) • -->
 
 # Sobre
 
