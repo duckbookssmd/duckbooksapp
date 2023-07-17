@@ -114,10 +114,10 @@ Para a amazenação e gerenciamento dos dados de forma simples utilizamos o
 Alguns links que podem ajudar:
 
 - Para Windows
-    - <iframe width="560" height="315" src="https://www.youtube.com/embed/FUWYvBJOlsI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    - https://www.youtube.com/embed/FUWYvBJOlsI
 - Para Linux
-    - <iframe width="560" height="315" src="https://www.youtube.com/embed/QUqeicMtkkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    - <iframe width="560" height="315" src="https://www.youtube.com/embed/nmpv9arA7Ik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    - https://www.youtube.com/embed/QUqeicMtkkk
+    - https://www.youtube.com/embed/nmpv9arA7Ik
 
 # Como rodar <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg">
 
