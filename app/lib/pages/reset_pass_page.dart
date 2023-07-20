@@ -95,7 +95,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).displayLargeFamily),
             ),
-        title: Text('Esqueci a senha'),
+        title: const Text('Esqueci a senha'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

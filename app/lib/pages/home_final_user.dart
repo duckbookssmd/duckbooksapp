@@ -1,4 +1,4 @@
-import 'package:app/pages/Reservations_page.dart';
+import 'package:app/pages/reservations_page.dart';
 import 'package:app/pages/loan_page.dart';
 // import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';

@@ -135,7 +135,7 @@ class _HelpPageState extends State<HelpPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.auto_stories_rounded,
                                           size: 80,
                                         ),
@@ -174,7 +174,7 @@ class _HelpPageState extends State<HelpPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.bookmarks_rounded,
                                           size: 80,
                                         ),
@@ -213,7 +213,7 @@ class _HelpPageState extends State<HelpPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.saved_search_rounded,
                                           size: 80,
                                         ),
@@ -288,7 +288,7 @@ class _HelpPageState extends State<HelpPage> {
                                               decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: Icon(
+                                              child: const Icon(
                                                   Icons.auto_stories_rounded),
                                             ),
                                           ),
@@ -303,7 +303,7 @@ class _HelpPageState extends State<HelpPage> {
                                                 shape: BoxShape.circle,
                                               ),
                                               child:
-                                                  Icon(Icons.bookmarks_rounded),
+                                                  const Icon(Icons.bookmarks_rounded),
                                             ),
                                           ),
                                           Padding(
@@ -316,7 +316,7 @@ class _HelpPageState extends State<HelpPage> {
                                               decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: Icon(
+                                              child: const Icon(
                                                   Icons.saved_search_rounded),
                                             ),
                                           ),

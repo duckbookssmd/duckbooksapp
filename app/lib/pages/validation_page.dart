@@ -300,7 +300,7 @@ class _ValidationPageState extends State<ValidationPage> {
                                                   Icon(Icons.check_rounded,
                                                       color: FlutterFlowTheme.of(context).onSecondaryContainer, size: 20),
                                                   Padding(
-                                                    padding: EdgeInsets.all(3.0),
+                                                    padding: const EdgeInsets.all(3.0),
                                                     child: Text(
                                                       'Validar',
                                                       style: FlutterFlowTheme.of(context).titleLarge.override(

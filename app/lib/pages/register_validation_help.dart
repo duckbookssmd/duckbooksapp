@@ -62,22 +62,22 @@ class _RegisterValidationHelpPageWidgetState
             'Dúvidas - Validação',
             style: FlutterFlowTheme.of(context).displayLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.asset(
@@ -91,8 +91,8 @@ class _RegisterValidationHelpPageWidgetState
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
+                    child: SizedBox(
                       width: MediaQuery.sizeOf(context).width * 0.75,
                       child: Stack(
                         children: [
@@ -102,7 +102,7 @@ class _RegisterValidationHelpPageWidgetState
                             scrollDirection: Axis.horizontal,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +113,7 @@ class _RegisterValidationHelpPageWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .headlineLarge,
                                       ),
-                                      SizedBox(height: 30),
+                                      const SizedBox(height: 30),
                                       Text(
                                         'Pré-cadastro realizado.\nAgora você deve procurar\num membro do Centro Acadêmico\npara validar seu cadastro.',
                                         textAlign: TextAlign.center,
@@ -135,7 +135,7 @@ class _RegisterValidationHelpPageWidgetState
                                     ]),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +146,7 @@ class _RegisterValidationHelpPageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .headlineLarge,
                                     ),
-                                    SizedBox(height: 30),
+                                    const SizedBox(height: 30),
                                     Text(
                                       'Para validar seu cadastro\nvocê deve apresentar\nAtestado de Matrícula\n e documento com foto.',
                                       textAlign: TextAlign.center,
@@ -167,7 +167,7 @@ class _RegisterValidationHelpPageWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +178,7 @@ class _RegisterValidationHelpPageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .headlineLarge,
                                     ),
-                                    SizedBox(height: 30),
+                                    const SizedBox(height: 30),
                                     Text(
                                       'Após este passo você terá\nacesso as funções do aplicativo.',
                                       textAlign: TextAlign.center,
@@ -201,7 +201,7 @@ class _RegisterValidationHelpPageWidgetState
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0, 1),
+                            alignment: const AlignmentDirectional(0, 1),
                             child: smooth_page_indicator.SmoothPageIndicator(
                               controller: pageViewController ??=
                                   PageController(initialPage: 0),
@@ -210,7 +210,7 @@ class _RegisterValidationHelpPageWidgetState
                               onDotClicked: (i) async {
                                 await pageViewController!.animateToPage(
                                   i,
-                                  duration: Duration(milliseconds: 500),
+                                  duration: const Duration(milliseconds: 500),
                                   curve: Curves.ease,
                                 );
                               },
@@ -233,9 +233,9 @@ class _RegisterValidationHelpPageWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1, 0),
+                  alignment: const AlignmentDirectional(1, 0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 50),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 20, 50),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,

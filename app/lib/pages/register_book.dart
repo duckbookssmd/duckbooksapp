@@ -184,7 +184,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                                 title:
                                                     const Text('Código ISBN'),
                                                 content: const Text(
-                                                    'Aqui você não precisa inserir dígitos como o \"-\". Basta inserir os números do código ISBN da obra.'),
+                                                    'Aqui você não precisa inserir dígitos como o "-". Basta inserir os números do código ISBN da obra.'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -200,7 +200,7 @@ class _RegisterBookState extends State<RegisterBook> {
                                               );
                                             }),
                                         child:
-                                            Icon(Icons.info_outline_rounded)),
+                                            const Icon(Icons.info_outline_rounded)),
                                   )),
                             ],
                           ),

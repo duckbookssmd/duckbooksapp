@@ -286,7 +286,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                 );
                                               }),
                                           child:
-                                              Icon(Icons.info_outline_rounded)),
+                                              const Icon(Icons.info_outline_rounded)),
                                     )),
                               ],
                             ),
@@ -546,7 +546,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                       ],
                                                     );
                                                   }),
-                                              child: Icon(
+                                              child: const Icon(
                                                   Icons.info_outline_rounded)),
                                         )),
                                   ],
@@ -855,7 +855,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
                                                 );
                                               }),
                                           child:
-                                              Icon(Icons.info_outline_rounded)),
+                                              const Icon(Icons.info_outline_rounded)),
                                     )),
                               ],
                             ),

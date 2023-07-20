@@ -315,7 +315,7 @@ class _HomePageCaState extends State<HomePageCa> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               FaIcon(
-                                                FontAwesomeIcons.usersCog,
+                                                FontAwesomeIcons.userGear,
                                                 color: FlutterFlowTheme.of(context).onSecondaryContainer,
                                                 size: 24,
                                               ),
