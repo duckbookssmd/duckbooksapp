@@ -137,8 +137,22 @@ class AuthService extends ChangeNotifier {
 
   // other wat ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
+  /// Get the URL of the image using isbn
+  ///
+  /// Return the URL in json provided by __Google Book API__ with [isbn] as param
+  /// if dont have a image returns '__null__'
+  ///
+  /// Example:
+  /// ```dart
+  ///   var a = '9788590379829';
+  ///   var b = 'aIsbnWithoutImage';
+  ///   getHttpImage(a); // 'url_link'
+  ///   getHttpImage(b); // 'null'
+  /// ```
+  /// 
+  /// Note: [isbn] must by only numbers.
   getHttpImage(String isbn) async {
-    // Colocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
+    // Cçolocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
 
     var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn';
     var response = await http.get(Uri.parse(url));
