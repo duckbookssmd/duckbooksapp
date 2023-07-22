@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/string_utils.dart';
 import 'collection_details_page.dart';
 
 class ConsultionGenrePage extends StatefulWidget {
@@ -25,26 +26,6 @@ String genre = 'Redes';
 
 class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  /// Formata a String para um certo tamanho e acrescenta '...'.
-  ///
-  /// Trunca a [myString] se o tamanho da String for maior ou igual ao [cutoff].
-  String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
-  }
-
-  /// Troca os caracteres com acento por seus respectivos pás sem acento
-  ///
-  /// Recebe uma String [str] e a returna sem as vogais presentes caso haja.
-  String removeAccents(String str) {
-    var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
-    var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
-
-    for (int i = 0; i < withAccent.length; i++) {
-      str = str.replaceAll(withAccent[i], withoutAccent[i]);
-    }
-    return str;
-  }
 
   /// Pesquisa por livros que dentro do banco de dados e atualiza a lista de livros.
   ///

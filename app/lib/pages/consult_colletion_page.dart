@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/string_utils.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
 
@@ -28,26 +29,6 @@ bool isLoading = false;
 class _ConsultPageState extends State<ConsultPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  /// Formata a String para um certo tamanho e acrescenta '...'.
-  /// 
-  /// Trunca a [myString] se o tamanho da String for maior ou igual ao [cutoff].
-  String truncateWithEllipsis(int cutoff, String myString) {
-    return (myString.length <= cutoff)
-        ? myString
-        : '${myString.substring(0, cutoff)}...';
-  }
-  /// Troca os caracteres com acento por seus respectivos pás sem acento
-  /// 
-  /// Recebe uma String [str] e a returna sem as vogais presentes caso haja. 
-  String removeAccents(String str) {
-    var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
-    var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
-
-    for (int i = 0; i < withAccent.length; i++) {
-      str = str.replaceAll(withAccent[i], withoutAccent[i]);
-    }
-    return str;
-  }
   /// Pesquisa por livros que dentro do banco de dados e atualiza a lista de livros.
   /// 
   /// Cria uma lista filtrada a partir dos livros da lista atualizada que possuam a [name] em seus nomes.
