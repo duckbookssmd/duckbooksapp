@@ -19,9 +19,12 @@ class ManageUsersPage extends StatefulWidget {
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 bool isLoading = false;
+/// Lista de informaçãoes de usuários validados.
 List<Map<String, dynamic>> usersData = [];
 
 class _ManageUsersPageState extends State<ManageUsersPage> {
+
+  /// Atualiza a lista de informações usuários validados
   getUserData() async {
     List<Map<String, dynamic>> users = [];
     setState(() {

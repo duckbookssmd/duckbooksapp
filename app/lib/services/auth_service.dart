@@ -116,6 +116,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Desloga da conta e remove o login caso tenha sido salvo
   logout(context) async {
     await _auth
         .signOut()
@@ -149,7 +150,7 @@ class AuthService extends ChangeNotifier {
   ///   getHttpImage(a); // 'url_link'
   ///   getHttpImage(b); // 'null'
   /// ```
-  /// 
+  ///
   /// Note: [isbn] must by only numbers.
   getHttpImage(String isbn) async {
     // Cçolocar no cadastrar Obra e rodar, Fazer lógica para caso não encontre a imagem de colocar outra coisa como imagem
@@ -162,6 +163,7 @@ class AuthService extends ChangeNotifier {
         : json['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
   }
 
+  /// Cria uma log na coleção de Logs do Firestone.
   createLog({
     String? time,
     String? userId,
@@ -178,10 +180,10 @@ class AuthService extends ChangeNotifier {
         ).toMap());
   }
 
+  /// Lista códigos de livros que foram emprestado presentes em um [userLoans] de um determinado usuário.
   listBorrowNow(List userLoans) {
     List books = [];
     for (int i = 0; i < userLoans.length; i++) {
-      // print(userLoans[i]['loan'].toString());
       if (!(userLoans[i]['loan'] == null)) {
         books.add(userLoans[i]['loan']['codBook']);
       }
@@ -189,6 +191,7 @@ class AuthService extends ChangeNotifier {
     return books;
   }
 
+  /// Checa se alguns dos livros presente no [userLoans] de um usuário está atrasado.
   checkOverdue(List userLoans) {
     if (userLoans.isEmpty) {
       return false;
@@ -205,6 +208,9 @@ class AuthService extends ChangeNotifier {
     return false;
   }
 
+  /// Renova o Empréstimo de um livro.
+  ///
+  /// Checa se o empréstimo não atingiu o número máximo de renovações ou se o livro que foi emprestado foi reservado, e acresenta mais 15 dias no tempo de devolução.
   renewLoan(dynamic book) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     // mudar numero de renovações nos empréstimos e loans do usuário
@@ -259,6 +265,7 @@ class AuthService extends ChangeNotifier {
     });
   }
 
+  /// Encerra a reserva do usuário que criou e solicitou o empréstimo da obra.
   finishReservation(String bookCod) async {
     await firebaseFirestore
         .collection('reservations')
@@ -271,6 +278,7 @@ class AuthService extends ChangeNotifier {
     });
   }
 
+  /// Cancela uma reserva feita.
   cancelReservation(String bookCod) async {
     await firebaseFirestore
         .collection('reservations')
@@ -289,6 +297,7 @@ class AuthService extends ChangeNotifier {
     });
   }
 
+  /// Realiza uma reserva de uma obra com o código [book], para o usuário atual.
   doReservation(dynamic book) async {
     // Por enquanto não deixar um tempo limite para pegar depois de reservar
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
@@ -307,6 +316,7 @@ class AuthService extends ChangeNotifier {
     );
   }
 
+  /// Checa se uma obra que possui o código [bookCod] está reservada pelo usuário atual.
   isReservationUser(String bookCod) async {
     return await firebaseFirestore
         .collection('reservations')
@@ -319,6 +329,7 @@ class AuthService extends ChangeNotifier {
     });
   }
 
+  /// Checa se uma obra que possui o código [bookCod] possui reservas.
   hasReservation(String bookCod) async {
     return await firebaseFirestore
         .collection('reservations')
@@ -326,11 +337,11 @@ class AuthService extends ChangeNotifier {
         .where('statusBook', isEqualTo: 'Solicitado')
         .get()
         .then((value) async {
-      // print(value.docs.first.id);
       return (value.docs.isEmpty) ? false : true;
     });
   }
 
+  /// Checa se uma obra com o código [bookCod] possui alguma solicitação de empréstimo.
   Future<bool> hasRequest(String bookCod) async {
     // Por enquanto devolver um Bool dizendo se tem o alguma solicitação sua lá
     return await firebaseFirestore
@@ -340,11 +351,11 @@ class AuthService extends ChangeNotifier {
         .where('status', isEqualTo: 'Solicitado')
         .get()
         .then((value) async {
-      // print(value.docs.first.id);
       return (value.docs.isEmpty) ? false : true;
     });
   }
 
+  /// Manda uma solicitação de empréstimo pra coleção _emprestimo_ do Firestore.
   sendBorrowRequest(String bookCod) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     await firebaseFirestore.collection("emprestimo").add(LoanModel(
@@ -358,6 +369,7 @@ class AuthService extends ChangeNotifier {
         ).toMap());
   }
 
+  /// Sinaliza ao sistema que um [book] foi devolvido.
   confirmReturn(Map book) async {
     //Atualizar userloan do livro e datadisponibilidade = null
     //Atualizar loan do usuário
@@ -402,24 +414,28 @@ class AuthService extends ChangeNotifier {
     Fluttertoast.showToast(msg: 'Obra devolvida');
   }
 
+  /// Returna a mátrícula vinculada a um [userId].
   Future<String> getRegistrationById(String userId) async {
     return await firebaseFirestore.collection('user').doc(userId).get().then((value) {
       return value.data()?['matriculaSIAPE'];
     });
   }
 
+  /// Retorna o código de uma obra vinculado a um [bookId].
   Future<String> getCodById(String bookId) async {
     return await firebaseFirestore.collection('book').doc(bookId).get().then((value) {
       return value.data()?['codigo'];
     });
   }
 
+  /// Retorna o id de uma obra vinculado a um [bookCod].
   getIdByCod(String bookCod) async {
     return await firebaseFirestore.collection('book').where('codigo', isEqualTo: bookCod).get().then((value) {
       return value.docs.first.id;
     });
   }
 
+  /// Registra um empréstimo para o sistema.
   registerLoan(String userRegistration, String bookCod, String dataDevolucao) async {
     // Realizar a Efetuação do empréstimo
     // Usuário :
@@ -497,12 +513,14 @@ class AuthService extends ChangeNotifier {
     );
   }
 
+  /// Retorna o id de uma usuário vinculado a uma [registration].
   getIdByRegistration(String registration) async {
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then((value) {
       return value.docs.first.id;
     });
   }
 
+  /// Retorna o email de um usuário vinculado a [registration].
   Future<String?> getEmailByRegistration(String registration) async {
     String? resp;
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
@@ -527,6 +545,7 @@ class AuthService extends ChangeNotifier {
     return resp;
   }
 
+  /// Retorna informações de uma obra usando o seu [code], caso exista.
   Future<Map<String, dynamic>> getBookData(String code) async {
     Map<String, dynamic> resp = {
       "nome": 'Null',
@@ -561,6 +580,7 @@ class AuthService extends ChangeNotifier {
     return resp;
   }
 
+  /// Atualiza o status de validação de um usuário na coleção de validação (Na pŕatica agora funciona na confirmação (Atualizar pra remover também)).
   updateValidate(Map<String, dynamic> rV, String readerRegistration, String? userRegistration) async {
     // TODO Fiz uma solução não legal, atualizar quando tiver tempo
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
@@ -586,6 +606,7 @@ class AuthService extends ChangeNotifier {
     );
   }
 
+  /// Confirma a validade de uma [registration] fornecida para o sistema.
   confirmValidation(String registration, Map<String, dynamic> requestValidate) async {
     await firebaseFirestore.collection('user').where('matriculaSIAPE', isEqualTo: registration).get().then(
       (value) async {
@@ -609,6 +630,7 @@ class AuthService extends ChangeNotifier {
     updateValidate(requestValidate, registration, usuario?.uid);
   }
 
+  /// Manda uma solicitação de validação de matrícula.
   sendValidationRequest(String registration) async {
     DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
     ValidationModel validationRequest = ValidationModel(
@@ -620,15 +642,18 @@ class AuthService extends ChangeNotifier {
     await firebaseFirestore.collection("validation").add(validationRequest.toMap());
   }
 
+  /// Salvar Informações de [registration] e [password] usados para Login.
   saveLogin(BuildContext context, String registration, String password) async {
     // Salvar
     await context.read<AppSettings>().setData(registration, password);
   }
 
+  /// Remove as informações de login já amarzenadas.
   removeSaveLogin(BuildContext context) async {
     await context.read<AppSettings>().setData('', '');
   }
 
+  /// Realizar o Login utilizando o [registration].
   void signInWithRegistration(
     BuildContext context,
     String registration,
@@ -672,6 +697,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Realizar login com [email] e [senha].
   Future<bool> signIn(
     BuildContext context,
     String email,
@@ -709,6 +735,7 @@ class AuthService extends ChangeNotifier {
     return resp; // sucesso ao logar
   }
 
+  /// Realizar cadastro de um novo usuário não validado no sistema.
   signUp(
     BuildContext context,
     String nick,
@@ -753,6 +780,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Amazernar os dados de cadastro dentro do banco de dados do usuário cadastrado.
   postDetailsToFirestore(
     BuildContext context,
     String nickname,
@@ -793,6 +821,7 @@ class AuthService extends ChangeNotifier {
     );
   }
 
+  /// Checar se uma obra específica existe usando: [nome], [autor] e [edicao].
   Future<bool> checkIfExist(String nome, String autor, String edicao) async {
     // TODO: Fazer uma função de retorno do _value_
     // depois trocar pra chave de identificação
@@ -815,6 +844,9 @@ class AuthService extends ChangeNotifier {
     return resp;
   }
 
+  /// Amazernar os dados de uma obra dentro do banco de dados da obra cadastrado. (Cadastra obra)
+  /// 
+  /// Pode atualizar as informaçõpes de uma obra utilizando o parametro [isUpdating].
   postBookDetailsToFirestore(
     // separar em 2 funções
     TextEditingController? codController,
@@ -883,6 +915,9 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Deletar obra no sistema.
+  /// 
+  /// Na prática atrui a propriedade de [isDeleted] para a obra em questão.
   deleteBook(
     // reduzir pedindo o id pra fazer a mudança
     Map<String, dynamic> obra,

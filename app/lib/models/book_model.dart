@@ -4,7 +4,9 @@ class BookModel {
   late String? editora;
   late int? ano;
   late int? edicao;
+  /// Tipo de mídia da obra, como livro, DVD, Mangá e etc...
   late String? tipoMidia;
+  /// URl da imagem
   late String? foto = "";
   late String? genero = "";
   late String dataCadastro;

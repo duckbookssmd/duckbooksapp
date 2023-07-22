@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+/// Um simples banco de dados nativo para amezenar as informações de login do usuário.
 class AppSettings extends ChangeNotifier {
   late Box box;
   Map<String, String> _logindata = {
@@ -31,6 +32,7 @@ class AppSettings extends ChangeNotifier {
     await _readData();
   }
 
+  /// Ler dados já amarzenados no Box.
   _readData() {
     final registration = box.get('registration') ?? '';
     final senha = box.get('password') ?? '';
@@ -41,7 +43,9 @@ class AppSettings extends ChangeNotifier {
     };
     notifyListeners();
   }
-
+  /// Escrever dados no Box
+  ///
+  /// Amazena o [registration] e [pass] do usuário para realizar o login na aplicação.
   setData(String registration, String pass) async {
     await box.put('registration', registration);
     await box.put('password', pass);

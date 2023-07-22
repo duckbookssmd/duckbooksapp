@@ -24,6 +24,7 @@ class _ValidationPageState extends State<ValidationPage> {
   int linhas =
       10; // validationQuest.lenght | vQ[dateR] vQ[status] vQ[reader/Allowing] Disponibilidade não nprecisa ser uma valiavel real
 
+  /// Atualiza lista de requisições de validação gerado por novos usuários ainda não validados.
   getValidation() async {
     List<Map<String, dynamic>> validations = [];
     setState(() {

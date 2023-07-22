@@ -1,8 +1,12 @@
 class LogModel {
+  /// Tempo de criação do Log em milliseccondPerEpcos
   String time;
+  /// Matrícula do usuário que realizou a açao.
   String userId;
+  /// Matrícula do Admistrador que permitiu a açao, caso exista.
   String? userAdmId;
   String action;
+  /// Código do livro
   String? codBook;
   LogModel({
     required this.time,

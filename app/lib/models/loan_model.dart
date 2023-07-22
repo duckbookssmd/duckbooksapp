@@ -1,8 +1,11 @@
 class LoanModel {
+  /// Id do livro no Firebase.
   String bookBorrowed;
   String loanDate;
+  /// número de reservas permitidas restantes.
   int renovations;
   String? returnDate;
+  /// Status do empréstimo, podendo ser: "Em dia" ou "Devolvido".
   String status;
   String? userAllowing;
   String userLoan;

@@ -30,7 +30,6 @@ class _CadastroPageState extends State<CadastroPage> {
         .doc(user?.uid)
         .get()
         .then((value) {
-      // final loggedInUser = UserModel.fromMap(value.data()); // Entendi, é para entrada automárica
       setState(() {});
     });
     passwordVisibility1 = false;
@@ -671,11 +670,6 @@ class _CadastroPageState extends State<CadastroPage> {
                                       texConfSenhaController);
 
                                   Fluttertoast.showToast(msg: 'Cadastrando...');
-                                  // ScaffoldMessenger.of(context).showSnackBar(
-                                  //   const SnackBar(
-                                  //       content: Text('Cadastrando...'),
-                                  //       backgroundColor: Colors.green),
-                                  // );
                                 }
                               },
                               style: OutlinedButton.styleFrom(

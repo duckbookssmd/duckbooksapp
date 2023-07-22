@@ -1,8 +1,12 @@
 class ValidationModel {
+  /// Data do pedido para Validaçao.
   dynamic dateRequest;
+  /// Data em que a Validaçao foi efetuada.
   dynamic dateValidation;
   bool status;
+  /// Id do usuário ADM que validou o cadastro.
   String? userAllowingId;
+  /// Matricula daquele que precisa ser validado.
   String? userReaderId;
   ValidationModel({
     required this.dateRequest,

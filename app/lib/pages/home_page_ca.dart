@@ -45,6 +45,7 @@ class _HomePageCaState extends State<HomePageCa> {
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
 
+  /// Atualiza a lista de açoes realizadas dentro do sistema do DuckBooks
   getActions() async {
     List<Map<String, dynamic>> actions = [];
     setState(() {
@@ -55,10 +56,6 @@ class _HomePageCaState extends State<HomePageCa> {
       (value) async {
         for (var docSnapshot in value.docs) {
           var action = docSnapshot.data();
-          // borrow.addAll({
-          //   'userRegistration': await context.read<AuthService>().getRegistrationById(borrow['userLoan']),
-          //   'codBook': await context.read<AuthService>().getCodById(borrow['bookBorrowed']),
-          // });
           actions.add(action);
         }
       },

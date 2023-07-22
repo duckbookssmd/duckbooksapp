@@ -4,10 +4,12 @@ class UserModel {
   String? email;
   String? pass;
   String? nickname;
-  bool? typeAdmin = true; // Após finalizar a validação de usuários colocar pra false
-  bool? validated = false; // Após finalizar a validação de usuários colocar pra false
+  bool? typeAdmin = true; 
+  bool? validated = false;
+  /// Lista de obras empréstadas.
   List<Map>? userLoans = [];
-  List<Map>? userReservations = [];
+  /// Lista de obras reservadas pelo usuário.
+  List<Map>? userReservations = []; // TODO Implementar, deve diminuir o tempo de demora do loading
 
   UserModel({
     required this.uId,

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../services/auth_service.dart';
 
+/// Um Drawer pesonalidado vinculado a um [scaffoldKey].
 class DuckAppBar extends StatelessWidget {
   const DuckAppBar({Key? key, required this.scaffoldKey}) : super(key: key);
 

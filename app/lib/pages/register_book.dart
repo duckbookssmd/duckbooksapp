@@ -25,6 +25,7 @@ class _RegisterBookState extends State<RegisterBook> {
   TextEditingController? textEditionController;
   String? textType;
   String? textGenre;
+  // TODO: colocar em um provider/Static Class
   final List<String> _types = [
     'Livro',
     'Mangá/Gibi',

@@ -16,12 +16,16 @@ class BorrowSolicitationsPage extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _BorrowSolicitationsPageState createState() => _BorrowSolicitationsPageState();
 }
-
+/// Instancia doo Firebase (Talvez não devesse está aqui e sim no services.
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 bool isLoading = false;
+/// Lista de requisições de empréstimo.
 List<Map<String, dynamic>> borrowQuests = [];
 
 class _BorrowSolicitationsPageState extends State<BorrowSolicitationsPage> {
+  /// Atualiza lista de solicitações de empréstimo.
+  /// 
+  /// Procura no Firestore por empréstimos com o status "Solicitado" e os acrescenta na lista [borrowQuests]
   getSolicitations() async {
     List<Map<String, dynamic>> borrows = [];
     setState(() {

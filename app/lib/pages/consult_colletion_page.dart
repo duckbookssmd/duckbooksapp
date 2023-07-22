@@ -28,12 +28,17 @@ bool isLoading = false;
 class _ConsultPageState extends State<ConsultPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  /// Formata a String para um certo tamanho e acrescenta '...'.
+  /// 
+  /// Trunca a [myString] se o tamanho da String for maior ou igual ao [cutoff].
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff)
         ? myString
         : '${myString.substring(0, cutoff)}...';
   }
-
+  /// Troca os caracteres com acento por seus respectivos pás sem acento
+  /// 
+  /// Recebe uma String [str] e a returna sem as vogais presentes caso haja. 
   String removeAccents(String str) {
     var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
     var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
@@ -43,7 +48,9 @@ class _ConsultPageState extends State<ConsultPage> {
     }
     return str;
   }
-
+  /// Pesquisa por livros que dentro do banco de dados e atualiza a lista de livros.
+  /// 
+  /// Cria uma lista filtrada a partir dos livros da lista atualizada que possuam a [name] em seus nomes.
   searchByName([String name = '']) async {
     List filttedList = [];
     name = removeAccents(name.toLowerCase());
@@ -51,6 +58,7 @@ class _ConsultPageState extends State<ConsultPage> {
     setState(() {
       isLoading = true;
     });
+
     await atualizarLista();
 
     for (Map<String, dynamic> livro in livros) {
@@ -66,6 +74,7 @@ class _ConsultPageState extends State<ConsultPage> {
     });
   }
 
+  /// Atualiza a lista de livros não deletados presentes no com o Firestore.
   atualizarLista() async {
     livros = await firebaseFirestore
         .collection('book')
@@ -86,7 +95,6 @@ class _ConsultPageState extends State<ConsultPage> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
   }
 

@@ -58,7 +58,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
       setState(() {});
     });
   }
-
+  /// Pega o email vinculado a [matricula] e preenche o textField respectivo.
   setEmail({String matricula = ''}) async {
     // Talvez olocar um carregamento
     await Provider.of<AuthService>(context, listen: false)
@@ -67,7 +67,7 @@ class _RegisterLoanPageWidgetState extends State<RegisterLoanPageWidget> {
             value ?? 'Matrícula não existente no sistema');
     setState(() {});
   }
-
+  /// Pega as informações vinculadas ao [cod] e preenche os textFields respectivos.
   setBookdata({String cod = ''}) async {
     await Provider.of<AuthService>(context, listen: false)
         .getBookData(cod)

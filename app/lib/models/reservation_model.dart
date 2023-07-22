@@ -1,7 +1,9 @@
 class ReservationModel {
+  /// Codigo do livro reservado.
   dynamic bookReservedId;
-  List reservationList; // Vai ter o id das pesoas que pedirem reservas
+  List reservationList; // TODO: (resolver) Vai ter o id das pesoas que pedirem reservas
   String statusBook;
+  /// Data em que a reserva foi efetuada.
   dynamic reservationDate;
 
   ReservationModel({

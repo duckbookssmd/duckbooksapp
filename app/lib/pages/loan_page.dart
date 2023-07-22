@@ -26,12 +26,18 @@ bool isLoading = false;
 
 class _LoanPageState extends State<LoanPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  /// Formata a String para um certo tamanho e acrescenta '...'.
+  /// 
+  /// Trunca a [myString] se o tamanho da String for maior ou igual ao [cutoff].
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff)
         ? myString
         : '${myString.substring(0, cutoff)}...';
   }
 
+  /// Troca os caracteres com acento por seus respectivos pás sem acento
+  /// 
+  /// Recebe uma String [str] e a returna sem as vogais presentes caso haja. 
   String removeAccents(String str) {
     var withAccent = 'àáâãäåòóôõöøèéêëðçìíîïùúûüñšÿýž';
     var withoutAccent = 'aaaaaaooooooeeeeeciiiiuuuunsyyz';
@@ -63,6 +69,7 @@ class _LoanPageState extends State<LoanPage> {
     });
   }
 
+  /// Atualiza a lista de livros que foram emprestados para o usuário e não deletados presentes no com o Firestore.
   atualizarLista() async {
     livros = await firebaseFirestore
         .collection('book')

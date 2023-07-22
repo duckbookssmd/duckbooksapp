@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   // * Firebase User Autentication
   User? user = FirebaseAuth.instance.currentUser;
 
+  /// Preenche os dados salvos do login para os textFilds respectivos.
   setLoginData() async {
     Map<String, String> datalogin =
         Provider.of<AppSettings>(context, listen: false).logindata;

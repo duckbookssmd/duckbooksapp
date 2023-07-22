@@ -40,16 +40,25 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
     super.dispose();
   }
 
+  /// Formata a String para um certo tamanho e acrescenta '...'.
+  ///
+  /// Trunca a [myString] se o tamanho da String for maior ou igual ao [cutoff].
   String truncateWithEllipsis(int cutoff, String myString) {
     return (myString.length <= cutoff) ? myString : '${myString.substring(0, cutoff)}...';
   }
 
+  /// Checa se o livro já esta emprestado para algum usuário.
+  ///
+  /// Pega o código do livro [book] e repassa para a função _hasRequest()_.
   Future<bool> checkBorrowed(String book) async {
     return await context.read<AuthService>().hasRequest(book).then((value) {
       return value;
     });
   }
 
+  /// Checa se o livro já esta reservado para algum usuário.
+  ///
+  /// Pega o código do livro [book] e repassa para a função _hasReservation()_.
   checkReserved(String book) async {
     return await context.read<AuthService>().hasReservation(book).then(
       (value) {
@@ -58,6 +67,9 @@ class _CollectionDetailsPageState extends State<CollectionDetailsPage> {
     );
   }
 
+  /// Checa se o livro já esta reservado para o usuário ataul.
+  ///
+  /// Pega o código do livro [book] e repassa para a função _isReservationUser()_.
   checkReservationIsThisUser(String book) async {
     return await context.read<AuthService>().isReservationUser(book).then(
       (value) {

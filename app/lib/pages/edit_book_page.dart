@@ -18,6 +18,7 @@ class EditBookPage extends StatefulWidget {
 class _EditBookPageState extends State<EditBookPage> {
   late Map<String, dynamic> book;
 
+  /// Preenche os dados do livro com as informações presentes no [book].
   setBookData() {
     textCodController = TextEditingController(text: book['isbn'] ?? '');
     textNomeController = TextEditingController(text: book['nome'] ?? '');
@@ -39,6 +40,7 @@ class _EditBookPageState extends State<EditBookPage> {
   TextEditingController? textDateController;
   String? textType;
   String? textGenre;
+  // TODO: Colocar numa classe statica.
   final List<String> _types = ['Livro', 'Mangá/Gibi', 'DVD', 'Periódico(Artigo)', 'Revista', 'design', 'N.D.A'];
   late List<String> _genres;
   final _formKey = GlobalKey<FormState>();
