@@ -4,11 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 late FakeFirebaseFirestore instance;
 late List<Map<String, dynamic>> bookList;
+late String uid;
 
 main() {
   setUpAll(() async {
+    uid = 'MmXsNm8SMWXzwvcuNBhHb07NmcE2';
     instance = FakeFirebaseFirestore();
-    await instance.collection('book').add({
+    await instance.collection('book').doc('DYRTbErAZjAbcUcU6FiX').set({
       'tipo': 'Livro',
       'codigo': 'CDG-004',
       'ano': 2019,
@@ -35,7 +37,7 @@ main() {
       'editora': 'DuckBooks',
       'autor': 'Domingues. D. André',
       'dataDisponibilidade': '12/07/2023 18:38',
-      'userloan': 'MmXsNm8SMWXzwvcuNBhHb07NmcE2',
+      'userloan': null,
       'foto': 'http://books.google.com/books/content?id=4LYdzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
       'isDeleted': false,
       'genero': 'Cultura digital',
@@ -69,7 +71,7 @@ main() {
       'editora': 'DuckBooks',
       'autor': 'Domingues. D. André',
       'dataDisponibilidade': '12/07/2023 18:38',
-      'userloan': 'MmXsNm8SMWXzwvcuNBhHb07NmcE2',
+      'userloan': null,
       'foto': 'http://books.google.com/books/content?id=4LYdzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
       'isDeleted': false,
       'genero': 'Cultura digital',
@@ -86,7 +88,7 @@ main() {
       'editora': 'DuckBooks',
       'autor': 'Domingues. D. André',
       'dataDisponibilidade': '12/07/2023 18:38',
-      'userloan': 'MmXsNm8SMWXzwvcuNBhHb07NmcE2',
+      'userloan': null,
       'foto': 'http://books.google.com/books/content?id=4LYdzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
       'isDeleted': false,
       'genero': 'Empreendorismo',
@@ -103,23 +105,44 @@ main() {
       'editora': 'DuckBooks',
       'autor': 'Domingues. D. André',
       'dataDisponibilidade': '12/07/2023 18:38',
-      'userloan': 'MmXsNm8SMWXzwvcuNBhHb07NmcE2',
+      'userloan': null,
       'foto': 'http://books.google.com/books/content?id=4LYdzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
       'isDeleted': false,
       'genero': 'Empreendorismo',
       'admRecorder': 'JJrV1ZLsdEUOQYX7IngEgKw5Vmq2',
       'dataCadastro': '13/07/2023 17:48',
     });
+    await instance.collection('emprestimo').add({
+      'bookBorrowed': 'DYRTbErAZjAbcUcU6FiX',
+      // 'loanDate': loanDate,
+      'renovations': 3,
+      'returnDate': '31/07/2023 18:38',
+      'status': 'Em dia',
+      // 'userAllowing': userAllowing,
+      'userLoan': 'MmXsNm8SMWXzwvcuNBhHb07NmcE2',
+    });
 
     bookList = await updateBookList(instance, true);
     // print(instance.dump());
+  });
+
+  group('updateBookListByLoan tests', () {
+    test('Updating with Uid - Success', () async {
+      List<Map<String, dynamic>> bookListFiltered = await updateBookListByLoan(uid, instance, true);
+      expect(bookListFiltered.length, 1);
+      expect(bookListFiltered[0]['renovacoes'], 3);
+      expect(bookListFiltered[0]['dataDisponibilidade'], '31/07/2023 18:38');
+      for (var book in bookListFiltered) {
+        expect(book['isDeleted'], false);
+      }
+    });
   });
 
   group('updateBookListByGerne tests', () {
     test('Updating with Genre "Empreendorismo" - Success', () async {
       List<Map<String, dynamic>> bookListFiltered = await updateBookListByGerne('Empreendorismo', instance, true);
       expect(bookListFiltered.length, 2);
-      for (var book in bookList) {
+      for (var book in bookListFiltered) {
         expect(book['isDeleted'], false);
       }
     });
@@ -127,7 +150,7 @@ main() {
     test('Updating with Genre "Cultura digital" - Success', () async {
       List<Map<String, dynamic>> bookListFiltered = await updateBookListByGerne('Cultura digital', instance, true);
       expect(bookListFiltered.length, 3);
-      for (var book in bookList) {
+      for (var book in bookListFiltered) {
         expect(book['isDeleted'], false);
       }
     });
