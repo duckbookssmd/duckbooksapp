@@ -59,18 +59,19 @@ main() {
       'admRecorder': 'JJrV1ZLsdEUOQYX7IngEgKw5Vmq2',
       'dataCadastro': '13/07/2023 17:48',
     });
-    bookList = await updateList(instance);
+    
+    bookList = await updateBookList(instance, true);
     // print(instance.dump());
   });
 
-  group('updateList tests', () {
+  group('updateBookList tests', () {
     test('Updating the book list - Success', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
       expect(bookList.length, 2);
     });
 
     test('Not deleted one in book list - Success', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
       for (var book in bookList) {
         expect(book['isDeleted'], false);
       }
@@ -79,27 +80,27 @@ main() {
 
   group('searchByName tests', () {
     test('Searching letter "s" - Success', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
-      List<Map<String, dynamic>> searchResponse = await searchByName('s', bookList);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchBooksByName('s', bookList);
       expect(searchResponse.length, 1);
     });
 
     test('Searching deleted one - failude', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
-      List<Map<String, dynamic>> searchResponse = await searchByName('deletado', bookList);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchBooksByName('deletado', bookList);
       expect(searchResponse.length, 0);
     });
 
     test('Searching "#Inf" - Success', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
-      List<Map<String, dynamic>> searchResponse = await searchByName('#Inf', bookList);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchBooksByName('#Inf', bookList);
       expect(searchResponse.length, 1);
       expect(searchResponse[0]['nome'], equals('#Influencer'));
     });
 
     test('Searching accent - Success', () async {
-      // List<Map<String, dynamic>> bookList = await updateList(instance);
-      List<Map<String, dynamic>> searchResponse = await searchByName('â', bookList);
+      // List<Map<String, dynamic>> bookList = await updateBookList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchBooksByName('â', bookList);
       expect(searchResponse.length, 1);
     });
   });

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/firestore_utils.dart';
 import '../utils/string_utils.dart';
 import '/assets/theme/flutter_flow_theme.dart';
 import '../widgets/duck_app_bar.dart';
@@ -22,7 +23,7 @@ TextEditingController? searchController = TextEditingController();
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-List livros = [];
+List<Map<String, dynamic>> livros = [];
 
 bool isLoading = false;
 
@@ -31,52 +32,24 @@ class _ConsultPageState extends State<ConsultPage> {
 
   /// Pesquisa por livros que dentro do banco de dados e atualiza a lista de livros.
   ///
-  /// Cria uma lista filtrada a partir dos livros da lista atualizada que possuam a [name] em seus nomes.
-  searchByName([String name = '']) async {
-    List filttedList = [];
-    name = removeAccents(name.toLowerCase());
-
+  /// Atualiza a lista com obras que possuam a [name] em seus nomes.
+  searchFullColection([String name = '']) async {
     setState(() {
       isLoading = true;
     });
 
-    await atualizarLista();
-
-    for (Map<String, dynamic> livro in livros) {
-      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
-        filttedList.add(livro);
-      }
-    }
-
-    livros = filttedList;
+    livros = await updateBookList();
+    livros = await searchBooksByName(name, livros);
 
     setState(() {
       isLoading = false;
     });
   }
 
-  /// Atualiza a lista de livros não deletados presentes no com o Firestore.
-  atualizarLista() async {
-    livros = await firebaseFirestore
-        .collection('book')
-        .where('nome', isNull: false)
-        .orderBy('nome', descending: false)
-        .get()
-        .then((value) {
-      List lista = [];
-      for (var docSnapshot in value.docs) {
-        if (!(docSnapshot.data()['isDeleted'].toString() == 'true')) {
-          lista.add(docSnapshot.data());
-        }
-      }
-      return lista;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
+    WidgetsBinding.instance.addPostFrameCallback((_) => searchFullColection());
   }
 
   @override
@@ -174,7 +147,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                                 suffixIcon: IconButton(
-                                  onPressed: () => searchByName(searchController?.text ?? ''),
+                                  onPressed: () => searchFullColection(searchController?.text ?? ''),
                                   icon: const Icon(
                                     Icons.search,
                                     size: 26,
@@ -210,7 +183,7 @@ class _ConsultPageState extends State<ConsultPage> {
                       child: RefreshIndicator(
                         displacement: 10,
                         color: FlutterFlowTheme.of(context).secondary,
-                        onRefresh: () => searchByName(searchController?.text ?? ''),
+                        onRefresh: () => searchFullColection(searchController?.text ?? ''),
                         child: ListView.builder(
                           itemCount: livros.length,
                           itemBuilder: (context, index) {
@@ -261,7 +234,8 @@ class _ConsultPageState extends State<ConsultPage> {
                                                                   builder: (context) =>
                                                                       ConsultionGenrePage(genre: generos[index]),
                                                                 ),
-                                                              ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                                              ).whenComplete(
+                                                                  () => searchFullColection(searchController?.text ?? '')),
                                                               child: Stack(
                                                                 children: [
                                                                   ClipRRect(
@@ -343,7 +317,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                               MaterialPageRoute(
                                                 builder: (context) => CollectionDetailsPage(book: livros[index]),
                                               ),
-                                            ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                            ).whenComplete(() => searchFullColection(searchController?.text ?? '')),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.circular(8),
                                               child: Image.network(
@@ -447,7 +421,7 @@ class _ConsultPageState extends State<ConsultPage> {
                                                         MaterialPageRoute(
                                                           builder: (context) => CollectionDetailsPage(book: livros[index]),
                                                         ),
-                                                      ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                                                      ).whenComplete(() => searchFullColection(searchController?.text ?? ''));
                                                     },
                                                     style: OutlinedButton.styleFrom(
                                                       fixedSize: const Size(120, 40),

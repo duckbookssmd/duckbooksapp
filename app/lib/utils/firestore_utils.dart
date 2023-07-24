@@ -1,3 +1,5 @@
+/// Funçãos uteis para a manipulaçao dos dados presentes no FirebaseFirestore.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'string_utils.dart';
@@ -11,11 +13,8 @@ import 'string_utils.dart';
   Colocar essa lógica de loading separada, como toLoanding(função await, algo que permita rodar um setstate bem), 
  */
 
-// TODO: Criar funções separada dessa pesquisa para função como Loan Resevations ect...
-
 /// Retorna uma [filttedList] com os livros que possuem a String [name] em seus nomes a partir de uma [lista] dada.
-Future<List<Map<String, dynamic>>> searchByName([String name = '', List lista = const []]) async {
-  // TODO: alguns testes, dois que possuem e um que nao talvez algum com uma exceção 
+Future<List<Map<String, dynamic>>> searchBooksByName([String name = '', List<Map<String, dynamic>> lista = const []]) async {
   // TODO: implementar na página de consulta da coleçao.
 
   List<Map<String, dynamic>> filttedList = [];
@@ -30,14 +29,17 @@ Future<List<Map<String, dynamic>>> searchByName([String name = '', List lista = 
   return filttedList;
 }
 
+// TODO: Criar funções separada dessa pesquisa para função como Loan Resevations ect...
 // TODO: padronizar com os outro de alguma forma
 
 /// Retorna uma lista atualizada de livros __não deletados__ presentes no [dataBase].
-Future<List<Map<String, dynamic>>> updateList(FirebaseFirestore dataBase, [bool test = false]) async {
-  test ?dataBase = FirebaseFirestore.instance : null ;
+///
+/// Em caso de uso para testes habilitar o [test].
+Future<List<Map<String, dynamic>>> updateBookList([FirebaseFirestore? dataBase, bool test = false]) async {
+  (test) ? null : dataBase = FirebaseFirestore.instance;
 
   /// Firebase instanse
-  return await dataBase.collection('book').where('nome', isNull: false).orderBy('nome', descending: false).get().then(
+  return await dataBase!.collection('book').where('nome', isNull: false).orderBy('nome', descending: false).get().then(
     (value) {
       List<Map<String, dynamic>> lista = [];
       for (var docSnapshot in value.docs) {
