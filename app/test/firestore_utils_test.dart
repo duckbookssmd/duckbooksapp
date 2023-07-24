@@ -3,6 +3,7 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 late FakeFirebaseFirestore instance;
+late List<Map<String, dynamic>> bookList;
 
 main() {
   setUpAll(() async {
@@ -58,20 +59,48 @@ main() {
       'admRecorder': 'JJrV1ZLsdEUOQYX7IngEgKw5Vmq2',
       'dataCadastro': '13/07/2023 17:48',
     });
-    print(instance.dump());
+    bookList = await updateList(instance);
+    // print(instance.dump());
   });
 
-  group('firestore Utils  tests', () {
+  group('updateList tests', () {
     test('Updating the book list - Success', () async {
-      List<Map<String, dynamic>> bookList = await updateList(instance); 
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
       expect(bookList.length, 2);
     });
 
     test('Not deleted one in book list - Success', () async {
-      List<Map<String, dynamic>> bookList = await updateList(instance);
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
       for (var book in bookList) {
         expect(book['isDeleted'], false);
       }
+    });
+  });
+
+  group('searchByName tests', () {
+    test('Searching letter "s" - Success', () async {
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchByName('s', bookList);
+      expect(searchResponse.length, 1);
+    });
+
+    test('Searching deleted one - failude', () async {
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchByName('deletado', bookList);
+      expect(searchResponse.length, 0);
+    });
+
+    test('Searching "#Inf" - Success', () async {
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchByName('#Inf', bookList);
+      expect(searchResponse.length, 1);
+      expect(searchResponse[0]['nome'], equals('#Influencer'));
+    });
+
+    test('Searching accent - Success', () async {
+      // List<Map<String, dynamic>> bookList = await updateList(instance);
+      List<Map<String, dynamic>> searchResponse = await searchByName('â', bookList);
+      expect(searchResponse.length, 1);
     });
   });
 }

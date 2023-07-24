@@ -15,7 +15,8 @@ import 'string_utils.dart';
 
 /// Retorna uma [filttedList] com os livros que possuem a String [name] em seus nomes a partir de uma [lista] dada.
 Future<List<Map<String, dynamic>>> searchByName([String name = '', List lista = const []]) async {
-  // TODO: alguns testes, dois que possuem e um que nao talvez algum com uma exceção
+  // TODO: alguns testes, dois que possuem e um que nao talvez algum com uma exceção 
+  // TODO: implementar na página de consulta da coleçao.
 
   List<Map<String, dynamic>> filttedList = [];
   name = removeAccents(name.toLowerCase());
