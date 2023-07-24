@@ -58,6 +58,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.1
   flutter_lints: ^2.0.0
+  fake_cloud_firestore: ^2.4.1+1
 
 
 flutter_native_splash:

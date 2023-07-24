@@ -35,7 +35,7 @@ main() {
       equals('http://books.google.com/books/content?id=BWSTv8Q48YcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
     );
   });
-  test('Get URL image - Fa', () async {
+  test('Get URL image - Failude', () async {
     String httpLink = await getHttpImage('9788590379829d');
     expect(
       httpLink,
