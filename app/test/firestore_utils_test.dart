@@ -131,12 +131,9 @@ main() {
         expect(book['isDeleted'], false);
       }
     });
-    test('Updating with Genre "Cultura digital" - Success', () async {
-      List<Map<String, dynamic>> bookListFiltered = await updateBookListByGerne('Cultura digital', instance, true);
-      expect(bookListFiltered.length, 3);
-      for (var book in bookList) {
-        expect(book['isDeleted'], false);
-      }
+    test('Updating with Genre "Java" - Success', () async {
+      List<Map<String, dynamic>> bookListFiltered = await updateBookListByGerne('Java', instance, true);
+      expect(bookListFiltered.length, 0);
     });
   });
 

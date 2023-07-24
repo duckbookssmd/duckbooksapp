@@ -42,7 +42,7 @@ Future<List<Map<String, dynamic>>> updateBookList([FirebaseFirestore? dataBase, 
   );
 }
 
-// TODO Fazer testes
+
 /// Retorna uma lista atualizada de livros_não deletados presentes no [dataBase] e que possuam o [gerne].
 ///
 /// Em caso de uso para testes habilitar o [test].

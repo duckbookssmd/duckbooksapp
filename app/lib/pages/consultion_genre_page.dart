@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/firestore_utils.dart';
 import '../utils/string_utils.dart';
 import 'collection_details_page.dart';
 
@@ -18,58 +19,37 @@ TextEditingController? searchController = TextEditingController();
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-List livros = [];
+List<Map<String, dynamic>> livros = [];
 
 bool isLoading = false;
 
-String genre = 'Redes';
+String genre = 'Redes'; // TODO testar mudar isso pra um late.
 
 class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// Pesquisa por livros que dentro do banco de dados e atualiza a lista de livros.
   ///
-  /// Cria uma lista filtrada a partir dos livros da lista atualizada que possuam a [name] em seus nomes.
-  searchByName([String name = '']) async {
-    List filttedList = [];
-    name = removeAccents(name.toLowerCase());
-
+  /// Atualiza a lista com obras que possuam a [name] em seus nomes.
+  searchColectionByGenre([String name = '']) async {
     setState(() {
       isLoading = true;
     });
-    await atualizarLista();
 
-    for (Map<String, dynamic> livro in livros) {
-      if (removeAccents(livro['nome'].toLowerCase()).contains(name)) {
-        filttedList.add(livro);
-      }
-    }
-
-    livros = filttedList;
+    livros = await updateBookListByGerne(genre);
+    livros = await searchBooksByName(name, livros);
 
     setState(() {
       isLoading = false;
     });
   }
 
-  /// Atualiza a lista de livros não deletados e com o [genre] escolhido presentes no com o Firestore.
-  atualizarLista() async {
-    livros = await firebaseFirestore.collection('book').orderBy('nome', descending: false).get().then((value) {
-      List lista = [];
-      for (var docSnapshot in value.docs) {
-        if (!(docSnapshot.data()['isDeleted'].toString() == 'true') && docSnapshot.data()['genero'] == genre) {
-          lista.add(docSnapshot.data());
-        }
-      }
-      return lista;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
     genre = widget.genre;
-    WidgetsBinding.instance.addPostFrameCallback((_) => searchByName());
+    WidgetsBinding.instance.addPostFrameCallback((_) => searchColectionByGenre());
   }
 
   @override
@@ -156,7 +136,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                       filled: true,
                       fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                       suffixIcon: IconButton(
-                        onPressed: () => searchByName(searchController?.text ?? ''),
+                        onPressed: () => searchColectionByGenre(searchController?.text ?? ''),
                         icon: const Icon(
                           Icons.search,
                           size: 26,
@@ -186,7 +166,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                       child: RefreshIndicator(
                         displacement: 10,
                         color: FlutterFlowTheme.of(context).secondary,
-                        onRefresh: () => searchByName(searchController?.text ?? ''),
+                        onRefresh: () => searchColectionByGenre(searchController?.text ?? ''),
                         child: ListView.builder(
                           itemCount: livros.length,
                           itemBuilder: (context, index) {
@@ -213,7 +193,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                             MaterialPageRoute(
                                               builder: (context) => CollectionDetailsPage(book: livros[index]),
                                             ),
-                                          ).whenComplete(() => searchByName(searchController?.text ?? '')),
+                                          ).whenComplete(() => searchColectionByGenre(searchController?.text ?? '')),
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(8),
                                             child: Image.network(
@@ -317,7 +297,7 @@ class _ConsultionGenrePageState extends State<ConsultionGenrePage> {
                                                       MaterialPageRoute(
                                                         builder: (context) => CollectionDetailsPage(book: livros[index]),
                                                       ),
-                                                    ).whenComplete(() => searchByName(searchController?.text ?? ''));
+                                                    ).whenComplete(() => searchColectionByGenre(searchController?.text ?? ''));
                                                   },
                                                   style: OutlinedButton.styleFrom(
                                                     fixedSize: const Size(120, 40),
