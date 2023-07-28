@@ -82,13 +82,11 @@ Future<List<Map<String, dynamic>>> updateBookListByLoan(String uId, [FirebaseFir
                   .get()
                   .then(
                 (value) async {
-                  print(value.docs.first.data()['renovations']);
                   return value.docs.first.data()['renovations'];
                 },
               ),
             },
           );
-
           list.add(book);
         }
       }
